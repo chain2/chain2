@@ -228,7 +228,6 @@ void CreateNewBlock(miner::BlockBuilder& block, const CScript& scriptPubKeyIn, b
         // Compute final coinbase transaction.
         txNew.vout[0].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
         txNew.vin[0].scriptSig = CScript() << nHeight << BIP100Str(hardLimit) << OP_0;
-        miner::BloatCoinbaseSize(txNew);
         CTransaction coinbaseTx(txNew);
         miner::BuilderEntry coinbase(&coinbaseTx, GetLegacySigOpCount(txNew, STANDARD_CHECKDATASIG_VERIFY_FLAGS), 0);
         block.SetCoinbase(std::move(coinbase));

@@ -47,9 +47,6 @@ MAX_STANDARD_TX_SIGOPS = MAX_TX_SIGOPS_COUNT // 5
 # blocks (network rule)
 COINBASE_MATURITY = 100
 
-# Minimum size a transaction can have.
-MIN_TX_SIZE = 100
-
 # Maximum bytes in the TxOut pubkey script
 MAX_TXOUT_PUBKEY_SCRIPT = 10000
 
