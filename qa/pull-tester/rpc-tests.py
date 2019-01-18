@@ -127,7 +127,7 @@ testScripts = [
     'abc-monolith-activation.py',
     'bip64.py',
     'p2p-leaktests.py',
-    'ctor-mining.py'
+    'abc-checkdatasig-activation.py'
 ]
 
 testScriptsExt = [
