@@ -275,7 +275,6 @@ class TransactionOrderingTest(ComparisonTestFramework):
         assert_equal(node.getblockheader(forkblockhash)[
                      'mediantime'], LTOR_ACTIVATION_TIME)
 
-        assert_equal(len(node.getrawmempool()), 15)
         node.generate(1)
         generatedblockhash = node.getbestblockhash()
         assert(forkblockhash != generatedblockhash)
