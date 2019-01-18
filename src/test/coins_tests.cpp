@@ -17,8 +17,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-enum class DisconnectResult;
-DisconnectResult ApplyTxInUndo(Coin undo, CCoinsViewCache& view, const COutPoint& out);
+int ApplyTxInUndo(Coin&& undo, CCoinsViewCache& view, const COutPoint& out);
 void UpdateCoins(const CTransaction& tx, CCoinsViewCache& inputs, CTxUndo &txundo, int nHeight);
 
 namespace

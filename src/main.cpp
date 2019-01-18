@@ -1583,11 +1583,11 @@ bool AbortNode(CValidationState& state, const std::string& strMessage, const std
 
 } // anon namespace
 
-enum class DisconnectResult
+enum DisconnectResult
 {
-    OK,      // All good.
-    UNCLEAN, // Rolled back, but UTXO set was inconsistent with block.
-    FAILED   // Something else went wrong.
+    DISCONNECT_OK,      // All good.
+    DISCONNECT_UNCLEAN, // Rolled back, but UTXO set was inconsistent with block.
+    DISCONNECT_FAILED   // Something else went wrong.
 };
 
 /**
@@ -1595,8 +1595,9 @@ enum class DisconnectResult
  * @param undo The Coin to be restored.
  * @param view The coins view to which to apply the changes.
  * @param out The out point that corresponds to the tx input.
+ * @return A DisconnectResult as an int
  */
-DisconnectResult ApplyTxInUndo(Coin undo, CCoinsViewCache& view, const COutPoint& out)
+int ApplyTxInUndo(Coin&& undo, CCoinsViewCache& view, const COutPoint& out)
 {
     bool fClean = true;
 
@@ -1611,7 +1612,7 @@ DisconnectResult ApplyTxInUndo(Coin undo, CCoinsViewCache& view, const COutPoint
             undo.nHeight = alternate.nHeight;
             undo.fCoinBase = alternate.fCoinBase;
         } else {
-            return DisconnectResult::FAILED; // adding output for transaction without known metadata
+            return DISCONNECT_FAILED; // adding output for transaction without known metadata
         }
     }
     // The potential_overwrite parameter to AddCoin is only allowed to be false if we know for
@@ -1620,7 +1621,7 @@ DisconnectResult ApplyTxInUndo(Coin undo, CCoinsViewCache& view, const COutPoint
     // it is an overwrite.
     view.AddCoin(out, std::move(undo), !fClean);
 
-    return fClean ? DisconnectResult::OK : DisconnectResult::UNCLEAN;
+    return fClean ? DISCONNECT_OK : DISCONNECT_UNCLEAN;
 }
 
 /** Undo the effects of this block (with given index) on the UTXO set represented by coins.
@@ -1633,41 +1634,23 @@ static DisconnectResult DisconnectBlock(const CBlock& block, const CBlockIndex* 
     CDiskBlockPos pos = pindex->GetUndoPos();
     if (pos.IsNull()) {
         error("DisconnectBlock(): no undo data available");
-        return DisconnectResult::FAILED;
+        return DISCONNECT_FAILED;
     }
     if (!UndoReadFromDisk(blockUndo, pos, pindex->pprev->GetBlockHash())) {
         error("DisconnectBlock(): failure reading undo data");
-        return DisconnectResult::FAILED;
+        return DISCONNECT_FAILED;
     }
 
     if (blockUndo.vtxundo.size() + 1 != block.vtx.size()) {
         error("DisconnectBlock(): block and undo data inconsistent");
-        return DisconnectResult::FAILED;
+        return DISCONNECT_FAILED;
     }
 
-    // First, restore inputs.
-    for (size_t i = 1; i < block.vtx.size(); i++) {
-        const CTransaction& tx = block.vtx[i];
-        const CTxUndo &txundo = blockUndo.vtxundo[i - 1];
-        if (txundo.vprevout.size() != tx.vin.size()) {
-            error("DisconnectBlock(): transaction and undo data inconsistent");
-            return DisconnectResult::FAILED;
-        }
-
-        for (size_t j = 0; j < tx.vin.size(); j++) {
-            const COutPoint &out = tx.vin[j].prevout;
-            DisconnectResult res = ApplyTxInUndo(txundo.vprevout[j], view, out);
-            if (res == DisconnectResult::FAILED) {
-                return DisconnectResult::FAILED;
-            }
-            fClean = fClean && res != DisconnectResult::UNCLEAN;
-        }
-    }
-
-    // Second, revert created outputs.
-    for (const CTransaction& tx : block.vtx) {
-        const uint256 hash = tx.GetHash();
-        const bool is_coinbase = tx.IsCoinBase();
+    // undo transactions in reverse order
+    for (int i = block.vtx.size() - 1; i >= 0; i--) {
+        const CTransaction &tx = block.vtx[i];
+        uint256 hash = tx.GetHash();
+        bool is_coinbase = tx.IsCoinBase();
 
         // Check that all outputs are available and match the outputs in the block itself
         // exactly.
@@ -1681,12 +1664,28 @@ static DisconnectResult DisconnectBlock(const CBlock& block, const CBlockIndex* 
                 }
             }
         }
+
+        // restore inputs
+        if (i > 0) { // not coinbases
+            CTxUndo &txundo = blockUndo.vtxundo[i-1];
+            if (txundo.vprevout.size() != tx.vin.size()) {
+                error("DisconnectBlock(): transaction and undo data inconsistent");
+                return DISCONNECT_FAILED;
+            }
+            for (unsigned int j = tx.vin.size(); j-- > 0;) {
+                const COutPoint &out = tx.vin[j].prevout;
+                int res = ApplyTxInUndo(std::move(txundo.vprevout[j]), view, out);
+                if (res == DISCONNECT_FAILED) return DISCONNECT_FAILED;
+                fClean = fClean && res != DISCONNECT_UNCLEAN;
+            }
+            // At this point, all of txundo.vprevout should have been moved out.
+        }
     }
 
     // move best block pointer to prevout block
     view.SetBestBlock(pindex->pprev->GetBlockHash());
 
-    return fClean ? DisconnectResult::OK : DisconnectResult::UNCLEAN;
+    return fClean ? DISCONNECT_OK : DISCONNECT_UNCLEAN;
 }
 
 void static FlushBlockFile(bool fFinalize = false)
@@ -2257,7 +2256,7 @@ bool static DisconnectTip(CValidationState &state) {
     {
         CCoinsViewCache view(pcoinsTip);
         assert(view.GetBestBlock() == pindexDelete->GetBlockHash());
-        if (DisconnectBlock(block, pindexDelete, view) != DisconnectResult::OK)
+        if (DisconnectBlock(block, pindexDelete, view) != DISCONNECT_OK)
             return error("DisconnectTip(): DisconnectBlock %s failed", pindexDelete->GetBlockHash().ToString());
         assert(view.Flush());
     }
@@ -3584,11 +3583,11 @@ bool CVerifyDB::VerifyDB(CCoinsView *coinsview, int nCheckLevel, int nCheckDepth
         if (nCheckLevel >= 3 && pindex == pindexState && (coins.DynamicMemoryUsage() + pcoinsTip->DynamicMemoryUsage()) <= nCoinCacheUsage) {
             assert(coins.GetBestBlock() == pindex->GetBlockHash());
             DisconnectResult res = DisconnectBlock(block, pindex, coins);
-            if (res == DisconnectResult::FAILED) {
+            if (res == DISCONNECT_FAILED) {
                 return error("VerifyDB(): *** irrecoverable inconsistency in block data at %d, hash=%s", pindex->nHeight, pindex->GetBlockHash().ToString());
             }
             pindexState = pindex->pprev;
-            if (res == DisconnectResult::UNCLEAN) {
+            if (res == DISCONNECT_UNCLEAN) {
                 nGoodTransactions = 0;
                 pindexFailure = pindex;
             } else {
@@ -3686,10 +3685,10 @@ bool ReplayBlocks(const CChainParams& params, CCoinsView* view)
             }
             LogPrintf("Rolling back %s (%i)\n", pindexOld->GetBlockHash().ToString(), pindexOld->nHeight);
             DisconnectResult res = DisconnectBlock(block, pindexOld, cache);
-            if (res == DisconnectResult::FAILED) {
+            if (res == DISCONNECT_FAILED) {
                 return error("RollbackBlock(): DisconnectBlock failed at %d, hash=%s", pindexOld->nHeight, pindexOld->GetBlockHash().ToString());
             }
-            // If DisconnectResult::UNCLEAN is returned, it means a non-existing UTXO was deleted, or an existing UTXO was
+            // If DISCONNECT_UNCLEAN is returned, it means a non-existing UTXO was deleted, or an existing UTXO was
             // overwritten. It corresponds to cases where the block-to-be-disconnect never had all its operations
             // applied to the UTXO set. However, as both writing a UTXO and deleting a UTXO are idempotent operations,
             // the result is still a version of the UTXO set with the effects of that block undone.
