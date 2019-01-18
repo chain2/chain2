@@ -12,7 +12,6 @@ from test_framework.util import *
 from test_framework.script import *
 from test_framework.mininode import *
 from test_framework.blocktools import *
-from test_framework.txtools import bloat_tx
 
 SEQUENCE_LOCKTIME_DISABLE_FLAG = (1<<31)
 SEQUENCE_LOCKTIME_TYPE_FLAG = (1<<22) # this means use time (0 means height)
@@ -87,7 +86,6 @@ class BIP68Test(BitcoinTestFramework):
         sequence_value = sequence_value & 0x7fffffff
         tx2.vin = [CTxIn(COutPoint(tx1_id, 0), nSequence=sequence_value)]
         tx2.vout = [CTxOut(int(value-self.relayfee*COIN), CScript([b'a']))]
-        bloat_tx(tx2)
         tx2.rehash()
 
         try:
@@ -237,8 +235,7 @@ class BIP68Test(BitcoinTestFramework):
             tx.nVersion = 2
             tx.vin = [CTxIn(COutPoint(orig_tx.sha256, 0), nSequence=sequence_value)]
             tx.vout = [CTxOut(int(orig_tx.vout[0].nValue - relayfee*COIN), CScript([b'a']))]
-            bloat_tx(tx)
-            tx.calc_sha256()
+            tx.rehash()
 
             try:
                 node.sendrawtransaction(ToHex(tx))
@@ -369,8 +366,7 @@ class BIP68Test(BitcoinTestFramework):
         tx3.nVersion = 2
         tx3.vin = [CTxIn(COutPoint(tx2.sha256, 0), nSequence=sequence_value)]
         tx3.vout = [CTxOut(int(tx2.vout[0].nValue - self.relayfee*COIN), CScript([b'a']))]
-        bloat_tx(tx3)
-        tx3.calc_sha256()
+        tx3.rehash()
 
         try:
             self.nodes[0].sendrawtransaction(ToHex(tx3))

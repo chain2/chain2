@@ -15,7 +15,6 @@ from test_framework.blocktools import *
 import time
 from test_framework.key import CECKey
 from test_framework.script import *
-from test_framework.txtools import bloat_tx
 from collections import deque
 
 # far into the future
@@ -109,7 +108,6 @@ class TransactionOrderingTest(ComparisonTestFramework):
                 for i in range(4):
                     tx.vout.append(CTxOut(0, CScript([OP_TRUE])))
                     spendable_outputs.append(PreviousSpendableOutput(tx, i))
-                bloat_tx(tx)
                 return tx
 
             tx = get_base_transaction()
