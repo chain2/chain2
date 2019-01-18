@@ -10,13 +10,8 @@
 namespace miner {
 
 void BloatCoinbaseSize(CMutableTransaction& coinbase) {
-    size_t size = ::GetSerializeSize(coinbase, SER_NETWORK, PROTOCOL_VERSION);
-    if (size >= MIN_TRANSACTION_SIZE) {
-        return;
-    }
-    // operator<< prefixes the padding with minimum 1 byte, thus -1
-    size_t padding = MIN_TRANSACTION_SIZE - size - 1;
-    coinbase.vin[0].scriptSig << std::vector<uint8_t>(padding);
+    // No minimum transaction size, so this is a NOP
+    return;
 }
 
 } // ns miner
