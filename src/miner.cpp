@@ -23,7 +23,6 @@
 #include "primitives/transaction.h"
 #include "timedata.h"
 #include "util.h"
-#include "utilfork.h"
 #include "utilmoneystr.h"
 #include "options.h"
 #include "validationinterface.h"
@@ -125,11 +124,7 @@ void CreateNewBlock(miner::BlockBuilder& block, const CScript& scriptPubKeyIn, b
         LOCK2(cs_main, mempool.cs);
         CBlockIndex* pindexPrev = chainActive.Tip();
         const int nHeight = pindexPrev->nHeight + 1;
-        block.SetTime(GetAdjustedTime());
         const int64_t nMedianTimePast = pindexPrev->GetMedianTimePast();
-        if (!IsFourthHFActive(nMedianTimePast)) {
-            block.DisableLTOR();
-        }
 
         // -regtest only: allow overriding block.nVersion with
         // -blockversion=N to test forking scenarios
