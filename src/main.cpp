@@ -689,8 +689,7 @@ unsigned int LimitOrphanTxSize(unsigned int nMaxOrphans)
     return nEvicted;
 }
 
-bool ContextualCheckTransactionForNextBlock(const CTransaction &tx,
-                                            CValidationState& state, int flags)
+bool CheckFinalTx(const CTransaction &tx, int flags)
 {
     AssertLockHeld(cs_main);
 
@@ -702,12 +701,12 @@ bool ContextualCheckTransactionForNextBlock(const CTransaction &tx,
     // scheduled, so no flags are set.
     flags = std::max(flags, 0);
 
-    // ContextualCheckTransactionForNextBlock() uses chainActive.Height()+1 to
-    // evaluate nLockTime because when IsFinalTx() is called within
-    // CBlock::AcceptBlock(), the height of the block *being* evaluated is what
-    // is used. Thus if we want to know if a transaction can be part of the
-    // *next* block, we need to call IsFinalTx() with one more than
-    // chainActive.Height().
+    // CheckFinalTx() uses chainActive.Height()+1 to evaluate
+    // nLockTime because when IsFinalTx() is called within
+    // CBlock::AcceptBlock(), the height of the block *being*
+    // evaluated is what is used. Thus if we want to know if a
+    // transaction can be part of the *next* block, we need to call
+    // IsFinalTx() with one more than chainActive.Height().
     const int nBlockHeight = chainActive.Height() + 1;
 
     // BIP113 will require that time-locked transactions have nLockTime set to
@@ -715,12 +714,11 @@ bool ContextualCheckTransactionForNextBlock(const CTransaction &tx,
     // When the next block is created its previous block will be the current
     // chain tip, so we use that to calculate the median time passed to
     // IsFinalTx() if LOCKTIME_MEDIAN_TIME_PAST is set.
-    const int64_t mtp = chainActive.Tip() == nullptr
-        ? 0 : chainActive.Tip()->GetMedianTimePast();
     const int64_t nBlockTime = (flags & LOCKTIME_MEDIAN_TIME_PAST)
-                             ? mtp : GetAdjustedTime();
+                             ? chainActive.Tip()->GetMedianTimePast()
+                             : GetAdjustedTime();
 
-    return ContextualCheckTransaction(tx, state, nBlockHeight, nBlockTime, mtp);
+    return IsFinalTx(tx, nBlockHeight, nBlockTime);
 }
 
 bool TestLockPointValidity(const LockPoints* lp)
@@ -856,19 +854,12 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState &state, const CTransa
                          error("AcceptToMemoryPool: nonstandard transaction: %s", reason),
                          REJECT_NONSTANDARD, reason);
 
-    {
-        // Only accept transactions that can be mined in the next block.
-        //
-        // Dummy state to not increase DoS score. We don't want to increase
-        // score for transactions that could be valid in the future.
-        CValidationState dummyState;
-        if (!ContextualCheckTransactionForNextBlock(tx, dummyState, STANDARD_LOCKTIME_VERIFY_FLAGS)) {
-            return state.DoS(0, false, dummyState.GetRejectCode(),
-                             dummyState.GetRejectReason(),
-                             dummyState.CorruptionPossible(),
-                             dummyState.GetDebugMessage());
-        }
-    }
+    // Only accept nLockTime-using transactions that can be mined in the next
+    // block; we don't want our mempool filled up with transactions that can't
+    // be mined yet.
+    if (!CheckFinalTx(tx, STANDARD_LOCKTIME_VERIFY_FLAGS))
+        return state.DoS(0, error("AcceptToMemoryPool: non-final"),
+                         REJECT_NONSTANDARD, "non-final");
 
     // is it already in the memory pool?
     uint256 hash = tx.GetHash();

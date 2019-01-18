@@ -8,7 +8,6 @@
 #include "main.h"
 #include "dstencode.h"
 #include "timedata.h"
-#include "wallet/finaltx.h"
 #include "wallet/wallet.h"
 
 #include <stdint.h>
