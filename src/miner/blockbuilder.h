@@ -69,10 +69,6 @@ public:
     virtual void SetBits(uint32_t bits) = 0;
     virtual void SetHashPrevBlock(const uint256& hash) = 0;
 
-    // If LTOR is disabled, it becomes the callers responsiblity to add
-    // transactions in the correct order.
-    virtual void DisableLTOR() = 0;
-
     // As BlockBuilder only holds references to transactions, this needs to be
     // called before any of them go out of scope.
     virtual void Finalize(const Consensus::Params&) = 0;

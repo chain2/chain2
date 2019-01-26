@@ -19,7 +19,6 @@ public:
     void AddTx(BuilderEntry tx) override;
     void SetBits(uint32_t bits) override;
     void SetHashPrevBlock(const uint256& hash) override;
-    void DisableLTOR() override;
     void Finalize(const Consensus::Params&) override;
     void CheckValidity(CBlockIndex* pindexPrev) override;
 
@@ -40,7 +39,6 @@ public:
     CBlock Release();
 
 private:
-    bool useLTOR;
     bool isFinalized;
     BuilderEntry coinbase;
     std::vector<BuilderEntry> txs;

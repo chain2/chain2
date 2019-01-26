@@ -7,7 +7,7 @@
 namespace miner {
 
 SerializableBlockBuilder::SerializableBlockBuilder() :
-    useLTOR(true), isFinalized(false), coinbase(nullptr, 0, 0)
+    isFinalized(false), coinbase(nullptr, 0, 0)
 {
     block.nNonce = 0;
 }
@@ -49,10 +49,6 @@ void SerializableBlockBuilder::SetHashPrevBlock(const uint256& hash) {
     block.hashPrevBlock = hash;
 }
 
-void SerializableBlockBuilder::DisableLTOR() {
-    useLTOR = false;
-}
-
 void SerializableBlockBuilder::Finalize(const Consensus::Params&) {
     THROW_UNLESS(!isFinalized);
     THROW_UNLESS(block.nTime);
@@ -60,10 +56,6 @@ void SerializableBlockBuilder::Finalize(const Consensus::Params&) {
     THROW_UNLESS(block.vtx.empty());
     THROW_UNLESS(!block.hashPrevBlock.IsNull());
     THROW_UNLESS(coinbase.IsCoinBase());
-
-    if (useLTOR) {
-        std::sort(std::begin(txs), std::end(txs), EntryHashCmp);
-    }
 
     block.vtx.reserve(txs.size() + 1);
     block.vtx.push_back(coinbase.GetTx());

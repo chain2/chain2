@@ -69,12 +69,6 @@ void GBTBlockBuilder::SetHashPrevBlock(const uint256& hash) {
     dummyheader.hashPrevBlock = hash;
 }
 
-// If LTOR is disabled, it becomes the callers responsiblity to add
-// transactions in the correct order.
-void GBTBlockBuilder::DisableLTOR() {
-    useLTOR = false;
-}
-
 void GBTBlockBuilder::Finalize(const Consensus::Params& consensusParams) {
     THROW_UNLESS(block.empty());
     THROW_UNLESS(coinbase.IsCoinBase());

@@ -20,7 +20,6 @@ public:
     void SetBits(uint32_t bits) override;
     uint32_t GetBits();
     void SetHashPrevBlock(const uint256& hash) override;
-    void DisableLTOR() override;
     void Finalize(const Consensus::Params& consensusParams) override;
     void CheckValidity(CBlockIndex* pindexPrev) override;
 
