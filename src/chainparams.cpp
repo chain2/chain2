@@ -109,6 +109,16 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].minlockedblocks = 0;
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].minlockedtime = 0;
 
+        // CHECKDATASIGVERIFY
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].name = "cdsv";
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].gbt_force = true;
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].nStartTime = 1557921600LL; // Wednesday, May 15, 2019 12:00:00 UTC
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].nTimeout = 1589457600LL; // Thursday, May 14, 2020 12:00:00 UTC
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].windowsize = 12960;
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].threshold = 9720; // 75% of 12960
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].minlockedblocks = 0;
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].minlockedtime = 7776000; // 90 days
+
         // testing bit
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].name = "testdummy";
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].gbt_force = false;
@@ -222,6 +232,16 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].threshold = 1916; // 95% of 2016
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].minlockedblocks = 0;
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].minlockedtime = 0;
+
+        // CHECKDATASIGVERIFY
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].name = "cdsv";
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].gbt_force = true;
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].nStartTime = 1555329600LL; // Monday, April 15, 2019 12:00:00 UTC
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].nTimeout = 1589457600LL; // Thursday, May 14, 2020 12:00:00 UTC
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].windowsize = 12960;
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].threshold = 9720; // 75% of 12960
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].minlockedblocks = 0;
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].minlockedtime = 7776000; // 90 days
 
         // testing bit
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].name = "testdummy";

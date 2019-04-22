@@ -7,6 +7,9 @@
 #include "options.h"
 #include "txmempool.h"
 #include "util.h"
+#include "chainparams.h"
+#include "versionbits.h"
+#include "main.h"
 
 static bool IsForkActivatingBlock(int64_t mtpActivationTime,
                                   int64_t mtpCurrent, const CBlockIndex* pindexPrev)
@@ -78,14 +81,30 @@ static bool NeedsClearAfterRollback(const CBlockIndex* oldTip) {
         if (forkUndone)
             return true;
     }
+
+    // we don't track whether a clear can be avoided when a versionbit fork is rolled back
+    const Consensus::Params& consensusParams = Params().GetConsensus();
+    for (int i = 0; i < Consensus::MAX_VERSION_BITS_DEPLOYMENTS; i++)
+    {
+        Consensus::DeploymentPos bit = static_cast<Consensus::DeploymentPos>(i);
+        if (IsConfiguredDeployment(consensusParams, bit))
+        {
+            if ((VersionBitsState(oldTip, consensusParams, bit, versionbitscache) == THRESHOLD_ACTIVE) &&
+                (VersionBitsState(oldTip->pprev, consensusParams, bit, versionbitscache) != THRESHOLD_ACTIVE))
+                return true;
+        }
+    }
+
     return false;
 }
 
 // Check if a fork with incompatible transactions is activated.
 //
 // Called when a block is appended to chain.
-static bool NeedsClearAfterAppend(const CBlockIndex* oldTip, int64_t mtpNew) {
+static bool NeedsClearAfterAppend(const CBlockIndex* oldTip, const CBlockIndex* newTip) {
     assert(oldTip);
+    assert(newTip);
+    int64_t mtpNew = newTip->GetMedianTimePast();
 
     // forks requiring mempool clearing going into fork
     const std::vector<std::function<bool(int64_t, const CBlockIndex*)>> forkChecks = {
@@ -97,6 +116,21 @@ static bool NeedsClearAfterAppend(const CBlockIndex* oldTip, int64_t mtpNew) {
             return true;
         }
     }
+
+    // did we activate a versionbits fork which needs a mempool clear?
+    const Consensus::Params& consensusParams = Params().GetConsensus();
+    for (int i = 0; i < Consensus::MAX_VERSION_BITS_DEPLOYMENTS; i++)
+    {
+        Consensus::DeploymentPos bit = static_cast<Consensus::DeploymentPos>(i);
+        if (IsConfiguredDeployment(consensusParams, bit))
+        {
+            if ((VersionBitsState(oldTip, consensusParams, bit, versionbitscache) != THRESHOLD_ACTIVE) &&
+                (VersionBitsState(newTip, consensusParams, bit, versionbitscache) == THRESHOLD_ACTIVE) &&
+                !consensusParams.vDeployments.at(bit).gbt_force)
+                return true;
+        }
+    }
+
     return false;
 }
 
@@ -109,7 +143,7 @@ void ForkMempoolClearer(
     const bool rollback = oldTip->nHeight > newTip->nHeight;
     bool clear = rollback
         ? NeedsClearAfterRollback(oldTip)
-        : NeedsClearAfterAppend(oldTip, newTip->GetMedianTimePast());
+        : NeedsClearAfterAppend(oldTip, newTip);
 
     if (!clear)
         return;
