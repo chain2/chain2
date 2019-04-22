@@ -71,8 +71,7 @@ static bool NeedsClearAfterRollback(const CBlockIndex* oldTip) {
     // forks requiring mempool clearing in rollback
     const std::vector<std::function<bool(int64_t)>> forkChecks = {
         IsUAHFActive, // adds replay protection
-        IsThirdHFActive, // adds new opcodes
-        IsFourthHFActive}; // adds new opcodes
+        IsThirdHFActive}; // adds new opcodes
 
     for (auto isActive : forkChecks) {
         bool forkUndone = isActive(mtpOld) && !isActive(mtpOldPrev);
@@ -90,8 +89,7 @@ static bool NeedsClearAfterAppend(const CBlockIndex* oldTip, int64_t mtpNew) {
 
     // forks requiring mempool clearing going into fork
     const std::vector<std::function<bool(int64_t, const CBlockIndex*)>> forkChecks = {
-        IsUAHFActivatingBlock, // adds replay protection
-        IsFourthHFActivatingBlock // removes malleability vectors
+        IsUAHFActivatingBlock // adds replay protection
     };
 
     for (auto& activatesFork : forkChecks) {
