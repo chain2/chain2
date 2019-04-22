@@ -997,7 +997,7 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState &state, const CTransa
             forkVerifyFlags |= SCRIPT_ENABLE_MONOLITH_OPCODES;
         }
 
-        if (IsFourthHFActive(mtpChainTip)) {
+        if (VersionBitsState(chainActive.Tip(), Params().GetConsensus(), Consensus::DEPLOYMENT_CDSV, versionbitscache) == THRESHOLD_ACTIVE) {
             forkVerifyFlags |= SCRIPT_ENABLE_CHECKDATASIG;
         }
 
@@ -1928,7 +1928,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         flags |= SCRIPT_ENABLE_MONOLITH_OPCODES;
     }
 
-    if (IsFourthHFActive(pindex->pprev->GetMedianTimePast())) {
+    if (VersionBitsState(pindex->pprev, chainparams.GetConsensus(), Consensus::DEPLOYMENT_CDSV, versionbitscache) == THRESHOLD_ACTIVE) {
         flags |= SCRIPT_ENABLE_CHECKDATASIG;
     }
 
@@ -2999,7 +2999,7 @@ bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIn
 
     // Enforce CDSV sigop count after fork activation.  TODO: Remove either
     // this, or sigop counting in CheckBlock after fork is buried.
-    if (IsFourthHFActive(nMedianTimePastPrev)) {
+    if ((VersionBitsState(pindexPrev, consensusParams, Consensus::DEPLOYMENT_CDSV, versionbitscache) == THRESHOLD_ACTIVE)) {
         uint32_t nSigOps = 0;
         for (const CTransaction& tx : block.vtx) {
             nSigOps += GetLegacySigOpCount(tx, STANDARD_CHECKDATASIG_VERIFY_FLAGS);

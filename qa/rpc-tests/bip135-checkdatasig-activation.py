@@ -1,19 +1,16 @@
 #!/usr/bin/env python3
-# Copyright (c) 2018 The Bitcoin developers
+# Copyright (c) 2019 The Bitcoin developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """
-This test checks activation of OP_CHECKDATASIG
+This test checks BIP135 activation of OP_CHECKDATASIG
 """
 
 from test_framework.test_framework import ComparisonTestFramework
-from test_framework.util import satoshi_round, assert_equal, assert_raises_rpc_error, get_relay_fee, start_nodes
+from test_framework.util import *
 from test_framework.comptool import TestManager, TestInstance, RejectResult
 from test_framework.blocktools import *
 from test_framework.script import *
-
-# far into the future
-MAGNETIC_ANOMALY_START_TIME = 2000000000
 
 # Error due to invalid opcodes
 BAD_OPCODE_ERROR = b'mandatory-script-verify-flag-failed (Opcode missing or not understood)'
@@ -37,10 +34,12 @@ class CheckDataSigActivationTest(ComparisonTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.setup_clean_chain = True
-        self.extra_args = [['-whitelist=127.0.0.1',
-                            "-fourthhftime=%d" % MAGNETIC_ANOMALY_START_TIME]]
+        self.extra_args = [['-whitelist=127.0.0.1']]
 
     def setup_network(self):
+        # blocks are 1 second apart by default in this regtest
+        # regtest bip135 deployments are defined for a blockchain that starts at MOCKTIME
+        enable_mocktime()
         self.nodes = start_nodes(
                 self.num_nodes, self.options.tmpdir,
                 extra_args=self.extra_args * self.num_nodes,
@@ -114,10 +113,11 @@ class CheckDataSigActivationTest(ComparisonTestFramework):
         tx0_hex = ToHex(tx0)
         assert_raises_rpc_error(-26, RPC_BAD_OPCODE_ERROR,
                                 node.sendrawtransaction, tx0_hex)
+        assert_equal(get_bip135_status(node, 'bip135test4')['status'], 'defined')
 
-        # Push MTP forward just before activation.
-        self.log.info("Pushing MTP just before the activation and check again")
-        node.setmocktime(MAGNETIC_ANOMALY_START_TIME)
+        # CDSV regtest start happens after height 299, activation should be at height 399
+        self.log.info("Advance to height 398, just before activation, and check again")
+        node.generate(272)
 
         # returns a test case that asserts that the current tip was accepted
         def accepted(tip):
@@ -130,7 +130,7 @@ class CheckDataSigActivationTest(ComparisonTestFramework):
             else:
                 return TestInstance([[tip, reject]])
 
-        def next_block(block_time):
+        def next_block():
             # get block height
             blockchaininfo = node.getblockchaininfo()
             height = int(blockchaininfo['blocks'])
@@ -138,20 +138,14 @@ class CheckDataSigActivationTest(ComparisonTestFramework):
             # create the block
             coinbase = create_coinbase(height)
             coinbase.rehash()
-            block = create_block(
-                int(node.getbestblockhash(), 16), coinbase, block_time)
+            version = 0x20000010 # Signal for CDSV on bit 4
+            block = create_block(int(node.getbestblockhash(), 16), coinbase,
+                                 int(blockchaininfo['mediantime']) + 1, nVersion=version)
 
             # Do PoW, which is cheap on regnet
             block.solve()
             return block
 
-        for i in range(6):
-            b = next_block(MAGNETIC_ANOMALY_START_TIME + i - 1)
-            yield accepted(b)
-
-        # Check again just before the activation time
-        assert_equal(node.getblockheader(node.getbestblockhash())['mediantime'],
-                     MAGNETIC_ANOMALY_START_TIME - 1)
         assert_raises_rpc_error(-26, RPC_BAD_OPCODE_ERROR,
                                 node.sendrawtransaction, tx0_hex)
 
@@ -160,31 +154,33 @@ class CheckDataSigActivationTest(ComparisonTestFramework):
             block.hashMerkleRoot = block.calc_merkle_root()
             block.solve()
 
-        b = next_block(MAGNETIC_ANOMALY_START_TIME + 6)
+        b = next_block()
         add_tx(b, tx0)
         yield rejected(b, RejectResult(16, b'blk-bad-inputs'))
 
+        assert_equal(get_bip135_status(node, 'bip135test4')['status'], 'locked_in')
+
+
         self.log.info("Activates checkdatasig")
-        fork_block = next_block(MAGNETIC_ANOMALY_START_TIME + 6)
+        fork_block = next_block()
         yield accepted(fork_block)
 
-        assert_equal(node.getblockheader(node.getbestblockhash())['mediantime'],
-                     MAGNETIC_ANOMALY_START_TIME)
+        assert_equal(get_bip135_status(node, 'bip135test4')['status'], 'active')
 
         tx0id = node.sendrawtransaction(tx0_hex)
         assert(tx0id in set(node.getrawmempool()))
 
         # Transactions can also be included in blocks.
-        magneticanomalyblock = next_block(MAGNETIC_ANOMALY_START_TIME + 7)
-        add_tx(magneticanomalyblock, tx0)
-        yield accepted(magneticanomalyblock)
+        nextblock = next_block()
+        add_tx(nextblock, tx0)
+        yield accepted(nextblock)
 
         self.log.info("Cause a reorg that deactivate the checkdatasig opcodes")
 
         # Invalidate the checkdatasig block, ensure tx0 gets back to the mempool.
         assert(tx0id not in set(node.getrawmempool()))
 
-        node.invalidateblock(format(magneticanomalyblock.sha256, 'x'))
+        node.invalidateblock(format(nextblock.sha256, 'x'))
         assert(tx0id in set(node.getrawmempool()))
 
         node.invalidateblock(format(fork_block.sha256, 'x'))

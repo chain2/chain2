@@ -15,6 +15,7 @@ namespace Consensus {
 enum DeploymentPos
 {
     DEPLOYMENT_CSV = 0, // Deployment of BIP68, BIP112, and BIP113.
+    DEPLOYMENT_CDSV = 4, // CHECKDATASIG
     DEPLOYMENT_TESTDUMMY = 28,
     MAX_VERSION_BITS_DEPLOYMENTS = 29
 };
