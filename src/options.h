@@ -19,14 +19,11 @@ public:
         int ScriptCheckThreads();
         int64_t CheckpointDays();
         uint64_t MaxBlockSizeVote();
+        int64_t UAHFTime() const;
+        int UAHFProtectSunset();
         int64_t RespendRelayLimit() const;
 	bool UseCashAddr() const;
-
-    // Fork activation
-    int64_t UAHFTime() const;
-    int UAHFProtectSunset();
-    int64_t ThirdHFTime() const;
-    int64_t FourthHFTime() const;
+	int64_t ThirdHFTime() const;
 
         // Thin block options
         bool UsingThinBlocks();
