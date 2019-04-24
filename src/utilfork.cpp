@@ -36,10 +36,6 @@ bool IsThirdHFActivatingBlock(int64_t mtpCurrent, const CBlockIndex* pindexPrev)
     return IsForkActivatingBlock(Opt().ThirdHFTime(), mtpCurrent, pindexPrev);
 }
 
-bool IsFourthHFActivatingBlock(int64_t mtpCurrent, const CBlockIndex* pindexPrev) {
-    return IsForkActivatingBlock(Opt().FourthHFTime(), mtpCurrent, pindexPrev);
-}
-
 static bool IsForkActive(uint64_t mtpActivation, uint64_t mtpChainTip) {
     if (!mtpActivation)
         return false;
@@ -53,10 +49,6 @@ bool IsUAHFActive(uint64_t mtpChainTip) {
 
 bool IsThirdHFActive(int64_t mtpChainTip) {
     return IsForkActive(Opt().ThirdHFTime(), mtpChainTip);
-}
-
-bool IsFourthHFActive(int64_t mtpChainTip) {
-    return IsForkActive(Opt().FourthHFTime(), mtpChainTip);
 }
 
 // Check if fork with incompatible transactions is deactivated.
