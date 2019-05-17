@@ -904,13 +904,17 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState &state, const CTransa
         if (Params().RequireStandard() && !AreInputsStandard(tx, view))
             return error("AcceptToMemoryPool: nonstandard transaction input");
 
+        unsigned int forkVerifyFlags = 0;
+        if (VersionBitsState(chainActive.Tip(), Params().GetConsensus(), Consensus::DEPLOYMENT_CDSV, versionbitscache) == THRESHOLD_ACTIVE) {
+            forkVerifyFlags |= SCRIPT_ENABLE_CHECKDATASIG;
+        }
+
         // Check that the transaction doesn't have an excessive number of
         // sigops, making it impossible to mine. Since the coinbase transaction
         // itself can contain sigops MAX_STANDARD_TX_SIGOPS is less than
         // MaxBlockSigops(), we still consider this an invalid rather than
         // merely non-standard transaction.
-        unsigned int nSigOps = GetLegacySigOpCount(tx, STANDARD_SCRIPT_VERIFY_FLAGS);
-        nSigOps += GetP2SHSigOpCount(tx, view, STANDARD_SCRIPT_VERIFY_FLAGS);
+        unsigned int nSigOps = GetTransactionSigOpCount(tx, view, STANDARD_SCRIPT_VERIFY_FLAGS | forkVerifyFlags);
         if (nSigOps > MAX_STANDARD_TX_SIGOPS)
             return state.DoS(0,
                              error("AcceptToMemoryPool: too many sigops %s, %d > %d",
@@ -961,11 +965,6 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState &state, const CTransa
         std::string errString;
         if (!pool.CalculateMemPoolAncestors(entry, setAncestors, nLimitAncestors, nLimitAncestorSize, nLimitDescendants, nLimitDescendantSize, errString)) {
             return state.DoS(0, false, REJECT_NONSTANDARD, "too-long-mempool-chain", false);
-        }
-
-        unsigned int forkVerifyFlags = 0;
-        if (VersionBitsState(chainActive.Tip(), Params().GetConsensus(), Consensus::DEPLOYMENT_CDSV, versionbitscache) == THRESHOLD_ACTIVE) {
-            forkVerifyFlags |= SCRIPT_ENABLE_CHECKDATASIG;
         }
 
         // Check against previous transactions
@@ -1834,11 +1833,6 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         const CTransaction &tx = block.vtx[i];
 
         nInputs += tx.vin.size();
-        unsigned int nTxSigOps = GetLegacySigOpCount(tx, flags);
-        nSigOps += nTxSigOps;
-        if (nSigOps > MaxBlockSigops(nBlockSize))
-            return state.DoS(100, error("ConnectBlock(): too many sigops"),
-                             REJECT_INVALID, "bad-blk-sigops");
 
         if (!tx.IsCoinBase())
         {
@@ -1859,21 +1853,6 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                                  REJECT_INVALID, "bad-txns-nonfinal");
             }
 
-            // Add in sigops done by pay-to-script-hash inputs;
-            // this is to prevent a "rogue miner" from creating
-            // an incredibly-expensive-to-validate block.
-            unsigned int nP2SHSigOps = GetP2SHSigOpCount(tx, view, flags);
-            nSigOps += nP2SHSigOps;
-            nTxSigOps += nP2SHSigOps;
-            if (nSigOps > MaxBlockSigops(nBlockSize))
-                return state.DoS(100, error("ConnectBlock(): too many sigops"),
-                                 REJECT_INVALID, "bad-blk-sigops");
-            if (nTxSigOps > MAX_TX_SIGOPS_COUNT) {
-                return state.DoS(100, error("ConnectBlock(): too many sigops in tx"), REJECT_INVALID, "bad-txn-sigops");
-            }
-        }
-        if (!tx.IsCoinBase())
-        {
             nFees += view.GetValueIn(tx)-tx.GetValueOut();
 
             std::vector<CScriptCheck> vChecks;
@@ -1883,6 +1862,17 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                              PrecomputedTransactionData(tx), nScriptCheckThreads ? &vChecks : NULL))
                 return false;
             control.Add(vChecks);
+        }
+
+        unsigned int txSigOpsCount = GetTransactionSigOpCount(tx, view, flags);
+        if (txSigOpsCount > MAX_TX_SIGOPS_COUNT) {
+            return state.DoS(100, error("ConnectBlock(): too many sigops in tx"), REJECT_INVALID, "bad-txn-sigops");
+        }
+
+        nSigOps += txSigOpsCount;
+        if (nSigOps > MaxBlockSigops(nBlockSize)) {
+            return state.DoS(100, error("ConnectBlock(): too many sigops"),
+                             REJECT_INVALID, "bad-blk-sigops");
         }
 
         CTxUndo undoDummy;
