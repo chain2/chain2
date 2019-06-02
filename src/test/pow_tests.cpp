@@ -8,65 +8,103 @@
 #include "test/test_bitcoin.h"
 
 #include <boost/test/unit_test.hpp>
+#include <cmath>
 
 using namespace std;
 
 BOOST_FIXTURE_TEST_SUITE(pow_tests, BasicTestingSetup)
 
-/* Test calculation of next difficulty target with no constraints applying */
+/*
+ * Test that GetNextWorkRequired() is correct for block, and start populating next block
+ */
+void TestNextWorkRequired(CBlockIndex* const block, CBlockIndex& nextBlock, uint32_t requiredWorkExpected,
+        const Consensus::Params& params) {
+
+    uint32_t nextWorkRequired = GetNextWorkRequired(block, 0, params);
+    BOOST_CHECK_EQUAL(nextWorkRequired, requiredWorkExpected);
+int breakpointfodder = nextWorkRequired == requiredWorkExpected;
+nextBlock.nFile = breakpointfodder;
+    nextBlock.pprev = block;
+    if (block) {
+        nextBlock.nHeight = block->nHeight + 1;
+        nextBlock.nBits = nextWorkRequired;
+    }
+
+    return;
+}
+
+// Build a main chain from genesis and check WTEMA target along the way
 BOOST_AUTO_TEST_CASE(get_next_work)
 {
     SelectParams(CBaseChainParams::MAIN);
     const Consensus::Params& params = Params().GetConsensus();
 
-    int64_t nLastRetargetTime = 1261130161; // Block #30240
-    CBlockIndex pindexLast;
-    pindexLast.nHeight = 32255;
-    pindexLast.nTime = 1262152739;  // Block #32255
-    pindexLast.nBits = 0x1d00ffff;
-    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, params), 0x1d00d86a);
-}
+    const int64_t adjustmentSpace = params.DifficultyAdjustmentSpace();
 
-/* Test the constraint on the upper bound for next work */
-BOOST_AUTO_TEST_CASE(get_next_work_pow_limit)
-{
-    SelectParams(CBaseChainParams::MAIN);
-    const Consensus::Params& params = Params().GetConsensus();
+    const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
+    const uint32_t nPowLimit = bnPowLimit.GetCompact();
 
-    int64_t nLastRetargetTime = 1231006505; // Block #0
-    CBlockIndex pindexLast;
-    pindexLast.nHeight = 2015;
-    pindexLast.nTime = 1233061996;  // Block #2015
-    pindexLast.nBits = 0x1d00ffff;
-    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, params), 0x1d00ffff);
-}
+    uint32_t requiredWorkExpected;
+    CBlockIndex b0, b1, b2, b3, b4, b5, b6, b7;
 
-/* Test the constraint on the lower bound for actual time taken */
-BOOST_AUTO_TEST_CASE(get_next_work_lower_limit_actual)
-{
-    SelectParams(CBaseChainParams::MAIN);
-    const Consensus::Params& params = Params().GetConsensus();
+    // Test call with nullptr and set up genesis block
+    requiredWorkExpected = nPowLimit;
+    TestNextWorkRequired(nullptr, b0, requiredWorkExpected, params);
 
-    int64_t nLastRetargetTime = 1279008237; // Block #66528
-    CBlockIndex pindexLast;
-    pindexLast.nHeight = 68543;
-    pindexLast.nTime = 1279297671;  // Block #68543
-    pindexLast.nBits = 0x1c05a3f4;
-    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, params), 0x1c0168fd);
-}
+    // Test genesis block
+    b0.nTime = 0;
+    requiredWorkExpected = nPowLimit;
+    TestNextWorkRequired(&b0, b1, requiredWorkExpected, params);
 
-/* Test the constraint on the upper bound for actual time taken */
-BOOST_AUTO_TEST_CASE(get_next_work_upper_limit_actual)
-{
-    SelectParams(CBaseChainParams::MAIN);
-    const Consensus::Params& params = Params().GetConsensus();
+    // Bump against minimum difficulty
+    b1.nTime = b0.nTime + params.nPowTargetSpacing + 1;
+    requiredWorkExpected = nPowLimit;
+    TestNextWorkRequired(&b1, b2, requiredWorkExpected, params);
 
-    int64_t nLastRetargetTime = 1263163443; // NOTE: Not an actual block time
-    CBlockIndex pindexLast;
-    pindexLast.nHeight = 46367;
-    pindexLast.nTime = 1269211443;  // Block #46367
-    pindexLast.nBits = 0x1c387f6f;
-    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, params), 0x1d00e1fd);
+    // Just under 10 minutes
+    b2.nTime = b1.nTime + params.nPowTargetSpacing - 1;
+    arith_uint256 temp1;
+    temp1.SetCompact(b2.nBits);
+    temp1 -= temp1 / adjustmentSpace;
+    requiredWorkExpected = temp1.GetCompact();
+    TestNextWorkRequired(&b2, b3, requiredWorkExpected, params);
+
+    // Exactly 10 minutes
+    b3.nTime = b2.nTime + params.nPowTargetSpacing;
+    TestNextWorkRequired(&b3, b4, requiredWorkExpected, params);
+
+    // Move clock forward to give some room for the upcoming negative blocktime
+    // test. This is fine because WTEMA never looks at timestamps further back
+    // than tip-1
+    b3.nTime += 6000;
+
+    // 60 seconds
+    b4.nTime = b3.nTime + 60;
+    temp1.SetCompact(b4.nBits);
+    temp1 -= (params.nPowTargetSpacing - 60) * (temp1 / adjustmentSpace);
+    requiredWorkExpected = temp1.GetCompact();
+    TestNextWorkRequired(&b4, b5, requiredWorkExpected, params);
+
+    // Blocktime sufficiently negative to trigger lower target adjustment limit
+    b5.nTime = (int64_t)b4.nTime + params.nPowTargetSpacing - adjustmentSpace / 11 - 1;
+    temp1.SetCompact(b5.nBits);
+    temp1 = (temp1 + adjustmentSpace - 1) / adjustmentSpace;
+    temp1 *= adjustmentSpace - adjustmentSpace / 11;
+    requiredWorkExpected = temp1.GetCompact();
+    TestNextWorkRequired(&b5, b6, requiredWorkExpected, params);
+
+    // A block that takes a week to mine
+    b6.nTime = b5.nTime + 7 * 24 * 60 * 60;
+    temp1.SetCompact(b6.nBits);
+    temp1 = (temp1 + adjustmentSpace - 1) / adjustmentSpace;
+    temp1 *= adjustmentSpace + adjustmentSpace / 10;
+    requiredWorkExpected = temp1.GetCompact();
+    TestNextWorkRequired(&b6, b7, requiredWorkExpected, params);
+
+    // Hitting upper limit immediately after lower limit should have
+    // near-zero net effect at compact precision
+    int64_t drift = std::abs((int64_t)b7.nBits - (int64_t)b5.nBits);
+    BOOST_CHECK_LE(drift, 1);
 }
 
 BOOST_AUTO_TEST_CASE(GetBlockProofEquivalentTime_test)

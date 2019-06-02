@@ -88,8 +88,8 @@ public:
         strNetworkID = "main";
         consensus.nSubsidyHalvingInterval = 210000;
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
         consensus.nPowTargetSpacing = 10 * 60;
+        consensus.nPowAlphaReciprocal = 110;
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
 
@@ -115,6 +115,7 @@ public:
 
         // BIP100 max block size change critical vote position
         consensus.nMaxBlockSizeChangePosition = 1512;
+        consensus.nMaxBlockSizeAdjustmentInterval = 2016;
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -174,8 +175,8 @@ public:
         strNetworkID = "test";
         consensus.nSubsidyHalvingInterval = 210000;
         consensus.powLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
         consensus.nPowTargetSpacing = 10 * 60;
+        consensus.nPowAlphaReciprocal = 110;
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
 
@@ -201,6 +202,7 @@ public:
 
         // BIP100 max block size change critical vote position
         consensus.nMaxBlockSizeChangePosition = 1512;
+        consensus.nMaxBlockSizeAdjustmentInterval = 2016;
 
         pchMessageStart[0] = 0x0b;
         pchMessageStart[1] = 0x11;
@@ -280,11 +282,12 @@ public:
         consensus.nSubsidyHalvingInterval = 150;
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.fPowNoRetargeting = true;
-        consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
         consensus.nPowTargetSpacing = 10 * 60;
+        consensus.nPowAlphaReciprocal = 110;
         consensus.fPowAllowMinDifficultyBlocks = true;
 
         consensus.nMaxBlockSizeChangePosition = 1512;
+        consensus.nMaxBlockSizeAdjustmentInterval = 2016;
 
         // BIP135 functional tests rely on deterministic block times
         int64_t MOCKTIME = 1388534400 + (201 * 10 * 60); // Jan 1, 2014

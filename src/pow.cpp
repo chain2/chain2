@@ -13,36 +13,43 @@
 #include "util.h"
 
 /**
- * Compute the next required proof of work
+ * Compute the next required proof of work using weighted-blocktime exponential moving average
  */
 unsigned int GetNextWorkRequired(const CBlockIndex *pindexPrev,
                              uint32_t nextblocktime,
                              const Consensus::Params &params) {
-    // Genesis block
-    if (pindexPrev == nullptr) {
-        return UintToArith256(params.powLimit).GetCompact();
+
+    const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
+    const uint32_t nPowLimit = bnPowLimit.GetCompact();
+
+    if(pindexPrev == NULL || pindexPrev->pprev == NULL) {
+        return nPowLimit;
     }
 
-    // Special rule for regtest: we never retarget.
     if (params.fPowNoRetargeting) {
         return pindexPrev->nBits;
     }
 
-    // Only change once per difficulty adjustment interval
-    uint32_t nHeight = pindexPrev->nHeight + 1;
-    if (nHeight % params.DifficultyAdjustmentInterval() == 0) {
-        // Go back by what we want to be 14 days worth of blocks
-        assert(nHeight >= params.DifficultyAdjustmentInterval());
-        uint32_t nHeightFirst = nHeight - params.DifficultyAdjustmentInterval();
-        const CBlockIndex *pindexFirst = pindexPrev->GetAncestor(nHeightFirst);
-        assert(pindexFirst);
+    int64_t nBlockTime = pindexPrev->GetBlockTime() - pindexPrev->pprev->GetBlockTime();
 
-        return CalculateNextWorkRequired(pindexPrev,
-                                         pindexFirst->GetBlockTime(), params);
+    //Constrain individual target changes to [/1.1, *1.1]
+    const int64_t upperLimit = params.nPowTargetSpacing + params.DifficultyAdjustmentSpace() / 10;
+    if(nBlockTime > upperLimit) {
+        nBlockTime = upperLimit;
+    } else {
+        const int64_t lowerLimit = params.nPowTargetSpacing - params.DifficultyAdjustmentSpace() / 11;
+        if(nBlockTime < lowerLimit) {
+            nBlockTime = lowerLimit;
+        }
     }
 
-    const uint32_t nProofOfWorkLimit =
-        UintToArith256(params.powLimit).GetCompact();
+    arith_uint256 bnPriorTarget;
+    bnPriorTarget.SetCompact(pindexPrev->nBits);
+
+    arith_uint256 bnNextTarget;
+    bnNextTarget  = (bnPriorTarget + params.DifficultyAdjustmentSpace() - 1) /
+                    params.DifficultyAdjustmentSpace();
+    bnNextTarget *= params.DifficultyAdjustmentSpace() + nBlockTime - params.nPowTargetSpacing;
 
     if (params.fPowAllowMinDifficultyBlocks) {
         // Special difficulty rule for testnet:
@@ -50,61 +57,27 @@ unsigned int GetNextWorkRequired(const CBlockIndex *pindexPrev,
         // mining of a min-difficulty block.
         if (nextblocktime >
             pindexPrev->GetBlockTime() + 2 * params.nPowTargetSpacing) {
-            return nProofOfWorkLimit;
+            return nPowLimit;
         }
 
         // Return the last non-special-min-difficulty-rules-block
         const CBlockIndex *pindex = pindexPrev;
         while (pindex->pprev &&
-               pindex->nHeight % params.DifficultyAdjustmentInterval() != 0 &&
-               pindex->nBits == nProofOfWorkLimit) {
+               pindex->nBits == nPowLimit) {
             pindex = pindex->pprev;
         }
 
         return pindex->nBits;
     }
 
-    // Do not go lower than the POW limit.
-    uint32_t nBits = pindexPrev->nBits;
-    if (nBits == nProofOfWorkLimit) {
-        return nProofOfWorkLimit;
-    }
+    if (bnNextTarget > bnPowLimit)
+        bnNextTarget = bnPowLimit;
 
-    return nBits;
-}
+    uint32_t nNextTarget = bnNextTarget.GetCompact();
 
-unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)
-{
-    if (params.fPowNoRetargeting)
-        return pindexLast->nBits;
+    LogPrintf("RETARGET: Before: %08x, nBlockTime = %d, After: %08x\n", pindexPrev->nBits, nBlockTime, nNextTarget);
 
-    // Limit adjustment step
-    int64_t nActualTimespan = pindexLast->GetBlockTime() - nFirstBlockTime;
-    LogPrintf("  nActualTimespan = %d  before bounds\n", nActualTimespan);
-    if (nActualTimespan < params.nPowTargetTimespan/4)
-        nActualTimespan = params.nPowTargetTimespan/4;
-    if (nActualTimespan > params.nPowTargetTimespan*4)
-        nActualTimespan = params.nPowTargetTimespan*4;
-
-    // Retarget
-    const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
-    arith_uint256 bnNew;
-    arith_uint256 bnOld;
-    bnNew.SetCompact(pindexLast->nBits);
-    bnOld = bnNew;
-    bnNew *= nActualTimespan;
-    bnNew /= params.nPowTargetTimespan;
-
-    if (bnNew > bnPowLimit)
-        bnNew = bnPowLimit;
-
-    /// debug print
-    LogPrintf("GetNextWorkRequired RETARGET\n");
-    LogPrintf("params.nPowTargetTimespan = %d    nActualTimespan = %d\n", params.nPowTargetTimespan, nActualTimespan);
-    LogPrintf("Before: %08x  %s\n", pindexLast->nBits, bnOld.ToString());
-    LogPrintf("After:  %08x  %s\n", bnNew.GetCompact(), bnNew.ToString());
-
-    return bnNew.GetCompact();
+    return nNextTarget;
 }
 
 bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params& params)
