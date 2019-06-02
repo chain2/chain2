@@ -138,7 +138,7 @@ class CompactBlocksTest(BitcoinTestFramework):
         height = node.getblockcount()
         tip = node.getbestblockhash()
         time = node.getblockheader(tip)['time']
-        block = create_block(int(tip, 16), create_coinbase(absoluteHeight = height + 1), time + 1)
+        block = create_block(int(tip, 16), create_coinbase(absoluteHeight = height + 1), time + 600)
         if segwit:
             add_witness_commitment(block)
         block.solve()

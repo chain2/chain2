@@ -53,7 +53,7 @@ class BIP135ForksTest(ComparisonTestFramework):
     def generate_blocks(self, number, version, test_blocks = []):
         for i in range(number):
             self.height += 1
-            self.last_block_time += 1
+            self.last_block_time += 600
             block = create_block(self.tip, create_coinbase(absoluteHeight=self.height), self.last_block_time)
             block.nVersion = version
             block.rehash()

@@ -23,13 +23,13 @@ uint64_t GetNextMaxBlockSize(const CBlockIndex* pindexLast, const Consensus::Par
     uint64_t nMaxBlockSize = pindexLast->nMaxBlockSize;
 
     // Only change once per difficulty adjustment interval
-    if ((pindexLast->nHeight+1) % params.DifficultyAdjustmentInterval() != 0) {
+    if ((pindexLast->nHeight+1) % params.nMaxBlockSizeAdjustmentInterval != 0) {
         return nMaxBlockSize;
     }
 
     std::vector<uint64_t> votes;
     const CBlockIndex *pindexWalk = pindexLast;
-    for (int64_t i = 0; i < params.DifficultyAdjustmentInterval(); i++) {
+    for (int64_t i = 0; i < params.nMaxBlockSizeAdjustmentInterval; i++) {
         assert(pindexWalk);
         votes.push_back(pindexWalk->nMaxBlockSizeVote ? pindexWalk->nMaxBlockSizeVote : nMaxBlockSize);
         pindexWalk = pindexWalk->pprev;
@@ -37,7 +37,7 @@ uint64_t GetNextMaxBlockSize(const CBlockIndex* pindexLast, const Consensus::Par
 
     std::sort(votes.begin(),votes.end());
     uint64_t lowerValue = votes.at(params.nMaxBlockSizeChangePosition - 1);
-    uint64_t raiseValue = votes.at(params.DifficultyAdjustmentInterval() - params.nMaxBlockSizeChangePosition);
+    uint64_t raiseValue = votes.at(params.nMaxBlockSizeAdjustmentInterval - params.nMaxBlockSizeChangePosition);
 
     assert(lowerValue >= 1000000); // minimal vote supported is 1MB
     assert(lowerValue >= raiseValue); // lowerValue comes from a higher sorted position

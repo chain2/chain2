@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE(get_next_max_blocksize) {
     // Genesis block, legacy block size
     BOOST_CHECK_EQUAL(MAX_BLOCK_SIZE, GetNextMaxBlockSize(nullptr, params));
 
-    const int64_t interval = params.DifficultyAdjustmentInterval();
+    const int64_t interval = params.nMaxBlockSizeAdjustmentInterval;
 
     // Not at a difficulty adjustment interval,
     // should not change max block size.

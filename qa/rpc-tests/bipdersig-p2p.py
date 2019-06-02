@@ -73,11 +73,11 @@ class BIP66Test(ComparisonTestFramework):
 
         test_blocks = []
         for i in range(100):
-            block = create_block(self.tip, create_coinbase(absoluteHeight = height), self.last_block_time + 1)
+            block = create_block(self.tip, create_coinbase(absoluteHeight = height), self.last_block_time + 600)
             block.rehash()
             block.solve()
             test_blocks.append([block, True])
-            self.last_block_time += 1
+            self.last_block_time += 600
             self.tip = block.sha256
             height += 1
         yield TestInstance(test_blocks, sync_every_block=False) #1
@@ -88,7 +88,7 @@ class BIP66Test(ComparisonTestFramework):
         unDERify(spendtx)
         spendtx.rehash()
 
-        block = create_block(self.tip, create_coinbase(absoluteHeight = height), self.last_block_time + 1)
+        block = create_block(self.tip, create_coinbase(absoluteHeight = height), self.last_block_time + 600)
         block.vtx.append(spendtx)
         block.hashMerkleRoot = block.calc_merkle_root()
         block.rehash()
@@ -97,7 +97,7 @@ class BIP66Test(ComparisonTestFramework):
 
         spendtx = self.create_transaction(self.nodes[0],
                 self.coinbase_blocks[0], self.nodeaddress, 1.0)
-        block = create_block(self.tip, create_coinbase(absoluteHeight = height), self.last_block_time + 1)
+        block = create_block(self.tip, create_coinbase(absoluteHeight = height), self.last_block_time + 600)
         block.vtx.append(spendtx)
         block.hashMerkleRoot = block.calc_merkle_root()
         block.rehash()

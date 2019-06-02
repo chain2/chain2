@@ -11,6 +11,7 @@ class GBTBlockBuilder : public BlockBuilder {
 public:
     GBTBlockBuilder();
 
+    bool UpdateTime(const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev) override;
     void SetTime(uint32_t t) override;
     uint32_t GetTime() const override;
     void SetVersion(uint32_t v) override;
@@ -19,6 +20,9 @@ public:
     void AddTx(BuilderEntry tx) override;
     void SetBits(uint32_t bits) override;
     uint32_t GetBits();
+    void SetSubTarget(uint256 subTarget);
+    uint256 GetSubTarget();
+
     void SetHashPrevBlock(const uint256& hash) override;
     void Finalize(const Consensus::Params& consensusParams) override;
     void CheckValidity(CBlockIndex* pindexPrev) override;
@@ -58,6 +62,7 @@ private:
     int64_t blockMinTime;
     uint64_t blockMaxSize;
     uint64_t blockMaxSigops;
+    uint256 subTarget;
 };
 
 } // ns miner

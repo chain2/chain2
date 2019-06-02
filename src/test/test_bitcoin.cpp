@@ -119,9 +119,12 @@ TestChain110Setup::TestChain110Setup() : TestingSetup(CBaseChainParams::REGTEST)
         }
 
         unsigned int extraNonce = 0;
-        uint64_t hardLimit = GetNextMaxBlockSize(chainActive.Tip(), Params().GetConsensus());
-        IncrementExtraNonce(&block, chainActive.Tip(), extraNonce, hardLimit);
-        while (!CheckProofOfWork(block.GetHash(), block.nBits, Params().GetConsensus()))
+        CBlockIndex *tip = chainActive.Tip();
+        uint64_t hardLimit = GetNextMaxBlockSize(tip, Params().GetConsensus());
+        IncrementExtraNonce(&block, tip, extraNonce, hardLimit);
+        uint32_t blocksecond = block.GetBlockTime() - tip->GetBlockTime();
+
+        while (!CheckProofOfWork(block.GetHash(), block.nBits, blocksecond, Params().GetConsensus()))
             ++block.nNonce;
 
         CValidationState state;

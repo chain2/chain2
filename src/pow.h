@@ -7,6 +7,7 @@
 #define BITCOIN_POW_H
 
 #include "consensus/params.h"
+#include "arith_uint256.h"
 
 #include <stdint.h>
 
@@ -14,11 +15,17 @@ class CBlockIndex;
 class uint256;
 class arith_uint256;
 
-unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, uint32_t nextblocktime, const Consensus::Params&);
-unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params&);
+#define RTT_RETARGET 886 / 1000
+static const uint32_t MAX_BLOCKSECOND = 172800;
+static const arith_uint256 RTT_CONSTANT = UintToArith256(uint256S("a099408f761"));
+static const uint256 MAX_HASH = uint256S("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+
+
+unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, uint32_t blocktime, const Consensus::Params&, bool checkOverflow = true);
 
 /** Check whether a block hash satisfies the proof-of-work requirement specified by nBits */
-bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params&);
+arith_uint256 GetSubTarget(const arith_uint256 &bnTarget, uint32_t blocksecond, bool checkOverflow = true);
+bool CheckProofOfWork(uint256 hash, unsigned int nBits, uint32_t blocktime, const Consensus::Params&);
 arith_uint256 GetBlockProof(const CBlockIndex& block);
 
 /** Return the time it would take to redo the work difference between from and to, assuming the current hashrate corresponds to the difficulty at tip, in seconds. */

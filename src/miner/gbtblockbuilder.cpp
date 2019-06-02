@@ -33,6 +33,19 @@ GBTBlockBuilder::GBTBlockBuilder() : block(UniValue::VOBJ), coinbase(nullptr, 0,
 {
 }
 
+
+bool GBTBlockBuilder::UpdateTime(const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev) {
+    if (!::UpdateTime(&dummyheader, consensusParams, pindexPrev))
+        return false;
+
+    arith_uint256 prevTarget;
+    prevTarget.SetCompact(pindexPrev->nBits);
+    uint32_t blocksecond = this->GetTime() - pindexPrev->nTime;
+    SetSubTarget(ArithToUint256(::GetSubTarget(prevTarget, blocksecond)));
+
+    return true;
+}
+
 void GBTBlockBuilder::SetTime(uint32_t t) {
     dummyheader.nTime = t;
 }
@@ -63,6 +76,14 @@ void GBTBlockBuilder::SetBits(uint32_t bits) {
 
 uint32_t GBTBlockBuilder::GetBits() {
     return dummyheader.nBits;
+}
+
+void GBTBlockBuilder::SetSubTarget(uint256 subTarget) {
+    this->subTarget = subTarget;
+}
+
+uint256 GBTBlockBuilder::GetSubTarget() {
+    return subTarget;
 }
 
 void GBTBlockBuilder::SetHashPrevBlock(const uint256& hash) {
@@ -109,8 +130,6 @@ void GBTBlockBuilder::Finalize(const Consensus::Params& consensusParams) {
         entry.push_back(Pair("sigops", uint64_t(tx.GetSigOpCount())));
         transactions.push_back(entry);
     }
-
-    arith_uint256 hashTarget = arith_uint256().SetCompact(GetBits());
 
     UniValue aMutable(UniValue::VARR);
     aMutable.push_back("time");
@@ -194,9 +213,9 @@ void GBTBlockBuilder::Finalize(const Consensus::Params& consensusParams) {
     block.push_back(Pair("previousblockhash", dummyheader.hashPrevBlock.GetHex()));
     block.push_back(Pair("transactions", transactions));
     block.push_back(Pair("coinbaseaux", aux));
-    block.push_back(Pair("coinbasevalue", coinbase.GetFee()));
+    block.push_back(Pair("coinbasevalue", coinbase.GetTx().GetValueOut()));
     block.push_back(Pair("longpollid", longpollid));
-    block.push_back(Pair("target", hashTarget.GetHex()));
+    block.push_back(Pair("target", GetSubTarget().ToString()));
     block.push_back(Pair("mintime", blockMinTime));
     block.push_back(Pair("mutable", aMutable));
     block.push_back(Pair("noncerange", "00000000ffffffff"));

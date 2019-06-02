@@ -14,7 +14,7 @@ def build_block_on_tip(node = None, txs = None, prev_height = None, prev_hash = 
     prev_time = prev_time or node.getblockheader(prev_hash)['time']
 
     new_height = prev_height + 1
-    new_time = prev_time + 1
+    new_time = prev_time + 600
 
     block = create_block(int(prev_hash, 16), create_coinbase(absoluteHeight = new_height), new_time)
 

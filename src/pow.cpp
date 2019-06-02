@@ -13,102 +13,72 @@
 #include "util.h"
 
 /**
- * Compute the next required proof of work
+ * Compute nBits. It will be hashed into the CURRENT block and used as the
+ * basis of the search for the NEXT block.
  */
-unsigned int GetNextWorkRequired(const CBlockIndex *pindexPrev,
-                             uint32_t nextblocktime,
-                             const Consensus::Params &params) {
-    // Genesis block
-    if (pindexPrev == nullptr) {
-        return UintToArith256(params.powLimit).GetCompact();
+unsigned int GetNextWorkRequired(const CBlockIndex *pindexPrev, uint32_t blocktime,
+                             const Consensus::Params &params, bool checkOverflow) {
+
+    const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
+    const uint32_t nPowLimit = bnPowLimit.GetCompact();
+
+    if(pindexPrev == NULL) {
+        return nPowLimit;
     }
 
-    // Special rule for regtest: we never retarget.
     if (params.fPowNoRetargeting) {
         return pindexPrev->nBits;
     }
 
-    // Only change once per difficulty adjustment interval
-    uint32_t nHeight = pindexPrev->nHeight + 1;
-    if (nHeight % params.DifficultyAdjustmentInterval() == 0) {
-        // Go back by what we want to be 14 days worth of blocks
-        assert(nHeight >= params.DifficultyAdjustmentInterval());
-        uint32_t nHeightFirst = nHeight - params.DifficultyAdjustmentInterval();
-        const CBlockIndex *pindexFirst = pindexPrev->GetAncestor(nHeightFirst);
-        assert(pindexFirst);
+    uint32_t blocksecond = blocktime - pindexPrev->GetBlockTime();
+    uint32_t t = std::min(blocksecond, MAX_BLOCKSECOND);
+    uint64_t t2 = t * t;
+    arith_uint256 t6 = t2;
+    t6 = t6 * t6 * t6;
 
-        return CalculateNextWorkRequired(pindexPrev,
-                                         pindexFirst->GetBlockTime(), params);
+    arith_uint256 bnPriorTarget;
+    bnPriorTarget.SetCompact(pindexPrev->nBits);
+
+    arith_uint256 bnNextTarget = bnPriorTarget / (params.nPowTargetSpacing * RTT_RETARGET);
+    arith_uint256 factor1 = bnNextTarget / RTT_CONSTANT / 6;
+    bnNextTarget = factor1 * t6;
+
+    if (checkOverflow) {
+        if (bnNextTarget / t6 != factor1)
+            bnNextTarget = bnPowLimit;
     }
 
-    const uint32_t nProofOfWorkLimit =
-        UintToArith256(params.powLimit).GetCompact();
+    if (bnNextTarget > bnPowLimit)
+        bnNextTarget = bnPowLimit;
 
-    if (params.fPowAllowMinDifficultyBlocks) {
-        // Special difficulty rule for testnet:
-        // If the new block's timestamp is more than 2* 10 minutes then allow
-        // mining of a min-difficulty block.
-        if (nextblocktime >
-            pindexPrev->GetBlockTime() + 2 * params.nPowTargetSpacing) {
-            return nProofOfWorkLimit;
-        }
+    uint32_t nNextTarget = bnNextTarget.GetCompact();
 
-        // Return the last non-special-min-difficulty-rules-block
-        const CBlockIndex *pindex = pindexPrev;
-        while (pindex->pprev &&
-               pindex->nHeight % params.DifficultyAdjustmentInterval() != 0 &&
-               pindex->nBits == nProofOfWorkLimit) {
-            pindex = pindex->pprev;
-        }
-
-        return pindex->nBits;
-    }
-
-    // Do not go lower than the POW limit.
-    uint32_t nBits = pindexPrev->nBits;
-    if (nBits == nProofOfWorkLimit) {
-        return nProofOfWorkLimit;
-    }
-
-    return nBits;
+    return nNextTarget;
 }
 
-unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)
+arith_uint256 GetSubTarget(const arith_uint256 &bnTarget, uint32_t blocksecond, bool checkOverflow)
 {
-    if (params.fPowNoRetargeting)
-        return pindexLast->nBits;
+    uint32_t t = std::min(blocksecond, MAX_BLOCKSECOND);
+    uint64_t t2 = t * t;
+    arith_uint256 t5 = t2;
+    t5 = t5 * t5 * t;
 
-    // Limit adjustment step
-    int64_t nActualTimespan = pindexLast->GetBlockTime() - nFirstBlockTime;
-    LogPrintf("  nActualTimespan = %d  before bounds\n", nActualTimespan);
-    if (nActualTimespan < params.nPowTargetTimespan/4)
-        nActualTimespan = params.nPowTargetTimespan/4;
-    if (nActualTimespan > params.nPowTargetTimespan*4)
-        nActualTimespan = params.nPowTargetTimespan*4;
+    arith_uint256 factor1 = bnTarget / RTT_CONSTANT;
+    arith_uint256 bnSubTarget = factor1 * t5;
 
-    // Retarget
-    const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
-    arith_uint256 bnNew;
-    arith_uint256 bnOld;
-    bnNew.SetCompact(pindexLast->nBits);
-    bnOld = bnNew;
-    bnNew *= nActualTimespan;
-    bnNew /= params.nPowTargetTimespan;
+    if (checkOverflow) {
+        if (bnSubTarget / t5 != factor1)
+            return UintToArith256(MAX_HASH);
+    }
 
-    if (bnNew > bnPowLimit)
-        bnNew = bnPowLimit;
-
-    /// debug print
-    LogPrintf("GetNextWorkRequired RETARGET\n");
-    LogPrintf("params.nPowTargetTimespan = %d    nActualTimespan = %d\n", params.nPowTargetTimespan, nActualTimespan);
-    LogPrintf("Before: %08x  %s\n", pindexLast->nBits, bnOld.ToString());
-    LogPrintf("After:  %08x  %s\n", bnNew.GetCompact(), bnNew.ToString());
-
-    return bnNew.GetCompact();
+    return bnSubTarget;
 }
 
-bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params& params)
+bool CheckProofOfWork(uint256 hash, unsigned int nBits, uint32_t blocksecond, const Consensus::Params& params)
 {
+    if (blocksecond == 0)
+        return error("CheckProofOfWork(): RTT blocksecond = 0");
+
     bool fNegative;
     bool fOverflow;
     arith_uint256 bnTarget;
@@ -119,9 +89,14 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params&
     if (fNegative || bnTarget == 0 || fOverflow || bnTarget > UintToArith256(params.powLimit))
         return error("CheckProofOfWork(): nBits below minimum work");
 
+    arith_uint256 bnSubTarget = GetSubTarget(bnTarget, blocksecond);
+
     // Check proof of work matches claimed amount
-    if (UintToArith256(hash) > bnTarget)
-        return error("CheckProofOfWork(): hash doesn't match nBits");
+    if (UintToArith256(hash) > bnSubTarget) {
+        LogPrint(Log::BLOCK, "hash: %s  \n     subtarget: %s\nblocksecond: %u\n",
+                hash.GetHex(), bnSubTarget.GetHex(), blocksecond);
+        return error("CheckProofOfWork(): hash doesn't match subtarget");
+    }
 
     return true;
 }

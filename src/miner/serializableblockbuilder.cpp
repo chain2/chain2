@@ -12,6 +12,10 @@ SerializableBlockBuilder::SerializableBlockBuilder() :
     block.nNonce = 0;
 }
 
+bool SerializableBlockBuilder::UpdateTime(const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev) {
+  return ::UpdateTime(&block, consensusParams, pindexPrev);
+}
+
 void SerializableBlockBuilder::SetTime(uint32_t t) {
     block.nTime = t;
 }

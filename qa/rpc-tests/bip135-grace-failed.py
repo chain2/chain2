@@ -54,7 +54,7 @@ class BIP135ForksTest(ComparisonTestFramework):
     def generate_blocks(self, number, version, test_blocks = []):
         for i in range(number):
             self.height += 1
-            self.last_block_time += 1
+            self.last_block_time += 600
             block = create_block(self.tip, create_coinbase(absoluteHeight=self.height), self.last_block_time)
             block.nVersion = version
             block.rehash()
@@ -129,9 +129,9 @@ class BIP135ForksTest(ComparisonTestFramework):
 
         # check the forks supposed to activate just one period after lock-in ("at next sync")
         # and move the time to just before timeout. Bit 24 should become active and neither should fail.
-        # Set the last block time to 6 seconds before the timeout...since blocks get mined one second
-        # apart this will put the MTP at 1 second behind the timeout, and thus the activation will not fail.
-        self.last_block_time = self.fork_starttime + 50 - 6
+        # Set the last block time to 6 * 600 seconds before the timeout...since blocks get mined 600 seconds
+        # apart this will put the MTP at 600 seconds behind the timeout, and thus the activation will not fail.
+        self.last_block_time = self.fork_starttime + (50 - 6) * 600
 
         test_blocks = self.generate_blocks(10, VERSIONBITS_TOP_BITS)
         yield TestInstance(test_blocks, sync_every_block=False)
