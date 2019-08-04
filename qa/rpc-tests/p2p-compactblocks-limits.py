@@ -8,15 +8,15 @@ from test_framework.util import *
 from test_framework.blocktools import *
 from test_framework.mininode import *
 
-def build_block_on_tip(node = None, txs = None, prev_height = None, prev_hash = None, prev_mtp = None):
+def build_block_on_tip(node = None, txs = None, prev_height = None, prev_hash = None, prev_time = None):
     prev_height = prev_height or node.getblockcount()
     prev_hash = prev_hash or node.getbestblockhash()
-    prev_mtp = prev_mtp or node.getblockheader(prev_hash)['mediantime']
+    prev_time = prev_time or node.getblockheader(prev_hash)['time']
 
     new_height = prev_height + 1
-    new_mtp = prev_mtp + 1
+    new_time = prev_time + 1
 
-    block = create_block(int(prev_hash, 16), create_coinbase(absoluteHeight = new_height), new_mtp)
+    block = create_block(int(prev_hash, 16), create_coinbase(absoluteHeight = new_height), new_time)
 
     if txs is not None:
         for tx in txs:
@@ -24,11 +24,11 @@ def build_block_on_tip(node = None, txs = None, prev_height = None, prev_hash = 
         block.hashMerkleRoot = block.calc_merkle_root()
 
     block.solve()
-    return { "block" : block, "height" : new_height, "hash" : block.hash, "mtp" : new_mtp }
+    return { "block" : block, "height" : new_height, "hash" : block.hash, "time" : new_time }
 
-def assert_tip_is(sha256, xt_node, test_node):
+def wait_for_tip(sha256, xt_node, test_node):
     test_node.sync_with_ping()
-    assert_equal(int(xt_node.getbestblockhash(), 16), sha256)
+    wait_for(lambda: int(xt_node.getbestblockhash(), 16) == sha256, what = "correct tip")
 
 def create_utxos(test_node, xt_node, num_utxos):
 
@@ -39,15 +39,14 @@ def create_utxos(test_node, xt_node, num_utxos):
         blocks.append(build_block_on_tip(
             prev_height = prev["height"],
             prev_hash = prev["hash"],
-            prev_mtp = prev["mtp"]))
-
+            prev_time = prev["time"]))
     for b in blocks:
         test_node.send_message(msg_block(b["block"]))
-    assert_tip_is(blocks[-1]["block"].sha256, xt_node, test_node)
+    wait_for_tip(blocks[-1]["block"].sha256, xt_node, test_node)
 
     utxos = [ ]
     UTXOS_PER_BLOCK = 100
-    pingpong = 0
+    counter = 1
     while (len(utxos) < num_utxos):
         coinbase = blocks.pop(0)["block"].vtx[0]
 
@@ -67,17 +66,16 @@ def create_utxos(test_node, xt_node, num_utxos):
         blocks.append(build_block_on_tip(txs = [tx],
                                          prev_height = tip["height"],
                                          prev_hash = tip["hash"],
-                                         prev_mtp = tip["mtp"]))
+                                         prev_time = tip["time"]))
         new_tip = blocks[-1]["block"]
 
-        # pingpongs are slow, but we can't blast too many blocks at the node at a time
-        if pingpong % 100 == 0:
-            test_node.send_and_ping(msg_block(new_tip))
-        else:
-            test_node.send_message(msg_block(new_tip))
-        pingpong += 1
+        # We can't blast too many blocks at the node at a time
+        test_node.send_message(msg_block(new_tip))
+        if counter % 50 == 0:
+            wait_for_tip(blocks[-1]["block"].sha256, xt_node, test_node)
+        counter += 1
 
-    assert_tip_is(blocks[-1]["block"].sha256, xt_node, test_node)
+    wait_for_tip(blocks[-1]["block"].sha256, xt_node, test_node)
     assert_equal(int(xt_node.getbestblockhash(), 16), blocks[-1]["block"].sha256)
     return utxos
 
@@ -206,7 +204,7 @@ class HFBumpTest(BitcoinTestFramework):
         for i in expected:
             msg.block_transactions.transactions.append(block.vtx[i])
         test_node.send_and_ping(msg)
-        assert_tip_is(block.sha256, xt_node, test_node)
+        wait_for_tip(block.sha256, xt_node, test_node)
 
     def _test_getblocktxn_limts(self, xt_node, test_node, transactions):
         print("Testing getblocktxn limits")
@@ -217,7 +215,7 @@ class HFBumpTest(BitcoinTestFramework):
 
         print("Sending block...")
         test_node.send_and_ping(msg_block(block))
-        assert_tip_is(block.sha256, xt_node, test_node)
+        wait_for_tip(block.sha256, xt_node, test_node)
 
         print("Wait for compact block announcement...")
         got_cmpctblock = wait_until(lambda: test_node.last_cmpctblock != None)

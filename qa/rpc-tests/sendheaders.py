@@ -335,7 +335,7 @@ class SendHeadersTest(BitcoinTestFramework):
                 # this time announce own block via headers
                 height = self.nodes[0].getblockcount()
                 last_time = self.nodes[0].getblock(self.nodes[0].getbestblockhash())['time']
-                block_time = last_time + 1
+                block_time = last_time + 600
                 new_block = create_block(tip, create_coinbase(absoluteHeight = height + 1), block_time)
                 new_block.solve()
                 test_node.send_header_for_blocks([new_block])
@@ -361,7 +361,7 @@ class SendHeadersTest(BitcoinTestFramework):
         assert_equal(test_node.check_last_announcement(headers=[tip]), True)
 
         height = self.nodes[0].getblockcount()+1
-        block_time += 10  # Advance far enough ahead
+        block_time += 6000  # Advance far enough ahead
         for i in range(10):
             # Mine i blocks, and alternate announcing either via
             # inv (of tip) or via headers. After each, new blocks
@@ -373,7 +373,7 @@ class SendHeadersTest(BitcoinTestFramework):
                     blocks.append(create_block(tip, create_coinbase(absoluteHeight = height), block_time))
                     blocks[-1].solve()
                     tip = blocks[-1].sha256
-                    block_time += 1
+                    block_time += 600
                     height += 1
                 if j == 0:
                     # Announce via inv
@@ -422,7 +422,7 @@ class SendHeadersTest(BitcoinTestFramework):
                 assert_equal(inv_node.check_last_announcement(inv=[tip]), True)
                 assert_equal(test_node.check_last_announcement(headers=[tip]), True)
                 height += 1
-                block_time += 1
+                block_time += 600
 
         print("Part 2: success!")
 
@@ -437,7 +437,7 @@ class SendHeadersTest(BitcoinTestFramework):
             assert_equal(inv_node.check_last_announcement(inv=[tip]), True)
             assert_equal(test_node.check_last_announcement(headers=new_block_hashes), True)
 
-            block_time += 8
+            block_time += 8 * 600
 
             # Mine a too-large reorg, which should be announced with a single inv
             new_block_hashes = self.mine_reorg(length=8)
@@ -445,7 +445,7 @@ class SendHeadersTest(BitcoinTestFramework):
             assert_equal(inv_node.check_last_announcement(inv=[tip]), True)
             assert_equal(test_node.check_last_announcement(inv=[tip]), True)
 
-            block_time += 9
+            block_time += 9 * 600
 
             fork_point = self.nodes[0].getblock("%02x" % new_block_hashes[0])["previousblockhash"]
             fork_point = int(fork_point, 16)
@@ -496,7 +496,7 @@ class SendHeadersTest(BitcoinTestFramework):
         tip = self.mine_blocks(1)
         height = self.nodes[0].getblockcount() + 1
         last_time = self.nodes[0].getblock(self.nodes[0].getbestblockhash())['time']
-        block_time = last_time + 1
+        block_time = last_time + 600
 
         # Create 2 blocks.  Send the blocks, then send the headers.
         blocks = []
@@ -504,7 +504,7 @@ class SendHeadersTest(BitcoinTestFramework):
             blocks.append(create_block(tip, create_coinbase(absoluteHeight = height), block_time))
             blocks[-1].solve()
             tip = blocks[-1].sha256
-            block_time += 1
+            block_time += 600
             height += 1
             inv_node.send_message(msg_block(blocks[-1]))
 
@@ -522,7 +522,7 @@ class SendHeadersTest(BitcoinTestFramework):
             blocks.append(create_block(tip, create_coinbase(absoluteHeight = height), block_time))
             blocks[-1].solve()
             tip = blocks[-1].sha256
-            block_time += 1
+            block_time += 600
             height += 1
 
         test_node.send_header_for_blocks(blocks)
@@ -543,7 +543,7 @@ class SendHeadersTest(BitcoinTestFramework):
             blocks.append(create_block(tip, create_coinbase(absoluteHeight = height), block_time))
             blocks[-1].solve()
             tip = blocks[-1].sha256
-            block_time += 1
+            block_time += 600
             height += 1
 
         # Announcing one block on fork should not trigger direct fetch
@@ -589,7 +589,7 @@ class SendHeadersTest(BitcoinTestFramework):
                 blocks.append(create_block(tip, create_coinbase(absoluteHeight = height), block_time))
                 blocks[-1].solve()
                 tip = blocks[-1].sha256
-                block_time += 1
+                block_time += 600
                 height += 1
             # Send the header of the second block -> this won't connect.
             with mininode_lock:
@@ -610,7 +610,7 @@ class SendHeadersTest(BitcoinTestFramework):
             blocks.append(create_block(tip, create_coinbase(absoluteHeight = height), block_time))
             blocks[-1].solve()
             tip = blocks[-1].sha256
-            block_time += 1
+            block_time += 600
             height += 1
 
         for i in range(1, MAX_UNCONNECTING_HEADERS):

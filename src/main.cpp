@@ -2685,15 +2685,22 @@ bool FindUndoPos(CValidationState &state, int nFile, CDiskBlockPos &pos, unsigne
 
 bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool fCheckPOW)
 {
+    // Check timestamp
+    int64_t consensusFutureOffsetLimit = 0;
+    int64_t futureOffset = block.GetBlockTime() - GetAdjustedTime();
+
+    // regtest
+    if (Params().MineBlocksOnDemand())
+        consensusFutureOffsetLimit = 100000 * Params().GetConsensus().nPowTargetSpacing;
+
+    if (futureOffset > consensusFutureOffsetLimit)
+        return state.Invalid(error("CheckBlockHeader(): future block timestamp"),
+                             REJECT_INVALID, "time-too-new");
+
     // Check proof of work matches claimed amount
     if (fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits, Params().GetConsensus()))
         return state.DoS(50, error("CheckBlockHeader(): proof of work failed"),
                          REJECT_INVALID, "high-hash");
-
-    // Check timestamp
-    if (block.GetBlockTime() > GetAdjustedTime() + 2 * 60 * 60)
-        return state.Invalid(error("CheckBlockHeader(): block timestamp too far in the future"),
-                             REJECT_INVALID, "time-too-new");
 
     return true;
 }
@@ -2774,7 +2781,7 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
                          REJECT_INVALID, "bad-diffbits");
 
     // Check timestamp against prev
-    if (block.GetBlockTime() <= pindexPrev->GetMedianTimePast())
+    if (block.GetBlockTime() <= pindexPrev->GetBlockTime())
         return state.Invalid(error("%s: block's timestamp is too early", __func__),
                              REJECT_INVALID, "time-too-old");
 

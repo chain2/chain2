@@ -105,6 +105,9 @@ CTxMemPoolEntry TestMemPoolEntryHelper::FromTx(CTransaction &txn, CTxMemPool *po
 
 TestChain110Setup::TestChain110Setup() : TestingSetup(CBaseChainParams::REGTEST)
 {
+    int64_t targetSpacing = Params().GetConsensus().nPowTargetSpacing;
+    SetMockTime(GetTime() - targetSpacing * (COINBASE_MATURITY + 10));
+
     // Generate a 110-block chain
     for (int i = 0; i < COINBASE_MATURITY + 10; i++)
     {
@@ -125,6 +128,8 @@ TestChain110Setup::TestChain110Setup() : TestingSetup(CBaseChainParams::REGTEST)
         ProcessNewBlock(state, BlockSource{}, &block, true, NULL, connman);
 
         coinbaseTxns.push_back(block.vtx[0]);
+
+        SetMockTime(GetTime() + targetSpacing);
     }
 }
 

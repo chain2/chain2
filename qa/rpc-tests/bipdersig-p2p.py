@@ -64,10 +64,12 @@ class BIP66Test(ComparisonTestFramework):
 
     def get_tests(self):
         self.coinbase_blocks = self.nodes[0].generate(2)
+        tipstring = self.nodes[0].getbestblockhash()
+        tipblock = self.nodes[0].getblock(tipstring)
         height = 3  # height of the next block to build
-        self.tip = int("0x" + self.nodes[0].getbestblockhash(), 0)
+        self.tip = int("0x" + tipstring, 0)
         self.nodeaddress = self.nodes[0].getnewaddress()
-        self.last_block_time = int(time.time())
+        self.last_block_time = tipblock["time"]
 
         test_blocks = []
         for i in range(100):

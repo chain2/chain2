@@ -65,9 +65,11 @@ class BIP65Test(ComparisonTestFramework):
         self.coinbase_blocks = self.nodes[0].generate(2)
         self.nodes[0].generate(100)
         height = 103 # height of the next block to build
-        self.tip = int ("0x" + self.nodes[0].getbestblockhash(), 0)
+        tiphash = self.nodes[0].getbestblockhash()
+        self.tip = int ("0x" + tiphash, 0)
+        tipheader = self.nodes[0].getblockheader(tiphash)
+        self.last_block_time = tipheader['time']+ 1000
         self.nodeaddress = self.nodes[0].getnewaddress()
-        self.last_block_time = int(time.time() + 1000)       
 
         self.log.info("Check that CLTV rules are enforced")
         
@@ -75,7 +77,7 @@ class BIP65Test(ComparisonTestFramework):
         spendtx = self.create_transaction(self.nodes[0], self.coinbase_blocks[1], self.nodeaddress, 1.0)
         cltv_invalidate(spendtx)
         spendtx.rehash()
-        block = create_block(self.tip, create_coinbase(absoluteHeight = height), self.last_block_time + 1)
+        block = create_block(self.tip, create_coinbase(absoluteHeight = height), self.last_block_time + 600)
         block.vtx.append(spendtx)
         block.hashMerkleRoot = block.calc_merkle_root()
         block.rehash()
@@ -83,7 +85,7 @@ class BIP65Test(ComparisonTestFramework):
         yield TestInstance([[block, False]])
 
         self.log.info("Attempt to mine an old version block, should be invalid")
-        block = create_block(self.tip, create_coinbase(absoluteHeight = height), self.last_block_time + 1)
+        block = create_block(self.tip, create_coinbase(absoluteHeight = height), self.last_block_time + 600)
         block.nVersion = 3
         block.rehash()
         block.solve()
@@ -93,7 +95,7 @@ class BIP65Test(ComparisonTestFramework):
         spendtx = self.create_transaction(self.nodes[0], self.coinbase_blocks[1], self.nodeaddress, 1.0)
         cltv_exercise(spendtx)
         spendtx.rehash()
-        block = create_block(self.tip, create_coinbase(absoluteHeight = height), self.last_block_time + 1)
+        block = create_block(self.tip, create_coinbase(absoluteHeight = height), self.last_block_time + 600)
         block.vtx.append(spendtx)
         block.hashMerkleRoot = block.calc_merkle_root()
         block.rehash()

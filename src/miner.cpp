@@ -51,7 +51,13 @@ uint64_t nLastBlockSize = 0;
 
 void UpdateTime(CBlockHeader* pblock, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev)
 {
-    pblock->nTime = std::max(pindexPrev->GetMedianTimePast()+1, GetAdjustedTime());
+    int64_t defaultSpacing = 1;
+
+    // regtest
+    if (consensusParams.fPowNoRetargeting)
+        defaultSpacing = consensusParams.nPowTargetSpacing;
+
+    pblock->nTime = std::max(pindexPrev->GetBlockTime() + defaultSpacing, GetAdjustedTime());
 
     // Updating time can change work required on testnet:
     if (consensusParams.fPowAllowMinDifficultyBlocks) {
@@ -234,7 +240,7 @@ void CreateNewBlock(miner::BlockBuilder& block, const CScript& scriptPubKeyIn, b
         block.SetBits(GetNextWorkRequired(pindexPrev, block.GetTime(), Params().GetConsensus()));
 
         if (block.NeedsGBTMetadata()) {
-            block.SetBlockMinTime(nMedianTimePast + 1);
+            block.SetBlockMinTime(pindexPrev->GetBlockTime() + 1);
             block.SetBlockHeight(nHeight);
             block.SetBlockSizeLimit(hardLimit);
             block.SetBlockSigopLimit(MaxBlockSigops(nBlockSize));

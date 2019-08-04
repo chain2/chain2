@@ -728,10 +728,10 @@ class FullBlockTest(ComparisonTestFramework):
             b47.rehash()
         yield rejected(RejectResult(16, b'high-hash'))
 
-        # A block with timestamp > 2 hrs in the future
+        # A block with timestamp too far in the future
         tip(44)
         b48 = block(48, solve=False)
-        b48.nTime = int(time.time()) + 60 * 60 * 3
+        b48.nTime = int(time.time()) + 60000123
         b48.solve()
         yield rejected(RejectResult(16, b'time-too-new'))
 
@@ -769,20 +769,20 @@ class FullBlockTest(ComparisonTestFramework):
         #                                                                                   \-> b54 (15)
         #
         tip(43)
-        block(53, spend=out[14])
+        b53 = block(53, spend=out[14])
         yield rejected() # rejected since b44 is at same height
         save_spendable_output()
 
-        # invalid timestamp (b35 is 5 blocks back, so its time is MedianTimePast)
+        # invalid timestamp (not greater than previous block's time)
         b54 = block(54, spend=out[15])
-        b54.nTime = b35.nTime - 1
+        b54.nTime = b53.nTime
         b54.solve()
         yield rejected(RejectResult(16, b'time-too-old'))
 
         # valid timestamp
         tip(53)
         b55 = block(55, spend=out[15])
-        b55.nTime = b35.nTime
+        b55.nTime = b53.nTime + 1
         update_block(55, [])
         yield accepted()
         save_spendable_output()

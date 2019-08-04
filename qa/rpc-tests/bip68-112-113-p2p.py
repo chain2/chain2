@@ -187,7 +187,7 @@ class BIP68_112_113Test(ComparisonTestFramework):
         self.coinbase_blocks = self.nodes[0].generate(1 + 16 + 2*32 + 1) # 82 blocks generated for inputs
         self.nodes[0].setmocktime(0) # set time back to present so yielded blocks aren't in the future as we advance last_block_time
         self.tipheight = 82 # height of the next block to build
-        self.last_block_time = long_past_time
+        self.last_block_time = long_past_time + 82 * 600
         self.tip = int("0x" + self.nodes[0].getbestblockhash(), 0)
         self.nodeaddress = self.nodes[0].getnewaddress()
 
