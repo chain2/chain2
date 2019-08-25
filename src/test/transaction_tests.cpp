@@ -365,12 +365,12 @@ BOOST_AUTO_TEST_CASE(test_big_transaction) {
     CScript scriptPubKey = CScript() << ToByteVector(key.GetPubKey()) << OP_CHECKSIG;
 
     std::vector<SigHashType> sigHashes;
-    sigHashes.push_back(SigHashType::NONE | SigHashType::ANYONECANPAY);
-    sigHashes.push_back(SigHashType::SINGLE | SigHashType::ANYONECANPAY);
-    sigHashes.push_back(SigHashType::ALL | SigHashType::ANYONECANPAY);
-    sigHashes.push_back(SigHashType::NONE);
-    sigHashes.push_back(SigHashType::SINGLE);
-    sigHashes.push_back(SigHashType::ALL);
+    sigHashes.push_back(SigHashType::FORKID | SigHashType::NONE | SigHashType::ANYONECANPAY);
+    sigHashes.push_back(SigHashType::FORKID | SigHashType::SINGLE | SigHashType::ANYONECANPAY);
+    sigHashes.push_back(SigHashType::FORKID | SigHashType::ALL | SigHashType::ANYONECANPAY);
+    sigHashes.push_back(SigHashType::FORKID | SigHashType::NONE);
+    sigHashes.push_back(SigHashType::FORKID | SigHashType::SINGLE);
+    sigHashes.push_back(SigHashType::FORKID | SigHashType::ALL);
 
     // create a big transaction of 4500 inputs signed by the same key
     for(uint32_t ij = 0; ij < 4500; ij++) {
@@ -419,7 +419,7 @@ BOOST_AUTO_TEST_CASE(test_big_transaction) {
         std::vector<CScriptCheck> vChecks;
         const CTxOut& output = coins[tx.vin[i].prevout.n].out;
         CScriptCheck check(output.scriptPubKey, output.nValue,
-                tx, i, SCRIPT_VERIFY_P2SH, false, txdata);
+                tx, i, SCRIPT_VERIFY_P2SH | SCRIPT_ENABLE_SIGHASH_FORKID, false, txdata);
         vChecks.push_back(CScriptCheck());
         check.swap(vChecks.back());
         control.Add(vChecks);

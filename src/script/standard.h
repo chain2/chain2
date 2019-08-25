@@ -39,8 +39,12 @@ extern unsigned nMaxDatacarrierBytes;
  * Failing one of these tests may trigger a DoS ban - see CheckInputs() for
  * details.
  */
-static const unsigned int MANDATORY_SCRIPT_VERIFY_FLAGS =
-    SCRIPT_VERIFY_P2SH | SCRIPT_VERIFY_STRICTENC;
+static const unsigned int MANDATORY_SCRIPT_VERIFY_FLAGS = SCRIPT_VERIFY_P2SH |
+                                                          SCRIPT_VERIFY_STRICTENC |
+                                                          SCRIPT_VERIFY_NULLFAIL |
+                                                          SCRIPT_VERIFY_LOW_S |
+                                                          SCRIPT_ENABLE_SIGHASH_FORKID |
+                                                          SCRIPT_ENABLE_MONOLITH_OPCODES;
 
 enum txnouttype
 {

@@ -256,7 +256,7 @@ BOOST_AUTO_TEST_CASE(rpc_getblocktemplate_vote)
 
     UniValue noVote = CallRPC("getblocktemplate");
     std::string f = get_coinbaseaux_flags(noVote);
-    BOOST_CHECK(f.find("/BIP100/EB1/") != std::string::npos);
+    BOOST_CHECK(f.find("/BIP100/EB32/") != std::string::npos);
     BOOST_CHECK(f.find("/B1/") == std::string::npos);
 
     // Vote for 16MB blocks
@@ -266,7 +266,7 @@ BOOST_AUTO_TEST_CASE(rpc_getblocktemplate_vote)
 
     UniValue hasVote = CallRPC("getblocktemplate");
     f = get_coinbaseaux_flags(hasVote);
-    BOOST_CHECK(f.find("/BIP100/B16/EB1/") != std::string::npos);
+    BOOST_CHECK(f.find("/BIP100/B16/EB32/") != std::string::npos);
 }
 
 BOOST_AUTO_TEST_CASE(rpc_convert_values_generatetoaddress)

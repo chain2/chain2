@@ -17,7 +17,6 @@ def build_block_on_tip(node = None, txs = None, prev_height = None, prev_hash = 
     new_mtp = prev_mtp + 1
 
     block = create_block(int(prev_hash, 16), create_coinbase(absoluteHeight = new_height), new_mtp)
-    block.nVersion = 4
 
     if txs is not None:
         for tx in txs:

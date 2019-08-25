@@ -125,8 +125,6 @@ static const uint64_t nMinDiskSpace = 52428800;
 
 /** Initialize respend bloom filter **/
 void InitRespendFilter();
-/** This-chain replay protection commitment value */
-std::vector<unsigned char>& GetAntiReplayCommitment();
 
 /** Pruning-related variables and constants */
 /** True if any block files have ever been pruned. */
@@ -341,7 +339,7 @@ bool TestLockPointValidity(const LockPoints* lp);
  *
  * See consensus/consensus.h for flag definitions.
  */
-bool CheckSequenceLocks(const CTransaction &tx, int flags, LockPoints* lp = NULL, bool useExistingLockPoints = false);
+bool CheckSequenceLocks(const CTransaction &tx, LockPoints* lp = NULL, bool useExistingLockPoints = false);
 
 /**
  * Closure representing one script verification

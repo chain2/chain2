@@ -22,7 +22,7 @@
 
 class CScript;
 
-static const unsigned int MAX_SIZE = 0x02000000;
+static const unsigned int MAX_SIZE = 0x08000000;
 
 /**
  * Used to bypass the rule against non-const reference to temporary

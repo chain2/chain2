@@ -8,10 +8,9 @@ from test_framework.util import *
 from test_framework.mininode import ONE_MEGABYTE
 
 """
-This tests that the nodes can handle a max block size limit bump to 32MB at a specified MTP time.
+Originally a test of 32MB max block size bump, kept as test of 32MB submitblock
 """
 
-HF_MTP_TIME = 1526400000
 MB = ONE_MEGABYTE
 
 # Limit of previous block mined
@@ -52,38 +51,11 @@ class HFBumpTest(BitcoinTestFramework):
         self.nodes[0].generate(1)
 
     def run_test(self):
-        self._test_initial_bump()
         self._test_mine_big_block()
         self._test_submit_big_block()
 
-    def _test_initial_bump(self):
-        print("Test that max block size limits goes to 32MB at specified time")
-        node = self.nodes[0]
-        assert_equal(8 * MB, get_sizelimit(node))
-
-        # time to support 32MB blocks
-        self.mocktime = HF_MTP_TIME
-        set_node_times(self.nodes, self.mocktime)
-
-        # local time has passed fork point, but mtp hasn't.
-        assert_equal(8 * MB, get_sizelimit(node))
-
-        for _ in range(0, 6):
-            self.generate_one()
-
-        # mtp has passed fork point, this block isn't first fork block, but next will be
-        assert(node.getblockheader(node.getbestblockhash())['mediantime'] > HF_MTP_TIME)
-        assert_equal(8 * MB, get_sizelimit(node))
-
-        # fork block
-        self.generate_one()
-        assert_equal(32 * MB, get_sizelimit(node))
-
-        sync_blocks(self.nodes)
-        print("OK!")
-
     def _test_mine_big_block(self):
-        print("Test that we can mine 32MB blocks (and not more)")
+        print("Test that we can mine a 32MB block")
         utxo_cache = []
         node = self.nodes[0]
         fee = 100  * node.getnetworkinfo()["relayfee"]
@@ -92,14 +64,6 @@ class HFBumpTest(BitcoinTestFramework):
         target = 32 * MB
         mine_block(node, target_bytes = target, utxos = utxo_cache)
         assert_chaintip_within(node, target - 0.1*MB, target)
-
-        # See that we don't mine larger than 32MB
-        too_big_target = 42 * MB
-        mine_block(node, target_bytes = too_big_target, utxos = utxo_cache)
-        assert_chaintip_within(node, target - 0.1*MB, target)
-
-        # We were limited by max block size, so there should be transactions left in the mempol.
-        assert(node.getmempoolinfo()['bytes'] > too_big_target - target - MB);
 
         # Clear the mempool
         while node.getmempoolinfo()['bytes']:

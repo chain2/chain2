@@ -133,10 +133,6 @@ void CreateNewBlock(miner::BlockBuilder& block, const CScript& scriptPubKeyIn, b
             block.SetVersion(GetArg("-blockversion", block.GetVersion()));
         }
 
-        int64_t nLockTimeCutoff = (STANDARD_LOCKTIME_VERIFY_FLAGS & LOCKTIME_MEDIAN_TIME_PAST)
-                                ? nMedianTimePast
-                                : block.GetTime();
-
         CTxMemPool::indexed_transaction_set::nth_index<3>::type::iterator mi = mempool.mapTx.get<3>().begin();
         CTxMemPool::txiter iter;
 
@@ -198,7 +194,7 @@ void CreateNewBlock(miner::BlockBuilder& block, const CScript& scriptPubKeyIn, b
                 continue;
             }
 
-            if (!tx.IsFinalTx(nHeight, nLockTimeCutoff))
+            if (!tx.IsFinalTx(nHeight, nMedianTimePast))
                 continue;
 
             // TODO: with more complexity we could make the block bigger when

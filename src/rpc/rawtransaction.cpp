@@ -797,21 +797,14 @@ UniValue signrawtransaction(const JSONRPCRequest& request)
 	    }
         }
 
-        // Because we do not know if forkid is used or not, we just try both.
-        // TODO: Remove after the Hard Fork.
         ScriptError serror0 = SCRIPT_ERR_OK;
-        ScriptError serror1 = SCRIPT_ERR_OK;
         TransactionSignatureChecker checker(&txConst, i, amount);
         if (!VerifyScript(txin.scriptSig, prevPubKey,
                           STANDARD_SCRIPT_VERIFY_FLAGS |
                               SCRIPT_ENABLE_SIGHASH_FORKID,
-                          checker, &serror0) &&
-            !VerifyScript(txin.scriptSig, prevPubKey,
-                          STANDARD_SCRIPT_VERIFY_FLAGS, checker, &serror1)) {
+                          checker, &serror0)) {
             std::string error;
             error += ScriptErrorString(serror0);
-            error += " ";
-            error += ScriptErrorString(serror1);
             TxInErrorToJSON(txin, vErrors, error);
         }
     }

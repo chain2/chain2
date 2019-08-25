@@ -14,7 +14,6 @@ namespace Consensus {
 
 enum DeploymentPos
 {
-    DEPLOYMENT_CSV = 0, // Deployment of BIP68, BIP112, and BIP113.
     DEPLOYMENT_CDSV = 4, // CHECKDATASIG
     DEPLOYMENT_TESTDUMMY = 28,
     MAX_VERSION_BITS_DEPLOYMENTS = 29
@@ -49,21 +48,13 @@ struct ForkDeployment
 struct Params {
     uint256 hashGenesisBlock;
     int nSubsidyHalvingInterval;
-    /** Block height and hash at which BIP34 becomes active */
-    int BIP34Height;
-    uint256 BIP34Hash;
-    /** Block height at which BIP65 becomes active */
-    int BIP65Height;
-    /** Block height at which BIP66 becomes active */
-    int BIP66Height;
     /** Defined BIP135 deployments. */
     std::map<DeploymentPos, ForkDeployment> vDeployments;
     /**
      * BIP100: One-based position from beginning (end) of the ascending sorted list of max block size
-     * votes in a retarget interval, at which the possible new lower (higher) max block size is read.
+     * votes in a 2016-block interval, at which the possible new lower (higher) max block size is read.
      * 1512 = 75th percentile of 2016
      */
-    int bip100ActivationHeight;
     uint32_t nMaxBlockSizeChangePosition;
     /** Proof of work parameters */
     uint256 powLimit;
@@ -72,9 +63,6 @@ struct Params {
     int64_t nPowTargetSpacing;
     int64_t nPowTargetTimespan;
     int64_t DifficultyAdjustmentInterval() const { return nPowTargetTimespan / nPowTargetSpacing; }
-
-    /** Activation time at which the cash HF kicks in. */
-    int64_t cashHardForkActivationTime;
 };
 } // namespace Consensus
 

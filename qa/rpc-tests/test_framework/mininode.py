@@ -45,7 +45,7 @@ MY_VERSION = 70014
 MY_SUBVERSION = b"/python-mininode-tester:0.0.3/"
 
 MAX_INV_SZ = 50000
-MAX_BLOCK_SIZE = 8000000
+MAX_BLOCK_SIZE = 32000000
 
 COIN = 100000000
 
@@ -1516,9 +1516,9 @@ class NodeConn(asyncore.dispatcher):
     }
 
     MAGIC_BYTES = {
-        "mainnet": b"\xe3\xe1\xf3\xe8",
-        "testnet3": b"\xf4\xe5\xf3\xf4",
-        "regtest": b"\xda\xb5\xbf\xfa",
+        "mainnet": b"\xf9\xbe\xb4\xd9",
+        "testnet3": b"\x0b\x11\x09\x07",
+        "regtest": b"\xfa\xbf\xb5\xda",
     }
 
     def __init__(self, dstaddr, dstport, rpc, callback, net="regtest", services=NODE_NETWORK, send_version=True):

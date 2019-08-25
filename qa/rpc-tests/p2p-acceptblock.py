@@ -220,8 +220,9 @@ class AcceptBlockTest(BitcoinTestFramework):
         headers_message = msg_headers()
         all_blocks = []   # node0's blocks
         for j in range(2):
+            height = 4
             for i in range(288):
-                next_block = create_block(tips[j].sha256, create_coinbase(), tips[j].nTime+1)
+                next_block = create_block(tips[j].sha256, create_coinbase(absoluteHeight = height), tips[j].nTime+1)
                 next_block.solve()
                 if j==0:
                     test_node.send_message(msg_block(next_block))
@@ -229,6 +230,7 @@ class AcceptBlockTest(BitcoinTestFramework):
                 else:
                     headers_message.headers.append(CBlockHeader(next_block))
                 tips[j] = next_block
+                height += 1
 
         time.sleep(2)
         for x in all_blocks:

@@ -2061,11 +2061,7 @@ bool CWallet::CreateTransaction(const vector<CRecipient>& vecSend, CWalletTx& wt
                     txNew.vin.push_back(CTxIn(coin.first->GetHash(),coin.second,CScript(),
                                               std::numeric_limits<unsigned int>::max()-1));
 
-                // Transaction signature hash type changes at hard fork
-                SigHashType nHashType = SigHashType::ALL;
-                if (Opt().UAHFTime()) {
-                    nHashType |= SigHashType::FORKID;
-                }
+                SigHashType nHashType = SigHashType::ALL | SigHashType::FORKID;
 
                 // Sign
                 int nIn = 0;

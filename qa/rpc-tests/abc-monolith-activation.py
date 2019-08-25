@@ -3,7 +3,7 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """
-This test checks activation of monolith opcodes
+Originally a test of monolith activation, kept as a p2p test of OP_AND validity 
 """
 
 from test_framework.test_framework import ComparisonTestFramework
@@ -11,15 +11,6 @@ from test_framework.util import satoshi_round, assert_equal, assert_raises_jsonr
 from test_framework.comptool import TestManager, TestInstance, RejectResult
 from test_framework.blocktools import *
 from test_framework.script import *
-
-# far into the future
-MONOLITH_START_TIME = 2000000000
-
-# Error due to invalid opcodes
-DISABLED_OPCODE_ERROR = b'non-mandatory-script-verify-flag (Attempted to use a disabled opcode)'
-RPC_DISABLED_OPCODE_ERROR = "64: " + \
-    DISABLED_OPCODE_ERROR.decode("utf-8")
-
 
 class PreviousSpendableOutput():
 
@@ -33,8 +24,7 @@ class MonolithActivationTest(ComparisonTestFramework):
     def setup_network(self):
         self.num_nodes = 1
         self.setup_clean_chain = True
-        self.extra_args = [['-whitelist=127.0.0.1',
-                            "-thirdhftime=%d" % MONOLITH_START_TIME]]
+        self.extra_args = [['-whitelist=127.0.0.1']]
 
         self.nodes = start_nodes(
             self.num_nodes, self.options.tmpdir,
@@ -95,17 +85,8 @@ class MonolithActivationTest(ComparisonTestFramework):
             tx.rehash()
             return tx
 
-        # Check that large opreturn are not accepted yet.
-        print("Try to use the monolith opcodes before activation")
-
         tx0 = spend_and()
         tx0_hex = ToHex(tx0)
-        assert_raises_jsonrpc(-26, RPC_DISABLED_OPCODE_ERROR,
-                                node.sendrawtransaction, tx0_hex)
-
-        # Push MTP forward just before activation.
-        print("Pushing MTP just before the activation and check again")
-        node.setmocktime(MONOLITH_START_TIME)
 
         # returns a test case that asserts that the current tip was accepted
         def accepted(tip):
@@ -118,7 +99,7 @@ class MonolithActivationTest(ComparisonTestFramework):
             else:
                 return TestInstance([[tip, reject]])
 
-        def next_block(block_time):
+        def next_block():
             # get block height
             blockchaininfo = node.getblockchaininfo()
             height = int(blockchaininfo['blocks']) + 1
@@ -127,58 +108,27 @@ class MonolithActivationTest(ComparisonTestFramework):
             coinbase = create_coinbase(absoluteHeight = height)
             coinbase.rehash()
             block = create_block(
-                int(node.getbestblockhash(), 16), coinbase, block_time)
-            block.nVersion = 4
+                int(node.getbestblockhash(), 16), coinbase)
 
             # Do PoW, which is cheap on regnet
             block.solve()
             return block
-
-        for i in range(6):
-            b = next_block(MONOLITH_START_TIME + i - 1)
-            yield accepted(b)
-
-        # Check again just before the activation time
-        assert_equal(node.getblockheader(node.getbestblockhash())['mediantime'],
-                     MONOLITH_START_TIME - 1)
-        assert_raises_jsonrpc(-26, RPC_DISABLED_OPCODE_ERROR,
-                                node.sendrawtransaction, tx0_hex)
 
         def add_tx(block, tx):
             block.vtx.append(tx)
             block.hashMerkleRoot = block.calc_merkle_root()
             block.solve()
 
-        b = next_block(MONOLITH_START_TIME + 6)
+        b = next_block()
         add_tx(b, tx0)
-        yield rejected(b, RejectResult(16, b'blk-bad-inputs'))
-
-        print("Activates the new opcodes")
-        fork_block = next_block(MONOLITH_START_TIME + 6)
-        yield accepted(fork_block)
-
-        assert_equal(node.getblockheader(node.getbestblockhash())['mediantime'],
-                     MONOLITH_START_TIME)
 
         tx0id = node.sendrawtransaction(tx0_hex)
         assert(tx0id in set(node.getrawmempool()))
 
         # Transactions can also be included in blocks.
-        monolithblock = next_block(MONOLITH_START_TIME + 7)
+        monolithblock = next_block()
         add_tx(monolithblock, tx0)
         yield accepted(monolithblock)
-
-        print("Cause a reorg that deactivate the monolith opcodes")
-
-        # Invalidate the monolith block, ensure tx0 gets back to the mempool.
-        assert(tx0id not in set(node.getrawmempool()))
-
-        node.invalidateblock(format(monolithblock.sha256, 'x'))
-        assert(tx0id in set(node.getrawmempool()))
-
-        node.invalidateblock(format(fork_block.sha256, 'x'))
-        assert(tx0id not in set(node.getrawmempool()))
-
 
 if __name__ == '__main__':
     MonolithActivationTest().main()

@@ -127,9 +127,6 @@ void setupAmountWidget(QLineEdit *widget, QWidget *parent)
 }
 
 QString bitcoinURIScheme(const CChainParams &params) {
-    if (!bool(Opt().UAHFTime())) {
-        return "bitcoin";
-    }
     if (!Opt().UseCashAddr()) {
         return "bitcoincash";
     }
@@ -950,7 +947,7 @@ QString formatTimeOffset(int64_t nTimeOffset)
 
 QString uriPrefix()
 {
-    return Opt().UAHFTime() ? "bitcoincash" : "bitcoin";
+    return "bitcoincash";
 }
 
 } // namespace GUIUtil
