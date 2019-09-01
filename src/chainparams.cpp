@@ -96,12 +96,12 @@ public:
         // CHECKDATASIGVERIFY
         consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].name = "cdsv";
         consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].gbt_force = true;
-        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].nStartTime = 1557921600LL; // Wednesday, May 15, 2019 12:00:00 UTC
-        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].nTimeout = 1589457600LL; // Thursday, May 14, 2020 12:00:00 UTC
-        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].windowsize = 12960;
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].nStartTime = 1571140800LL; // 2019-10-15T12:00:00+00:00
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].nTimeout = 1602676800LL; // 2020-10-14T12:00:00+00:00
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].windowsize = 12960; // ~ 90 days
         consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].threshold = 9720; // 75% of 12960
         consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].minlockedblocks = 0;
-        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].minlockedtime = 7776000; // 90 days
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].minlockedtime = 0;
 
         // testing bit
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].name = "testdummy";
@@ -182,12 +182,12 @@ public:
         // CHECKDATASIGVERIFY
         consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].name = "cdsv";
         consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].gbt_force = true;
-        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].nStartTime = 1555329600LL; // Monday, April 15, 2019 12:00:00 UTC
-        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].nTimeout = 1589457600LL; // Thursday, May 14, 2020 12:00:00 UTC
-        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].windowsize = 12960;
-        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].threshold = 9720; // 75% of 12960
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].nStartTime = 1567339200LL; // 2019-09-01T12:00:00+00:00
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].nTimeout = 1598875200LL; // 2020-08-31T12:00:00+00:00
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].windowsize = 4320; // ~ 30 days
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].threshold = 3240; // 75% of 4320
         consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].minlockedblocks = 0;
-        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].minlockedtime = 7776000; // 90 days
+        consensus.vDeployments[Consensus::DEPLOYMENT_CDSV].minlockedtime = 0;
 
         // testing bit
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].name = "testdummy";
@@ -292,10 +292,10 @@ public:
         Consensus::DeploymentPos bip135test0 = static_cast<Consensus::DeploymentPos>(0);
         consensus.vDeployments[bip135test0].name = "bip135test0";
         consensus.vDeployments[bip135test0].gbt_force = true;
-        consensus.vDeployments[bip135test0].nStartTime = 0;
+        consensus.vDeployments[bip135test0].nStartTime = MOCKTIME + 30;
         consensus.vDeployments[bip135test0].nTimeout = 999999999999LL;
-        consensus.vDeployments[bip135test0].windowsize = 144;
-        consensus.vDeployments[bip135test0].threshold = 108;
+        consensus.vDeployments[bip135test0].windowsize = 100;
+        consensus.vDeployments[bip135test0].threshold = 75;
         consensus.vDeployments[bip135test0].minlockedblocks = 0;
         consensus.vDeployments[bip135test0].minlockedtime = 0;
 
@@ -335,7 +335,7 @@ public:
         consensus.vDeployments[bip135test4].nStartTime = MOCKTIME + 30;
         consensus.vDeployments[bip135test4].nTimeout = 999999999999LL;
         consensus.vDeployments[bip135test4].windowsize = 100;
-        consensus.vDeployments[bip135test4].threshold = 75;
+        consensus.vDeployments[bip135test4].threshold = 0;
         consensus.vDeployments[bip135test4].minlockedblocks = 0;
         consensus.vDeployments[bip135test4].minlockedtime = 0;
 

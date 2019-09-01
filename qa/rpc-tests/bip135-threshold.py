@@ -183,7 +183,7 @@ class BIP135ForksTest(ComparisonTestFramework):
         # 95 blocks total for bit 5
         test_blocks = self.generate_blocks(20, 0x200000E1)
         yield TestInstance(test_blocks, sync_every_block=False)
-        assert_equal(get_bip135_status(node, self.defined_forks[4])['status'], 'started')
+        assert_equal(get_bip135_status(node, self.defined_forks[4])['status'], 'locked_in')
 
         # 99 blocks total for bit 6
         test_blocks = self.generate_blocks(4, 0x200000C1)
@@ -196,8 +196,12 @@ class BIP135ForksTest(ComparisonTestFramework):
         assert(self.height % 100 == 99)
 
         bcinfo = node.getblockchaininfo()
+        assert_equal(bcinfo['bip135_forks'][f]['status'], 'locked_in')
         for f in self.defined_forks[2:]:
-            assert_equal(bcinfo['bip135_forks'][f]['status'], 'locked_in')
+            if int(f[10:]) == 4:
+                assert_equal(bcinfo['bip135_forks'][f]['status'], 'active')
+            else:
+                assert_equal(bcinfo['bip135_forks'][f]['status'], 'locked_in')
         assert_equal(bcinfo['bip135_forks'][self.defined_forks[1]]['status'], 'started')
 
         # move to start of new 144-block window
@@ -218,7 +222,6 @@ class BIP135ForksTest(ComparisonTestFramework):
         '''
         run various tests
         '''
-        # CSV (bit 0) for backward compatibility with BIP9
         for test in itertools.chain(
                 self.test_BIP135Thresholds(),  # test thresholds on other bits
         ):
