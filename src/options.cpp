@@ -74,7 +74,7 @@ int64_t Opt::RespendRelayLimit() const {
 }
 
 bool Opt::UseCashAddr() const {
-    return Args->GetBool("-usecashaddr", false);
+    return Args->GetBool("-usecashaddr", true);
 }
 
 bool Opt::UsingThinBlocks() {

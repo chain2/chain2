@@ -47,7 +47,7 @@ namespace GUIUtil
 
     QString bitcoinURIScheme(const CChainParams&);
     QString bitcoinURIScheme();
-    // Parse "bitcoincash:" URI into recipient object, return true on successful
+    // Parse "ctwo:" URI into recipient object, return true on successful
     // parsing
     bool parseBitcoinURI(const QString &scheme, const QUrl &uri,
                          SendCoinsRecipient *out);

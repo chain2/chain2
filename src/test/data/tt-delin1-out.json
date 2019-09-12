@@ -194,7 +194,7 @@
                 "reqSigs": 1,
                 "type": "pubkeyhash",
                 "addresses": [
-                    "bitcoincash:qz8azwdm888dwyljx8zc5ng8ha54f5wzqylx2gw6hc"
+                    "ctwo:qz8azwdm888dwyljx8zc5ng8ha54f5wzqy2x62mzxt"
                 ]
             }
         },
@@ -207,7 +207,7 @@
                 "reqSigs": 1,
                 "type": "pubkeyhash",
                 "addresses": [
-                    "bitcoincash:qpk8wt5ul93hrwarm2xtwv76wz30eusq0qxs5gzfn7"
+                    "ctwo:qpk8wt5ul93hrwarm2xtwv76wz30eusq0qnsy2h3zd"
                 ]
             }
         }

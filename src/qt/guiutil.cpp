@@ -110,7 +110,7 @@ void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent)
 #if QT_VERSION >= 0x040700
     // We don't want translators to use own addresses in translations
     // and this is the only place, where this address is supplied.
-    widget->setPlaceholderText(QObject::tr("Enter address (e.g. %1)").arg("1C9tiA2QhZ2XUyAjJuAzdrhnM6UYQubRA4"));
+    widget->setPlaceholderText(QObject::tr("Enter address (e.g. %1)").arg("ctwo:qpa90cz4rhtrzdcsaeayv739yugcadxyngnty67lah"));
 #endif
     widget->setValidator(
         new BitcoinAddressEntryValidator(bitcoinURIScheme().toStdString(), parent));
@@ -944,7 +944,7 @@ QString formatTimeOffset(int64_t nTimeOffset)
 
 QString uriPrefix()
 {
-    return "bitcoincash";
+    return "ctwo";
 }
 
 } // namespace GUIUtil

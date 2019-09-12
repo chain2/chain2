@@ -217,7 +217,7 @@ static bool ipcCanParseCashAddrURI(const QString &arg,
 static bool ipcCanParseLegacyURI(const QString &arg,
                                  const std::string &network) {
     const CChainParams &params(Params(network));
-    std::string addr = ipcParseURI(arg, params, "bitcoincash");
+    std::string addr = ipcParseURI(arg, params, "ctwo");
     return IsValidDestinationString(addr, params);
 }
 
@@ -499,14 +499,14 @@ void PaymentServer::handleURIOrFile(const QString &s) {
         return;
     }
 
-    // bitcoincash: CashAddr URI
+    // ctwo: CashAddr URI
     QString schemeCash = GUIUtil::bitcoinURIScheme();
     if (handleURI(schemeCash, s)) {
         return;
     }
 
-    // bitcoincash: Legacy URI
-    QString schemeLegacy = "bitcoincash";
+    // ctwo: Legacy URI
+    QString schemeLegacy = "ctwo";
     if (handleURI(schemeLegacy, s)) {
         return;
     }
