@@ -8,7 +8,7 @@ packages:
 - "libc6:i386"
 - "faketime"
 remotes:
-- "url": "https://github.com/bitcoinxt/bitcoin-detached-sigs.git"
+- "url": "https://github.com/chain2/bitcoin-detached-sigs.git"
   "dir": "signature"
 files:
 - "bitcoin-osx-unsigned.tar.gz"
@@ -33,5 +33,5 @@ script: |
 
   tar -xf ${UNSIGNED}
   ./detached-sig-apply.sh ${UNSIGNED} signature/osx
-  ${WRAP_DIR}/genisoimage -no-cache-inodes -D -l -probe -V "Bitcoin-XT" -no-pad -r -apple -o uncompressed.dmg signed-app
+  ${WRAP_DIR}/genisoimage -no-cache-inodes -D -l -probe -V "chain2" -no-pad -r -apple -o uncompressed.dmg signed-app
   ${WRAP_DIR}/dmg dmg uncompressed.dmg ${OUTDIR}/${SIGNED}

@@ -66,11 +66,11 @@
         <translation>Alım adresleri</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>Bunlar ödeme yapmak için kullanacağınız Bitcoin adreslerinizdir. Bitcoin yollamadan önce meblağı ve alıcı adresini daima kontrol ediniz.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>Bunlar ödeme almak için kullanacağınız Bitcoin adreslerinizdir. Her muamele için yeni bir alım adresi kullanmanız tavsiye edilir.</translation>
     </message>
     <message>
@@ -168,7 +168,7 @@
         <translation>Cüzdanınızı şifrelemek istediğinizden emin misiniz?</translation>
     </message>
     <message>
-        <source>Bitcoin XT will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <source>chain2 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
         <translation>Şifreleme işlemini tamamlamak için Bitcoin Çekirdeği şimdi kapanacaktır. Cüzdanınızı şifrelemenin, Bitcoinlerinizin bilgisayara bulaşan kötücül bir yazılım tarafından çalınmaya karşı tamamen koruyamayacağını unutmayınız.</translation>
     </message>
     <message>
@@ -295,7 +295,7 @@
         <translation>&amp;URI aç...</translation>
     </message>
     <message>
-        <source>Bitcoin XT client</source>
+        <source>chain2 client</source>
         <translation>Bitcoin Çekirdeği istemcisi</translation>
     </message>
     <message>
@@ -307,7 +307,7 @@
         <translation>Diskteki bloklar yeniden endeksleniyor...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a address</source>
         <translation>Bir Bitcoin adresine Bitcoin yolla</translation>
     </message>
     <message>
@@ -347,7 +347,7 @@
         <translation>&amp;Al</translation>
     </message>
     <message>
-        <source>Show information about Bitcoin XT</source>
+        <source>Show information about chain2</source>
         <translation>Bitcoin Çekirdeği hakkında bilgi göster</translation>
     </message>
     <message>
@@ -363,11 +363,11 @@
         <translation>Cüzdanınızın özel anahtarlarını şifrele</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <source>Sign messages with your addresses to prove you own them</source>
         <translation>Mesajları adreslerin size ait olduğunu ispatlamak için Bitcoin adresleri ile imzala</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified addresses</source>
         <translation>Belirtilen Bitcoin adresleri ile imzalandıklarından emin olmak için mesajları kontrol et</translation>
     </message>
     <message>
@@ -387,7 +387,7 @@
         <translation>Sekme araç çubuğu</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Bitcoin Çekirdeği</translation>
     </message>
     <message>
@@ -395,11 +395,11 @@
         <translation>Ödeme talep et (QR kodu ve %1 URI'si oluşturur)</translation>
     </message>
     <message>
-        <source>&amp;About Bitcoin XT</source>
+        <source>&amp;About chain2</source>
         <translation>Bitcoin Çekirdeği &amp;hakkında</translation>
     </message>
     <message>
-        <source>Modify configuration options for Bitcoin XT</source>
+        <source>Modify configuration options for chain2</source>
         <translation>Bitcoin Çekirdeği yapılandırma seçeneklerini değiştir</translation>
     </message>
     <message>
@@ -419,7 +419,7 @@
         <translation>&amp;Komut satırı seçenekleri</translation>
     </message>
     <message>
-        <source>Show the Bitcoin XT help message to get a list with possible Bitcoin command-line options</source>
+        <source>Show the chain2 help message to get a list with possible Bitcoin command-line options</source>
         <translation>Bitcoin komut satırı seçeneklerinin listesini elde etmek için Bitcoin Çekirdeği yardım mesajını göster</translation>
     </message>
     <message numerus="yes">
@@ -806,7 +806,7 @@
         <translation>Girilen "%1" adresi hâlihazırda adres defterinde mevcuttur.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address "%1" is not a valid address.</source>
         <translation>Girilen "%1" adresi geçerli bir Bitcoin adresi değildir.</translation>
     </message>
     <message>
@@ -844,7 +844,7 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Bitcoin Çekirdeği</translation>
     </message>
     <message>
@@ -856,7 +856,7 @@
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Bitcoin XT</source>
+        <source>About chain2</source>
         <translation>Bitcoin Çekirdeği hakkında</translation>
     </message>
     <message>
@@ -879,15 +879,15 @@
         <translation>Hoş geldiniz</translation>
     </message>
     <message>
-        <source>Welcome to Bitcoin XT.</source>
+        <source>Welcome to chain2.</source>
         <translation>Bitcoin Çekirdeğine hoş geldiniz.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Bitcoin XT will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where chain2 will store its data.</source>
         <translation>Bu programı ilk kez başlattığınızdan dolayı Bitcoin Çekirdeğinin verilerini nereye saklayacağını seçebilirsiniz.</translation>
     </message>
     <message>
-        <source>Bitcoin XT will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>chain2 will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>Bitcoin çekirdeği Bitcoin blok zincirinin bir kopyasını indirip saklayacaktır. Asgari %1GB bouyutunda veri bu klasörde saklanacak ve zamanla bu boyut artacaktır. Cüzdan da bu klasörde saklanacaktır. </translation>
     </message>
     <message>
@@ -899,7 +899,7 @@
         <translation>Özel bir veri klasörü kullan:</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Bitcoin Çekirdeği</translation>
     </message>
     <message>
@@ -981,7 +981,7 @@
         <translation>Pencere kapatıldığında uygulamadan çıkmak yerine uygulamayı küçültür. Bu seçenek etkinleştirildiğinde, uygulama sadece menüden çıkış seçildiğinde kapanacaktır.</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting Bitcoin XT.</source>
+        <source>The user interface language can be set here. This setting will take effect after restarting chain2.</source>
         <translation>Kullanıcı arayüzünün dili burada belirtilebilir. Bu ayar Bitcoin Çekirdeği tekrar başlatıldığında etkinleşecektir.</translation>
     </message>
     <message>
@@ -1009,11 +1009,11 @@
         <translation>&amp;Şebeke</translation>
     </message>
     <message>
-        <source>Automatically start Bitcoin XT after logging in to the system.</source>
+        <source>Automatically start chain2 after logging in to the system.</source>
         <translation>Sistemde oturum açıldığında Bitcoin Çekirdeğini otomatik olarak başlat.</translation>
     </message>
     <message>
-        <source>&amp;Start Bitcoin XT on system login</source>
+        <source>&amp;Start chain2 on system login</source>
         <translation>Bitcoin Çekirdeğini sistem oturumuyla &amp;başlat</translation>
     </message>
     <message>
@@ -1255,7 +1255,7 @@
         <translation>Ödeme talebini alma URL'i geçersiz: %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid address or malformed URI parameters.</source>
         <translation>URI okunamadı! Sebebi geçersiz bir Bitcoin adresi veya hatalı URI parametreleri olabilir.</translation>
     </message>
     <message>
@@ -1333,7 +1333,7 @@
         <translation>Meblağ</translation>
     </message>
     <message>
-        <source>Enter a Bitcoin address (e.g. %1)</source>
+        <source>Enter address (e.g. %1)</source>
         <translation>Bir Bitcoin adresi giriniz (mesela %1)</translation>
     </message>
     <message>
@@ -1443,7 +1443,7 @@
         <translation>Güncel blok sayısı</translation>
     </message>
     <message>
-        <source>Open the Bitcoin XT debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <source>Open the chain2 debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation>Güncel veri klasöründen Bitcoin Çekirdeği hata ayıklama kütük dosyasını açar. Büyük kütük dosyaları için bu birkaç saniye alabilir.</translation>
     </message>
     <message>
@@ -1563,7 +1563,7 @@
         <translation>Konsolu temizle</translation>
     </message>
     <message>
-        <source>Welcome to the Bitcoin XT RPC console.</source>
+        <source>Welcome to the chain2 RPC console.</source>
         <translation>Bitcoin Çekirdeği RPC konsoluna hoş geldiniz.</translation>
     </message>
     <message>
@@ -2027,7 +2027,7 @@
         <translation>Çift adres bulundu: adresler herbiri için sadece bir kez kullanılmalıdır.</translation>
     </message>
     <message>
-        <source>Warning: Invalid Bitcoin address</source>
+        <source>Warning: Invalid address</source>
         <translation>Uyarı: geçersiz Bitcoin adresi</translation>
     </message>
     <message>
@@ -2078,7 +2078,7 @@
         <translation>Bu, normal bir ödemedir.</translation>
     </message>
     <message>
-        <source>The Bitcoin address to send the payment to</source>
+        <source>The address to send the payment to</source>
         <translation>Ödemenin yollanacağı Bitcoin adresi</translation>
     </message>
     <message>
@@ -2137,7 +2137,7 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Bitcoin XT is shutting down...</source>
+        <source>chain2 is shutting down...</source>
         <translation>Bitcoin Çekirdeği kapanıyor...</translation>
     </message>
     <message>
@@ -2160,7 +2160,7 @@
         <translation>Adreslerinize yollanan bitcoinleri alabileceğiniz ispatlamak için adreslerinizle mesaj/anlaşma imzalayabilirsiniz. Oltalama saldırılarının kimliğinizi imzanızla elde etmeyi deneyebilecekleri için belirsiz ya da rastgele hiçbir şey imzalamamaya dikkat ediniz. Sadece ayrıntılı açıklaması olan ve tümüne katıldığınız ifadeleri imzalayınız.</translation>
     </message>
     <message>
-        <source>The Bitcoin address to sign the message with</source>
+        <source>The address to sign the message with</source>
         <translation>Mesajın imzalanmasında kullanılacak Bitcoin adresi</translation>
     </message>
     <message>
@@ -2192,7 +2192,7 @@
         <translation>Güncel imzayı sistem panosuna kopyala</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
+        <source>Sign the message to prove you own this address</source>
         <translation>Bu Bitcoin adresinin sizin olduğunu ispatlamak için mesajı imzalayın</translation>
     </message>
     <message>
@@ -2216,11 +2216,11 @@
         <translation>Alıcının adresini, mesajı (satır sonları, boşluklar, sekmeler vs. karakterleri tam olarak kopyaladığınızdan emin olunuz) ve imzayı aşağıda giriniz. Bir ortadaki adam saldırısı tarafından kandırılmaya mâni olmak için imzadan, imzalı mesajın içeriğini aşan bir anlam çıkarmamaya dikkat ediniz. Bunun sadece imzalayan tarafın adres ile alım yapabildiğini ispatladığını ve herhangi bir muamelenin gönderi tarafını kanıtlayamayacağını unutmayınız!</translation>
     </message>
     <message>
-        <source>The Bitcoin address the message was signed with</source>
+        <source>The address the message was signed with</source>
         <translation>Mesajın imzalanmasında kullanılan Bitcoin adresi</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
+        <source>Verify the message to ensure it was signed with the specified address</source>
         <translation>Belirtilen Bitcoin adresi ile imzalandığını doğrulamak için mesajı kontrol et</translation>
     </message>
     <message>
@@ -2287,11 +2287,11 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Bitcoin Çekirdeği</translation>
     </message>
     <message>
-        <source>The Bitcoin XT developers</source>
+        <source>The chain2 developers</source>
         <translation>Bitcoin Çekirdeği geliştiricileri</translation>
     </message>
     <message>
@@ -2841,7 +2841,7 @@
         <translation>Bu yayın öncesi bir deneme sürümüdür - tüm riski siz üstlenmiş olursunuz - bitcoin oluşturmak ya da ticari uygulamalar için kullanmayınız</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Bitcoin XT is probably already running.</source>
+        <source>Unable to bind to %s on this computer. chain2 is probably already running.</source>
         <translation>Bu bilgisayarda %s unsuruna bağlanılamadı. Bitcoin Çekirdeği muhtemelen hâlihazırda çalışmaktadır.</translation>
     </message>
     <message>
@@ -3029,7 +3029,7 @@
         <translation>Belirtilen adrese bağlan ve JSON RPC bağlantıları için dinlemeye geç. IPv6 için [makine]:port imlasını kullanınız. Bu seçenek birden çok kez belirtilebilir (varsayılan: tüm arayüzlere bağlan)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Bitcoin XT is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. chain2 is probably already running.</source>
         <translation>%s veri dizininde kilit elde edilemedi. Bitcoin Çekirdeği muhtemelen hâlihazırda çalışmaktadır.</translation>
     </message>
     <message>
@@ -3125,7 +3125,7 @@ mesela: alertnotify=echo %%s | mail -s "Bitcoin Alert" admin@foo.com
         <translation>İkaz: -maxtxfee çok yüksek bir değere ayarlanmış! Bu denli yüksek ücretler tek bir muamelede ödenebilir.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Bitcoin XT will not work properly.</source>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong chain2 will not work properly.</source>
         <translation>Uyarı: Lütfen bilgisayarınızın saat ve tarihinin doğru olduğunu kontol ediniz! Saatinizde gecikme varsa Bitcoin Çekirdeği doğru şekilde çalışamaz.</translation>
     </message>
     <message>
@@ -3165,7 +3165,7 @@ mesela: alertnotify=echo %%s | mail -s "Bitcoin Alert" admin@foo.com
         <translation>SOCKS5 vekil sunucusu vasıtasıyla bağlan</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Bitcoin XT Developers</source>
+        <source>Copyright (C) 2009-%i The chain2 Developers</source>
         <translation>Telif hakkı 2009-%i Bitcoin Çekirdeği Geliştiricileri</translation>
     </message>
     <message>
@@ -3173,7 +3173,7 @@ mesela: alertnotify=echo %%s | mail -s "Bitcoin Alert" admin@foo.com
         <translation>-rpcbind değeri %s şebeke adresi olarak ayrıştırılamadı</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Bitcoin XT</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of chain2</source>
         <translation>wallet.dat dosyasının yüklenmesinde hata: Cüzdan Bitcoin Çekirdeğinin daha yeni bir sürümünü gerektirmektedir</translation>
     </message>
     <message>
@@ -3193,7 +3193,7 @@ mesela: alertnotify=echo %%s | mail -s "Bitcoin Alert" admin@foo.com
         <translation>Bilgi</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Bitcoin XT is shutting down.</source>
+        <source>Initialization sanity check failed. chain2 is shutting down.</source>
         <translation>Başlatma sınaması başarısız oldu. Bitcoin Çekirdeği kapatılıyor.</translation>
     </message>
     <message>
@@ -3321,7 +3321,7 @@ mesela: alertnotify=echo %%s | mail -s "Bitcoin Alert" admin@foo.com
         <translation>JSON-RPC bağlantıları için kullanıcı ismi</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Bitcoin XT to complete</source>
+        <source>Wallet needed to be rewritten: restart chain2 to complete</source>
         <translation>Cüzdanın tekrar yazılması gerekmektedir: tamamlamak için Bitcoin Çekirdeğini yeniden başlatın</translation>
     </message>
     <message>

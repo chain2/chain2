@@ -66,11 +66,11 @@
         <translation>Διευθύνσεις λήψης</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>Αυτές είναι οι Bitcoin διευθύνσεις σας για να λαμβάνετε πληρωμές. Δίνοντας μία ξεχωριστή διεύθυνση σε κάθε αποστολέα, θα μπορείτε να ελέγχετε ποιος σας πληρώνει.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>Αυτές είναι οι Bitcoin διευθύνσεις σας για να λαμβάνετε πληρωμές. Δίνοντας μία ξεχωριστή διεύθυνση σε κάθε αποστολέα, θα μπορείτε να ελέγχετε ποιος σας πληρώνει.</translation>
     </message>
     <message>
@@ -288,8 +288,8 @@
         <translation>'Ανοιγμα &amp;URI</translation>
     </message>
     <message>
-        <source>Bitcoin XT client</source>
-        <translation>Εφαρμογή Bitcoin XT</translation>
+        <source>chain2 client</source>
+        <translation>Εφαρμογή chain2</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -300,7 +300,7 @@
         <translation>Φόρτωση ευρετηρίου μπλοκ στον σκληρο δισκο...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a address</source>
         <translation>Στείλε νομίσματα σε μια διεύθυνση bitcoin</translation>
     </message>
     <message>
@@ -340,8 +340,8 @@
         <translation>&amp;Παραλαβή </translation>
     </message>
     <message>
-        <source>Show information about Bitcoin XT</source>
-        <translation>Σχετικά με το Bitcoin XT</translation>
+        <source>Show information about chain2</source>
+        <translation>Σχετικά με το chain2</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
@@ -356,11 +356,11 @@
         <translation>Κρυπτογραφήστε τα ιδιωτικά κλειδιά που ανήκουν στο πορτοφόλι σας </translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <source>Sign messages with your addresses to prove you own them</source>
         <translation>Υπογράψτε ένα μήνυμα για να βεβαιώσετε πως είστε ο κάτοχος αυτής της διεύθυνσης</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified addresses</source>
         <translation>Υπογράψτε ένα μήνυμα για ν' αποδείξετε πως ανήκει μια συγκεκριμένη διεύθυνση Bitcoin</translation>
     </message>
     <message>
@@ -380,16 +380,16 @@
         <translation>Εργαλειοθήκη καρτελών</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and %1: URIs)</source>
         <translation>Αίτηση πληρωμών (δημιουργεί QR codes και διευθύνσεις %1: )</translation>
     </message>
     <message>
-        <source>&amp;About Bitcoin XT</source>
-        <translation>&amp;Σχετικά με το Bitcoin XT</translation>
+        <source>&amp;About chain2</source>
+        <translation>&amp;Σχετικά με το chain2</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -408,7 +408,7 @@
         <translation>&amp;Επιλογές γραμμής εντολών</translation>
     </message>
     <message>
-        <source>Show the Bitcoin XT help message to get a list with possible Bitcoin command-line options</source>
+        <source>Show the chain2 help message to get a list with possible Bitcoin command-line options</source>
         <translation>Εμφανιση του Bitcoin-Qt μήνυματος βοήθειας για να πάρετε μια λίστα με τις πιθανές επιλογές Bitcoin γραμμής εντολών.</translation>
     </message>
     <message>
@@ -722,7 +722,7 @@
         <translation>Η διεύθυνση "%1" βρίσκεται ήδη στο βιβλίο διευθύνσεων.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address "%1" is not a valid address.</source>
         <translation>Η διεύθυνση "%1" δεν είναι έγκυρη Bitcoin διεύθυνση.</translation>
     </message>
     <message>
@@ -760,8 +760,8 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>version</source>
@@ -772,8 +772,8 @@
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Bitcoin XT</source>
-        <translation>Σχετικά με το Bitcoin XT</translation>
+        <source>About chain2</source>
+        <translation>Σχετικά με το chain2</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -795,15 +795,15 @@
         <translation>Καλώς ήρθατε</translation>
     </message>
     <message>
-        <source>Welcome to Bitcoin XT.</source>
-        <translation>Καλώς ήρθατε στο Bitcoin XT.</translation>
+        <source>Welcome to chain2.</source>
+        <translation>Καλώς ήρθατε στο chain2.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Bitcoin XT will store its data.</source>
-        <translation>Καθώς αυτή είναι η πρώτη φορά που εκκινείται το πρόγραμμα, μπορείτε να διαλέξετε πού θα αποθηκεύει το Bitcoin XT τα δεδομένα του.</translation>
+        <source>As this is the first time the program is launched, you can choose where chain2 will store its data.</source>
+        <translation>Καθώς αυτή είναι η πρώτη φορά που εκκινείται το πρόγραμμα, μπορείτε να διαλέξετε πού θα αποθηκεύει το chain2 τα δεδομένα του.</translation>
     </message>
     <message>
-        <source>Bitcoin XT will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>chain2 will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>O πυρήνας Bitcoin θα κατεβάσει και να αποθηκεύσει ένα αντίγραφο της αλυσίδας μπλοκ Bitcoin. Τουλάχιστον %1GB δεδομένων θα αποθηκευτούν σε αυτόν τον κατάλογο, και θα αυξηθεί με την πάροδο του χρόνου. Το πορτοφόλι θα αποθηκευτεί σε αυτόν τον κατάλογο.</translation>
     </message>
     <message>
@@ -815,8 +815,8 @@
         <translation>Προσαρμογή του φακέλου δεδομένων: </translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1182,7 +1182,7 @@
         <translation>Ποσό</translation>
     </message>
     <message>
-        <source>Enter a Bitcoin address (e.g. %1)</source>
+        <source>Enter address (e.g. %1)</source>
         <translation>Εισάγετε μια διεύθυνση Bitcoin (π.χ. %1)</translation>
     </message>
     <message>
@@ -1772,7 +1772,7 @@
         <translation>Η δημιουργία της συναλλαγής απέτυχε!</translation>
     </message>
     <message>
-        <source>Warning: Invalid Bitcoin address</source>
+        <source>Warning: Invalid address</source>
         <translation>Προειδοποίηση: Μη έγκυρη διεύθυνση Bitcoin</translation>
     </message>
     <message>
@@ -1819,7 +1819,7 @@
         <translation>Αυτή είναι μια απλή πληρωμή.</translation>
     </message>
     <message>
-        <source>The Bitcoin address to send the payment to</source>
+        <source>The address to send the payment to</source>
         <translation>Η διεύθυνση Bitcoin που θα σταλεί η πληρωμή</translation>
     </message>
     <message>
@@ -1858,8 +1858,8 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Bitcoin XT is shutting down...</source>
-        <translation>Το Bitcoin XT τερματίζεται...</translation>
+        <source>chain2 is shutting down...</source>
+        <translation>Το chain2 τερματίζεται...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -1877,7 +1877,7 @@
         <translation>&amp;Υπογραφή Μηνύματος</translation>
     </message>
     <message>
-        <source>The Bitcoin address to sign the message with</source>
+        <source>The address to sign the message with</source>
         <translation>Διεύθυνση Bitcoin που θα σταλεί το μήνυμα</translation>
     </message>
     <message>
@@ -1909,7 +1909,7 @@
         <translation>Αντέγραφη της επιλεγμενης διεύθυνσης στο πρόχειρο του συστηματος</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
+        <source>Sign the message to prove you own this address</source>
         <translation>Υπογράψτε ένα μήνυμα για ν' αποδείξετε πως σας ανήκει μια συγκεκριμένη διεύθυνση Bitcoin</translation>
     </message>
     <message>
@@ -1929,11 +1929,11 @@
         <translation>&amp;Επιβεβαίωση μηνύματος</translation>
     </message>
     <message>
-        <source>The Bitcoin address the message was signed with</source>
+        <source>The address the message was signed with</source>
         <translation>Διεύθυνση Bitcoin η οποία το μήνυμα έχει υπογραφεί</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
+        <source>Verify the message to ensure it was signed with the specified address</source>
         <translation>Υπογράψτε ένα μήνυμα για ν' αποδείξετε πως υπογραφθηκε απο μια συγκεκριμένη διεύθυνση Bitcoin</translation>
     </message>
     <message>
@@ -2000,12 +2000,12 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
-        <source>The Bitcoin XT developers</source>
-        <translation>Οι προγραμματιστές του Bitcoin XT</translation>
+        <source>The chain2 developers</source>
+        <translation>Οι προγραμματιστές του chain2</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -2610,12 +2610,12 @@
         <translation>Εισαγωγή μπλοκ από εξωτερικό αρχείο blk000?.dat</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Bitcoin XT is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. chain2 is probably already running.</source>
         <translation>Αδυναμία κλειδώματος του φακέλου δεδομένων %s. Πιθανώς το Bitcoin να είναι ήδη ενεργό.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Bitcoin XT will not work properly.</source>
-        <translation>Προειδοποίηση: Παρακαλώ ελέγξτε ότι η ημερομηνία και ώρα του υπολογιστή σας είναι σωστά ρυθμισμένες! Εάν το ρολόι σας είναι λάθος το Bitcoin XT δεν θα λειτουργήσει σωστά. </translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong chain2 will not work properly.</source>
+        <translation>Προειδοποίηση: Παρακαλώ ελέγξτε ότι η ημερομηνία και ώρα του υπολογιστή σας είναι σωστά ρυθμισμένες! Εάν το ρολόι σας είναι λάθος το chain2 δεν θα λειτουργήσει σωστά. </translation>
     </message>
     <message>
         <source>Choose data directory on startup (default: 0)</source>
@@ -2630,7 +2630,7 @@
         <translation>Δεν μπόρεσε να αναλυθεί η παράμετρος -rpcbind value %s ως διεύθυνση δικτύου</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Bitcoin XT</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of chain2</source>
         <translation>Σφάλμα φόρτωσης wallet.dat: Το Πορτοφόλι απαιτεί μια νεότερη έκδοση του Bitcoin</translation>
     </message>
     <message>
@@ -2646,8 +2646,8 @@
         <translation>Πληροφορία</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Bitcoin XT is shutting down.</source>
-        <translation>Η εκκίνηση ελέγχου ορθότητας απέτυχε.  Γίνεται τερματισμός του Bitcoin XT.</translation>
+        <source>Initialization sanity check failed. chain2 is shutting down.</source>
+        <translation>Η εκκίνηση ελέγχου ορθότητας απέτυχε.  Γίνεται τερματισμός του chain2.</translation>
     </message>
     <message>
         <source>Invalid amount for -minrelaytxfee=&lt;amount&gt;: '%s'</source>

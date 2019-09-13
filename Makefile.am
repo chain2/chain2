@@ -14,7 +14,7 @@ BITCOIN_QT_BIN=$(top_builddir)/src/qt/bitcoin-qt$(EXEEXT)
 BITCOIN_CLI_BIN=$(top_builddir)/src/bitcoin-cli$(EXEEXT)
 BITCOIN_WIN_INSTALLER=$(PACKAGE)-$(PACKAGE_VERSION)-win$(WINDOWS_BITS)-setup$(EXEEXT)
 
-OSX_APP_BASENAME=Bitcoin-XT
+OSX_APP_BASENAME=chain2
 OSX_APP=$(OSX_APP_BASENAME).app
 OSX_DMG=$(OSX_APP_BASENAME).dmg
 OSX_BACKGROUND_IMAGE=background.tiff
@@ -115,7 +115,7 @@ $(APP_DIST_DIR)/Applications:
 $(APP_DIST_EXTRAS): $(APP_DIST_DIR)/$(OSX_APP)/Contents/MacOS/$(OSX_APP_BASENAME)
 
 $(OSX_DMG): $(APP_DIST_EXTRAS)
-	$(GENISOIMAGE) -no-cache-inodes -D -l -probe -V "Bitcoin-XT" -no-pad -r -apple -o $@ dist
+	$(GENISOIMAGE) -no-cache-inodes -D -l -probe -V "chain2" -no-pad -r -apple -o $@ dist
 
 $(APP_DIST_DIR)/.background/$(OSX_BACKGROUND_IMAGE): contrib/macdeploy/$(OSX_BACKGROUND_IMAGE)
 	$(MKDIR_P) $(@D)

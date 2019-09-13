@@ -66,11 +66,11 @@
         <translation>Vastaanottava osoite</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>Nämä ovat sinun Bitcoin osoitteita maksujen lähetykseen. Tarkista aina summa ja vastaanottajan osoite ennenkuin lähetät kolikkoja.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>Nämä ovat sinun Bitcoin-osoitteesi suoritusten vastaanottamiseen. Suositellaan että annat uuden osoitteen kullekin transaktiolle.</translation>
     </message>
     <message>
@@ -287,8 +287,8 @@
         <translation>Avaa &amp;URI...</translation>
     </message>
     <message>
-        <source>Bitcoin XT client</source>
-        <translation>Bitcoin XT ohjelma</translation>
+        <source>chain2 client</source>
+        <translation>chain2 ohjelma</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -299,7 +299,7 @@
         <translation>Ladataan lohkoindeksiä...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a address</source>
         <translation>Lähetä kolikoita Bitcoin-osoitteeseen</translation>
     </message>
     <message>
@@ -339,8 +339,8 @@
         <translation>&amp;Vastaanota</translation>
     </message>
     <message>
-        <source>Show information about Bitcoin XT</source>
-        <translation>Näytä tietoja Bitcoin XT:sta</translation>
+        <source>Show information about chain2</source>
+        <translation>Näytä tietoja chain2:sta</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
@@ -355,11 +355,11 @@
         <translation>Suojaa yksityiset avaimet, jotka kuuluvat lompakkoosi</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <source>Sign messages with your addresses to prove you own them</source>
         <translation>Allekirjoita viestisi omalla Bitcoin -osoitteellasi todistaaksesi, että omistat ne</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified addresses</source>
         <translation>Varmista, että viestisi on allekirjoitettu määritetyllä Bitcoin -osoitteella</translation>
     </message>
     <message>
@@ -379,7 +379,7 @@
         <translation>Välilehtipalkki</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Bitcoin-ydin</translation>
     </message>
     <message>
@@ -387,8 +387,8 @@
         <translation>Pyydä maksuja (Luo QR koodit ja %1: URIt)</translation>
     </message>
     <message>
-        <source>&amp;About Bitcoin XT</source>
-        <translation>&amp;Tietoja Bitcoin XT</translation>
+        <source>&amp;About chain2</source>
+        <translation>&amp;Tietoja chain2</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -407,8 +407,8 @@
         <translation>&amp;Komentorivin valinnat</translation>
     </message>
     <message>
-        <source>Show the Bitcoin XT help message to get a list with possible Bitcoin command-line options</source>
-        <translation>Näytä Bitcoin XT ohjeet saadaksesi listan mahdollisista Bitcoinin komentorivivalinnoista</translation>
+        <source>Show the chain2 help message to get a list with possible Bitcoin command-line options</source>
+        <translation>Näytä chain2 ohjeet saadaksesi listan mahdollisista Bitcoinin komentorivivalinnoista</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
@@ -748,7 +748,7 @@
         <translation>Osoite "%1" on jo osoitekirjassa.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address "%1" is not a valid address.</source>
         <translation>Antamasi osoite "%1" ei ole validi Bitcoin-osoite.</translation>
     </message>
     <message>
@@ -786,7 +786,7 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Bitcoin-ydin</translation>
     </message>
     <message>
@@ -798,8 +798,8 @@
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Bitcoin XT</source>
-        <translation>Tietoja Bitcoin XT</translation>
+        <source>About chain2</source>
+        <translation>Tietoja chain2</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -821,16 +821,16 @@
         <translation>Tervetuloa</translation>
     </message>
     <message>
-        <source>Welcome to Bitcoin XT.</source>
-        <translation>Tervetuloa Bitcoin XT</translation>
+        <source>Welcome to chain2.</source>
+        <translation>Tervetuloa chain2</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Bitcoin XT will store its data.</source>
-        <translation>Tämän on ensimmäinen kerta kun Bitcoin XT on käynnistetty joten voit valita data-hakemiston paikan.</translation>
+        <source>As this is the first time the program is launched, you can choose where chain2 will store its data.</source>
+        <translation>Tämän on ensimmäinen kerta kun chain2 on käynnistetty joten voit valita data-hakemiston paikan.</translation>
     </message>
     <message>
-        <source>Bitcoin XT will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Bitcoin XT lataa ja tallentaa kopion Bitcoinin lohkoketjusta. Vähintään %1GB dataa tullaan tallentamaan tähän hakemistoon ja tarve kasvaa ajan myötä. Lomakko tullaan myös tallentamaan tähän hakemistoon.</translation>
+        <source>chain2 will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>chain2 lataa ja tallentaa kopion Bitcoinin lohkoketjusta. Vähintään %1GB dataa tullaan tallentamaan tähän hakemistoon ja tarve kasvaa ajan myötä. Lomakko tullaan myös tallentamaan tähän hakemistoon.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -841,7 +841,7 @@
         <translation>Määritä oma kansio:</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Bitcoin-ydin</translation>
     </message>
     <message>
@@ -1177,7 +1177,7 @@
         <translation>Maksupyynnön haku URL on virheellinen: %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid address or malformed URI parameters.</source>
         <translation>URIa ei voitu jäsentää! Tämä voi johtua kelvottomasta Bitcoin-osoitteesta tai virheellisistä URI parametreista.</translation>
     </message>
     <message>
@@ -1231,7 +1231,7 @@
         <translation>Määrä</translation>
     </message>
     <message>
-        <source>Enter a Bitcoin address (e.g. %1)</source>
+        <source>Enter address (e.g. %1)</source>
         <translation>Syötä Bitcoin-osoite (esim. %1)</translation>
     </message>
     <message>
@@ -1881,7 +1881,7 @@
         <translation>Maksa vain vähimmäiskulu %1</translation>
     </message>
     <message>
-        <source>Warning: Invalid Bitcoin address</source>
+        <source>Warning: Invalid address</source>
         <translation>Varoitus: Virheellinen Bitcoin osoite</translation>
     </message>
     <message>
@@ -1932,7 +1932,7 @@
         <translation>Tämä on normaali maksu.</translation>
     </message>
     <message>
-        <source>The Bitcoin address to send the payment to</source>
+        <source>The address to send the payment to</source>
         <translation>Bitcoin-osoite johon maksu lähetetään</translation>
     </message>
     <message>
@@ -1975,7 +1975,7 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Bitcoin XT is shutting down...</source>
+        <source>chain2 is shutting down...</source>
         <translation>Bitcoin core sulkeutuu...</translation>
     </message>
     <message>
@@ -1994,7 +1994,7 @@
         <translation>&amp;Allekirjoita viesti</translation>
     </message>
     <message>
-        <source>The Bitcoin address to sign the message with</source>
+        <source>The address to sign the message with</source>
         <translation>Bitcoin-osoite jolla viesti allekirjoitetaan</translation>
     </message>
     <message>
@@ -2026,7 +2026,7 @@
         <translation>Kopioi tämänhetkinen allekirjoitus leikepöydälle</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
+        <source>Sign the message to prove you own this address</source>
         <translation>Allekirjoita viesti todistaaksesi, että omistat tämän Bitcoin-osoitteen</translation>
     </message>
     <message>
@@ -2046,11 +2046,11 @@
         <translation>&amp;Varmista viesti</translation>
     </message>
     <message>
-        <source>The Bitcoin address the message was signed with</source>
+        <source>The address the message was signed with</source>
         <translation>Bitcoin-osoite jolla viesti on allekirjoitettu</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
+        <source>Verify the message to ensure it was signed with the specified address</source>
         <translation>Tarkista viestin allekirjoitus varmistaaksesi, että se allekirjoitettiin tietyllä Bitcoin-osoitteella</translation>
     </message>
     <message>
@@ -2117,12 +2117,12 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Bitcoin-ydin</translation>
     </message>
     <message>
-        <source>The Bitcoin XT developers</source>
-        <translation>Bitcoin XT kehittäjät</translation>
+        <source>The chain2 developers</source>
+        <translation>chain2 kehittäjät</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -2647,8 +2647,8 @@
         <translation>Tämä on esi-julkaistu testiversio - Käytä omalla riskillä - Ei saa käytää louhimiseen tai kauppasovelluksiin.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Bitcoin XT is probably already running.</source>
-        <translation>Ei voida yhdistää %s tässä tietokoneessa. Bitcoin XT on luultavasti jo käynnissä.</translation>
+        <source>Unable to bind to %s on this computer. chain2 is probably already running.</source>
+        <translation>Ei voida yhdistää %s tässä tietokoneessa. chain2 on luultavasti jo käynnissä.</translation>
     </message>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
@@ -2795,8 +2795,8 @@
         <translation>Tuodaan lohkoja ulkoisesta blk000??.dat tiedostosta</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Bitcoin XT is probably already running.</source>
-        <translation>Ei voida lukita data-hakemistoa %s. Bitcoin XT on luultavasti jo käynnissä.</translation>
+        <source>Cannot obtain a lock on data directory %s. chain2 is probably already running.</source>
+        <translation>Ei voida lukita data-hakemistoa %s. chain2 on luultavasti jo käynnissä.</translation>
     </message>
     <message>
         <source>Execute command when a relevant alert is received or we see a really long fork (%s in cmd is replaced by message)</source>
@@ -2819,11 +2819,11 @@
         <translation>Yhdistä SOCKS5 proxin kautta</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Bitcoin XT Developers</source>
+        <source>Copyright (C) 2009-%i The chain2 Developers</source>
         <translation>Copyright (C) 2009-%i  Bitcoin kehittäjät</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Bitcoin XT</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of chain2</source>
         <translation>Virhe ladattaessa wallet.dat-tiedostoa: Tarvitset uudemman version Bitcoinista</translation>
     </message>
     <message>
@@ -2907,7 +2907,7 @@
         <translation>Käyttäjätunnus JSON-RPC-yhteyksille</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Bitcoin XT to complete</source>
+        <source>Wallet needed to be rewritten: restart chain2 to complete</source>
         <translation>Lompakko tarvitsee uudelleenkirjoittaa: käynnistä Bitcoin uudelleen</translation>
     </message>
     <message>

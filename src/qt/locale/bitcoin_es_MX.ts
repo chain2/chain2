@@ -62,11 +62,11 @@
         <translation>Recibiendo direcciones</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>Estas son tus direcciones de Bitcoin para enviar pagos. Siempre revise la cantidad y la dirección receptora antes de enviar monedas</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>Estas son tus direcciones Bitcoin para recibir pagos. Es recomendado usar una nueva dirección receptora para cada transacción.</translation>
     </message>
     <message>
@@ -275,7 +275,7 @@
         <translation>Reindexando bloques en el disco...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a address</source>
         <translation>Enviar monedas a una dirección Bitcoin</translation>
     </message>
     <message>
@@ -315,7 +315,7 @@
         <translation>Pestañas</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>nucleo Bitcoin</translation>
     </message>
     <message>
@@ -323,7 +323,7 @@
         <translation>opciones de la &amp;Linea de comandos</translation>
     </message>
     <message>
-        <source>Show the Bitcoin XT help message to get a list with possible Bitcoin command-line options</source>
+        <source>Show the chain2 help message to get a list with possible Bitcoin command-line options</source>
         <translation>Mostrar mensaje de ayuda del nucleo de Bitcoin para optener una lista con los posibles comandos  de Bitcoin</translation>
     </message>
     <message>
@@ -474,7 +474,7 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>nucleo Bitcoin</translation>
     </message>
     <message>
@@ -486,8 +486,8 @@
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Bitcoin XT</source>
-        <translation>Acerca de Bitcoin XT</translation>
+        <source>About chain2</source>
+        <translation>Acerca de chain2</translation>
     </message>
     <message>
         <source>Usage:</source>
@@ -501,7 +501,7 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>nucleo Bitcoin</translation>
     </message>
     </context>
@@ -693,7 +693,7 @@
         <translation>¡La transación fue rechazada! Esto puede ocurrir si algunas de tus monedas en tu cartera han sido gastadas, al igual que si usas una cartera copiada y la monedas fueron gastadas en la copia pero no se marcaron como gastadas.</translation>
     </message>
     <message>
-        <source>Warning: Invalid Bitcoin address</source>
+        <source>Warning: Invalid address</source>
         <translation>Advertencia: Dirección de Bitcoin invalida</translation>
     </message>
     <message>
@@ -755,7 +755,7 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Bitcoin XT is shutting down...</source>
+        <source>chain2 is shutting down...</source>
         <translation>Apagando el nucleo de Bitcoin...</translation>
     </message>
     <message>
@@ -781,12 +781,12 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>nucleo Bitcoin</translation>
     </message>
     <message>
-        <source>The Bitcoin XT developers</source>
-        <translation>Los desarrolladores de Bitcoin XT</translation>
+        <source>The chain2 developers</source>
+        <translation>Los desarrolladores de chain2</translation>
     </message>
     </context>
 <context>

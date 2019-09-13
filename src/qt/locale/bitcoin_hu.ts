@@ -66,11 +66,11 @@
         <translation>Fogadó címek</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>Ezekről a címekről küldhetsz bitcoint. Mindig ellenőrizd a fogadó címet és a fizetendő összeget, mielőtt elküldöd.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>Ezekkel a címekkel fogadhatsz bitcoint. Ajánlott minden tranzakcióhoz egy új fogadó címet használni.</translation>
     </message>
     <message>
@@ -287,8 +287,8 @@
         <translation>&amp;URI azonosító megnyitása...</translation>
     </message>
     <message>
-        <source>Bitcoin XT client</source>
-        <translation>Bitcoin XT kliens</translation>
+        <source>chain2 client</source>
+        <translation>chain2 kliens</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -299,7 +299,7 @@
         <translation>Lemezen lévő blokkok újraindexelése...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a address</source>
         <translation>Bitcoin küldése megadott címre</translation>
     </message>
     <message>
@@ -339,8 +339,8 @@
         <translation>&amp;Fogadás</translation>
     </message>
     <message>
-        <source>Show information about Bitcoin XT</source>
-        <translation>Bitcoin XT információ megjelenítése</translation>
+        <source>Show information about chain2</source>
+        <translation>chain2 információ megjelenítése</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
@@ -355,11 +355,11 @@
         <translation>A tárcádhoz tartozó privát kulcsok titkosítása</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <source>Sign messages with your addresses to prove you own them</source>
         <translation>Üzenetek aláírása a Bitcoin-címmeiddel, amivel bizonyítod, hogy a cím a sajátod</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified addresses</source>
         <translation>Üzenetek ellenőrzése, hogy valóban a megjelölt Bitcoin-címekkel vannak-e aláírva</translation>
     </message>
     <message>
@@ -379,16 +379,16 @@
         <translation>Fül eszköztár</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and %1: URIs)</source>
         <translation>Fizetési kérelem (QR-kódot és "%1:" URI azonosítót hoz létre)</translation>
     </message>
     <message>
-        <source>&amp;About Bitcoin XT</source>
-        <translation>&amp;A Bitcoin XT-ról</translation>
+        <source>&amp;About chain2</source>
+        <translation>&amp;A chain2-ról</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -407,8 +407,8 @@
         <translation>Paran&amp;cssor kapcsolók</translation>
     </message>
     <message>
-        <source>Show the Bitcoin XT help message to get a list with possible Bitcoin command-line options</source>
-        <translation>A Bitcoin XT súgóüzenet megjelenítése a Bitcoin lehetséges parancssori kapcsolóival.</translation>
+        <source>Show the chain2 help message to get a list with possible Bitcoin command-line options</source>
+        <translation>A chain2 súgóüzenet megjelenítése a Bitcoin lehetséges parancssori kapcsolóival.</translation>
     </message>
     <message>
         <source>No block source available...</source>
@@ -716,7 +716,7 @@
         <translation>A megadott "%1" cím már szerepel a címjegyzékben.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address "%1" is not a valid address.</source>
         <translation>A megadott "%1" cím nem egy érvényes Bitcoin-cím.</translation>
     </message>
     <message>
@@ -750,8 +750,8 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>version</source>
@@ -762,8 +762,8 @@
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Bitcoin XT</source>
-        <translation>A Bitcoin XT-ról</translation>
+        <source>About chain2</source>
+        <translation>A chain2-ról</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -785,8 +785,8 @@
         <translation>Üdvözlünk</translation>
     </message>
     <message>
-        <source>Welcome to Bitcoin XT.</source>
-        <translation>Üdvözlünk a Bitcoin XT-ban.</translation>
+        <source>Welcome to chain2.</source>
+        <translation>Üdvözlünk a chain2-ban.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -797,8 +797,8 @@
         <translation>Saját adatkönyvtár használata:</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1480,8 +1480,8 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Bitcoin XT is shutting down...</source>
-        <translation>A Bitcoin XT leáll...</translation>
+        <source>chain2 is shutting down...</source>
+        <translation>A chain2 leáll...</translation>
     </message>
     </context>
 <context>
@@ -1519,7 +1519,7 @@
         <translation>A jelenleg kiválasztott aláírás másolása a rendszer-vágólapra</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
+        <source>Sign the message to prove you own this address</source>
         <translation>Üzenet </translation>
     </message>
     <message>
@@ -1574,12 +1574,12 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
-        <source>The Bitcoin XT developers</source>
-        <translation>A Bitcoin XT fejlesztői</translation>
+        <source>The chain2 developers</source>
+        <translation>A chain2 fejlesztői</translation>
     </message>
     <message>
         <source>[testnet]</source>

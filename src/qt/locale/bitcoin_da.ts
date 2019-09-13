@@ -66,11 +66,11 @@
         <translation>Modtagelsesadresser</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>Disse er dine Bitcoin-adresser for at sende betalinger. Tjek altid beløb og modtageradresse, inden du sender bitcoins.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>Dette er dine Bitcoin-adresser til at modtage betalinger med. Det anbefales are bruge en ny modtagelsesadresse for hver transaktion.</translation>
     </message>
     <message>
@@ -168,8 +168,8 @@
         <translation>Er du sikker på, at du ønsker at kryptere din tegnebog?</translation>
     </message>
     <message>
-        <source>Bitcoin XT will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation>Bitcoin XT vil nu lukke for at færdiggøre krypteringsprocessen. Husk at kryptering af din tegnebog kan ikke beskytte dine bitcoin fuldt ud mod at blive stjålet af eventuel malware, der måtte have inficeret din computer.</translation>
+        <source>chain2 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <translation>chain2 vil nu lukke for at færdiggøre krypteringsprocessen. Husk at kryptering af din tegnebog kan ikke beskytte dine bitcoin fuldt ud mod at blive stjålet af eventuel malware, der måtte have inficeret din computer.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -295,8 +295,8 @@
         <translation>&amp;Åbn URI …</translation>
     </message>
     <message>
-        <source>Bitcoin XT client</source>
-        <translation>Bitcoin XT-klient</translation>
+        <source>chain2 client</source>
+        <translation>chain2-klient</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -307,7 +307,7 @@
         <translation>Genindekserer blokke på disken …</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a address</source>
         <translation>Send bitcoins til en Bitcoin-adresse</translation>
     </message>
     <message>
@@ -347,8 +347,8 @@
         <translation>&amp;Modtag</translation>
     </message>
     <message>
-        <source>Show information about Bitcoin XT</source>
-        <translation>Vis oplysninger om Bitcoin XT</translation>
+        <source>Show information about chain2</source>
+        <translation>Vis oplysninger om chain2</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
@@ -363,11 +363,11 @@
         <translation>Kryptér de private nøgler, der hører til din tegnebog</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <source>Sign messages with your addresses to prove you own them</source>
         <translation>Underskriv beskeder med dine Bitcoin-adresser for at bevise, at de tilhører dig</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified addresses</source>
         <translation>Verificér beskeder for at sikre, at de er underskrevet med de angivne Bitcoin-adresser</translation>
     </message>
     <message>
@@ -387,20 +387,20 @@
         <translation>Faneværktøjslinje</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and %1: URIs)</source>
         <translation>Anmod om betalinger (genererer QR-koder og "%1:"-URI'er)</translation>
     </message>
     <message>
-        <source>&amp;About Bitcoin XT</source>
-        <translation>&amp;Om Bitcoin XT</translation>
+        <source>&amp;About chain2</source>
+        <translation>&amp;Om chain2</translation>
     </message>
     <message>
-        <source>Modify configuration options for Bitcoin XT</source>
-        <translation>Ændr opsætning af Bitcoin XT</translation>
+        <source>Modify configuration options for chain2</source>
+        <translation>Ændr opsætning af chain2</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -419,8 +419,8 @@
         <translation>Tilvalg for &amp;kommandolinje</translation>
     </message>
     <message>
-        <source>Show the Bitcoin XT help message to get a list with possible Bitcoin command-line options</source>
-        <translation>Vis Bitcoin XT hjælpebesked for at få en liste over mulige tilvalg for Bitcoin kommandolinje</translation>
+        <source>Show the chain2 help message to get a list with possible Bitcoin command-line options</source>
+        <translation>Vis chain2 hjælpebesked for at få en liste over mulige tilvalg for Bitcoin kommandolinje</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
@@ -806,7 +806,7 @@
         <translation>Den indtastede adresse "%1" er allerede i adressebogen.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address "%1" is not a valid address.</source>
         <translation>Den indtastede adresse "%1" er ikke en gyldig Bitcoin-adresse.</translation>
     </message>
     <message>
@@ -844,8 +844,8 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>version</source>
@@ -856,8 +856,8 @@
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Bitcoin XT</source>
-        <translation>Om Bitcoin XT</translation>
+        <source>About chain2</source>
+        <translation>Om chain2</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -879,16 +879,16 @@
         <translation>Velkommen</translation>
     </message>
     <message>
-        <source>Welcome to Bitcoin XT.</source>
-        <translation>Velkommen til Bitcoin XT.</translation>
+        <source>Welcome to chain2.</source>
+        <translation>Velkommen til chain2.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Bitcoin XT will store its data.</source>
-        <translation>Siden dette er første gang, programmet startes, kan du vælge, hvor Bitcoin XT skal gemme sin data.</translation>
+        <source>As this is the first time the program is launched, you can choose where chain2 will store its data.</source>
+        <translation>Siden dette er første gang, programmet startes, kan du vælge, hvor chain2 skal gemme sin data.</translation>
     </message>
     <message>
-        <source>Bitcoin XT will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Bitcoin XT vil downloade og gemme et kopi af Bitcoin-blokkæden. Mindst %1 GB data vil blive gemt i denne mappe, og den vil vokse over tid. Tegnebogen vil også blive gemt i denne mappe.</translation>
+        <source>chain2 will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>chain2 vil downloade og gemme et kopi af Bitcoin-blokkæden. Mindst %1 GB data vil blive gemt i denne mappe, og den vil vokse over tid. Tegnebogen vil også blive gemt i denne mappe.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -899,8 +899,8 @@
         <translation>Brug tilpasset mappe for data:</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -977,8 +977,8 @@
         <translation>Minimér i stedet for at lukke applikationen, når vinduet lukkes. Når denne indstilling er slået til, vil applikationen først blive lukket, når Afslut vælges i menuen.</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting Bitcoin XT.</source>
-        <translation>Sproget for brugerfladen kan vælges her. Denne indstilling vil træde i kraft efter genstart af Bitcoin XT.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting chain2.</source>
+        <translation>Sproget for brugerfladen kan vælges her. Denne indstilling vil træde i kraft efter genstart af chain2.</translation>
     </message>
     <message>
         <source>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</source>
@@ -1005,12 +1005,12 @@
         <translation>&amp;Netværk</translation>
     </message>
     <message>
-        <source>Automatically start Bitcoin XT after logging in to the system.</source>
-        <translation>Start Bitcoin XT automatisk efter der logges ind på systemet.</translation>
+        <source>Automatically start chain2 after logging in to the system.</source>
+        <translation>Start chain2 automatisk efter der logges ind på systemet.</translation>
     </message>
     <message>
-        <source>&amp;Start Bitcoin XT on system login</source>
-        <translation>&amp;Start Bitcoin XT ved system-login</translation>
+        <source>&amp;Start chain2 on system login</source>
+        <translation>&amp;Start chain2 ved system-login</translation>
     </message>
     <message>
         <source>(0 = auto, &lt;0 = leave that many cores free)</source>
@@ -1251,7 +1251,7 @@
         <translation>Hentnings-URL for betalingsanmodning er ugyldig: %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid address or malformed URI parameters.</source>
         <translation>URI kan ikke tolkes! Dette kan skyldes en ugyldig Bitcoin-adresse eller forkert udformede URL-parametre.</translation>
     </message>
     <message>
@@ -1329,7 +1329,7 @@
         <translation>Beløb</translation>
     </message>
     <message>
-        <source>Enter a Bitcoin address (e.g. %1)</source>
+        <source>Enter address (e.g. %1)</source>
         <translation>Indtast en Bitcoin-adresse (fx %1)</translation>
     </message>
     <message>
@@ -1439,8 +1439,8 @@
         <translation>Nuværende antal blokke</translation>
     </message>
     <message>
-        <source>Open the Bitcoin XT debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Åbn Bitcoin XTs fejlsøgningslogfil fra den aktuelle datamappe. Dette kan tage nogle få sekunder for store logfiler.</translation>
+        <source>Open the chain2 debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Åbn chain2s fejlsøgningslogfil fra den aktuelle datamappe. Dette kan tage nogle få sekunder for store logfiler.</translation>
     </message>
     <message>
         <source>Received</source>
@@ -1559,8 +1559,8 @@
         <translation>Ryd konsol</translation>
     </message>
     <message>
-        <source>Welcome to the Bitcoin XT RPC console.</source>
-        <translation>Velkommen til Bitcoin XTs RPC-konsol.</translation>
+        <source>Welcome to the chain2 RPC console.</source>
+        <translation>Velkommen til chain2s RPC-konsol.</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
@@ -2027,7 +2027,7 @@
         <translation>Adressegenganger fundet. Adresser bør kun bruges én gang hver.</translation>
     </message>
     <message>
-        <source>Warning: Invalid Bitcoin address</source>
+        <source>Warning: Invalid address</source>
         <translation>Advarsel: Ugyldig Bitcoin-adresse</translation>
     </message>
     <message>
@@ -2078,7 +2078,7 @@
         <translation>Dette er en normal betaling.</translation>
     </message>
     <message>
-        <source>The Bitcoin address to send the payment to</source>
+        <source>The address to send the payment to</source>
         <translation>Bitcoin-adresse, som betalingen skal sendes til</translation>
     </message>
     <message>
@@ -2137,8 +2137,8 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Bitcoin XT is shutting down...</source>
-        <translation>Bitcoin XT lukker ned …</translation>
+        <source>chain2 is shutting down...</source>
+        <translation>chain2 lukker ned …</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -2160,7 +2160,7 @@
         <translation>Du kan signere beskeder/aftaler med dine adresser for at bevise, at du kan modtage bitcoin, der bliver sendt til adresserne. Vær forsigtig med ikke at signere noget vagt eller tilfældigt, da eventuelle phishing-angreb kan snyde dig til at overlade din identitet til dem. Signér kun fuldt ud detaljerede udsagn, som du er enig i.</translation>
     </message>
     <message>
-        <source>The Bitcoin address to sign the message with</source>
+        <source>The address to sign the message with</source>
         <translation>Bitcoin-adresse, som beskeden skal signeres med</translation>
     </message>
     <message>
@@ -2192,7 +2192,7 @@
         <translation>Kopiér den nuværende underskrift til systemets udklipsholder</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
+        <source>Sign the message to prove you own this address</source>
         <translation>Underskriv denne besked for at bevise, at Bitcoin-adressen tilhører dig</translation>
     </message>
     <message>
@@ -2216,11 +2216,11 @@
         <translation>Indtast modtagerens adresse, besked (vær sikker på at kopiere linjeskift, mellemrum, tabuleringer, etc. præcist) og signatur herunder for at verificere beskeden. Vær forsigtig med ikke at læse noget ud fra signaturen, som ikke står i selve beskeden, for at undgå at blive snydt af et eventuelt man-in-the-middle-angreb. Bemærk, at dette kun beviser, at den signerende person kan modtage med adressen; det kan ikke bevise hvem der har sendt en given transaktion!</translation>
     </message>
     <message>
-        <source>The Bitcoin address the message was signed with</source>
+        <source>The address the message was signed with</source>
         <translation>Bitcoin-adressen, som beskeden blev signeret med</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
+        <source>Verify the message to ensure it was signed with the specified address</source>
         <translation>Verificér beskeden for at sikre, at den er underskrevet med den angivne Bitcoin-adresse</translation>
     </message>
     <message>
@@ -2287,12 +2287,12 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
-        <source>The Bitcoin XT developers</source>
-        <translation>Udviklerne af Bitcoin XT</translation>
+        <source>The chain2 developers</source>
+        <translation>Udviklerne af chain2</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -2841,8 +2841,8 @@
         <translation>Dette er en foreløbig testudgivelse - brug på eget ansvar - brug ikke til udvinding eller handelsprogrammer</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Bitcoin XT is probably already running.</source>
-        <translation>Ikke i stand til at tildele til %s på denne computer. Bitcoin XT kører sansynligvis allerede.</translation>
+        <source>Unable to bind to %s on this computer. chain2 is probably already running.</source>
+        <translation>Ikke i stand til at tildele til %s på denne computer. chain2 kører sansynligvis allerede.</translation>
     </message>
     <message>
         <source>WARNING: abnormally high number of blocks generated, %d blocks received in the last %d hours (%d expected)</source>
@@ -3037,8 +3037,8 @@
         <translation>Tildel til den givne adresse for at lytte efter JSON-RPC-forbindelser. Brug [vært]:port-notation for IPv6. Denne valgmulighed kan angives flere gange (standard: tildel til alle grænseflader)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Bitcoin XT is probably already running.</source>
-        <translation>Kan ikke opnå en lås på datamappe %s. Bitcoin XT kører sansynligvis allerede.</translation>
+        <source>Cannot obtain a lock on data directory %s. chain2 is probably already running.</source>
+        <translation>Kan ikke opnå en lås på datamappe %s. chain2 kører sansynligvis allerede.</translation>
     </message>
     <message>
         <source>Create new files with system default permissions, instead of umask 077 (only effective with disabled wallet functionality)</source>
@@ -3133,8 +3133,8 @@ for eksempel: alertnotify=echo %%s | mail -s "Bitcoin Alert" admin@foo.com
         <translation>Advarsel: -maxtxfee er sat meget højt! Så store gebyrer kan betales på en enkelt transaktion.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Bitcoin XT will not work properly.</source>
-        <translation>Advarsel: Undersøg venligst at din computers dato og klokkeslet er korrekt indstillet! Hvis der er fejl i disse vil Bitcoin XT ikke fungere korrekt.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong chain2 will not work properly.</source>
+        <translation>Advarsel: Undersøg venligst at din computers dato og klokkeslet er korrekt indstillet! Hvis der er fejl i disse vil chain2 ikke fungere korrekt.</translation>
     </message>
     <message>
         <source>Whitelisted peers cannot be DoS banned and their transactions are always relayed, even if they are already in the mempool, useful e.g. for a gateway</source>
@@ -3173,16 +3173,16 @@ for eksempel: alertnotify=echo %%s | mail -s "Bitcoin Alert" admin@foo.com
         <translation>Forbind gennem SOCKS5-proxy</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Bitcoin XT Developers</source>
-        <translation>Ophavsret © 2009-%i Udviklerne af Bitcoin XT</translation>
+        <source>Copyright (C) 2009-%i The chain2 Developers</source>
+        <translation>Ophavsret © 2009-%i Udviklerne af chain2</translation>
     </message>
     <message>
         <source>Could not parse -rpcbind value %s as network address</source>
         <translation>Kunne ikke tolke -rpcbind-værdi %s som en netværksadresse</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Bitcoin XT</source>
-        <translation>Fejl ved indlæsning af wallet.dat: Tegnebog kræver en nyere version af Bitcoin XT</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of chain2</source>
+        <translation>Fejl ved indlæsning af wallet.dat: Tegnebog kræver en nyere version af chain2</translation>
     </message>
     <message>
         <source>Error reading from database, shutting down.</source>
@@ -3201,8 +3201,8 @@ for eksempel: alertnotify=echo %%s | mail -s "Bitcoin Alert" admin@foo.com
         <translation>Information</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Bitcoin XT is shutting down.</source>
-        <translation>Sundhedstjek under klargøring mislykkedes. Bitcoin XT lukker ned.</translation>
+        <source>Initialization sanity check failed. chain2 is shutting down.</source>
+        <translation>Sundhedstjek under klargøring mislykkedes. chain2 lukker ned.</translation>
     </message>
     <message>
         <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s'</source>
@@ -3329,8 +3329,8 @@ for eksempel: alertnotify=echo %%s | mail -s "Bitcoin Alert" admin@foo.com
         <translation>Brugernavn til JSON-RPC-forbindelser</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Bitcoin XT to complete</source>
-        <translation>Det var nødvendigt at genskrive tegnebogen: genstart Bitcoin XT for at gennemføre</translation>
+        <source>Wallet needed to be rewritten: restart chain2 to complete</source>
+        <translation>Det var nødvendigt at genskrive tegnebogen: genstart chain2 for at gennemføre</translation>
     </message>
     <message>
         <source>Warning</source>

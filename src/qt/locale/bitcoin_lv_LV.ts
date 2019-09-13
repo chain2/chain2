@@ -263,8 +263,8 @@
         <translation>Atvērt &amp;URI...</translation>
     </message>
     <message>
-        <source>Bitcoin XT client</source>
-        <translation>Bitcoin XT klients</translation>
+        <source>chain2 client</source>
+        <translation>chain2 klients</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -275,7 +275,7 @@
         <translation>Bloku reindeksēšana no diska...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a address</source>
         <translation>Nosūtīt bitkoinus uz Bitcoin adresi</translation>
     </message>
     <message>
@@ -315,8 +315,8 @@
         <translation>&amp;Saņemt</translation>
     </message>
     <message>
-        <source>Show information about Bitcoin XT</source>
-        <translation>Parādīt informāciju par Bitcoin XT</translation>
+        <source>Show information about chain2</source>
+        <translation>Parādīt informāciju par chain2</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
@@ -331,11 +331,11 @@
         <translation>Šifrēt privātās atslēgas kuras pieder tavam maciņam</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <source>Sign messages with your addresses to prove you own them</source>
         <translation>Parakstīt ziņojumus ar savām Bitcoin adresēm lai pierādītu ka tās pieder tev</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified addresses</source>
         <translation>Pārbaudīt ziņojumus lai pārliecinātos, ka tie tika parakstīti ar norādītajām Bitcoin adresēm</translation>
     </message>
     <message>
@@ -355,16 +355,16 @@
         <translation>Ciļņu rīkjosla</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and %1: URIs)</source>
         <translation>Pieprasīt maksājumus (izveido QR kodu un %1: URIs)</translation>
     </message>
     <message>
-        <source>&amp;About Bitcoin XT</source>
-        <translation>Par &amp;Bitcoin XT</translation>
+        <source>&amp;About chain2</source>
+        <translation>Par &amp;chain2</translation>
     </message>
     <message>
         <source>Open a %1: URI or payment request</source>
@@ -644,7 +644,7 @@
         <translation>Nupat ierakstītā adrese "%1" jau atrodas adrešu grāmatā.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address "%1" is not a valid address.</source>
         <translation>Ierakstītā adrese "%1" nav derīga Bitcoin adrese.</translation>
     </message>
     <message>
@@ -678,8 +678,8 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>version</source>
@@ -690,8 +690,8 @@
         <translation>(%1-biti)</translation>
     </message>
     <message>
-        <source>About Bitcoin XT</source>
-        <translation>Par Bitcoin XT</translation>
+        <source>About chain2</source>
+        <translation>Par chain2</translation>
     </message>
     <message>
         <source>Usage:</source>
@@ -709,8 +709,8 @@
         <translation>Sveiciens</translation>
     </message>
     <message>
-        <source>Welcome to Bitcoin XT.</source>
-        <translation>Sveicināts Bitcoin XT</translation>
+        <source>Welcome to chain2.</source>
+        <translation>Sveicināts chain2</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -721,8 +721,8 @@
         <translation>Izmantot pielāgotu datu mapi:</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1421,7 +1421,7 @@
         <translation>Transakcijas izveidošana neizdevās!</translation>
     </message>
     <message>
-        <source>Warning: Invalid Bitcoin address</source>
+        <source>Warning: Invalid address</source>
         <translation>Brīdinājums: Nederīga Bitcoin adrese</translation>
     </message>
     <message>
@@ -1495,8 +1495,8 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Bitcoin XT is shutting down...</source>
-        <translation>Bitcoin XT tiek izslēgta...</translation>
+        <source>chain2 is shutting down...</source>
+        <translation>chain2 tiek izslēgta...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -1542,7 +1542,7 @@
         <translation>Kopēt parakstu uz sistēmas starpliktuvi</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
+        <source>Sign the message to prove you own this address</source>
         <translation>Parakstīt ziņojumu lai pierādītu, ka esi šīs Bitcoin adreses īpašnieks.</translation>
     </message>
     <message>
@@ -1625,12 +1625,12 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
-        <source>The Bitcoin XT developers</source>
-        <translation>Bitcoin XT izstrādātāji</translation>
+        <source>The chain2 developers</source>
+        <translation>chain2 izstrādātāji</translation>
     </message>
     <message>
         <source>[testnet]</source>

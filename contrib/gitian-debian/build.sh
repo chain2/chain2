@@ -13,33 +13,33 @@ realver=0.11K
 set +e
 
 # Make working space
-workdir=bitcoinxt-$realver
+workdir=chain2-$realver
 [ -d $workdir ] && rm -r $workdir
 mkdir $workdir
 cd $workdir
 
 # Extract the tarball to a directory called usr
-tarball=bitcoin-xt-$ver-linux64.tar.gz
+tarball=chain2-$ver-linux64.tar.gz
 tar xzvf ../$tarball
-mv bitcoin-xt-$ver usr
+mv chain2-$ver usr
 
-# copy bitcoinxtd.service file to lib/systemd/system directory
+# copy chain2d.service file to lib/systemd/system directory
 mkdir -p lib/systemd/system 
-cp ../bitcoinxtd.service lib/systemd/system
+cp ../chain2d.service lib/systemd/system
 
-# copy bitcoin.conf file to etc/bitcoinxt
-mkdir -p etc/bitcoinxt
-cp ../bitcoin.conf etc/bitcoinxt
+# copy bitcoin.conf file to etc/chain2
+mkdir -p etc/chain2
+cp ../bitcoin.conf etc/chain2
 
 # create file to force creation of data folder
-mkdir -p var/lib/bitcoinxt
-touch var/lib/bitcoinxt/.empty
+mkdir -p var/lib/chain2
+touch var/lib/chain2/.empty
 
 # Rename the binaries so we don't conflict with regular Bitcoin
-mv usr/bin/bitcoind usr/bin/bitcoinxtd
-mv usr/bin/bitcoin-cli usr/bin/bitcoinxt-cli
-mv usr/bin/bitcoin-tx usr/bin/bitcoinxt-tx
-mv usr/bin/bitcoin-qt usr/bin/bitcoinxt-qt
+mv usr/bin/bitcoind usr/bin/chain2d
+mv usr/bin/bitcoin-cli usr/bin/chain2-cli
+mv usr/bin/bitcoin-tx usr/bin/chain2-tx
+mv usr/bin/bitcoin-qt usr/bin/chain2-qt
 
 # Remove unneeded files 
 rm usr/bin/test_bitcoin
@@ -51,25 +51,25 @@ rm usr/lib/*
 
 mkdir DEBIAN
 cat <<EOF >DEBIAN/control
-Package: bitcoinxt
+Package: chain2
 Architecture: amd64
-Description: Bitcoin XT is a fully verifying Bitcoin node implementation, based on the sources of Bitcoin Core.
-Maintainer: Steve Myers <steven.myers@gmail.com>
+Description: chain2 is a fully verifying Bitcoin node implementation.
+Maintainer: TBD <>
 Version: $realver
 Depends: debconf, adduser
 Recommends: ntp
 EOF
 
 cat <<EOF >DEBIAN/install
-usr/bin/bitcoinxtd usr/bin
-usr/bin/bitcoinxt-cli usr/bin
-usr/bin/bitcoinxt-tx usr/bin
+usr/bin/chain2d usr/bin
+usr/bin/chain2-cli usr/bin
+usr/bin/chain2-tx usr/bin
 EOF
 
 cat <<EOF >DEBIAN/conffiles
-lib/systemd/system/bitcoinxtd.service
-etc/bitcoinxt/bitcoin.conf
-var/lib/bitcoinxt/.empty
+lib/systemd/system/chain2d.service
+etc/chain2/bitcoin.conf
+var/lib/chain2/.empty
 EOF
 
 # copy templates file to DEBIAN/templates

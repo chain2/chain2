@@ -58,12 +58,12 @@
         <translation>Address king pamag-Tanggap</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Reni reng kekang Bitcoin address king pamagpadalang kabayaran. Lawan mulang masalese reng alaga ampo ing address na ning tumanggap bayu ka magpadalang barya.</translation>
+        <source>These are your addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Reni reng kekang address king pamagpadalang kabayaran. Lawan mulang masalese reng alaga ampo ing address na ning tumanggap bayu ka magpadalang barya.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Reni reng kekang Bitcoin addresses keng pamananggap bayad. Rerekomenda mi na gumamit kang bayung address keng balang transaksiyon.</translation>
+        <source>These are your addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Reni reng kekang addresses keng pamananggap bayad. Rerekomenda mi na gumamit kang bayung address keng balang transaksiyon.</translation>
     </message>
     <message>
         <source>Copy &amp;Label</source>
@@ -247,8 +247,8 @@
         <translation>&amp;Alilan ing Passphrase...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
-        <translation>Magpadalang barya king Bitcoin address</translation>
+        <source>Send coins to a address</source>
+        <translation>Magpadalang barya king address</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -303,7 +303,7 @@
         <translation>Gamit para king Tabs</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Kapilubluban ning Bitcoin</translation>
     </message>
     <message>
@@ -424,8 +424,8 @@
         <translation>Ing pepalub yung address "%1" ati na yu king aklat dareng address</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>Ing pepalub yung address "%1" ali ya katanggap-tanggap a Bitcoin address.</translation>
+        <source>The entered address "%1" is not a valid address.</source>
+        <translation>Ing pepalub yung address "%1" ali ya katanggap-tanggap a address.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -442,7 +442,7 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Kapilubluban ning Bitcoin</translation>
     </message>
     <message>
@@ -469,7 +469,7 @@
         <translation>Malaus ka</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Kapilubluban ning Bitcoin</translation>
     </message>
     <message>
@@ -878,8 +878,8 @@
         <translation>Kopyan ing kasalungsungan pirma king system clipboard</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
-        <translation>Pirman ing mensayi ban patune na keka ya ining Bitcoin address</translation>
+        <source>Sign the message to prove you own this address</source>
+        <translation>Pirman ing mensayi ban patune na keka ya ining address</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -898,8 +898,8 @@
         <translation>&amp;Beripikan ing Mensayi</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
-        <translation>Beripikan ing mensayi ban asiguradu a me pirma ya ini gamit ing mepiling Bitcoin address</translation>
+        <source>Verify the message to ensure it was signed with the specified address</source>
+        <translation>Beripikan ing mensayi ban asiguradu a me pirma ya ini gamit ing mepiling address</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -965,7 +965,7 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Kapilubluban ning Bitcoin</translation>
     </message>
     <message>

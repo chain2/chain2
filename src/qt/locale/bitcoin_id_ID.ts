@@ -62,11 +62,11 @@
         <translation>Alamat-alamat menerima</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>Alamat-alamat Anda supaya mengirim pembayaran. Periksalah jumlah dan alamat penerima setiap kali Anda mengirim Bitcoin.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>Alamat-alamat Anda supaya menerima pembayaran. Dianjurkan agar Anda menggunakan alamat menerima yang baru untuk setiap transaksi.</translation>
     </message>
     <message>
@@ -267,7 +267,7 @@
         <translation>Buka &amp;URI</translation>
     </message>
     <message>
-        <source>Bitcoin XT client</source>
+        <source>chain2 client</source>
         <translation>Client Bitcoin Inti</translation>
     </message>
     <message>
@@ -279,7 +279,7 @@
         <translation>Mengindex ulang block di harddisk...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a address</source>
         <translation>Kirim koin ke alamat Bitcoin</translation>
     </message>
     <message>
@@ -319,7 +319,7 @@
         <translation>&amp;Menerima</translation>
     </message>
     <message>
-        <source>Show information about Bitcoin XT</source>
+        <source>Show information about chain2</source>
         <translation>Tampilkan informasi tentang Bitcoin Inti</translation>
     </message>
     <message>
@@ -335,11 +335,11 @@
         <translation>Mengenkripsi kunci-kunci pribadi yang dipunyai dompetmu</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <source>Sign messages with your addresses to prove you own them</source>
         <translation>Tandalah pesanan dengan alamat-alamat Bitcoin Anda supaya membuktikan pesanan itu dikirim oleh Anda</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified addresses</source>
         <translation>Periksakan pesan-pesan supaya menjaminkan ditandatangani oleh alamat Bitcoin yang terperinci</translation>
     </message>
     <message>
@@ -359,16 +359,16 @@
         <translation>Baris tab</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and %1: URIs)</source>
         <translation>Permintaan pembayaran (membuat kode QR dan %1: URIs)</translation>
     </message>
     <message>
-        <source>&amp;About Bitcoin XT</source>
-        <translation>&amp;Mengenai Bitcoin XT</translation>
+        <source>&amp;About chain2</source>
+        <translation>&amp;Mengenai chain2</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -387,8 +387,8 @@
         <translation>&amp;pilihan Perintah-baris</translation>
     </message>
     <message>
-        <source>Show the Bitcoin XT help message to get a list with possible Bitcoin command-line options</source>
-        <translation>Tampilkan pesan bantuan Bitcoin XT untuk memberikan daftar pilihan perintah-baris yang memungkinkan dalam aplikasi Bitcoin</translation>
+        <source>Show the chain2 help message to get a list with possible Bitcoin command-line options</source>
+        <translation>Tampilkan pesan bantuan chain2 untuk memberikan daftar pilihan perintah-baris yang memungkinkan dalam aplikasi Bitcoin</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
@@ -704,7 +704,7 @@
         <translation>Alamat yang dimasukkan "%1" sudah ada di dalam buku alamat.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address "%1" is not a valid address.</source>
         <translation>Alamat yang dimasukkan "%1" bukan alamat Bitcoin yang benar.</translation>
     </message>
     <message>
@@ -742,16 +742,16 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>version</source>
         <translation>versi</translation>
     </message>
     <message>
-        <source>About Bitcoin XT</source>
-        <translation>Mengenai Bitcoin XT</translation>
+        <source>About chain2</source>
+        <translation>Mengenai chain2</translation>
     </message>
     <message>
         <source>Usage:</source>
@@ -769,8 +769,8 @@
         <translation>Selamat Datang</translation>
     </message>
     <message>
-        <source>Welcome to Bitcoin XT.</source>
-        <translation>Selamat Datang ke Bitcoin XT</translation>
+        <source>Welcome to chain2.</source>
+        <translation>Selamat Datang ke chain2</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -781,8 +781,8 @@
         <translation>Menggunakan direktori data yang dipilih Anda:</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1517,7 +1517,7 @@
         <translation>Gagal: Transaksi ditolak. Ini mungkin terjadi jika beberapa dari koin dalam dompet Anda telah digunakan, seperti ketika Anda menggunakan salinan wallet.dat dan beberapa koin telah dibelanjakan dalam salinan tersebut tetapi disini tidak tertandai sebagai terpakai.</translation>
     </message>
     <message>
-        <source>Warning: Invalid Bitcoin address</source>
+        <source>Warning: Invalid address</source>
         <translation>Awas: Alamat Bitcoin tidak sah</translation>
     </message>
     <message>
@@ -1595,8 +1595,8 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Bitcoin XT is shutting down...</source>
-        <translation>Bitcoin XT sementara dimatikan...</translation>
+        <source>chain2 is shutting down...</source>
+        <translation>chain2 sementara dimatikan...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -1642,7 +1642,7 @@
         <translation>Salin tanda tangan terpilih ke sistem klipboard</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
+        <source>Sign the message to prove you own this address</source>
         <translation>Tandai pesan untuk menyetujui kamu pemiliki alamat Bitcoin ini</translation>
     </message>
     <message>
@@ -1721,12 +1721,12 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
-        <source>The Bitcoin XT developers</source>
-        <translation>Pembangun Bitcoin XT</translation>
+        <source>The chain2 developers</source>
+        <translation>Pembangun chain2</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -2203,8 +2203,8 @@
         <translation>Jalankan perintah ketika perubahan transaksi dompet (%s di cmd digantikan oleh TxID)</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Bitcoin XT is probably already running.</source>
-        <translation>Tidak bisa mengikat dengan %s di computer ini. Kemungkinan Bitcoin XT sudah mulai.</translation>
+        <source>Unable to bind to %s on this computer. chain2 is probably already running.</source>
+        <translation>Tidak bisa mengikat dengan %s di computer ini. Kemungkinan chain2 sudah mulai.</translation>
     </message>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
@@ -2323,8 +2323,8 @@
         <translation>Impor blok dari eksternal berkas blk000???.dat</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Bitcoin XT is probably already running.</source>
-        <translation>Tidak bisa mengunci data directory %s. Kemungkinan Bitcoin XT sudah mulai.</translation>
+        <source>Cannot obtain a lock on data directory %s. chain2 is probably already running.</source>
+        <translation>Tidak bisa mengunci data directory %s. Kemungkinan chain2 sudah mulai.</translation>
     </message>
     <message>
         <source>Information</source>

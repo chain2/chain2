@@ -9,7 +9,7 @@
 #include <QValidator>
 
 /**
- * Bitcoin address entry widget validator, checks for valid characters and
+ * Address entry widget validator, checks for valid characters and
  * removes some whitespace.
  */
 class BitcoinAddressEntryValidator : public QValidator
@@ -26,7 +26,7 @@ private:
     std::string cashaddrprefix;
 };
 
-/** Bitcoin address widget validator, checks for a valid bitcoin address.
+/** Address widget validator, checks for a valid bitcoin address.
  */
 class BitcoinAddressCheckValidator : public QValidator
 {

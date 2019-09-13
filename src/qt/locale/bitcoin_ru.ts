@@ -66,11 +66,11 @@
         <translation>Адреса получения</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>Это ваши адреса Bitcoin для отправки платежей. Всегда проверяйте количество и адрес получателя перед отправкой перевода.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>Это ваши адреса Bitcoin для приёма платежей. Рекомендуется использовать новый адрес получения для каждой транзакции.</translation>
     </message>
     <message>
@@ -283,8 +283,8 @@
         <translation>Открыть &amp;URI...</translation>
     </message>
     <message>
-        <source>Bitcoin XT client</source>
-        <translation>Bitcoin XT клиент</translation>
+        <source>chain2 client</source>
+        <translation>chain2 клиент</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -295,7 +295,7 @@
         <translation>Идёт переиндексация блоков на диске...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a address</source>
         <translation>Отправить монеты на указанный адрес Bitcoin</translation>
     </message>
     <message>
@@ -335,8 +335,8 @@
         <translation>&amp;Получить</translation>
     </message>
     <message>
-        <source>Show information about Bitcoin XT</source>
-        <translation>Показать информацию о Bitcoin XT</translation>
+        <source>Show information about chain2</source>
+        <translation>Показать информацию о chain2</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
@@ -351,11 +351,11 @@
         <translation>Зашифровать приватные ключи, принадлежащие вашему бумажнику</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <source>Sign messages with your addresses to prove you own them</source>
         <translation>Подписать сообщения вашим адресом Bitcoin, чтобы доказать, что вы им владеете</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified addresses</source>
         <translation>Проверить сообщения, чтобы удостовериться, что они были подписаны определённым адресом Bitcoin</translation>
     </message>
     <message>
@@ -375,16 +375,16 @@
         <translation>Панель вкладок</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and %1: URIs)</source>
         <translation>Запросить платежи (создаёт QR-коды и %1: ссылки)</translation>
     </message>
     <message>
-        <source>&amp;About Bitcoin XT</source>
-        <translation>&amp;О Bitcoin XT</translation>
+        <source>&amp;About chain2</source>
+        <translation>&amp;О chain2</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -403,8 +403,8 @@
         <translation>&amp;Параметры командной строки</translation>
     </message>
     <message>
-        <source>Show the Bitcoin XT help message to get a list with possible Bitcoin command-line options</source>
-        <translation>Показать помощь по Bitcoin XT и получить список доступных параметров командной строки.</translation>
+        <source>Show the chain2 help message to get a list with possible Bitcoin command-line options</source>
+        <translation>Показать помощь по chain2 и получить список доступных параметров командной строки.</translation>
     </message>
     <message>
         <source>No block source available...</source>
@@ -724,7 +724,7 @@
         <translation>Введённый адрес «%1» уже находится в адресной книге.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address "%1" is not a valid address.</source>
         <translation>Введённый адрес "%1" не является правильным Bitcoin-адресом.</translation>
     </message>
     <message>
@@ -762,8 +762,8 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>version</source>
@@ -774,8 +774,8 @@
         <translation>(%1-бит)</translation>
     </message>
     <message>
-        <source>About Bitcoin XT</source>
-        <translation>О Bitcoin XT</translation>
+        <source>About chain2</source>
+        <translation>О chain2</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -797,16 +797,16 @@
         <translation>Добро пожаловать</translation>
     </message>
     <message>
-        <source>Welcome to Bitcoin XT.</source>
-        <translation>Добро пожаловать в Bitcoin XT.</translation>
+        <source>Welcome to chain2.</source>
+        <translation>Добро пожаловать в chain2.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Bitcoin XT will store its data.</source>
-        <translation>Так как вы впервые запустили программу, вы можете выбрать, где Bitcoin XT будет хранить данные.</translation>
+        <source>As this is the first time the program is launched, you can choose where chain2 will store its data.</source>
+        <translation>Так как вы впервые запустили программу, вы можете выбрать, где chain2 будет хранить данные.</translation>
     </message>
     <message>
-        <source>Bitcoin XT will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Bitcoin XT скачает и сохранит копию цепи блоков. Как минимум, %1ГБ данных будет храниться в этом каталоге, и со временем он будет расти. Бумажник будет также сохранён в этом каталоге.</translation>
+        <source>chain2 will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>chain2 скачает и сохранит копию цепи блоков. Как минимум, %1ГБ данных будет храниться в этом каталоге, и со временем он будет расти. Бумажник будет также сохранён в этом каталоге.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -817,8 +817,8 @@
         <translation>Использовать другой каталог данных:</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1145,7 +1145,7 @@
         <translation>Неверный URL запроса платежа: %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid address or malformed URI parameters.</source>
         <translation>Не удалось обработать URI! Это может быть связано с неверным адресом Bitcoin или неправильными параметрами URI.</translation>
     </message>
     <message>
@@ -1211,7 +1211,7 @@
         <translation>Сумма</translation>
     </message>
     <message>
-        <source>Enter a Bitcoin address (e.g. %1)</source>
+        <source>Enter address (e.g. %1)</source>
         <translation>Введите адрес Bitcoin (например, %1)</translation>
     </message>
     <message>
@@ -1873,7 +1873,7 @@
         <translation>Комиссия больше, чем %1, считается невероятно большой.</translation>
     </message>
     <message>
-        <source>Warning: Invalid Bitcoin address</source>
+        <source>Warning: Invalid address</source>
         <translation>Внимание: неверный адрес Bitcoin</translation>
     </message>
     <message>
@@ -1924,7 +1924,7 @@
         <translation>Это нормальный платёж.</translation>
     </message>
     <message>
-        <source>The Bitcoin address to send the payment to</source>
+        <source>The address to send the payment to</source>
         <translation>Адрес Bitcoin, на который отправить платёж</translation>
     </message>
     <message>
@@ -1967,8 +1967,8 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Bitcoin XT is shutting down...</source>
-        <translation>Bitcoin XT выключается...</translation>
+        <source>chain2 is shutting down...</source>
+        <translation>chain2 выключается...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -1986,7 +1986,7 @@
         <translation>&amp;Подписать сообщение</translation>
     </message>
     <message>
-        <source>The Bitcoin address to sign the message with</source>
+        <source>The address to sign the message with</source>
         <translation>Адрес Bitcoin, которым подписать сообщение</translation>
     </message>
     <message>
@@ -2018,7 +2018,7 @@
         <translation>Скопировать текущую подпись в системный буфер обмена</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
+        <source>Sign the message to prove you own this address</source>
         <translation>Подписать сообщение, чтобы доказать владение адресом Bitcoin</translation>
     </message>
     <message>
@@ -2038,11 +2038,11 @@
         <translation>&amp;Проверить сообщение</translation>
     </message>
     <message>
-        <source>The Bitcoin address the message was signed with</source>
+        <source>The address the message was signed with</source>
         <translation>Адрес Bitcoin, которым было подписано сообщение</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
+        <source>Verify the message to ensure it was signed with the specified address</source>
         <translation>Проверить сообщение, чтобы убедиться, что оно было подписано указанным адресом Bitcoin</translation>
     </message>
     <message>
@@ -2109,12 +2109,12 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
-        <source>The Bitcoin XT developers</source>
-        <translation>Разработчики Bitcoin XT</translation>
+        <source>The chain2 developers</source>
+        <translation>Разработчики chain2</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -2631,8 +2631,8 @@
         <translation>Это пре-релизная тестовая сборка - используйте на свой страх и риск - не используйте для добычи или торговых приложений</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Bitcoin XT is probably already running.</source>
-        <translation>Не удалось забиндиться на %s на этом компьютере. Возможно, Bitcoin XT уже запущен.</translation>
+        <source>Unable to bind to %s on this computer. chain2 is probably already running.</source>
+        <translation>Не удалось забиндиться на %s на этом компьютере. Возможно, chain2 уже запущен.</translation>
     </message>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
@@ -2807,8 +2807,8 @@
         <translation>Привязаться к указанному адресу для прослушивания JSON-RPC подключений. Используйте запись [хост]:порт для IPv6. Эту опцию можно использовать многократно (по умолчанию: привязываться ко всем интерфейсам)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Bitcoin XT is probably already running.</source>
-        <translation>Не удалось установить блокировку на каталог данных %s. Возможно, Bitcoin XT уже запущен.</translation>
+        <source>Cannot obtain a lock on data directory %s. chain2 is probably already running.</source>
+        <translation>Не удалось установить блокировку на каталог данных %s. Возможно, chain2 уже запущен.</translation>
     </message>
     <message>
         <source>Create new files with system default permissions, instead of umask 077 (only effective with disabled wallet functionality)</source>
@@ -2887,8 +2887,8 @@ rpcpassword=%s
         <translation>Внимание: установлено очень большое значение -paytxfee. Такие большие комиссии могут быть уплачены в отдельной транзакции.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Bitcoin XT will not work properly.</source>
-        <translation>Внимание: убедитесь, что дата и время на Вашем компьютере выставлены верно. Если Ваши часы идут неправильно, Bitcoin XT будет работать некорректно.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong chain2 will not work properly.</source>
+        <translation>Внимание: убедитесь, что дата и время на Вашем компьютере выставлены верно. Если Ваши часы идут неправильно, chain2 будет работать некорректно.</translation>
     </message>
     <message>
         <source>Whitelisted peers cannot be DoS banned and their transactions are always relayed, even if they are already in the mempool, useful e.g. for a gateway</source>
@@ -2911,16 +2911,16 @@ rpcpassword=%s
         <translation>Подключаться через SOCKS5 прокси</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Bitcoin XT Developers</source>
-        <translation>Все права защищены © 2009-%i Разработчики Bitcoin XT</translation>
+        <source>Copyright (C) 2009-%i The chain2 Developers</source>
+        <translation>Все права защищены © 2009-%i Разработчики chain2</translation>
     </message>
     <message>
         <source>Could not parse -rpcbind value %s as network address</source>
         <translation>Не удалось разобрать значение %s параметра -rpcbind как сетевой адрес</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Bitcoin XT</source>
-        <translation>Ошибка загрузки wallet.dat: бумажник требует более новую версию Bitcoin XT</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of chain2</source>
+        <translation>Ошибка загрузки wallet.dat: бумажник требует более новую версию chain2</translation>
     </message>
     <message>
         <source>Error reading from database, shutting down.</source>
@@ -2939,8 +2939,8 @@ rpcpassword=%s
         <translation>Информация</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Bitcoin XT is shutting down.</source>
-        <translation>Не удалось проверить чистоту. Bitcoin XT выключается.</translation>
+        <source>Initialization sanity check failed. chain2 is shutting down.</source>
+        <translation>Не удалось проверить чистоту. chain2 выключается.</translation>
     </message>
     <message>
         <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s'</source>
@@ -3055,8 +3055,8 @@ rpcpassword=%s
         <translation>Имя для подключений JSON-RPC</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Bitcoin XT to complete</source>
-        <translation>Необходимо перезаписать бумажник, перезапустите Bitcoin XT для завершения операции.</translation>
+        <source>Wallet needed to be rewritten: restart chain2 to complete</source>
+        <translation>Необходимо перезаписать бумажник, перезапустите chain2 для завершения операции.</translation>
     </message>
     <message>
         <source>Warning</source>

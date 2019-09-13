@@ -66,11 +66,11 @@
         <translation>正在接收地址</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>这是您用来付款的比特币地址。在付款前，请总是核实付款金额和收款地址。</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>这些都是您的比特币地址，可用于收款。建议对每笔交易都使用一个新的地址。</translation>
     </message>
     <message>
@@ -168,7 +168,7 @@
         <translation>您确定需要为钱包加密吗？</translation>
     </message>
     <message>
-        <source>Bitcoin XT will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <source>chain2 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
         <translation>比特币核心现在将关闭以完成加密过程。请记住，在您的计算机被恶意软件感染的情况下，加密不能完全保护您的比特币免于被盗。</translation>
     </message>
     <message>
@@ -295,7 +295,7 @@
         <translation>打开 &amp;URI...</translation>
     </message>
     <message>
-        <source>Bitcoin XT client</source>
+        <source>chain2 client</source>
         <translation>比特币核心钱包</translation>
     </message>
     <message>
@@ -307,7 +307,7 @@
         <translation>正在为数据块建立索引...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a address</source>
         <translation>向一个比特币地址发送比特币</translation>
     </message>
     <message>
@@ -347,7 +347,7 @@
         <translation>接收(&amp;R)</translation>
     </message>
     <message>
-        <source>Show information about Bitcoin XT</source>
+        <source>Show information about chain2</source>
         <translation>显示有关比特币核心钱包信息</translation>
     </message>
     <message>
@@ -363,11 +363,11 @@
         <translation>对钱包中的私钥加密</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <source>Sign messages with your addresses to prove you own them</source>
         <translation>用比特币地址关联的私钥为消息签名，以证明您拥有这个比特币地址</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified addresses</source>
         <translation>校验消息，确保该消息是由指定的比特币地址所有者签名的</translation>
     </message>
     <message>
@@ -387,7 +387,7 @@
         <translation>分页工具栏</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>比特币核心</translation>
     </message>
     <message>
@@ -395,11 +395,11 @@
         <translation>请求支付（生成二维码和 %1: URI）</translation>
     </message>
     <message>
-        <source>&amp;About Bitcoin XT</source>
+        <source>&amp;About chain2</source>
         <translation>关于比特币核心(&amp;A)</translation>
     </message>
     <message>
-        <source>Modify configuration options for Bitcoin XT</source>
+        <source>Modify configuration options for chain2</source>
         <translation>修改比特币核心的配置选项</translation>
     </message>
     <message>
@@ -419,7 +419,7 @@
         <translation>命令行选项(&amp;C)</translation>
     </message>
     <message>
-        <source>Show the Bitcoin XT help message to get a list with possible Bitcoin command-line options</source>
+        <source>Show the chain2 help message to get a list with possible Bitcoin command-line options</source>
         <translation>显示比特币核心 程序帮助信息，获取可用的命令行选项 </translation>
     </message>
     <message numerus="yes">
@@ -806,7 +806,7 @@
         <translation>输入的地址“%1”已经存在于地址簿中。</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address "%1" is not a valid address.</source>
         <translation>您输入的“%1”不是有效的比特币地址。</translation>
     </message>
     <message>
@@ -844,7 +844,7 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>比特币核心</translation>
     </message>
     <message>
@@ -856,7 +856,7 @@
         <translation>(%1 位)</translation>
     </message>
     <message>
-        <source>About Bitcoin XT</source>
+        <source>About chain2</source>
         <translation>关于比特币核心</translation>
     </message>
     <message>
@@ -879,15 +879,15 @@
         <translation>欢迎</translation>
     </message>
     <message>
-        <source>Welcome to Bitcoin XT.</source>
+        <source>Welcome to chain2.</source>
         <translation>欢迎使用 比特币核心 程序。</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Bitcoin XT will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where chain2 will store its data.</source>
         <translation>由于这是第一次运行 比特币核心 程序，您可以选择数据存储目录。</translation>
     </message>
     <message>
-        <source>Bitcoin XT will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>chain2 will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>比特币核心 程序会下载储存一份数据块链(blockchain)。至少需要 %1 GB的存储空间，随着时间推移会需要更多的存储空间。钱包文件也储存在该目录。</translation>
     </message>
     <message>
@@ -899,7 +899,7 @@
         <translation>使用自定义的数据目录：</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>比特币核心</translation>
     </message>
     <message>
@@ -981,7 +981,7 @@
         <translation>窗口被关闭时最小化而不是退出应用程序。当此选项启用时，应用程序只会在菜单中选择退出时退出。</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting Bitcoin XT.</source>
+        <source>The user interface language can be set here. This setting will take effect after restarting chain2.</source>
         <translation>可以在这里设置用户界面语言。此设置将在重新启动比特币核心后生效。</translation>
     </message>
     <message>
@@ -1009,11 +1009,11 @@
         <translation>网络(&amp;N)</translation>
     </message>
     <message>
-        <source>Automatically start Bitcoin XT after logging in to the system.</source>
+        <source>Automatically start chain2 after logging in to the system.</source>
         <translation>登录到系统后自动启动比特币核心。</translation>
     </message>
     <message>
-        <source>&amp;Start Bitcoin XT on system login</source>
+        <source>&amp;Start chain2 on system login</source>
         <translation>系统登录时启动比特币核心(&amp;S)</translation>
     </message>
     <message>
@@ -1255,7 +1255,7 @@
         <translation>付款请求URI链接非法: %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid address or malformed URI parameters.</source>
         <translation>URI无法解析！原因可能是比特币地址不正确，或者URI参数错误。</translation>
     </message>
     <message>
@@ -1333,7 +1333,7 @@
         <translation>金额</translation>
     </message>
     <message>
-        <source>Enter a Bitcoin address (e.g. %1)</source>
+        <source>Enter address (e.g. %1)</source>
         <translation>请输入一个比特币地址 (例如 %1)</translation>
     </message>
     <message>
@@ -1443,7 +1443,7 @@
         <translation>当前数据块数量</translation>
     </message>
     <message>
-        <source>Open the Bitcoin XT debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <source>Open the chain2 debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation>从当前的数据目录打开比特币核心调试日志文件。对于较大的日志文件，这可能需要几秒钟。</translation>
     </message>
     <message>
@@ -1563,7 +1563,7 @@
         <translation>清空控制台</translation>
     </message>
     <message>
-        <source>Welcome to the Bitcoin XT RPC console.</source>
+        <source>Welcome to the chain2 RPC console.</source>
         <translation>欢迎使用 比特币核心 RPC 控制台。</translation>
     </message>
     <message>
@@ -2031,7 +2031,7 @@
         <translation>发现重复地址：每个地址应该只使用一次。</translation>
     </message>
     <message>
-        <source>Warning: Invalid Bitcoin address</source>
+        <source>Warning: Invalid address</source>
         <translation>警告：无效的比特币地址</translation>
     </message>
     <message>
@@ -2082,7 +2082,7 @@
         <translation>这是笔正常的支付。</translation>
     </message>
     <message>
-        <source>The Bitcoin address to send the payment to</source>
+        <source>The address to send the payment to</source>
         <translation>付款目的地址</translation>
     </message>
     <message>
@@ -2141,7 +2141,7 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Bitcoin XT is shutting down...</source>
+        <source>chain2 is shutting down...</source>
         <translation>比特币核心正在关机...</translation>
     </message>
     <message>
@@ -2164,7 +2164,7 @@
         <translation>您可以用你的地址对消息/协议进行签名，以证明您可以接收发送到该地址的比特币。注意不要对任何模棱两可或者随机的消息进行签名，以免遭受钓鱼式攻击。请确保消息内容准确的表达了您的真实意愿。</translation>
     </message>
     <message>
-        <source>The Bitcoin address to sign the message with</source>
+        <source>The address to sign the message with</source>
         <translation>用来对消息签名的地址 </translation>
     </message>
     <message>
@@ -2196,7 +2196,7 @@
         <translation>复制当前签名至剪切板</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
+        <source>Sign the message to prove you own this address</source>
         <translation>签名消息，证明这个地址属于您。</translation>
     </message>
     <message>
@@ -2220,11 +2220,11 @@
         <translation>请在下面输入接收者地址、消息（确保换行符、空格符、制表符等完全相同）和签名以验证消息。请仔细核对签名信息，以提防中间人攻击。请注意，这只是证明接收方签名的地址，它不能证明任何交易！</translation>
     </message>
     <message>
-        <source>The Bitcoin address the message was signed with</source>
+        <source>The address the message was signed with</source>
         <translation>消息使用的签名地址</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
+        <source>Verify the message to ensure it was signed with the specified address</source>
         <translation>验证消息，确保消息是由指定的比特币地址签名过的。</translation>
     </message>
     <message>
@@ -2291,12 +2291,12 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>比特币核心</translation>
     </message>
     <message>
-        <source>The Bitcoin XT developers</source>
-        <translation>Bitcoin XT 的开发者</translation>
+        <source>The chain2 developers</source>
+        <translation>chain2 的开发者</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -2851,7 +2851,7 @@
         <translation>这是测试用的预发布版本 - 请谨慎使用 - 不要用来挖矿，或者在正式商用环境下使用</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Bitcoin XT is probably already running.</source>
+        <source>Unable to bind to %s on this computer. chain2 is probably already running.</source>
         <translation>无法 %s的绑定到电脑上，比特币核心钱包可能已经在运行。</translation>
     </message>
     <message>
@@ -3047,7 +3047,7 @@
         <translation>绑定到指定地址监听 JSON-RPC连接。 IPv6使用[主机]:端口 格式。该选项可多次指定 (默认: 绑定到所有接口) </translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Bitcoin XT is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. chain2 is probably already running.</source>
         <translation>无法获取数据目录的 %s. 比特币核心钱包可能已经在运行.</translation>
     </message>
     <message>
@@ -3143,7 +3143,7 @@ rpcpassword=%s
         <translation>警告：-maxtxfee 设置的太高了！每进行一笔交易时您都要花费这么多费用。</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Bitcoin XT will not work properly.</source>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong chain2 will not work properly.</source>
         <translation>警告：请检查电脑的日期时间设置是否正确！时间错误可能会导致比特币客户端运行异常。</translation>
     </message>
     <message>
@@ -3183,15 +3183,15 @@ rpcpassword=%s
         <translation>通过 SOCKS5 代理连接</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Bitcoin XT Developers</source>
-        <translation>版权所有 (C) 2009-%i Bitcoin XT 开发者</translation>
+        <source>Copyright (C) 2009-%i The chain2 Developers</source>
+        <translation>版权所有 (C) 2009-%i chain2 开发者</translation>
     </message>
     <message>
         <source>Could not parse -rpcbind value %s as network address</source>
         <translation>无法解析 -rpcbind 的值 %s 为网络地址</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Bitcoin XT</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of chain2</source>
         <translation>加载wallet.dat错误：需要新版的比特币核心钱包</translation>
     </message>
     <message>
@@ -3211,8 +3211,8 @@ rpcpassword=%s
         <translation>信息</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Bitcoin XT is shutting down.</source>
-        <translation>初始化完整性检查失败。Bitcoin XT 即将关闭。</translation>
+        <source>Initialization sanity check failed. chain2 is shutting down.</source>
+        <translation>初始化完整性检查失败。chain2 即将关闭。</translation>
     </message>
     <message>
         <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s'</source>
@@ -3336,7 +3336,7 @@ rpcpassword=%s
         <translation>JSON-RPC 连接用户名</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Bitcoin XT to complete</source>
+        <source>Wallet needed to be rewritten: restart chain2 to complete</source>
         <translation>钱包需要被改写：重新启动核心钱包来完成</translation>
     </message>
     <message>

@@ -24,7 +24,7 @@ packages:
 - "python-setuptools"
 - "fonts-tuffy"
 remotes:
-- "url": "https://github.com/bitcoinxt/bitcoinxt.git"
+- "url": "https://github.com/chain2/chain2.git"
   "dir": "bitcoin"
 files:
 - "MacOSX10.11.sdk.tar.gz"
@@ -137,7 +137,7 @@ script: |
     popd
 
     make deploy
-    ${WRAP_DIR}/dmg dmg Bitcoin-XT.dmg ${OUTDIR}/${DISTNAME}-osx-unsigned.dmg
+    ${WRAP_DIR}/dmg dmg chain2.dmg ${OUTDIR}/${DISTNAME}-osx-unsigned.dmg
 
     cd installed
     find . -name "lib*.la" -delete

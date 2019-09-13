@@ -20,7 +20,7 @@
  * for both bitcoind and bitcoin-core, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Bitcoin XT");
+const std::string CLIENT_NAME("chain2");
 
 #define CLIENT_VERSION_SUFFIX ""
 
@@ -149,7 +149,7 @@ std::string FormatSubVersion(const std::string& name, int nClientVersion, const 
 }
 
 /**
- * The default Bitcoin XT subversion field according to BIP 14 spec
+ * The default chain2 subversion field according to BIP 14 spec
  */
 std::string XTSubVersion(uint64_t nMaxBlockSize,
                          const std::string& customUserAgent,

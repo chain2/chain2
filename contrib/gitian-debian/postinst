@@ -3,7 +3,7 @@
 # Source debconf library.
 . /usr/share/debconf/confmodule
 
-export BITCOIN_CONF="/etc/bitcoinxt/bitcoin.conf"
+export BITCOIN_CONF="/etc/chain2/bitcoin.conf"
 
 # add random rpc password to bitcoin.conf, if there isn't one.
 if ! grep -q '^rpcpassword=' $BITCOIN_CONF; then
@@ -15,50 +15,29 @@ fi
 adduser --system --group --quiet bitcoin
 
 # cleanup permissions
-chown root:root /usr/bin/bitcoinxt*
-chown root:root /lib/systemd/system/bitcoinxtd.service
-chown root:root /etc/bitcoinxt
-chown bitcoin:bitcoin /etc/bitcoinxt/bitcoin.conf
-chmod ug+r /etc/bitcoinxt/bitcoin.conf 
-chmod u+w /etc/bitcoinxt/bitcoin.conf
-chmod o-rw /etc/bitcoinxt/bitcoin.conf 
-chown -R bitcoin:bitcoin /var/lib/bitcoinxt
-chmod u+rwx /var/lib/bitcoinxt
+chown root:root /usr/bin/chain2*
+chown root:root /lib/systemd/system/chain2d.service
+chown root:root /etc/chain2
+chown bitcoin:bitcoin /etc/chain2/bitcoin.conf
+chmod ug+r /etc/chain2/bitcoin.conf 
+chmod u+w /etc/chain2/bitcoin.conf
+chmod o-rw /etc/chain2/bitcoin.conf 
+chown -R bitcoin:bitcoin /var/lib/chain2
+chmod u+rwx /var/lib/chain2
 
-# enable and start bitcoinxtd service if systemctl exists and is executable
+# enable and start chain2d service if systemctl exists and is executable
 if [ -x "/bin/systemctl" ]; then
-    db_input high bitcoinxt/start_service || true
+    db_input high chain2/start_service || true
     db_go || true
-    db_get bitcoinxt/start_service 
+    db_get chain2/start_service 
     if [ "$RET" = "true" ]; then
-        echo "Enabling bitcoinxtd.service"
-    	/bin/systemctl enable bitcoinxtd.service
-        echo "Starting bitcoinxtd.service"
-    	/bin/systemctl start bitcoinxtd.service
+        echo "Enabling chain2d.service"
+    	/bin/systemctl enable chain2d.service
+        echo "Starting chain2d.service"
+    	/bin/systemctl start chain2d.service
     else
-        echo "The bitcoinxtd.service NOT enabled or started."
+        echo "The chain2d.service NOT enabled or started."
     fi
 else
-    echo "The file '/bin/systemctl' is not executable or found, bitcoinxtd service not automatically enabled or started" 
-fi
-
-# ask which network to connect to
-db_input high bitcoinxt/select_network || true
-db_go || true
-db_get bitcoinxt/select_network
-if [ "$RET" = "Bitcoin (BTC)" ]; then
-    if grep -q '^uahftime' $BITCOIN_CONF; then
-        sed -i 's/^uahftime.*/uahftime=0/' $BITCOIN_CONF
-        echo "BTC selected: Setting uahftime=0 in $BITCOIN_CONF"
-    else
-        echo "uahftime=0" >> $BITCOIN_CONF
-        echo "BTC selected: Adding uahftime=0 to $BITCOIN_CONF"
-    fi;
-else
-    if grep -q '^uahftime' $BITCOIN_CONF; then
-        sed -i 's/^uahftime.*//' $BITCOIN_CONF
-        echo "BCH selected: Removing uahftime from $BITCOIN_CONF"
-    else
-        echo "BCH selected: No configuration change needed."
-    fi;
+    echo "The file '/bin/systemctl' is not executable or found, chain2d service not automatically enabled or started" 
 fi

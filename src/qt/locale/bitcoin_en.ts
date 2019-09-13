@@ -85,12 +85,12 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</translation>
+        <source>These are your addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>These are your addresses for sending payments. Always check the amount and the receiving address before sending coins.</translation>
     </message>
     <message>
         <location line="+4"/>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -211,7 +211,7 @@
     </message>
     <message>
         <location line="+11"/>
-        <source>Bitcoin XT will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <source>chain2 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -377,7 +377,7 @@
     </message>
     <message>
         <location line="+176"/>
-        <source>Bitcoin XT client</source>
+        <source>chain2 client</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -392,8 +392,8 @@
     </message>
     <message>
         <location line="-417"/>
-        <source>Send coins to a Bitcoin address</source>
-        <translation>Send coins to a Bitcoin address</translation>
+        <source>Send coins to a address</source>
+        <translation>Send coins to a address</translation>
     </message>
     <message>
         <location line="+65"/>
@@ -442,7 +442,7 @@
     </message>
     <message>
         <location line="+40"/>
-        <source>Show information about Bitcoin XT</source>
+        <source>Show information about chain2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -462,13 +462,13 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
-        <translation>Sign messages with your Bitcoin addresses to prove you own them</translation>
+        <source>Sign messages with your addresses to prove you own them</source>
+        <translation>Sign messages with your addresses to prove you own them</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
-        <translation>Verify messages to ensure they were signed with specified Bitcoin addresses</translation>
+        <source>Verify messages to ensure they were signed with specified addresses</source>
+        <translation>Verify messages to ensure they were signed with specified addresses</translation>
     </message>
     <message>
         <location line="+49"/>
@@ -492,8 +492,8 @@
     </message>
     <message>
         <location line="-311"/>
-        <source>Bitcoin XT</source>
-        <translation type="unfinished">Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation type="unfinished">chain2</translation>
     </message>
     <message>
         <location line="+164"/>
@@ -502,12 +502,12 @@
     </message>
     <message>
         <location line="+38"/>
-        <source>&amp;About Bitcoin XT</source>
+        <source>&amp;About chain2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>Modify configuration options for Bitcoin XT</source>
+        <source>Modify configuration options for chain2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -532,7 +532,7 @@
     </message>
     <message>
         <location line="+2"/>
-        <source>Show the Bitcoin XT help message to get a list with possible Bitcoin command-line options</source>
+        <source>Show the chain2 help message to get a list with possible Bitcoin command-line options</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
@@ -1028,8 +1028,8 @@
     </message>
     <message>
         <location line="-5"/>
-        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
-        <translation>The entered address &quot;%1&quot; is not a valid Bitcoin address.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid address.</source>
+        <translation>The entered address &quot;%1&quot; is not a valid address.</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1074,8 +1074,8 @@
     <name>HelpMessageDialog</name>
     <message>
         <location filename="../utilitydialog.cpp" line="+33"/>
-        <source>Bitcoin XT</source>
-        <translation type="unfinished">Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation type="unfinished">chain2</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -1090,7 +1090,7 @@
     </message>
     <message>
         <location line="+5"/>
-        <source>About Bitcoin XT</source>
+        <source>About chain2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1118,17 +1118,17 @@
     </message>
     <message>
         <location line="+9"/>
-        <source>Welcome to Bitcoin XT.</source>
+        <source>Welcome to chain2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+26"/>
-        <source>As this is the first time the program is launched, you can choose where Bitcoin XT will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where chain2 will store its data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+10"/>
-        <source>Bitcoin XT will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>chain2 will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1143,8 +1143,8 @@
     </message>
     <message>
         <location filename="../intro.cpp" line="+82"/>
-        <source>Bitcoin XT</source>
-        <translation type="unfinished">Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation type="unfinished">chain2</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1250,7 +1250,7 @@
     </message>
     <message>
         <location line="+45"/>
-        <source>The user interface language can be set here. This setting will take effect after restarting Bitcoin XT.</source>
+        <source>The user interface language can be set here. This setting will take effect after restarting chain2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1286,12 +1286,12 @@
     </message>
     <message>
         <location line="-153"/>
-        <source>Automatically start Bitcoin XT after logging in to the system.</source>
+        <source>Automatically start chain2 after logging in to the system.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Start Bitcoin XT on system login</source>
+        <source>&amp;Start chain2 on system login</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1605,7 +1605,7 @@
     </message>
     <message>
         <location line="+21"/>
-        <source>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid address or malformed URI parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1702,7 +1702,7 @@
     </message>
     <message>
         <location filename="../guiutil.cpp" line="+110"/>
-        <source>Enter a Bitcoin address (e.g. %1)</source>
+        <source>Enter address (e.g. %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1862,7 +1862,7 @@
     </message>
     <message>
         <location line="+72"/>
-        <source>Open the Bitcoin XT debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <source>Open the chain2 debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2014,7 +2014,7 @@
     </message>
     <message>
         <location filename="../rpcconsole.cpp" line="-36"/>
-        <source>Welcome to the Bitcoin XT RPC console.</source>
+        <source>Welcome to the chain2 RPC console.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2610,7 +2610,7 @@
     </message>
     <message>
         <location line="+231"/>
-        <source>Warning: Invalid Bitcoin address</source>
+        <source>Warning: Invalid address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2675,7 +2675,7 @@
     </message>
     <message>
         <location line="+39"/>
-        <source>The Bitcoin address to send the payment to</source>
+        <source>The address to send the payment to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2752,7 +2752,7 @@
     <name>ShutdownWindow</name>
     <message>
         <location filename="../utilitydialog.cpp" line="+81"/>
-        <source>Bitcoin XT is shutting down...</source>
+        <source>chain2 is shutting down...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2780,7 +2780,7 @@
     </message>
     <message>
         <location line="+18"/>
-        <source>The Bitcoin address to sign the message with</source>
+        <source>The address to sign the message with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2822,8 +2822,8 @@
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this Bitcoin address</source>
-        <translation>Sign the message to prove you own this Bitcoin address</translation>
+        <source>Sign the message to prove you own this address</source>
+        <translation>Sign the message to prove you own this address</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -2853,13 +2853,13 @@
     </message>
     <message>
         <location line="+21"/>
-        <source>The Bitcoin address the message was signed with</source>
+        <source>The address the message was signed with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+37"/>
-        <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
-        <translation>Verify the message to ensure it was signed with the specified Bitcoin address</translation>
+        <source>Verify the message to ensure it was signed with the specified address</source>
+        <translation>Verify the message to ensure it was signed with the specified address</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -2947,12 +2947,12 @@
     <name>SplashScreen</name>
     <message>
         <location filename="../splashscreen.cpp" line="+41"/>
-        <source>Bitcoin XT</source>
-        <translation type="unfinished">Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation type="unfinished">chain2</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>The Bitcoin XT developers</source>
+        <source>The chain2 developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3659,7 +3659,7 @@
     </message>
     <message>
         <location line="+20"/>
-        <source>Unable to bind to %s on this computer. Bitcoin XT is probably already running.</source>
+        <source>Unable to bind to %s on this computer. chain2 is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3904,7 +3904,7 @@
     </message>
     <message>
         <location line="+4"/>
-        <source>Cannot obtain a lock on data directory %s. Bitcoin XT is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. chain2 is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4009,7 +4009,7 @@ for example: alertnotify=echo %%s | mail -s &quot;Bitcoin Alert&quot; admin@foo.
     </message>
     <message>
         <location line="+6"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong Bitcoin XT will not work properly.</source>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong chain2 will not work properly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4059,7 +4059,7 @@ for example: alertnotify=echo %%s | mail -s &quot;Bitcoin Alert&quot; admin@foo.
     </message>
     <message>
         <location line="+3"/>
-        <source>Copyright (C) 2009-%i The Bitcoin XT Developers</source>
+        <source>Copyright (C) 2009-%i The chain2 Developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4069,7 +4069,7 @@ for example: alertnotify=echo %%s | mail -s &quot;Bitcoin Alert&quot; admin@foo.
     </message>
     <message>
         <location line="+10"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of Bitcoin XT</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of chain2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4094,7 +4094,7 @@ for example: alertnotify=echo %%s | mail -s &quot;Bitcoin Alert&quot; admin@foo.
     </message>
     <message>
         <location line="+1"/>
-        <source>Initialization sanity check failed. Bitcoin XT is shutting down.</source>
+        <source>Initialization sanity check failed. chain2 is shutting down.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4254,7 +4254,7 @@ for example: alertnotify=echo %%s | mail -s &quot;Bitcoin Alert&quot; admin@foo.
     </message>
     <message>
         <location line="+4"/>
-        <source>Wallet needed to be rewritten: restart Bitcoin XT to complete</source>
+        <source>Wallet needed to be rewritten: restart chain2 to complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -187,7 +187,7 @@
         <translation>Промени &amp;лозинку...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a address</source>
         <translation>Пошаљите новац на bitcoin адресу</translation>
     </message>
     <message>
@@ -314,7 +314,7 @@
         <translation>верзија</translation>
     </message>
     <message>
-        <source>About Bitcoin XT</source>
+        <source>About chain2</source>
         <translation>O Bitcoin Coru</translation>
     </message>
     <message>

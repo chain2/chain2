@@ -62,11 +62,11 @@
         <translation>آدرس های دریافت کننده</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>این‌ها نشانی‌های بیت‌کوین شما برای ارسال وجود هستند. همیشه قبل از ارسال سکه‌ها، نشانی دریافت‌کننده و مقدار ارسالی را بررسی کنید.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>این‌ها نشانی‌های بیت‌کوین شما برای دریافت وجوه هستند. توصیه می‌شود یک نشانی دریافت جدید برای هر تبادل استفاده کنید.</translation>
     </message>
     <message>
@@ -160,7 +160,7 @@
         <translation>آیا مطمئن هستید که می‌خواهید کیف پول خود را رمزنگاری کنید؟</translation>
     </message>
     <message>
-        <source>Bitcoin XT will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <source>chain2 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
         <translation>هسته بیت‌کوین هم اکنون بسته می‌شود تا فرایند رمزگذاری را تمام کند. به خاطر داشته باشید که رمزگذاری کردن کیف پول‌تان نمی‌تواند به طور کامل بیت‌کوین‌های شما را در برابر دزدیده شدن توسط بدافزارهایی که رایانه‌ی شما را آلوده می‌کنند، محافظت نماید.</translation>
     </message>
     <message>
@@ -271,7 +271,7 @@
         <translation>بازنشانی بلوک‌ها روی دیسک...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a address</source>
         <translation>ارسال وجه به نشانی بیت‌کوین</translation>
     </message>
     <message>
@@ -323,11 +323,11 @@
         <translation>رمزنگاری کلیدهای خصوصی متعلق به کیف پول شما</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <source>Sign messages with your addresses to prove you own them</source>
         <translation>برای اثبات اینکه پیام‌ها به شما تعلق دارند، آن‌ها را با نشانی بیت‌کوین خود امضا کنید</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified addresses</source>
         <translation>برای حصول اطمینان از اینکه پیام با نشانی بیت‌کوین مشخص شده امضا است یا خیر، پیام را شناسایی کنید</translation>
     </message>
     <message>
@@ -347,11 +347,11 @@
         <translation>نوارابزار برگه‌ها</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation> هسته Bitcoin </translation>
     </message>
     <message>
-        <source>&amp;About Bitcoin XT</source>
+        <source>&amp;About chain2</source>
         <translation>درباره هسته ی بیت کوین</translation>
     </message>
     <message numerus="yes">
@@ -576,7 +576,7 @@
         <translation>نشانی وارد شده «%1» در حال حاضر در دفترچه وجود دارد.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address "%1" is not a valid address.</source>
         <translation>نشانی وارد شده «%1» یک نشانی معتبر بیت‌کوین نیست.</translation>
     </message>
     <message>
@@ -614,7 +614,7 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation> هسته Bitcoin </translation>
     </message>
     <message>
@@ -649,7 +649,7 @@
         <translation>استفاده از یک مسیر سفارشی:</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation> هسته Bitcoin </translation>
     </message>
     <message>
@@ -1124,7 +1124,7 @@
         <translation>این یک پرداخت عادی است</translation>
     </message>
     <message>
-        <source>The Bitcoin address to send the payment to</source>
+        <source>The address to send the payment to</source>
         <translation>نشانی بیت‌کوین برای ارسال پرداخت به آن</translation>
     </message>
     <message>
@@ -1162,7 +1162,7 @@
         <translation>ا&amp;مضای پیام</translation>
     </message>
     <message>
-        <source>The Bitcoin address to sign the message with</source>
+        <source>The address to sign the message with</source>
         <translation>نشانی بیت‌کوین برای امضاء پیغام با آن</translation>
     </message>
     <message>
@@ -1194,7 +1194,7 @@
         <translation>امضای فعلی را به حافظهٔ سیستم کپی کن</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
+        <source>Sign the message to prove you own this address</source>
         <translation>برای اثبات تعلق این نشانی به شما، پیام را امضا کنید</translation>
     </message>
     <message>
@@ -1214,11 +1214,11 @@
         <translation>&amp;شناسایی پیام</translation>
     </message>
     <message>
-        <source>The Bitcoin address the message was signed with</source>
+        <source>The address the message was signed with</source>
         <translation>نشانی بیت‌کوین که پیغام با آن امضاء شده</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
+        <source>Verify the message to ensure it was signed with the specified address</source>
         <translation>برای حصول اطمینان از اینکه پیام با نشانی بیت‌کوین مشخص شده امضا است یا خیر، پیام را شناسایی کنید</translation>
     </message>
     <message>
@@ -1285,11 +1285,11 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation> هسته Bitcoin </translation>
     </message>
     <message>
-        <source>The Bitcoin XT developers</source>
+        <source>The chain2 developers</source>
         <translation>توسعه‌دهندگان هسته بیت‌کوین</translation>
     </message>
     <message>
@@ -1787,7 +1787,7 @@
         <translation>در حال بازبینی کیف پول...</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Bitcoin XT will not work properly.</source>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong chain2 will not work properly.</source>
         <translation>هشدار: تاریخ و ساعت کامپیوتر خود را بررسی کنید. اگر ساعت درست نباشد هسته بیت‌کوین به درستی کار نخواهد کرد.</translation>
     </message>
     <message>

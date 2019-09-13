@@ -1,9 +1,9 @@
 #!/bin/sh -e
 
-# stop and disable bitcoinxtd service if systemctl exists and is executable
+# stop and disable chain2d service if systemctl exists and is executable
 if [ -x "/bin/systemctl" ]; then
-    echo "Stopping bitcoinxtd.service"
-    /bin/systemctl stop bitcoinxtd.service
-    echo "Disabling bitcoinxtd.service"
-    /bin/systemctl disable bitcoinxtd.service
+    echo "Stopping chain2d.service"
+    /bin/systemctl stop chain2d.service
+    echo "Disabling chain2d.service"
+    /bin/systemctl disable chain2d.service
 fi

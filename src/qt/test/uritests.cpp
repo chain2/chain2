@@ -176,7 +176,7 @@ void URITests::uriTestFormatURI() {
         r.message = "test";
         QString uri = GUIUtil::formatBitcoinURI(r);
         QVERIFY(uri ==
-                "bitcoincash:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?message=test");
+                "ctwo:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?message=test");
     }
 }
 
@@ -191,10 +191,10 @@ void URITests::uriTestScheme() {
         QVERIFY("bchreg" == GUIUtil::bitcoinURIScheme(Params(CBaseChainParams::REGTEST)));
     }
     {
-        // legacy - scheme is "bitcoincash" regardless of chain params
+        // legacy - scheme is "bitcoin" regardless of chain params
         arg->Set("-usecashaddr", 0);
-        QVERIFY("bitcoincash" == GUIUtil::bitcoinURIScheme(Params(CBaseChainParams::MAIN)));
-        QVERIFY("bitcoincash" == GUIUtil::bitcoinURIScheme(Params(CBaseChainParams::TESTNET)));
-        QVERIFY("bitcoincash" == GUIUtil::bitcoinURIScheme(Params(CBaseChainParams::REGTEST)));
+        QVERIFY("ctwo" == GUIUtil::bitcoinURIScheme(Params(CBaseChainParams::MAIN)));
+        QVERIFY("ctwo" == GUIUtil::bitcoinURIScheme(Params(CBaseChainParams::TESTNET)));
+        QVERIFY("ctwo" == GUIUtil::bitcoinURIScheme(Params(CBaseChainParams::REGTEST)));
     }
 }

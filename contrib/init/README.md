@@ -1,10 +1,10 @@
 Sample configuration files for:
 
-SystemD: bitcoinxtd.service
-Upstart: bitcoinxtd.conf
-OpenRC:  bitcoinxtd.openrc
-         bitcoinxtd.openrcconf
-CentOS:  bitcoinxtd.init
+SystemD: chain2d.service
+Upstart: chain2d.conf
+OpenRC:  chain2d.openrc
+         chain2d.openrcconf
+CentOS:  chain2d.init
 
 have been made available to assist packagers in creating node packages here.
 

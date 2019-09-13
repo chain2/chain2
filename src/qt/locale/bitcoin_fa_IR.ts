@@ -385,7 +385,7 @@
         <translation>ویرایش حساب ارسال کننده</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address "%1" is not a valid address.</source>
         <translation>آدرس وارد شده "%1" یک آدرس صحیح برای bitcoin نسشت</translation>
     </message>
     <message>
@@ -652,7 +652,7 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Bitcoin XT is shutting down...</source>
+        <source>chain2 is shutting down...</source>
         <translation>هسته بیت کوین در حال خاموش شدن است...</translation>
     </message>
     <message>

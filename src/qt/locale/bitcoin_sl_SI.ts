@@ -66,11 +66,11 @@
         <translation>Naslovi za prejemanje</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>Seznam naslovov za pošiljanje plačil. Vedno preverite znesek in prejemnikov naslov pred pošiljanjem plačila.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>To so vaši Bitcoin naslovi za prejemanje plačil. Priporočljivo je uporabiti nov prejemni naslov za vsako novo transakcijo.</translation>
     </message>
     <message>
@@ -164,7 +164,7 @@
         <translation>Ali ste prepričani, da želite šifrirati vašo denarnico?</translation>
     </message>
     <message>
-        <source>Bitcoin XT will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <source>chain2 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
         <translation>Program se bo zaprl, da dokonča proces šifriranja. Zapomnite si, da šifriranje ne more popolnoma zaščititi vaše denarnice pred krajami in zlonamernimi programi, ki bi lahko bili nameščeni na vašem računalniku.</translation>
     </message>
     <message>
@@ -291,8 +291,8 @@
         <translation>Odpri &amp;URI ...</translation>
     </message>
     <message>
-        <source>Bitcoin XT client</source>
-        <translation>Odjemalec Bitcoin XT</translation>
+        <source>chain2 client</source>
+        <translation>Odjemalec chain2</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -303,7 +303,7 @@
         <translation>Poustvarjam kazalo blokov na disku ...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a address</source>
         <translation>Pošiljanje plačila na bitcoin naslov</translation>
     </message>
     <message>
@@ -339,7 +339,7 @@
         <translation>&amp;Sprejmi</translation>
     </message>
     <message>
-        <source>Show information about Bitcoin XT</source>
+        <source>Show information about chain2</source>
         <translation>Pokaži informacije o programu</translation>
     </message>
     <message>
@@ -355,11 +355,11 @@
         <translation>Šifiraj zasebne ključe v denarnici</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <source>Sign messages with your addresses to prove you own them</source>
         <translation>Podpisovanje sporočila za dokazovanje lastništva določenega bitcoin naslova</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified addresses</source>
         <translation>Preverjanje, če je podano sporočilo bilo podpisano z določenim naslovom</translation>
     </message>
     <message>
@@ -379,19 +379,19 @@
         <translation>Orodna vrstica zavihkov</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and %1: URIs)</source>
         <translation>Zahtevajte plačilo (ustvarite zahtevek s kodo QR in URI tipa %1:)</translation>
     </message>
     <message>
-        <source>&amp;About Bitcoin XT</source>
+        <source>&amp;About chain2</source>
         <translation>&amp;O programu</translation>
     </message>
     <message>
-        <source>Modify configuration options for Bitcoin XT</source>
+        <source>Modify configuration options for chain2</source>
         <translation>Urejanje nastavitev programa</translation>
     </message>
     <message>
@@ -411,7 +411,7 @@
         <translation>Opcije &amp;ukazne vrstice</translation>
     </message>
     <message>
-        <source>Show the Bitcoin XT help message to get a list with possible Bitcoin command-line options</source>
+        <source>Show the chain2 help message to get a list with possible Bitcoin command-line options</source>
         <translation>Prikaže seznam vseh opcij pri zagonu programa in kratek opis</translation>
     </message>
     <message numerus="yes">
@@ -786,7 +786,7 @@
         <translation>Vnešeni naslov "%1" je že v imeniku.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address "%1" is not a valid address.</source>
         <translation>Vnešeni naslov "%1" ni veljaven bitcoin naslov.</translation>
     </message>
     <message>
@@ -824,8 +824,8 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>version</source>
@@ -836,8 +836,8 @@
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Bitcoin XT</source>
-        <translation>O programu Bitcoin XT</translation>
+        <source>About chain2</source>
+        <translation>O programu chain2</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -859,15 +859,15 @@
         <translation>Dobrodošli</translation>
     </message>
     <message>
-        <source>Welcome to Bitcoin XT.</source>
-        <translation>Dobrodošli v programu Bitcoin XT.</translation>
+        <source>Welcome to chain2.</source>
+        <translation>Dobrodošli v programu chain2.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Bitcoin XT will store its data.</source>
-        <translation>To je prvi zagonom programa, zato izberite kje bo program Bitcoin XT shranjeval podatke.</translation>
+        <source>As this is the first time the program is launched, you can choose where chain2 will store its data.</source>
+        <translation>To je prvi zagonom programa, zato izberite kje bo program chain2 shranjeval podatke.</translation>
     </message>
     <message>
-        <source>Bitcoin XT will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>chain2 will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>Program bo prenesel in shranil kopijo bitcoin verige blokov. V izbrano mapo bo shranjenih vsaj %1 GB podatkov, ta količina bo sčasoma še naraščala. Denarnica bo prav tako shranjena v to mapo.</translation>
     </message>
     <message>
@@ -879,8 +879,8 @@
         <translation>Uporabi to mapo za shranjevanje podatkov:</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -957,7 +957,7 @@
         <translation>Program bo minimiran, namesto zaprt, ko zaprete okno programa. Ko je ta opcija omogočena program ustavite z izbiro ukaza &lt;b&gt;Izhod&lt;/b&gt; iz menija. </translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting Bitcoin XT.</source>
+        <source>The user interface language can be set here. This setting will take effect after restarting chain2.</source>
         <translation>Nastavitev jezika uporabniškega vmesnika programa. Nova nastavitev jezika bo uporabljena šele, ko boste znova zagnali program.</translation>
     </message>
     <message>
@@ -985,11 +985,11 @@
         <translation>&amp;Omrežje</translation>
     </message>
     <message>
-        <source>Automatically start Bitcoin XT after logging in to the system.</source>
+        <source>Automatically start chain2 after logging in to the system.</source>
         <translation>Samodejen zagon programa po prijavi uporabnika v sistem</translation>
     </message>
     <message>
-        <source>&amp;Start Bitcoin XT on system login</source>
+        <source>&amp;Start chain2 on system login</source>
         <translation>&amp;Zaženi program ob prijavi v sistem</translation>
     </message>
     <message>
@@ -1231,7 +1231,7 @@
         <translation>Naslov URL za pridobitev zahtevka za plačilo ni veljaven: %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid address or malformed URI parameters.</source>
         <translation>Naslov URL je neprepoznaven! Razloga sta lahko: neveljaven Bitcoin naslov ali napačni parametri v URI.</translation>
     </message>
     <message>
@@ -1309,7 +1309,7 @@
         <translation>Znesek</translation>
     </message>
     <message>
-        <source>Enter a Bitcoin address (e.g. %1)</source>
+        <source>Enter address (e.g. %1)</source>
         <translation>Vnesite naslov Bitcoin (npr. %1):</translation>
     </message>
     <message>
@@ -1419,8 +1419,8 @@
         <translation>Trenutno število blokov</translation>
     </message>
     <message>
-        <source>Open the Bitcoin XT debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Odpre razhroščevalni dnevnik Bitcoin XT, ki se nahaja v trenutni podatkovni mapi. Če je datoteka velika, lahko postopek traja nekaj sekund.</translation>
+        <source>Open the chain2 debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Odpre razhroščevalni dnevnik chain2, ki se nahaja v trenutni podatkovni mapi. Če je datoteka velika, lahko postopek traja nekaj sekund.</translation>
     </message>
     <message>
         <source>Received</source>
@@ -1539,8 +1539,8 @@
         <translation>Počisti konzolo</translation>
     </message>
     <message>
-        <source>Welcome to the Bitcoin XT RPC console.</source>
-        <translation>Dobrodošli v Bitcoin XT RPC konzolo.</translation>
+        <source>Welcome to the chain2 RPC console.</source>
+        <translation>Dobrodošli v chain2 RPC konzolo.</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
@@ -2003,7 +2003,7 @@
         <translation>Naslov je že bil uporabljen. Vsak naslov naj bi se uporabil samo enkrat.</translation>
     </message>
     <message>
-        <source>Warning: Invalid Bitcoin address</source>
+        <source>Warning: Invalid address</source>
         <translation>Opozorilo: Neveljaven bitcoin naslov</translation>
     </message>
     <message>
@@ -2054,7 +2054,7 @@
         <translation>Plačilo je navadne vrste.</translation>
     </message>
     <message>
-        <source>The Bitcoin address to send the payment to</source>
+        <source>The address to send the payment to</source>
         <translation>Naslov Bitcoin, na katerega bo plačilo poslano</translation>
     </message>
     <message>
@@ -2113,7 +2113,7 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Bitcoin XT is shutting down...</source>
+        <source>chain2 is shutting down...</source>
         <translation>Program se ustavlja ...</translation>
     </message>
     <message>
@@ -2136,7 +2136,7 @@
         <translation>S svojimi naslovi lahko podpisujete sporočila ali pogodbe in s tem dokazujete, da na teh naslovih lahko prejemate kovance. Bodite previdni in ne podpisujte ničesar nejasnega ali naključnega, ker vas zlikovci preko ribarjenja (phishing) lahko prelisičijo, da na njih prepišete svojo identiteto. Podpisujte samo podrobno opisane izjave, s katerimi se strinjate.</translation>
     </message>
     <message>
-        <source>The Bitcoin address to sign the message with</source>
+        <source>The address to sign the message with</source>
         <translation>Naslov Bitcoin, s katerim podpisujete sporočilo</translation>
     </message>
     <message>
@@ -2168,7 +2168,7 @@
         <translation>Kopiranje trenutnega podpisa na sistemsko odložišče.</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
+        <source>Sign the message to prove you own this address</source>
         <translation>Podpišite sporočilo, da dokažete lastništvo nad zgornjim naslovom.</translation>
     </message>
     <message>
@@ -2239,12 +2239,12 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
-        <source>The Bitcoin XT developers</source>
-        <translation>Bitcoin XT razvijalci</translation>
+        <source>The chain2 developers</source>
+        <translation>chain2 razvijalci</translation>
     </message>
     <message>
         <source>[testnet]</source>

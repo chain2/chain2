@@ -62,11 +62,11 @@
         <translation>მიღების მისამართი</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>ეს არის თქვენი Bitcoin-მისამართები გადახდების შესასრულებლად. მონეტების გაგზავნამდე ყოველთვის შეამოწმეთ თანხა და მიმღების მისამართი.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>ეს არის თქვენი Bitcoin-მისამართები გადახდების მისაღებად. რეკომენდებულია ყოველი ტრანსაქციისათვის ახალი მიღების მისამართის გამოყენება.</translation>
     </message>
     <message>
@@ -283,7 +283,7 @@
         <translation>დისკზე ბლოკების რეინდექსაცია...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a address</source>
         <translation>მონეტების გაგზავნა Bitcoin-მისამართზე</translation>
     </message>
     <message>
@@ -335,11 +335,11 @@
         <translation>თქვენი საფულის პირადი გასაღებების დაშიფრვა</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <source>Sign messages with your addresses to prove you own them</source>
         <translation>მესიჯებზე ხელმოწერა თქვენი Bitcoin-მისამართებით იმის დასტურად, რომ ის თქვენია</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified addresses</source>
         <translation>შეამოწმეთ, რომ მესიჯები ხელმოწერილია მითითებული Bitcoin-მისამართით</translation>
     </message>
     <message>
@@ -359,16 +359,16 @@
         <translation>ბარათების პანელი</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and %1: URIs)</source>
         <translation>გადახდის მოთხოვნა (შეიქმნება QR-კოდები და %1: ბმულები)</translation>
     </message>
     <message>
-        <source>&amp;About Bitcoin XT</source>
-        <translation>Bitcoin XT-ს შეს&amp;ახებ</translation>
+        <source>&amp;About chain2</source>
+        <translation>chain2-ს შეს&amp;ახებ</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -387,8 +387,8 @@
         <translation>საკომანდო სტრიქონის ოპ&amp;ციები</translation>
     </message>
     <message>
-        <source>Show the Bitcoin XT help message to get a list with possible Bitcoin command-line options</source>
-        <translation>Bitcoin XT-ს დახმარების ჩვენება Bitcoin-ის საკომანდო სტრიქონის დასაშვები ოპციების სანახავად</translation>
+        <source>Show the chain2 help message to get a list with possible Bitcoin command-line options</source>
+        <translation>chain2-ს დახმარების ჩვენება Bitcoin-ის საკომანდო სტრიქონის დასაშვები ოპციების სანახავად</translation>
     </message>
     <message>
         <source>No block source available...</source>
@@ -684,7 +684,7 @@
         <translation>მისამართი "%1" უკვე არის მისამართების წიგნში.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address "%1" is not a valid address.</source>
         <translation>შეყვანილი მისამართი "%1" არ არის ვალიდური Bitcoin-მისამართი.</translation>
     </message>
     <message>
@@ -722,16 +722,16 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>version</source>
         <translation>ვერსია</translation>
     </message>
     <message>
-        <source>About Bitcoin XT</source>
-        <translation>Bitcoin XT-ს შესახებ</translation>
+        <source>About chain2</source>
+        <translation>chain2-ს შესახებ</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -753,12 +753,12 @@
         <translation>მოგესალმებით</translation>
     </message>
     <message>
-        <source>Welcome to Bitcoin XT.</source>
-        <translation>მოგესალმებათ Bitcoin XT.</translation>
+        <source>Welcome to chain2.</source>
+        <translation>მოგესალმებათ chain2.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Bitcoin XT will store its data.</source>
-        <translation>ეს პროგრამის პირველი გაშვებაა; შეგიძლიათ მიუთითოთ, სად შეინახოს მონაცემები Bitcoin XT-მ.</translation>
+        <source>As this is the first time the program is launched, you can choose where chain2 will store its data.</source>
+        <translation>ეს პროგრამის პირველი გაშვებაა; შეგიძლიათ მიუთითოთ, სად შეინახოს მონაცემები chain2-მ.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -769,8 +769,8 @@
         <translation>მითითებული კატალოგის გამოყენება:</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1517,7 +1517,7 @@
         <translation>ტრანსაქცია უარყოფილია! შესაძლოა მონეტების ნაწილი თქვენი საფულიდან უკვე გამოყენებულია, რაც შეიძლება მოხდეს wallet.dat-ის ასლის გამოყენებისას, როცა მონეტები გაიგზავნა სხვა ასლიდან, აქ კი არ არის გაგზავნილად მონიშნული.</translation>
     </message>
     <message>
-        <source>Warning: Invalid Bitcoin address</source>
+        <source>Warning: Invalid address</source>
         <translation>ყურადღება: არასწორია Bitcoin-მისამართი</translation>
     </message>
     <message>
@@ -1603,8 +1603,8 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Bitcoin XT is shutting down...</source>
-        <translation>Bitcoin XT იხურება...</translation>
+        <source>chain2 is shutting down...</source>
+        <translation>chain2 იხურება...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -1650,7 +1650,7 @@
         <translation>მიმდინარე ხელმოწერის კოპირება კლიპბორდში</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
+        <source>Sign the message to prove you own this address</source>
         <translation>მოაწერეთ ხელი იმის დასადასტურებლად, რომ ეს მისამართი თქვენია</translation>
     </message>
     <message>
@@ -1670,7 +1670,7 @@
         <translation>მესიჯის &amp;ვერიფიკაცია</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
+        <source>Verify the message to ensure it was signed with the specified address</source>
         <translation>შეამოწმეთ, რომ მესიჯი ხელმოწერილია მითითებული Bitcoin-მისამართით</translation>
     </message>
     <message>
@@ -1737,12 +1737,12 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
-        <translation>Bitcoin XT</translation>
+        <source>chain2</source>
+        <translation>chain2</translation>
     </message>
     <message>
-        <source>The Bitcoin XT developers</source>
-        <translation>Bitcoin XT-ს ავტორები</translation>
+        <source>The chain2 developers</source>
+        <translation>chain2-ს ავტორები</translation>
     </message>
     <message>
         <source>[testnet]</source>

@@ -1,10 +1,10 @@
 **Create A Debian Package Installer**
 
-1. Download gitian created bitcoinxt tar file to bitcoinxt/contrib/gitian-debian folder:
+1. Download gitian created chain2 tar file to chain2/contrib/gitian-debian folder:
 
   ```
-  cd bitcoinxt/contrib/gitian-debian
-  wget https://github.com/bitcoinxt/bitcoinxt/releases/download/v0.11K/bitcoin-xt-0.11.0-K-linux64.tar.gz
+  cd chain2/contrib/gitian-debian
+  wget https://github.com/chain2/chain2/releases/download/v0.11L/chain2-0.11.0-L-linux64.tar.gz
   ```
 
 2. Execute debian installer build script:
@@ -17,13 +17,13 @@
 1. Install newly created debian package on test debian system:
 
   ```
-  sudo gdebi bitcoinxt-0.11K.deb
+  sudo gdebi chain2-0.11.deb
   ```
 
-2. Verify bitcoinxt daemon installed and started:
+2. Verify chain2 daemon installed and started:
 
   ```
-  sudo systemctl status bitcoinxtd
+  sudo systemctl status chain2d
   ```
 
 3. Add your user account to the bitcoin system group:
@@ -40,41 +40,41 @@
   groups
   ```
 
-6. Test bitcoinxt-cli access:
+6. Test chain2-cli access:
 
   ```
-  /usr/bin/bitcoinxt-cli -conf=/etc/bitcoinxt/bitcoin.conf getinfo
+  /usr/bin/chain2-cli -conf=/etc/chain2/bitcoin.conf getinfo
   ```
   
-7. Test bitcoinxt-qt with non-conflicting IP port:
+7. Test chain2-qt with non-conflicting IP port:
   
   ```
-  bitcoinxt-qt -listen=0:8444
+  chain2-qt -listen=0:8444
   ```
   
-8. Uninstall bitcoinxt without removing config file or data:
+8. Uninstall chain2 without removing config file or data:
 
   ```
-  sudo apt-install uninstall bitcoinxt
+  sudo apt-install uninstall chain2
   ```
 
-9. Uninstall bitcoinxt AND remove config file and data:
+9. Uninstall chain2 AND remove config file and data:
 
   ```
-  sudo apt-install purge bitcoinxt
-  sudo rm -rf /var/lib/bitcoinxt
+  sudo apt-install purge chain2
+  sudo rm -rf /var/lib/chain2
   ```
 
 **Non-Interactive Installation**
 
-The bitcoinxt debian package uses debconf to ask the user if they want to automatically enable and start the bitcoinxtd service as part of the package installation. To skip this question for non-interactive installs the following instructions allow you to pre-answer the question. This question is only asked the first time the bitcoinxt package is installed and only if the target system has the systemd systemctl binary present and executable.
+The chain2 debian package uses debconf to ask the user if they want to automatically enable and start the chain2d service as part of the package installation. To skip this question for non-interactive installs the following instructions allow you to pre-answer the question. This question is only asked the first time the chain2 package is installed and only if the target system has the systemd systemctl binary present and executable.
 
 1. Install ```debconf-utils```
  ```
  % sudo apt-get install debconf-utils
  ```
 
-2. Pre-answer the question, ***true*** to automatically enable and start the ```bitcoinxtd``` service and ***false*** to not automatically enable and start the service during package install
+2. Pre-answer the question, ***true*** to automatically enable and start the ```chain2d``` service and ***false*** to not automatically enable and start the service during package install
  ```
- % sudo sh -c 'echo "bitcoinxt bitcoinxt/start_service boolean false" | debconf-set-selections'
+ % sudo sh -c 'echo "chain2 chain2/start_service boolean false" | debconf-set-selections'
  ```

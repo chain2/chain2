@@ -65,7 +65,7 @@ bool AppInit(int argc, char* argv[])
     // Process help and version before taking care about datadir
     if (mapArgs.count("-?") || mapArgs.count("-help") || mapArgs.count("-version"))
     {
-        std::string strUsage = _("Bitcoin XT Daemon") + " " + _("version") + " " + FormatFullVersion() + "\n";
+        std::string strUsage = _("chain2 Daemon") + " " + _("version") + " " + FormatFullVersion() + "\n";
 
         if (mapArgs.count("-version"))
         {
@@ -74,7 +74,7 @@ bool AppInit(int argc, char* argv[])
         else
         {
             strUsage += "\n" + _("Usage:") + "\n" +
-                  "  bitcoind [options]                     " + _("Start Bitcoin XT Daemon") + "\n";
+                  "  bitcoind [options]                     " + _("Start chain2 Daemon") + "\n";
 
             strUsage += "\n" + HelpMessage(HMM_BITCOIND);
         }

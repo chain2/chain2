@@ -1,0 +1,22 @@
+[Unit]
+Description=chain2 distributed currency daemon
+After=network.target
+
+[Service]
+User=bitcoin
+Group=bitcoin
+
+Type=forking
+PIDFile=/var/lib/chain2/chain2d.pid
+ExecStart=/usr/bin/chain2d -daemon -pid=/var/lib/chain2/chain2d.pid \
+-conf=/etc/chain2/bitcoin.conf -datadir=/var/lib/chain2 -disablewallet
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

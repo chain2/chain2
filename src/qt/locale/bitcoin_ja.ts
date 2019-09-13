@@ -66,11 +66,11 @@
         <translation>アドレス受信中</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>これらは支払いを送信するためのあなたの Bitcoin アドレスです。コインを送信する前に、常に額と受信アドレスを確認してください。</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>これらは支払いを受け取るためのビットコインアドレスです。トランザクションごとに新しい受け取り用アドレスを作成することが推奨されます。</translation>
     </message>
     <message>
@@ -168,8 +168,8 @@
         <translation>本当にウォレットを暗号化しますか?</translation>
     </message>
     <message>
-        <source>Bitcoin XT will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation>暗号化処理を完了させるため Bitcoin XT をいますぐ終了します。ウォレットの暗号化では、コンピュータに感染したマルウェアなどによるビットコインの盗難から完全に守ることはできないことにご注意ください。</translation>
+        <source>chain2 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <translation>暗号化処理を完了させるため chain2 をいますぐ終了します。ウォレットの暗号化では、コンピュータに感染したマルウェアなどによるビットコインの盗難から完全に守ることはできないことにご注意ください。</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -295,7 +295,7 @@
         <translation>URI を開く (&amp;U)...</translation>
     </message>
     <message>
-        <source>Bitcoin XT client</source>
+        <source>chain2 client</source>
         <translation>Bitcoinコア クライアント</translation>
     </message>
     <message>
@@ -307,7 +307,7 @@
         <translation>ディスク上のブロックのインデックスを再作成中...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a address</source>
         <translation>Bitcoin アドレスにコインを送る</translation>
     </message>
     <message>
@@ -347,7 +347,7 @@
         <translation>受信 (&amp;R)</translation>
     </message>
     <message>
-        <source>Show information about Bitcoin XT</source>
+        <source>Show information about chain2</source>
         <translation>Bitcoinコアに関する情報を表示</translation>
     </message>
     <message>
@@ -363,11 +363,11 @@
         <translation>あなたのウォレットの秘密鍵を暗号化します</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <source>Sign messages with your addresses to prove you own them</source>
         <translation>あなたが所有していることを証明するために、あなたの Bitcoin アドレスでメッセージに署名してください</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified addresses</source>
         <translation>指定された Bitcoin アドレスで署名されたことを確認するためにメッセージを検証します</translation>
     </message>
     <message>
@@ -387,7 +387,7 @@
         <translation>タブツールバー</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Bitcoin のコア</translation>
     </message>
     <message>
@@ -395,12 +395,12 @@
         <translation>支払いを要求する (QRコードと%1:ではじまるURIを生成する)</translation>
     </message>
     <message>
-        <source>&amp;About Bitcoin XT</source>
+        <source>&amp;About chain2</source>
         <translation>ビットコインコアについて (&amp;A)</translation>
     </message>
     <message>
-        <source>Modify configuration options for Bitcoin XT</source>
-        <translation>Bitcoin XT の設定を編集する</translation>
+        <source>Modify configuration options for chain2</source>
+        <translation>chain2 の設定を編集する</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -419,8 +419,8 @@
         <translation>コマンドラインオプション (&amp;C)</translation>
     </message>
     <message>
-        <source>Show the Bitcoin XT help message to get a list with possible Bitcoin command-line options</source>
-        <translation>有効な Bitcoin のコマンドライン オプションを見るために Bitcoin XT のヘルプメッセージを表示します。</translation>
+        <source>Show the chain2 help message to get a list with possible Bitcoin command-line options</source>
+        <translation>有効な Bitcoin のコマンドライン オプションを見るために chain2 のヘルプメッセージを表示します。</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
@@ -806,7 +806,7 @@
         <translation>入力されたアドレス "%1" は既にアドレス帳にあります。</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address "%1" is not a valid address.</source>
         <translation>入力されたアドレス "%1" は無効な Bitcoin アドレスです。</translation>
     </message>
     <message>
@@ -844,7 +844,7 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Bitcoin のコア</translation>
     </message>
     <message>
@@ -856,7 +856,7 @@
         <translation>(%1ビット)</translation>
     </message>
     <message>
-        <source>About Bitcoin XT</source>
+        <source>About chain2</source>
         <translation>Bitcoinコアについて</translation>
     </message>
     <message>
@@ -879,16 +879,16 @@
         <translation>ようこそ</translation>
     </message>
     <message>
-        <source>Welcome to Bitcoin XT.</source>
+        <source>Welcome to chain2.</source>
         <translation>ようこそ！</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Bitcoin XT will store its data.</source>
-        <translation>これはプログラム最初の起動です。Bitcoin XTがデータを保存する場所を選択して下さい。</translation>
+        <source>As this is the first time the program is launched, you can choose where chain2 will store its data.</source>
+        <translation>これはプログラム最初の起動です。chain2がデータを保存する場所を選択して下さい。</translation>
     </message>
     <message>
-        <source>Bitcoin XT will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Bitcoin XTは、ビットコインのブロックチェーンのコピーを、ダウンロードして保存します。少なくとも%1ギガバイトのデータが、このディレクトリに保存されます。そしてそれは時間と共に増加します。またウォレットもこのディレクトリに保存されます。</translation>
+        <source>chain2 will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>chain2は、ビットコインのブロックチェーンのコピーを、ダウンロードして保存します。少なくとも%1ギガバイトのデータが、このディレクトリに保存されます。そしてそれは時間と共に増加します。またウォレットもこのディレクトリに保存されます。</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -899,7 +899,7 @@
         <translation>任意のデータ ディレクトリを使用:</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Bitcoin のコア</translation>
     </message>
     <message>
@@ -981,8 +981,8 @@
         <translation>ウィンドウを閉じる際にアプリケーションを終了するのではなく、最小化します。このオプションが有効化された場合、メニューから終了を選択した場合にのみアプリケーションは閉じられます。</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting Bitcoin XT.</source>
-        <translation>ユーザ・インタフェイス言語はここで設定できます。この設定はBitcoin XTの再起動後に有効となります。</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting chain2.</source>
+        <translation>ユーザ・インタフェイス言語はここで設定できます。この設定はchain2の再起動後に有効となります。</translation>
     </message>
     <message>
         <source>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</source>
@@ -1009,12 +1009,12 @@
         <translation>ネットワーク (&amp;N)</translation>
     </message>
     <message>
-        <source>Automatically start Bitcoin XT after logging in to the system.</source>
-        <translation>システムにログインした際、自動的にBitcoin XTを起動する。</translation>
+        <source>Automatically start chain2 after logging in to the system.</source>
+        <translation>システムにログインした際、自動的にchain2を起動する。</translation>
     </message>
     <message>
-        <source>&amp;Start Bitcoin XT on system login</source>
-        <translation>システムへログインした際にBitcoin XTを起動する (&amp;S)</translation>
+        <source>&amp;Start chain2 on system login</source>
+        <translation>システムへログインした際にchain2を起動する (&amp;S)</translation>
     </message>
     <message>
         <source>(0 = auto, &lt;0 = leave that many cores free)</source>
@@ -1255,7 +1255,7 @@
         <translation>支払い要求の取得先URLが無効です: %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid address or malformed URI parameters.</source>
         <translation>URI を解析できません! これは無効な Bitcoin アドレスあるいや不正な形式の URI パラメーターによって引き起こされる場合があります。</translation>
     </message>
     <message>
@@ -1333,7 +1333,7 @@
         <translation>総額</translation>
     </message>
     <message>
-        <source>Enter a Bitcoin address (e.g. %1)</source>
+        <source>Enter address (e.g. %1)</source>
         <translation>Bitcoinアドレスを入力してください (例 %1)</translation>
     </message>
     <message>
@@ -1443,8 +1443,8 @@
         <translation>現在のブロック数</translation>
     </message>
     <message>
-        <source>Open the Bitcoin XT debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>現在のデータディレクトリからBitcoin XTのデバッグ用ログファイルを開きます。ログファイルが巨大な場合、数秒かかることがあります。</translation>
+        <source>Open the chain2 debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>現在のデータディレクトリからchain2のデバッグ用ログファイルを開きます。ログファイルが巨大な場合、数秒かかることがあります。</translation>
     </message>
     <message>
         <source>Received</source>
@@ -1563,8 +1563,8 @@
         <translation>コンソールをクリア</translation>
     </message>
     <message>
-        <source>Welcome to the Bitcoin XT RPC console.</source>
-        <translation>Bitcoin XTのRPCコンソールへようこそ。</translation>
+        <source>Welcome to the chain2 RPC console.</source>
+        <translation>chain2のRPCコンソールへようこそ。</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
@@ -2031,7 +2031,7 @@
         <translation>重複したアドレスが見つかりました: アドレスはそれぞれ一度のみ使用することができます。</translation>
     </message>
     <message>
-        <source>Warning: Invalid Bitcoin address</source>
+        <source>Warning: Invalid address</source>
         <translation>警告：無効なBitcoinアドレスです</translation>
     </message>
     <message>
@@ -2082,7 +2082,7 @@
         <translation>これは通常の支払です。</translation>
     </message>
     <message>
-        <source>The Bitcoin address to send the payment to</source>
+        <source>The address to send the payment to</source>
         <translation>支払の送金先Bitcoinアドレス</translation>
     </message>
     <message>
@@ -2141,8 +2141,8 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Bitcoin XT is shutting down...</source>
-        <translation>Bitcoin XTをシャットダウンしています。</translation>
+        <source>chain2 is shutting down...</source>
+        <translation>chain2をシャットダウンしています。</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -2164,7 +2164,7 @@
         <translation>あなたの所有しているアドレスによりメッセージや合意書に署名をすることで、それらアドレスに対して送られたビットコインを受け取ることができることを証明できます。フィッシング攻撃により不正にあなたの識別情報を署名させられてしまうことを防ぐために、不明確なものやランダムなものに対して署名しないよう注意してください。合意することが可能な、よく詳細の記された文言にのみ署名するようにしてください。</translation>
     </message>
     <message>
-        <source>The Bitcoin address to sign the message with</source>
+        <source>The address to sign the message with</source>
         <translation>メッセージを署名するBitcoinアドレス</translation>
     </message>
     <message>
@@ -2196,7 +2196,7 @@
         <translation>現在の署名をシステムのクリップボードにコピーする</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
+        <source>Sign the message to prove you own this address</source>
         <translation>この Bitcoin アドレスを所有していることを証明するためにメッセージに署名</translation>
     </message>
     <message>
@@ -2220,11 +2220,11 @@
         <translation>受取人のアドレスとメッセージ（改行やスペース、タブなども完全に一致するよう注意してください）および署名を以下に入力し、メッセージの署名を検証してください。中間者攻撃により騙されるのを防ぐため、署名対象のメッセージに書かれていること以上の意味を署名から読み取ろうとしないよう注意してください。これは署名作成者がこのアドレスで受け取ったことを証明するだけであり、トランザクションの送信権限を証明するものではないことに注意してください！</translation>
     </message>
     <message>
-        <source>The Bitcoin address the message was signed with</source>
+        <source>The address the message was signed with</source>
         <translation>メッセージの署名に使われたBitcoinアドレス</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
+        <source>Verify the message to ensure it was signed with the specified address</source>
         <translation>指定された Bitcoin アドレスで署名されたことを保証するメッセージを検証</translation>
     </message>
     <message>
@@ -2291,11 +2291,11 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Bitcoin のコア</translation>
     </message>
     <message>
-        <source>The Bitcoin XT developers</source>
+        <source>The chain2 developers</source>
         <translation>ビットコインコアの開発者</translation>
     </message>
     <message>
@@ -2845,8 +2845,8 @@
         <translation>これはリリース前のテストビルドです - 各自の責任で利用すること - 採掘や商取引に使用しないでください</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Bitcoin XT is probably already running.</source>
-        <translation>このコンピュータの %s にバインドすることができません。おそらく Bitcoin XT は既に実行されています。</translation>
+        <source>Unable to bind to %s on this computer. chain2 is probably already running.</source>
+        <translation>このコンピュータの %s にバインドすることができません。おそらく chain2 は既に実行されています。</translation>
     </message>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
@@ -3034,8 +3034,8 @@
         <translation>指定されたアドレスに対して JSON-RPC 接続をリッスンしするようバインドします。IPv6の場合には [host]:port 表記を使用してください。このオプションは複数回指定することが可能です (初期値: すべてのインターフェースに対してバインドする)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Bitcoin XT is probably already running.</source>
-        <translation>データ ディレクトリ %s のロックを取得することができません。おそらく Bitcoin XT は実行中です。</translation>
+        <source>Cannot obtain a lock on data directory %s. chain2 is probably already running.</source>
+        <translation>データ ディレクトリ %s のロックを取得することができません。おそらく chain2 は実行中です。</translation>
     </message>
     <message>
         <source>Create new files with system default permissions, instead of umask 077 (only effective with disabled wallet functionality)</source>
@@ -3130,8 +3130,8 @@ rpcpassword=%s
         <translation>警告: -maxtxfee が非常に高く設定されています！ひとつのトランザクションでこの量の手数料が支払われてしまうことがあります。</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Bitcoin XT will not work properly.</source>
-        <translation>警告： あなたのPCの日付と時刻が正しいことを確認して下さい！ もしあなたの時計が正しくなければBitcoin XTが正確に動作しません。</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong chain2 will not work properly.</source>
+        <translation>警告： あなたのPCの日付と時刻が正しいことを確認して下さい！ もしあなたの時計が正しくなければchain2が正確に動作しません。</translation>
     </message>
     <message>
         <source>Whitelisted peers cannot be DoS banned and their transactions are always relayed, even if they are already in the mempool, useful e.g. for a gateway</source>
@@ -3170,16 +3170,16 @@ rpcpassword=%s
         <translation>SOCKS5 プロキシ経由で接続する</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Bitcoin XT Developers</source>
-        <translation>Copyright (C) 2009-%i Bitcoin XT 開発者</translation>
+        <source>Copyright (C) 2009-%i The chain2 Developers</source>
+        <translation>Copyright (C) 2009-%i chain2 開発者</translation>
     </message>
     <message>
         <source>Could not parse -rpcbind value %s as network address</source>
         <translation>-rpcbind の値 %s をネットワークアドレスとして解釈できませんでした</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Bitcoin XT</source>
-        <translation>wallet.dat の読み込みに失敗しました: ウォレットの読み込みにはより新しいバージョンの Bitcoin XT が必要です</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of chain2</source>
+        <translation>wallet.dat の読み込みに失敗しました: ウォレットの読み込みにはより新しいバージョンの chain2 が必要です</translation>
     </message>
     <message>
         <source>Error reading from database, shutting down.</source>
@@ -3198,8 +3198,8 @@ rpcpassword=%s
         <translation>情報</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Bitcoin XT is shutting down.</source>
-        <translation>初期化時の健全性チェックに失敗しました。Bitcoin XTを終了します。</translation>
+        <source>Initialization sanity check failed. chain2 is shutting down.</source>
+        <translation>初期化時の健全性チェックに失敗しました。chain2を終了します。</translation>
     </message>
     <message>
         <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s'</source>
@@ -3326,8 +3326,8 @@ rpcpassword=%s
         <translation>JSON-RPC 接続のユーザー名</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Bitcoin XT to complete</source>
-        <translation>ウォレットが書き直される必要がありました: 完了するために Bitcoin XT を再起動します</translation>
+        <source>Wallet needed to be rewritten: restart chain2 to complete</source>
+        <translation>ウォレットが書き直される必要がありました: 完了するために chain2 を再起動します</translation>
     </message>
     <message>
         <source>Warning</source>
