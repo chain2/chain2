@@ -12,7 +12,10 @@ BOOST_FIXTURE_TEST_SUITE(chainparams_tests, BasicTestingSetup);
 
 BOOST_AUTO_TEST_CASE(check_network_magic) {
     auto magic = Params(CBaseChainParams::MAIN).NetworkMagic();
-    BOOST_CHECK_EQUAL(0xf9, magic[0]);
+    BOOST_CHECK_EQUAL(0x85, magic[0]);
+    BOOST_CHECK_EQUAL(0x84, magic[1]);
+    BOOST_CHECK_EQUAL(0xea, magic[2]);
+    BOOST_CHECK_EQUAL(0x9b, magic[3]);
 }
 
 BOOST_AUTO_TEST_SUITE_END();
