@@ -129,7 +129,7 @@ public:
         pchCashMessageStart[1] = 0xe1;
         pchCashMessageStart[2] = 0xf3;
         pchCashMessageStart[3] = 0xe8;
-        nDefaultPort = 8333;
+        nDefaultPort = 9393;
         nPruneAfterHeight = 100000;
         nMinBlockfileBlocks = 64;
 
@@ -210,7 +210,7 @@ public:
         pchCashMessageStart[1] = 0xe5;
         pchCashMessageStart[2] = 0xf3;
         pchCashMessageStart[3] = 0xf4;
-        nDefaultPort = 18333;
+        nDefaultPort = 19393;
         nPruneAfterHeight = 1000;
         nMinBlockfileBlocks = 64;
 
@@ -255,7 +255,7 @@ class CBIP100NetParams : public CTestNetParams {
 public:
     CBIP100NetParams() {
         strNetworkID = "bip100";
-        nDefaultPort = 28333;
+        nDefaultPort = 29393;
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         genesis = CreateGenesisBlock(1489351422, 3, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
