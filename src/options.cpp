@@ -77,6 +77,10 @@ bool Opt::UseCashAddr() const {
     return Args->GetBool("-usecashaddr", true);
 }
 
+bool Opt::ReplaceBySS() const {
+    return Args->GetBool("-replacebyss", true);
+}
+
 bool Opt::UsingThinBlocks() {
     return Args->GetBool("-use-thin-blocks", true);
 }

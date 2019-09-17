@@ -570,7 +570,8 @@ void CTxMemPool::removeConflicts(const CTransaction &tx, std::list<CTransaction>
     std::vector<respend::RespendActionPtr> actions;
     if (LogAcceptCategory(Log::RESPEND))
         actions.push_back(respend::RespendActionPtr(new respend::RespendLogger{}));
-    actions.push_back(respend::RespendActionPtr(new respend::MempoolRemover{*this, removed}));
+    actions.push_back(respend::RespendActionPtr(
+            new respend::MempoolRemover{respend::MempoolRemover::REMOVE_ALL, &removed}));
 
     respend::RespendDetector detector(*this, tx, actions);
     detector.SetValid(true);
