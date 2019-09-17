@@ -34,9 +34,6 @@ static const int BIP0031_VERSION = 60000;
 //! "mempool" command, enhanced "getdata" behavior starts with this version
 static const int MEMPOOL_GD_VERSION = 60002;
 
-//! "filter*" commands are disabled without NODE_BLOOM in Bitcoin Core after and including this version
-static const int NO_BLOOM_VERSION = 70011;
-
 //! "sendheaders" command and announcing blocks with headers starts with this version
 static const int SENDHEADERS_VERSION = 70012;
 

@@ -12,7 +12,7 @@
 
 const std::string CBaseChainParams::MAIN = "main";
 const std::string CBaseChainParams::TESTNET = "test";
-const std::string CBaseChainParams::BIP100NET = "bip100";
+const std::string CBaseChainParams::TESTNET2 = "test2";
 const std::string CBaseChainParams::REGTEST = "regtest";
 
 void AppendParamsHelpMessages(std::string& strUsage, bool debugHelp)
@@ -39,7 +39,7 @@ public:
 static CBaseMainParams mainParams;
 
 /**
- * Testnet (v3)
+ * Testnet
  */
 class CBaseTestNetParams : public CBaseChainParams
 {
@@ -47,24 +47,24 @@ public:
     CBaseTestNetParams()
     {
         nRPCPort = 19392;
-        strDataDir = "testnet3";
+        strDataDir = "testnet";
     }
 };
 static CBaseTestNetParams testNetParams;
 
 /**
- * Testnet for BIP100
+ * Testnet2
  */
-class CBaseBIP100NetParams : public CBaseChainParams
+class CBaseTestNet2Params : public CBaseChainParams
 {
 public:
-    CBaseBIP100NetParams()
+    CBaseTestNet2Params()
     {
         nRPCPort = 29392;
-        strDataDir = "testnet-bip100";
+        strDataDir = "testnet2";
     }
 };
-static CBaseBIP100NetParams bip100NetParams;
+static CBaseTestNet2Params testNet2Params;
 
 /*
  * Regression test
@@ -107,8 +107,8 @@ CBaseChainParams& BaseParams(const std::string& chain)
         return mainParams;
     else if (chain == CBaseChainParams::TESTNET)
         return testNetParams;
-    else if (chain == CBaseChainParams::BIP100NET)
-        return bip100NetParams;
+    else if (chain == CBaseChainParams::TESTNET2)
+        return testNet2Params;
     else if (chain == CBaseChainParams::REGTEST)
         return regTestParams;
     else
@@ -124,16 +124,16 @@ std::string ChainNameFromCommandLine()
 {
     bool fRegTest = GetBoolArg("-regtest", false);
     bool fTestNet = GetBoolArg("-testnet", false);
-    bool fBIP100Net = GetBoolArg("-testnet-bip100", false);
+    bool fTestNet2 = GetBoolArg("-testnet2", false);
 
-    if (fTestNet && fRegTest)
-        throw std::runtime_error("Invalid combination of -regtest and -testnet.");
+    if (int(fTestNet) + int(fRegTest) + int(fTestNet2) > 1)
+        throw std::runtime_error("Only one of (-regtest, -testnet, -testnet2) may be specified.");
     if (fRegTest)
         return CBaseChainParams::REGTEST;
     if (fTestNet)
         return CBaseChainParams::TESTNET;
-    if (fBIP100Net)
-        return CBaseChainParams::BIP100NET;
+    if (fTestNet2)
+        return CBaseChainParams::TESTNET2;
     return CBaseChainParams::MAIN;
 }
 
