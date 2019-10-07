@@ -215,11 +215,11 @@
         <translation>Shiriti i mjeteve</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Berthama Bitcoin</translation>
     </message>
     <message>
-        <source>&amp;About Bitcoin XT</source>
+        <source>&amp;About chain2</source>
         <translation>Rreth Berthames Bitkoin</translation>
     </message>
     <message>
@@ -354,7 +354,7 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Berthama Bitcoin</translation>
     </message>
     <message>
@@ -362,7 +362,7 @@
         <translation>versioni</translation>
     </message>
     <message>
-        <source>About Bitcoin XT</source>
+        <source>About chain2</source>
         <translation>Rreth Berthames Bitkoin</translation>
     </message>
     </context>
@@ -373,11 +373,11 @@
         <translation>Miresevini</translation>
     </message>
     <message>
-        <source>Welcome to Bitcoin XT.</source>
+        <source>Welcome to chain2.</source>
         <translation>Miresevini ne Berthamen Bitcoin</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Berthama Bitcoin</translation>
     </message>
     <message>
@@ -565,7 +565,7 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Berthama Bitcoin</translation>
     </message>
     <message>

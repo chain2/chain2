@@ -110,7 +110,7 @@ void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent)
 #if QT_VERSION >= 0x040700
     // We don't want translators to use own addresses in translations
     // and this is the only place, where this address is supplied.
-    widget->setPlaceholderText(QObject::tr("Enter a Bitcoin address (e.g. %1)").arg("ppu67kyzxl0ukp49np4fklrmga34cdd33hvcce6l2d"));
+    widget->setPlaceholderText(QObject::tr("Enter address (e.g. %1)").arg("ctwo:qpa90cz4rhtrzdcsaeayv739yugcadxyngnty67lah"));
 #endif
     widget->setValidator(
         new BitcoinAddressEntryValidator(bitcoinURIScheme().toStdString(), parent));
@@ -128,7 +128,7 @@ void setupAmountWidget(QLineEdit *widget, QWidget *parent)
 
 QString bitcoinURIScheme(const CChainParams &params) {
     if (!Opt().UseCashAddr()) {
-        return "bitcoincash";
+        return "ctwo";
     }
     return QString::fromStdString(params.CashAddrPrefix());
 }
@@ -920,9 +920,6 @@ QString formatServicesStr(quint64 mask)
             case NODE_THIN:
                 strList.append("THIN");
                 break;
-            case NODE_BITCOIN_CASH:
-                strList.append("CASH");
-                break;
             default:
                 strList.append(QString("%1[%2]").arg("UNKNOWN").arg(check));
             }
@@ -947,7 +944,7 @@ QString formatTimeOffset(int64_t nTimeOffset)
 
 QString uriPrefix()
 {
-    return "bitcoincash";
+    return "ctwo";
 }
 
 } // namespace GUIUtil

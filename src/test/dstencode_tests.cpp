@@ -20,9 +20,9 @@ BOOST_AUTO_TEST_CASE(test_addresses) {
     const CTxDestination dstScript = CScriptID(uint160(hash));
 
     std::string cashaddr_pubkey =
-        "bitcoincash:qpm2qsznhks23z7629mms6s4cwef74vcwvy22gdx6a";
+        "ctwo:qpm2qsznhks23z7629mms6s4cwef74vcwv3262c7tw";
     std::string cashaddr_script =
-        "bitcoincash:ppm2qsznhks23z7629mms6s4cwef74vcwvn0h829pq";
+        "ctwo:ppm2qsznhks23z7629mms6s4cwef74vcwvx089lasn";
     std::string base58_pubkey = "1BpEi6DfDAUFd7GtittLSdBeYJvcoaVggu";
     std::string base58_script = "3CWFddi6m4ndiGyKqzYvsFYagqDLPVMTzC";
 

@@ -227,7 +227,7 @@
         <translation>Abrir y url...</translation>
     </message>
     <message>
-        <source>Bitcoin XT client</source>
+        <source>chain2 client</source>
         <translation>cliente bitcoin core</translation>
     </message>
     <message>
@@ -235,7 +235,7 @@
         <translation>Cargando el index de bloques...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a address</source>
         <translation>Enviar monedas a una dirección bitcoin</translation>
     </message>
     <message>
@@ -275,7 +275,7 @@
         <translation>&amp;Mostrar/Ocultar</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <source>Sign messages with your addresses to prove you own them</source>
         <translation>Firmar un mensaje para provar que usted es dueño de esta dirección</translation>
     </message>
     <message>
@@ -295,7 +295,7 @@
         <translation>Barra de pestañas</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>bitcoin core</translation>
     </message>
     <message>
@@ -432,7 +432,7 @@
         <translation>La dirección introducida "%1" ya esta guardada en la libreta de direcciones.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address "%1" is not a valid address.</source>
         <translation>La dirección introducida "%1" no es una dirección Bitcoin valida.</translation>
     </message>
     <message>
@@ -454,7 +454,7 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>bitcoin core</translation>
     </message>
     <message>
@@ -473,7 +473,7 @@
         <translation>bienvenido</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>bitcoin core</translation>
     </message>
     <message>
@@ -880,7 +880,7 @@
         <translation>Firma</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
+        <source>Sign the message to prove you own this address</source>
         <translation>Firmar un mensjage para probar que usted es dueño de esta dirección</translation>
     </message>
     <message>
@@ -927,7 +927,7 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>bitcoin core</translation>
     </message>
     <message>

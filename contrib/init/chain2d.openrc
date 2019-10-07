@@ -1,0 +1,88 @@
+#!/sbin/runscript
+
+# backward compatibility for existing gentoo layout 
+#
+if [ -d "/var/lib/chain2/.chain2" ]; then
+	CHAIN2D_DEFAULT_DATADIR="/var/lib/chain2/.chain2"
+else
+	CHAIN2D_DEFAULT_DATADIR="/var/lib/chain2"
+fi
+
+CHAIN2D_CONFIGFILE=${CHAIN2D_CONFIGFILE:-/etc/chain2/bitcoin.conf}
+CHAIN2D_PIDDIR=${CHAIN2D_PIDDIR:-/var/run/chain2}
+CHAIN2D_PIDFILE=${CHAIN2D_PIDFILE:-${CHAIN2D_PIDDIR}/chain2d.pid}
+CHAIN2D_DATADIR=${CHAIN2D_DATADIR:-${CHAIN2D_DEFAULT_DATADIR}}
+CHAIN2D_USER=${CHAIN2D_USER:-${BITCOIN_USER:-bitcoin}}
+CHAIN2D_GROUP=${CHAIN2D_GROUP:-bitcoin}
+CHAIN2D_BIN=${CHAIN2D_BIN:-/usr/bin/chain2d}
+CHAIN2D_NICE=${CHAIN2D_NICE:-${NICELEVEL:-0}}
+CHAIN2D_OPTS="${CHAIN2D_OPTS:-${BITCOIN_OPTS}}"
+
+name="chain2 Daemon"
+description="Bitcoin cryptocurrency P2P network daemon"
+
+command="/usr/bin/chain2d"
+command_args="-pid=\"${CHAIN2D_PIDFILE}\" \
+		-conf=\"${CHAIN2D_CONFIGFILE}\" \
+		-datadir=\"${CHAIN2D_DATADIR}\" \
+		-daemon \
+		${CHAIN2D_OPTS}"
+
+required_files="${CHAIN2D_CONFIGFILE}"
+start_stop_daemon_args="-u ${CHAIN2D_USER} \
+			-N ${CHAIN2D_NICE} -w 2000"
+pidfile="${CHAIN2D_PIDFILE}"
+retry=60
+
+depend() {
+	need localmount net
+}
+
+# verify
+# 1) that the datadir exists and is writable (or create it)
+# 2) that a directory for the pid exists and is writable
+# 3) ownership and permissions on the config file
+start_pre() {
+	checkpath \
+	-d \
+	--mode 0750 \
+	--owner "${CHAIN2D_USER}:${CHAIN2D_GROUP}" \
+	"${CHAIN2D_DATADIR}"
+
+	checkpath \
+	-d \
+	--mode 0755 \
+	--owner "${CHAIN2D_USER}:${CHAIN2D_GROUP}" \
+	"${CHAIN2D_PIDDIR}"
+
+	checkpath -f \
+	-o ${CHAIN2D_USER}:${CHAIN2D_GROUP} \
+	-m 0660 \
+	${CHAIN2D_CONFIGFILE}
+
+	checkconfig || return 1
+}
+
+checkconfig()
+{
+	if ! grep -qs '^rpcpassword=' "${CHAIN2D_CONFIGFILE}" ; then
+		eerror ""
+		eerror "ERROR: You must set a secure rpcpassword to run chain2d."
+		eerror "The setting must appear in ${CHAIN2D_CONFIGFILE}"
+		eerror ""
+		eerror "This password is security critical to securing wallets "
+		eerror "and must not be the same as the rpcuser setting."
+		eerror "You can generate a suitable random password using the following"
+		eerror "command from the shell:"
+		eerror ""
+		eerror "bash -c 'tr -dc a-zA-Z0-9 < /dev/urandom | head -c32 && echo'"
+		eerror ""
+		eerror "It is also recommended that you also set alertnotify so you are "
+		eerror "notified of problems:"
+		eerror ""
+		eerror "ie: alertnotify=echo %%s | mail -s \"Bitcoin Alert\"" \
+			"admin@foo.com"
+		eerror ""
+		return 1
+	fi
+}

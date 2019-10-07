@@ -54,7 +54,7 @@ struct CurlWrapperImpl : public CurlWrapper {
         curl_easy_setopt(handle, CURLOPT_NOSIGNAL, 1L);
         // Follow redirects
         curl_easy_setopt(handle, CURLOPT_FOLLOWLOCATION, 1L);
-        curl_easy_setopt(handle, CURLOPT_USERAGENT, "Bitcoin XT");
+        curl_easy_setopt(handle, CURLOPT_USERAGENT, "chain2");
         // Don't use up sockets on the target website unnecessarily.
         curl_easy_setopt(handle, CURLOPT_FORBID_REUSE, 1L);
 

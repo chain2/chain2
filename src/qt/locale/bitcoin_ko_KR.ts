@@ -62,11 +62,11 @@
         <translation>받은 주소들</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>비트코인을 받는 계좌 주소입니다. 코인을 보내기 전에 잔고와 받는 주소를 항상 확인하세요.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>비트코인을 받을 수 있는 계좌 주소입니다. 매 거래마다 새로운 주소 사용을 권장합니다. </translation>
     </message>
     <message>
@@ -275,7 +275,7 @@
         <translation>URI&amp;열기...</translation>
     </message>
     <message>
-        <source>Bitcoin XT client</source>
+        <source>chain2 client</source>
         <translation>비트코인 코어 클라이언트</translation>
     </message>
     <message>
@@ -287,7 +287,7 @@
         <translation>디스크에서 블록 다시 색인중...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a address</source>
         <translation>비트코인 주소로 코인 전송</translation>
     </message>
     <message>
@@ -327,7 +327,7 @@
         <translation>받기(&amp;R)</translation>
     </message>
     <message>
-        <source>Show information about Bitcoin XT</source>
+        <source>Show information about chain2</source>
         <translation>비트코인 코어에 관한 정보입니다.</translation>
     </message>
     <message>
@@ -343,11 +343,11 @@
         <translation>소유 지갑 개인키 암호화</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <source>Sign messages with your addresses to prove you own them</source>
         <translation>지갑 주소가 본인 소유인지 증명하기 위해 비트코인 주소에 서명할 수 있습니다.</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified addresses</source>
         <translation>비트코인 주소의 전자 서명 확인을 위해 첨부된 메시지가 있을 경우 이를 검증할 수 있습니다.</translation>
     </message>
     <message>
@@ -367,7 +367,7 @@
         <translation>툴바 색인표</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>비트코인 코어</translation>
     </message>
     <message>
@@ -375,7 +375,7 @@
         <translation>지불 요청하기 (QR코드와 비트코인이 %1: URIs)</translation>
     </message>
     <message>
-        <source>&amp;About Bitcoin XT</source>
+        <source>&amp;About chain2</source>
         <translation>&amp;비트코인 코어 소개</translation>
     </message>
     <message>
@@ -395,7 +395,7 @@
         <translation>명령어-라인 옵션</translation>
     </message>
     <message>
-        <source>Show the Bitcoin XT help message to get a list with possible Bitcoin command-line options</source>
+        <source>Show the chain2 help message to get a list with possible Bitcoin command-line options</source>
         <translation>사용할 수 있는 비트코인 명령어 옵션 목록을 가져오기 위해 Bitcoin-Qt 도움말 메시지를 표시합니다.</translation>
     </message>
     <message>
@@ -692,7 +692,7 @@
         <translation>입력된 주소는"%1" 이미 주소록에 있습니다.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address "%1" is not a valid address.</source>
         <translation>입력한 "%1" 주소는 올바른 비트코인 주소가 아닙니다.</translation>
     </message>
     <message>
@@ -730,7 +730,7 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>비트코인 코어</translation>
     </message>
     <message>
@@ -742,7 +742,7 @@
         <translation>(%1-비트)</translation>
     </message>
     <message>
-        <source>About Bitcoin XT</source>
+        <source>About chain2</source>
         <translation>비트코인 코어 소개</translation>
     </message>
     <message>
@@ -765,15 +765,15 @@
         <translation>환영합니다</translation>
     </message>
     <message>
-        <source>Welcome to Bitcoin XT.</source>
+        <source>Welcome to chain2.</source>
         <translation>비트코인 코어에 오신것을 환영합니.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Bitcoin XT will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where chain2 will store its data.</source>
         <translation>프로그램이 처음으로 실행되고 있습니다. 비트코인 코어가 어디에 데이터를 저장할지 선택할 수 있습니다. </translation>
     </message>
     <message>
-        <source>Bitcoin XT will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>chain2 will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>비트코인 코어가 블럭체인의 복사본을 다운로드 저장합니다. 적어도 %1GB의 데이터가 이 폴더에 저장되며 시간이 경과할수록 점차 증가합니다. 그리고 지갑 또한 이 폴더에 저장됩니다. </translation>
     </message>
     <message>
@@ -785,7 +785,7 @@
         <translation>커스텀 데이터 폴더 사용:</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>비트코인 코어</translation>
     </message>
     <message>
@@ -1529,7 +1529,7 @@
         <translation>거래가 거부되었습니다. 몇몇 코인들이 지갑에서 이미 사용된 경우, 예를 들어 코인을 이미 사용한  wallet.dat를 복사해서 사용한 경우 지금 지갑에 기록이 안되있어 이런 일이 생길 수 있습니다.</translation>
     </message>
     <message>
-        <source>Warning: Invalid Bitcoin address</source>
+        <source>Warning: Invalid address</source>
         <translation>경고: 잘못된 비트코인주소입니다</translation>
     </message>
     <message>
@@ -1615,7 +1615,7 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Bitcoin XT is shutting down...</source>
+        <source>chain2 is shutting down...</source>
         <translation>비트코인코어가 닫아지고 있습니다</translation>
     </message>
     <message>
@@ -1662,7 +1662,7 @@
         <translation>현재 서명을 시스템 클립보드에 복사</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
+        <source>Sign the message to prove you own this address</source>
         <translation>여러분의 비트코인 주소를 증명하려면 메시지 서명하십시오</translation>
     </message>
     <message>
@@ -1682,7 +1682,7 @@
         <translation>메시지 검증(&amp;V)</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
+        <source>Verify the message to ensure it was signed with the specified address</source>
         <translation>정확한 비트코인주소가 입력됬는지 메시지를 확인하시오</translation>
     </message>
     <message>
@@ -1749,11 +1749,11 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>비트코인 코어</translation>
     </message>
     <message>
-        <source>The Bitcoin XT developers</source>
+        <source>The chain2 developers</source>
         <translation>비트코인코어 개발자들</translation>
     </message>
     <message>
@@ -2367,7 +2367,7 @@
         <translation>외부 blk000??.dat 파일에서 블록을 가져옵니다.</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Bitcoin XT is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. chain2 is probably already running.</source>
         <translation>데이터 디렉토리 %s에 락을 걸 수 없었습니다. 비트코인 코어가 이미 실행 중인 것으로 보입니다.</translation>
     </message>
     <message>

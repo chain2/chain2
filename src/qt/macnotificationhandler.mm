@@ -13,7 +13,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"org.bitcoincash.Bitcoin-XT";
+        return @"org.chain2.chain2";
     } else {
         return [self __bundleIdentifier];
     }

@@ -1,0 +1,27 @@
+# /etc/conf.d/chain2d: config file for /etc/init.d/chain2d
+
+# Config file location
+#CHAIN2D_CONFIGFILE="/etc/chain2/bitcoin.conf"
+
+# What directory to write pidfile to?  (created and owned by $CHAIN2D_USER)
+#CHAIN2D_PIDDIR="/var/run/chain2"
+
+# What filename to give the pidfile
+#CHAIN2D_PIDFILE="${CHAIN2_PIDDIR}/chain2d.pid"
+
+# Where to write chain2d data (be mindful that the blockchain is large)
+#CHAIN2D_DATADIR="/var/lib/chain2"
+
+# User and group to own chain2d process
+#CHAIN2D_USER="bitcoin"
+#CHAIN2D_GROUP="bitcoin"
+
+# Path to chain2d executable
+#CHAIN2D_BIN="/usr/bin/chain2d"
+
+# Nice value to run chain2d under
+#CHAIN2D_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+CHAIN2D_OPTS="-disablewallet"
+

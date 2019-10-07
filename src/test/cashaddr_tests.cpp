@@ -42,9 +42,9 @@ BOOST_AUTO_TEST_CASE(cashaddr_testvectors_valid) {
         "prefix:x64nx6hz",
         "PREFIX:X64NX6HZ",
         "p:gpf8m4h7",
-        "bitcoincash:qpzry9x8gf2tvdw0s3jn54khce6mua7lcw20ayyn",
-        "bchtest:testnetaddress4d6njnut",
-        "bchreg:555555555555555555555555555555555555555555555udxmlmrz",
+        "ctwo:qpzry9x8gf2tvdw0s3jn54khce6mua7lkejq3uxn",
+        "ctwotest:testnetaddressgz7rzrwn",
+        "ctworeg:5555555555555555555555555555555555555555555554ydg5fr6",
     };
     for (const std::string &str : CASES) {
         auto ret = CashAddrDecode(str);
@@ -63,8 +63,8 @@ BOOST_AUTO_TEST_CASE(cashaddr_testvectors_invalid) {
         "pref1x:6m8cxv73",
         "prefix:",
         ":u9wsx07j",
-        "bchreg:555555555555555555x55555555555555555555555555udxmlmrz",
-        "bchreg:555555555555555555555555555555551555555555555udxmlmrz",
+        "ctworeg:555555555555555555x555555555555555555555555554ydg5fr6",
+        "ctworeg:5555555555555555555555555555555515555555555554ydg5fr6",
         "pre:fix:x32nx6hz",
         "prefixx64nx6hz",
     };
@@ -91,13 +91,13 @@ BOOST_AUTO_TEST_CASE(cashaddr_rawencode) {
 
 BOOST_AUTO_TEST_CASE(cashaddr_testvectors_noprefix) {
     static const std::pair<std::string, std::string> CASES[] = {
-        {"bitcoincash", "qpzry9x8gf2tvdw0s3jn54khce6mua7lcw20ayyn"},
+        {"ctwo", "qpzry9x8gf2tvdw0s3jn54khce6mua7lkejq3uxn"},
         {"prefix", "x64nx6hz"},
         {"PREFIX", "X64NX6HZ"},
         {"p", "gpf8m4h7"},
-        {"bitcoincash", "qpzry9x8gf2tvdw0s3jn54khce6mua7lcw20ayyn"},
-        {"bchtest", "testnetaddress4d6njnut"},
-        {"bchreg", "555555555555555555555555555555555555555555555udxmlmrz"},
+        {"ctwo", "qpzry9x8gf2tvdw0s3jn54khce6mua7lkejq3uxn"},
+        {"ctwotest", "testnetaddressgz7rzrwn"},
+        {"ctworeg", "5555555555555555555555555555555555555555555554ydg5fr6"},
     };
 
     for (const std::pair<std::string, std::string> &c : CASES) {

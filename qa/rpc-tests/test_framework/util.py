@@ -700,18 +700,14 @@ def wait_for(criteria, what = None, timeout = 60):
         time.sleep(0.1 * i**2) # geometric back-off
         i += 1
 
-def get_relay_fee(node, txsize = 500, unit = "bch"):
+def get_relay_fee(node, txsize = 500, unit = "ctwo"):
     bchrate = node.getnetworkinfo()["relayfee"] * Decimal(txsize / 1000)
-    if (unit == "bch"):
+    if (unit == "ctwo"):
         return bchrate
     if (unit == "sat"):
         return int(bchrate * COIN)
     else:
         raise Exception("unsupported unit")
-
-def get_bip9_status(node, key):
-    info = node.getblockchaininfo()
-    return info['bip9_softforks'][key]
 
 # To maintain backward compat initially, the old bip9_softforks is left as-is,
 # and we introduce a new interface ('bip135_forks') for more fork data.

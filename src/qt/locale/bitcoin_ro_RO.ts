@@ -66,11 +66,11 @@
         <translation>Adresa de primire</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>Acestea sînt adresele dumneavoastră Bitcoin pentru efectuarea plăţilor. Verificaţi întotdeauna cantitatea şi adresa de primire înainte de a trimite monezi.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>Acestea sînt adresele dumneavoastră Bitcoin folosite pentru a primi plati. Este recomandat să folosiţi o adresă nouă de primire pentru fiecare tranzacţie în parte.</translation>
     </message>
     <message>
@@ -168,7 +168,7 @@
         <translation>Sigur doriţi să criptaţi portofelul dvs.?</translation>
     </message>
     <message>
-        <source>Bitcoin XT will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <source>chain2 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
         <translation>Bitcoin se va închide acum pentru a termina procesul de criptare. Ţineţi minte că criptarea portofelului nu vă poate proteja în totalitate de furtul monedelor de către programe dăunătoare care vă infectează calculatorul.</translation>
     </message>
     <message>
@@ -295,8 +295,8 @@
         <translation>Deschide &amp;URI...</translation>
     </message>
     <message>
-        <source>Bitcoin XT client</source>
-        <translation>Clientul Bitcoin XT</translation>
+        <source>chain2 client</source>
+        <translation>Clientul chain2</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -307,7 +307,7 @@
         <translation>Se reindexează blocurile pe disc...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a address</source>
         <translation>Trimite monede către o adresă Bitcoin</translation>
     </message>
     <message>
@@ -347,8 +347,8 @@
         <translation>P&amp;rimeşte</translation>
     </message>
     <message>
-        <source>Show information about Bitcoin XT</source>
-        <translation>Arată informaţii despre Bitcoin XT</translation>
+        <source>Show information about chain2</source>
+        <translation>Arată informaţii despre chain2</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
@@ -363,11 +363,11 @@
         <translation>Criptează cheile private ale portofelului dvs.</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <source>Sign messages with your addresses to prove you own them</source>
         <translation>Semnaţi mesaje cu adresa dvs. Bitcoin pentru a dovedi că vă aparţin</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified addresses</source>
         <translation>Verificaţi mesaje pentru a vă asigura că au fost semnate cu adresa Bitcoin specificată</translation>
     </message>
     <message>
@@ -387,7 +387,7 @@
         <translation>Bara de unelte</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Nucleul Bitcoin</translation>
     </message>
     <message>
@@ -395,11 +395,11 @@
         <translation>Cereţi plăţi (generează coduri QR şi %1-uri: URls)</translation>
     </message>
     <message>
-        <source>&amp;About Bitcoin XT</source>
+        <source>&amp;About chain2</source>
         <translation>&amp;Despre Nucleul Bitcoin</translation>
     </message>
     <message>
-        <source>Modify configuration options for Bitcoin XT</source>
+        <source>Modify configuration options for chain2</source>
         <translation>Modifică opţiunile de configurare pentru Bitcoin</translation>
     </message>
     <message>
@@ -419,8 +419,8 @@
         <translation>Opţiuni linie de &amp;comandă</translation>
     </message>
     <message>
-        <source>Show the Bitcoin XT help message to get a list with possible Bitcoin command-line options</source>
-        <translation>Arată mesajul de ajutor Bitcoin XT pentru a obţine o listă cu opţiunile posibile de linii de comandă Bitcoin</translation>
+        <source>Show the chain2 help message to get a list with possible Bitcoin command-line options</source>
+        <translation>Arată mesajul de ajutor chain2 pentru a obţine o listă cu opţiunile posibile de linii de comandă Bitcoin</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
@@ -798,7 +798,7 @@
         <translation>Adresa introdusă "%1" se află deja în lista de adrese.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address "%1" is not a valid address.</source>
         <translation>Adresa introdusă "%1" nu este o adresă bitcoin validă.</translation>
     </message>
     <message>
@@ -836,7 +836,7 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Nucleul Bitcoin</translation>
     </message>
     <message>
@@ -848,7 +848,7 @@
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Bitcoin XT</source>
+        <source>About chain2</source>
         <translation>Despre Nucleul Bitcoin</translation>
     </message>
     <message>
@@ -871,11 +871,11 @@
         <translation>Bun venit</translation>
     </message>
     <message>
-        <source>Welcome to Bitcoin XT.</source>
+        <source>Welcome to chain2.</source>
         <translation>Bine aţi venit la Nucleul Bitcoin.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Bitcoin XT will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where chain2 will store its data.</source>
         <translation>Dacă aceasta este prima dată cînd programul este lansat, puteţi alege unde Nucleul Bitcoin va stoca datele.</translation>
     </message>
     <message>
@@ -887,7 +887,7 @@
         <translation>Foloseşte un dosar de date personalizat:</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Nucleul Bitcoin</translation>
     </message>
     <message>
@@ -969,7 +969,7 @@
         <translation>Minimizează fereastra în locul părăsirii programului în momentul închiderii ferestrei. Cînd acestă opţiune e activă, aplicaţia se va opri doar în momentul selectării comenzii 'Închide aplicaţia' din menu.</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting Bitcoin XT.</source>
+        <source>The user interface language can be set here. This setting will take effect after restarting chain2.</source>
         <translation>Limba interfeţei utilizatorului poate fi setată aici. Această setare va avea efect după repornirea Nucleului Bitcoin.</translation>
     </message>
     <message>
@@ -997,7 +997,7 @@
         <translation>Reţea</translation>
     </message>
     <message>
-        <source>&amp;Start Bitcoin XT on system login</source>
+        <source>&amp;Start chain2 on system login</source>
         <translation>Porneşte Nucleul Bitcoin la pornirea sistemului</translation>
     </message>
     <message>
@@ -1239,7 +1239,7 @@
         <translation>URL-ul cererii de plată preluat nu este valid: %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid address or malformed URI parameters.</source>
         <translation>URI nu poate fi analizat! Acest lucru poate fi cauzat de o adresă Bitcoin nevalidă sau parametri URI deformaţi.</translation>
     </message>
     <message>
@@ -1313,7 +1313,7 @@
         <translation>Cantitate</translation>
     </message>
     <message>
-        <source>Enter a Bitcoin address (e.g. %1)</source>
+        <source>Enter address (e.g. %1)</source>
         <translation>Introduceţi o adresă Bitcoin (de exemplu %1)</translation>
     </message>
     <message>
@@ -1523,7 +1523,7 @@
         <translation>Curăţă consola</translation>
     </message>
     <message>
-        <source>Welcome to the Bitcoin XT RPC console.</source>
+        <source>Welcome to the chain2 RPC console.</source>
         <translation>Bun venit la consola Nucleului Bitcoin RPC.</translation>
     </message>
     <message>
@@ -1959,7 +1959,7 @@
         <translation>Adresa destinatarului nu este validă, vă rugăm să o verificaţi.</translation>
     </message>
     <message>
-        <source>Warning: Invalid Bitcoin address</source>
+        <source>Warning: Invalid address</source>
         <translation>Atenţie: Adresa bitcoin nevalidă!</translation>
     </message>
     <message>
@@ -2010,7 +2010,7 @@
         <translation>Aceasta este o tranzacţie normală.</translation>
     </message>
     <message>
-        <source>The Bitcoin address to send the payment to</source>
+        <source>The address to send the payment to</source>
         <translation>Adresa bitcoin către care se face plata</translation>
     </message>
     <message>
@@ -2053,7 +2053,7 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Bitcoin XT is shutting down...</source>
+        <source>chain2 is shutting down...</source>
         <translation>Nucleul Bitcoin se închide...</translation>
     </message>
     <message>
@@ -2072,7 +2072,7 @@
         <translation>&amp;Semnează mesaj</translation>
     </message>
     <message>
-        <source>The Bitcoin address to sign the message with</source>
+        <source>The address to sign the message with</source>
         <translation>Adresa cu care semnaţi mesajul</translation>
     </message>
     <message>
@@ -2104,7 +2104,7 @@
         <translation>Copiază semnatura curentă în clipboard-ul sistemului</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
+        <source>Sign the message to prove you own this address</source>
         <translation>Semnează mesajul pentru a dovedi ca deţineţi acestă adresă Bitcoin</translation>
     </message>
     <message>
@@ -2124,11 +2124,11 @@
         <translation>&amp;Verifică mesaj</translation>
     </message>
     <message>
-        <source>The Bitcoin address the message was signed with</source>
+        <source>The address the message was signed with</source>
         <translation>Introduceţi o adresă Bitcoin</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
+        <source>Verify the message to ensure it was signed with the specified address</source>
         <translation>Verificaţi mesajul pentru a vă asigura că a fost semnat cu adresa Bitcoin specificată</translation>
     </message>
     <message>
@@ -2195,11 +2195,11 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Nucleul Bitcoin</translation>
     </message>
     <message>
-        <source>The Bitcoin XT developers</source>
+        <source>The chain2 developers</source>
         <translation>Dezvoltatorii Nucleului Bitcoin</translation>
     </message>
     <message>
@@ -2725,7 +2725,7 @@
         <translation>Aceasta este o versiune de test preliminară - vă asumaţi riscul folosind-o - nu folosiţi pentru minerit sau aplicaţiile comercianţilor</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Bitcoin XT is probably already running.</source>
+        <source>Unable to bind to %s on this computer. chain2 is probably already running.</source>
         <translation>Nu se poate lega la %s pe acest calculator. Nucleul Bitcoin probabil deja rulează.</translation>
     </message>
     <message>
@@ -2885,7 +2885,7 @@
         <translation>A apărut o eroare la setarea adresei RPC %s portul %u pentru ascultare: %s</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Bitcoin XT is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. chain2 is probably already running.</source>
         <translation>Nu se poate obţine blocarea folderului cu date %s. Nucleul Bitcoin probabil deja rulează.</translation>
     </message>
     <message>
@@ -2913,7 +2913,7 @@
         <translation>Conectare prin proxy SOCKS5</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Bitcoin XT Developers</source>
+        <source>Copyright (C) 2009-%i The chain2 Developers</source>
         <translation>Copyright (C) 2009-%i Dezvoltatorii Bitcoin</translation>
     </message>
     <message>
@@ -2933,7 +2933,7 @@
         <translation>Informaţie</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Bitcoin XT is shutting down.</source>
+        <source>Initialization sanity check failed. chain2 is shutting down.</source>
         <translation>Nu s-a reuşit iniţierea verificării sănătăţii. Nucleul Bitcoin se opreşte.</translation>
     </message>
     <message>
@@ -3041,7 +3041,7 @@
         <translation>Utilizator pentru conexiunile JSON-RPC</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Bitcoin XT to complete</source>
+        <source>Wallet needed to be rewritten: restart chain2 to complete</source>
         <translation>Portofelul necesită rescrierea: reporniţi Nucleul Bitcoin pentru completare</translation>
     </message>
     <message>

@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+#  chain2d The chain2 server.
+#
+#
+# chkconfig: 345 80 20
+# description: chain2d
+# processname: chain2d
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/chain2d, see below
+if [ -f /etc/sysconfig/chain2d ]; then
+        . /etc/sysconfig/chain2d
+fi
+
+RETVAL=0
+
+prog=chain2d
+# you can override the lockfile via CHAIN2D_LOCKFILE in /etc/sysconfig/chain2d
+lockfile=${CHAIN2D_LOCKFILE-/var/lock/subsys/chain2d}
+
+# chain2d defaults to /usr/bin/chain2d, override with CHAIN2D_BIN
+chain2d=${CHAIN2D_BIN-/usr/bin/chain2d}
+
+# chain2d opts default to -disablewallet, override with CHAIN2D_OPTS
+chain2d_opts=${CHAIN2D_OPTS--disablewallet}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $chain2d $chain2d_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac

@@ -66,11 +66,11 @@
         <translation>收款位址</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>這些是你要付款過去的位元幣位址。在付錢之前，務必要檢查金額和收款位址是否正確。</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>這些是你用來收款的位元幣位址。建議在每次交易時，都使用一個新的收款位址。</translation>
     </message>
     <message>
@@ -168,7 +168,7 @@
         <translation>你確定要把錢包加密嗎？</translation>
     </message>
     <message>
-        <source>Bitcoin XT will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <source>chain2 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
         <translation>位元幣核心現在要關閉，好完成加密程序。請注意，加密錢包不能完全防止入侵你的電腦的惡意程式偷取位元幣。</translation>
     </message>
     <message>
@@ -295,7 +295,7 @@
         <translation>開啓 URI...</translation>
     </message>
     <message>
-        <source>Bitcoin XT client</source>
+        <source>chain2 client</source>
         <translation>位元幣核心客戶端軟體</translation>
     </message>
     <message>
@@ -307,7 +307,7 @@
         <translation>正在為磁碟裡的區塊重建索引...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a address</source>
         <translation>付錢給一個位元幣位址</translation>
     </message>
     <message>
@@ -347,7 +347,7 @@
         <translation>已接收</translation>
     </message>
     <message>
-        <source>Show information about Bitcoin XT</source>
+        <source>Show information about chain2</source>
         <translation>顯示位元幣核心的相關資訊</translation>
     </message>
     <message>
@@ -363,11 +363,11 @@
         <translation>把錢包中的密鑰加密</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <source>Sign messages with your addresses to prove you own them</source>
         <translation>用位元幣位址簽署訊息來證明位址是你的</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified addresses</source>
         <translation>驗證訊息是用來確定訊息是用指定的位元幣位址簽署的</translation>
     </message>
     <message>
@@ -387,7 +387,7 @@
         <translation>分頁工具列</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>位元幣核心</translation>
     </message>
     <message>
@@ -395,11 +395,11 @@
         <translation>要求付款(產生 QR Code 和 %1 付款協議的資源識別碼: URI)</translation>
     </message>
     <message>
-        <source>&amp;About Bitcoin XT</source>
+        <source>&amp;About chain2</source>
         <translation>關於位元幣核心</translation>
     </message>
     <message>
-        <source>Modify configuration options for Bitcoin XT</source>
+        <source>Modify configuration options for chain2</source>
         <translation>修改位元幣核心的設定選項</translation>
     </message>
     <message>
@@ -419,7 +419,7 @@
         <translation>命令列選項</translation>
     </message>
     <message>
-        <source>Show the Bitcoin XT help message to get a list with possible Bitcoin command-line options</source>
+        <source>Show the chain2 help message to get a list with possible Bitcoin command-line options</source>
         <translation>顯示位元幣核心的說明訊息，來取得可用命令列選項的列表</translation>
     </message>
     <message numerus="yes">
@@ -806,7 +806,7 @@
         <translation>輸入的位址 %1 在位址簿中已經有了。</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address "%1" is not a valid address.</source>
         <translation>輸入的位址 %1 並不是有效的位元幣位址。</translation>
     </message>
     <message>
@@ -844,7 +844,7 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>位元幣核心</translation>
     </message>
     <message>
@@ -856,7 +856,7 @@
         <translation>(%1 位元)</translation>
     </message>
     <message>
-        <source>About Bitcoin XT</source>
+        <source>About chain2</source>
         <translation>關於位元幣核心</translation>
     </message>
     <message>
@@ -879,15 +879,15 @@
         <translation>歡迎</translation>
     </message>
     <message>
-        <source>Welcome to Bitcoin XT.</source>
+        <source>Welcome to chain2.</source>
         <translation>歡迎使用位元幣核心</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Bitcoin XT will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where chain2 will store its data.</source>
         <translation>因為這是程式第一次啓動，你可以選擇位元幣核心儲存資料的地方。</translation>
     </message>
     <message>
-        <source>Bitcoin XT will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>chain2 will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>位元幣核心會下載並儲存一份位元幣區塊鏈的拷貝。至少有 %1GB 的資料會儲存到這個目錄中，並且還會持續增長。另外錢包資料也會儲存在這個目錄。</translation>
     </message>
     <message>
@@ -899,7 +899,7 @@
         <translation>使用自定的資料目錄:</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>位元幣核心</translation>
     </message>
     <message>
@@ -981,7 +981,7 @@
         <translation>當視窗關閉時，把應用程式縮到最小，而不是結束。當勾選這個選項時，只能夠用選單中的結束來關掉應用程式。</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting Bitcoin XT.</source>
+        <source>The user interface language can be set here. This setting will take effect after restarting chain2.</source>
         <translation>可以在這裡設定使用者介面的語言。這個設定在重啓位元幣核心後才會生效。</translation>
     </message>
     <message>
@@ -1009,11 +1009,11 @@
         <translation>網路</translation>
     </message>
     <message>
-        <source>Automatically start Bitcoin XT after logging in to the system.</source>
+        <source>Automatically start chain2 after logging in to the system.</source>
         <translation>在登入系統後自動啓動位元幣核心。</translation>
     </message>
     <message>
-        <source>&amp;Start Bitcoin XT on system login</source>
+        <source>&amp;Start chain2 on system login</source>
         <translation>系統登入時啟動位元幣核心</translation>
     </message>
     <message>
@@ -1255,7 +1255,7 @@
         <translation>取得付款要求的 URL 無效: %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid address or malformed URI parameters.</source>
         <translation>沒辦法解析 URI 位址！可能是因為位元幣位址無效，或是 URI 參數格式錯誤。</translation>
     </message>
     <message>
@@ -1333,7 +1333,7 @@
         <translation>金額</translation>
     </message>
     <message>
-        <source>Enter a Bitcoin address (e.g. %1)</source>
+        <source>Enter address (e.g. %1)</source>
         <translation>輸入位元幣位址 (比如說 %1)</translation>
     </message>
     <message>
@@ -1443,7 +1443,7 @@
         <translation>目前區塊數</translation>
     </message>
     <message>
-        <source>Open the Bitcoin XT debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <source>Open the chain2 debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation>從目前的資料目錄下開啓位元幣核心的除錯紀錄檔。當紀錄檔很大時，可能會花好幾秒的時間。</translation>
     </message>
     <message>
@@ -1563,7 +1563,7 @@
         <translation>清主控台</translation>
     </message>
     <message>
-        <source>Welcome to the Bitcoin XT RPC console.</source>
+        <source>Welcome to the chain2 RPC console.</source>
         <translation>歡迎使用位元幣核心 RPC 主控台。</translation>
     </message>
     <message>
@@ -2027,7 +2027,7 @@
         <translation>發現有重複的位址: 每個位址只能出現一次。</translation>
     </message>
     <message>
-        <source>Warning: Invalid Bitcoin address</source>
+        <source>Warning: Invalid address</source>
         <translation>警告: 位元幣位址無效</translation>
     </message>
     <message>
@@ -2078,7 +2078,7 @@
         <translation>這是一筆正常的付款。</translation>
     </message>
     <message>
-        <source>The Bitcoin address to send the payment to</source>
+        <source>The address to send the payment to</source>
         <translation>接收付款的位元幣位址</translation>
     </message>
     <message>
@@ -2137,7 +2137,7 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Bitcoin XT is shutting down...</source>
+        <source>chain2 is shutting down...</source>
         <translation>位元幣核心正在關閉中...</translation>
     </message>
     <message>
@@ -2160,7 +2160,7 @@
         <translation>你可以用自己的位址簽署訊息或合約，來證明你可以從該位址收款。但是請小心，不要簽署語意含糊不清，或隨機產生的內容，因為釣魚式詐騙可能會用騙你簽署的手法來冒充是你。只有在語句中的細節你都同意時才簽署。</translation>
     </message>
     <message>
-        <source>The Bitcoin address to sign the message with</source>
+        <source>The address to sign the message with</source>
         <translation>用來簽署訊息的位元幣位址</translation>
     </message>
     <message>
@@ -2192,7 +2192,7 @@
         <translation>複製目前的簽章到系統剪貼簿</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
+        <source>Sign the message to prove you own this address</source>
         <translation>簽署這個訊息來證明這個位元幣位址是你的</translation>
     </message>
     <message>
@@ -2216,11 +2216,11 @@
         <translation>請在下面輸入收款人的位址，訊息(請確定完整複製了所包含的換行，空格，跳位符號等等)，以及簽章，來驗證這個訊息。請小心，除了訊息內容以外，不要對簽章本身過度解讀，以避免被用「中間人攻擊法」詐騙。請注意，通過驗證的簽章只能證明簽章人確實可以從該位址收款，不能證明任何交易中的付款人身份！</translation>
     </message>
     <message>
-        <source>The Bitcoin address the message was signed with</source>
+        <source>The address the message was signed with</source>
         <translation>簽署這個訊息的位元幣位址</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
+        <source>Verify the message to ensure it was signed with the specified address</source>
         <translation>驗證這個訊息來確定是用指定的位元幣位址簽署的</translation>
     </message>
     <message>
@@ -2287,11 +2287,11 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>位元幣核心</translation>
     </message>
     <message>
-        <source>The Bitcoin XT developers</source>
+        <source>The chain2 developers</source>
         <translation>位元幣核心開發人員</translation>
     </message>
     <message>
@@ -2842,7 +2842,7 @@
         <translation>這是個還沒發表的測試版本 - 使用請自負風險 - 請不要用來開採或商業應用</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Bitcoin XT is probably already running.</source>
+        <source>Unable to bind to %s on this computer. chain2 is probably already running.</source>
         <translation>沒辦法繫結在這台電腦上的 %s 。位元幣核心可能已經在執行了。</translation>
     </message>
     <message>
@@ -3034,7 +3034,7 @@
         <translation>和指定的位址繫結以聽候 JSON-RPC 連線。IPv6 請用 [主機]:通訊埠 這種格式。這個選項可以設定多次。(預設值: 跟所有網路界面上的位址繫結)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Bitcoin XT is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. chain2 is probably already running.</source>
         <translation>沒辦法鎖定資料目錄 %s。位元幣核心可能已經在執行了。</translation>
     </message>
     <message>
@@ -3130,7 +3130,7 @@ rpcpassword=%s
         <translation>警告: -maxtxfee 設定了很高的金額！這可是一次交易就有可能付出的最高手續費。</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Bitcoin XT will not work properly.</source>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong chain2 will not work properly.</source>
         <translation>警告: 請檢查電腦日期和時間是否正確！位元幣核心沒辦法在時鐘不準的情況下正常運作。</translation>
     </message>
     <message>
@@ -3170,7 +3170,7 @@ rpcpassword=%s
         <translation>透過 SOCKS5 代理伺服器連線</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Bitcoin XT Developers</source>
+        <source>Copyright (C) 2009-%i The chain2 Developers</source>
         <translation>版權為位元幣核心開發人員自西元 2009 至 %i 年起所有</translation>
     </message>
     <message>
@@ -3178,7 +3178,7 @@ rpcpassword=%s
         <translation>沒辦法解析 -rpcbind 參數值 %s 為網路位址</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Bitcoin XT</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of chain2</source>
         <translation>載入 wallet.dat 檔案時發生錯誤: 這個錢包需要新版的位元幣核心</translation>
     </message>
     <message>
@@ -3198,7 +3198,7 @@ rpcpassword=%s
         <translation>資訊</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Bitcoin XT is shutting down.</source>
+        <source>Initialization sanity check failed. chain2 is shutting down.</source>
         <translation>初始化時的基本檢查失敗了。位元幣核心就要關閉了。</translation>
     </message>
     <message>
@@ -3326,7 +3326,7 @@ rpcpassword=%s
         <translation>JSON-RPC 連線使用者名稱</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Bitcoin XT to complete</source>
+        <source>Wallet needed to be rewritten: restart chain2 to complete</source>
         <translation>錢包需要重寫: 請重新啓動位元幣核心來完成</translation>
     </message>
     <message>

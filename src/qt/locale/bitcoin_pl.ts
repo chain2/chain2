@@ -66,11 +66,11 @@
         <translation>Adres odbiorczy</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>Tutaj znajdują się adresy Bitcoin na które wysyłasz płatności. Zawsze sprawdzaj ilość i adres odbiorcy przed wysyłką monet.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>To twoje adresy Bitcoin, na które otrzymujesz płatności. Zaleca się używanie nowych adresów odbiorczych dla każdej transakcji.</translation>
     </message>
     <message>
@@ -287,7 +287,7 @@
         <translation>Otwórz URI...</translation>
     </message>
     <message>
-        <source>Bitcoin XT client</source>
+        <source>chain2 client</source>
         <translation>Rdzeń klienta Bitcoin</translation>
     </message>
     <message>
@@ -299,7 +299,7 @@
         <translation>Ponowne indeksowanie bloków na dysku...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a address</source>
         <translation>Wyślij monety na adres Bitcoin</translation>
     </message>
     <message>
@@ -339,7 +339,7 @@
         <translation>Odbie&amp;rz</translation>
     </message>
     <message>
-        <source>Show information about Bitcoin XT</source>
+        <source>Show information about chain2</source>
         <translation>Pokaż informacje o Rdzeniu Bitcoin</translation>
     </message>
     <message>
@@ -355,11 +355,11 @@
         <translation>Szyfruj klucze prywatne, które są w Twoim portfelu</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <source>Sign messages with your addresses to prove you own them</source>
         <translation>Podpisz wiadomości swoim adresem aby udowodnić jego posiadanie</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified addresses</source>
         <translation>Zweryfikuj wiadomość,  aby upewnić się, że została podpisana podanym adresem Bitcoin.</translation>
     </message>
     <message>
@@ -379,7 +379,7 @@
         <translation>Pasek zakładek</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Rdzeń Bitcoin</translation>
     </message>
     <message>
@@ -387,8 +387,8 @@
         <translation>Żądaj płatności (generuje kod QR oraz %1 URI)</translation>
     </message>
     <message>
-        <source>&amp;About Bitcoin XT</source>
-        <translation>&amp;O Bitcoin XT</translation>
+        <source>&amp;About chain2</source>
+        <translation>&amp;O chain2</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -407,7 +407,7 @@
         <translation>&amp;Opcje linii komend</translation>
     </message>
     <message>
-        <source>Show the Bitcoin XT help message to get a list with possible Bitcoin command-line options</source>
+        <source>Show the chain2 help message to get a list with possible Bitcoin command-line options</source>
         <translation>Pokaż pomoc Rdzenia Bitcoin, aby zobaczyć listę wszystkich opcji linii poleceń</translation>
     </message>
     <message>
@@ -728,7 +728,7 @@
         <translation>Wprowadzony adres "%1" już istnieje w książce adresowej.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address "%1" is not a valid address.</source>
         <translation>Wprowadzony adres "%1" nie jest poprawnym adresem Bitcoin.</translation>
     </message>
     <message>
@@ -766,7 +766,7 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Rdzeń Bitcoin</translation>
     </message>
     <message>
@@ -778,8 +778,8 @@
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Bitcoin XT</source>
-        <translation>O Bitcoin XT</translation>
+        <source>About chain2</source>
+        <translation>O chain2</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -801,15 +801,15 @@
         <translation>Witaj</translation>
     </message>
     <message>
-        <source>Welcome to Bitcoin XT.</source>
-        <translation>Witam w Bitcoin XT</translation>
+        <source>Welcome to chain2.</source>
+        <translation>Witam w chain2</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Bitcoin XT will store its data.</source>
-        <translation>Ponieważ jest to pierwsze uruchomienie programu, możesz wybrać gdzie Bitcoin XT będzie przechowywał swoje dane.</translation>
+        <source>As this is the first time the program is launched, you can choose where chain2 will store its data.</source>
+        <translation>Ponieważ jest to pierwsze uruchomienie programu, możesz wybrać gdzie chain2 będzie przechowywał swoje dane.</translation>
     </message>
     <message>
-        <source>Bitcoin XT will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>chain2 will download and store a copy of the Bitcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>Program pobierze i będzie przechowywał kopię łańcucha bloków Bitcoin. W wybranym katalogu musi być przynajmniej %1GB miejsca, a z czasem ilość danych będzie rosła. Portfel będzie przechowywany w tym samym katalogu.</translation>
     </message>
     <message>
@@ -821,7 +821,7 @@
         <translation>Użyj wybranego folderu dla danych</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Rdzeń Bitcoin</translation>
     </message>
     <message>
@@ -1171,7 +1171,7 @@
         <translation>Kwota</translation>
     </message>
     <message>
-        <source>Enter a Bitcoin address (e.g. %1)</source>
+        <source>Enter address (e.g. %1)</source>
         <translation>Wprowadź adres Bitcoin (np. %1)</translation>
     </message>
     <message>
@@ -1785,7 +1785,7 @@
         <translation>Płac tylko minimalna opłatę %1</translation>
     </message>
     <message>
-        <source>Warning: Invalid Bitcoin address</source>
+        <source>Warning: Invalid address</source>
         <translation>Ostrzeżenie: nieprawidłowy adres Bitcoin</translation>
     </message>
     <message>
@@ -1871,8 +1871,8 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Bitcoin XT is shutting down...</source>
-        <translation>Bitcoin XT się zamyka...</translation>
+        <source>chain2 is shutting down...</source>
+        <translation>chain2 się zamyka...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -1918,7 +1918,7 @@
         <translation>Kopiuje aktualny podpis do schowka systemowego</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
+        <source>Sign the message to prove you own this address</source>
         <translation>Podpisz wiadomość aby dowieść, że ten adres jest twój</translation>
     </message>
     <message>
@@ -1938,7 +1938,7 @@
         <translation>&amp;Zweryfikuj wiadomość</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
+        <source>Verify the message to ensure it was signed with the specified address</source>
         <translation>Zweryfikuj wiadomość,  aby upewnić się, że została podpisana odpowiednim adresem Bitcoin.</translation>
     </message>
     <message>
@@ -2005,12 +2005,12 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Rdzeń Bitcoin</translation>
     </message>
     <message>
-        <source>The Bitcoin XT developers</source>
-        <translation>Deweloperzy Bitcoin XT</translation>
+        <source>The chain2 developers</source>
+        <translation>Deweloperzy chain2</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -2499,8 +2499,8 @@
         <translation>To jest testowa wersja - używaj na własne ryzyko - nie używaj do wykopywania oraz przy aplikacjach kupieckich</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Bitcoin XT is probably already running.</source>
-        <translation>Nie można przywiązać z portem %s na tym komputerze. Bitcoin XT prawdopodobnie już działa.</translation>
+        <source>Unable to bind to %s on this computer. chain2 is probably already running.</source>
+        <translation>Nie można przywiązać z portem %s na tym komputerze. chain2 prawdopodobnie już działa.</translation>
     </message>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
@@ -2659,7 +2659,7 @@
         <translation>Napotkano błąd podczas ustawiania adres RPC %s port %u dla nasłuchiwania: %s</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Bitcoin XT is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. chain2 is probably already running.</source>
         <translation>Nie można uzyskać blokady na katalogu z danymi %s. Rdzeń Bitcoin najprawdopodobniej jest już uruchomiony.</translation>
     </message>
     <message>
@@ -2707,12 +2707,12 @@
         <translation>Połącz przez SOCKS5 proxy</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Bitcoin XT Developers</source>
-        <translation>Copyright (C) 2009-%i The Bitcoin XT Developers</translation>
+        <source>Copyright (C) 2009-%i The chain2 Developers</source>
+        <translation>Copyright (C) 2009-%i The chain2 Developers</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Bitcoin XT</source>
-        <translation>Błąd ładowania wallet.dat: Portfel wymaga nowszej wersji Bitcoin XT</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of chain2</source>
+        <translation>Błąd ładowania wallet.dat: Portfel wymaga nowszej wersji chain2</translation>
     </message>
     <message>
         <source>Error reading from database, shutting down.</source>
@@ -2731,8 +2731,8 @@
         <translation>Informacja</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Bitcoin XT is shutting down.</source>
-        <translation>Wstępna kontrola poprawności nie powiodła się. Bitcoin XT wyłącza się.</translation>
+        <source>Initialization sanity check failed. chain2 is shutting down.</source>
+        <translation>Wstępna kontrola poprawności nie powiodła się. chain2 wyłącza się.</translation>
     </message>
     <message>
         <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s'</source>
@@ -2831,7 +2831,7 @@
         <translation>Nazwa użytkownika dla połączeń JSON-RPC</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Bitcoin XT to complete</source>
+        <source>Wallet needed to be rewritten: restart chain2 to complete</source>
         <translation>Portfel wymaga przepisania: zrestartuj Bitcoina aby ukończyć</translation>
     </message>
     <message>

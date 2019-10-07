@@ -247,8 +247,8 @@
         <translation>&amp;Gaunami adresai...</translation>
     </message>
     <message>
-        <source>Bitcoin XT client</source>
-        <translation>Bitcoin XT klientas</translation>
+        <source>chain2 client</source>
+        <translation>chain2 klientas</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -259,7 +259,7 @@
         <translation>Blokai iš naujo indeksuojami...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a address</source>
         <translation>Siųsti monetas Bitcoin adresui</translation>
     </message>
     <message>
@@ -299,8 +299,8 @@
         <translation>&amp;Gauti</translation>
     </message>
     <message>
-        <source>Show information about Bitcoin XT</source>
-        <translation>Rodyti informaciją apie Bitcoin XT</translation>
+        <source>Show information about chain2</source>
+        <translation>Rodyti informaciją apie chain2</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
@@ -331,12 +331,12 @@
         <translation>Kortelių įrankinė</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Bitcoin branduolys</translation>
     </message>
     <message>
-        <source>&amp;About Bitcoin XT</source>
-        <translation>&amp;Apie Bitcoin XT</translation>
+        <source>&amp;About chain2</source>
+        <translation>&amp;Apie chain2</translation>
     </message>
     <message>
         <source>Error</source>
@@ -564,7 +564,7 @@
         <translation>Įvestas adresas „%1“ jau yra adresų knygelėje.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address "%1" is not a valid address.</source>
         <translation>Įvestas adresas „%1“ nėra galiojantis Bitcoin adresas.</translation>
     </message>
     <message>
@@ -586,7 +586,7 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Bitcoin branduolys</translation>
     </message>
     <message>
@@ -594,8 +594,8 @@
         <translation>versija</translation>
     </message>
     <message>
-        <source>About Bitcoin XT</source>
-        <translation>Apie Bitcoin XT</translation>
+        <source>About chain2</source>
+        <translation>Apie chain2</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -617,11 +617,11 @@
         <translation>Sveiki</translation>
     </message>
     <message>
-        <source>Welcome to Bitcoin XT.</source>
-        <translation>Sveiki atvykę į Bitcoin XT.</translation>
+        <source>Welcome to chain2.</source>
+        <translation>Sveiki atvykę į chain2.</translation>
     </message>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Bitcoin branduolys</translation>
     </message>
     <message>
@@ -1098,7 +1098,7 @@
         <translation>Įveskite pranešimą, kurį norite pasirašyti čia</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
+        <source>Sign the message to prove you own this address</source>
         <translation>Registruotis žinute įrodymuii, kad turite šį adresą</translation>
     </message>
     <message>
@@ -1114,7 +1114,7 @@
         <translation>&amp;Patikrinti žinutę</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
+        <source>Verify the message to ensure it was signed with the specified address</source>
         <translation>Patikrinkite žinutę, jog įsitikintumėte, kad ją pasirašė nurodytas Bitcoin adresas</translation>
     </message>
     <message>
@@ -1165,7 +1165,7 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Bitcoin XT</source>
+        <source>chain2</source>
         <translation>Bitcoin branduolys</translation>
     </message>
     <message>

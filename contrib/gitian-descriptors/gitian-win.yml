@@ -21,7 +21,7 @@ packages:
 - "ca-certificates"
 - "python"
 remotes:
-- "url": "https://github.com/bitcoinxt/bitcoinxt.git"
+- "url": "https://github.com/chain2/chain2.git"
   "dir": "bitcoin"
 files: []
 script: |

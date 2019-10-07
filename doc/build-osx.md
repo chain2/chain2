@@ -40,8 +40,8 @@ NOTE: Building with Qt4 is still supported, however, could result in a broken UI
 
 1. Clone the github tree to get the source code and go into the directory.
 
-        git clone https://github.com/bitcoinxt/bitcoinxt.git
-        cd bitcoinxt
+        git clone https://github.com/chain2/chain2.git
+        cd chain2
 
 2.  Build bitcoind:
 
@@ -91,9 +91,9 @@ Creating a release build
 ------------------------
 You can ignore this section if you are building `bitcoind` for your own use.
 
-bitcoind/bitcoin-cli binaries are not included in the Bitcoin-XT.app bundle.
+bitcoind/bitcoin-cli binaries are not included in the chain2.app bundle.
 
-If you are building `bitcoind` or `Bitcoin-XT` for others, your build machine should be set up
+If you are building `bitcoind` or `chain2` for others, your build machine should be set up
 as follows for maximum compatibility:
 
 All dependencies should be compiled with these flags:
@@ -102,7 +102,7 @@ All dependencies should be compiled with these flags:
  -arch x86_64
  -isysroot $(xcode-select --print-path)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk
 
-Once dependencies are compiled, see [doc/release-process.md](release-process.md) for how the Bitcoin-XT.app
+Once dependencies are compiled, see [doc/release-process.md](release-process.md) for how the chain2.app
 bundle is packaged and signed to create the .dmg disk image that is distributed.
 
 Running

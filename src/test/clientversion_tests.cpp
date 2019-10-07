@@ -40,8 +40,8 @@ BOOST_AUTO_TEST_CASE(platform_in_xtsubversion)
 
 BOOST_AUTO_TEST_CASE(xtsubversion_customuseragent)
 {
-    BOOST_CHECK(XTSubVersion(0, "/test:1.0", {}, false).find("XT") == std::string::npos);
-    BOOST_CHECK(XTSubVersion(0, "", {}, false).find("XT") != std::string::npos);
+    BOOST_CHECK(XTSubVersion(0, "/test:1.0", {}, false).find("chain2") == std::string::npos);
+    BOOST_CHECK(XTSubVersion(0, "", {}, false).find("chain2") != std::string::npos);
 }
 
 BOOST_AUTO_TEST_CASE(xtsubversion_uacomment)
