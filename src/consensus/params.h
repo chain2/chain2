@@ -14,7 +14,7 @@ namespace Consensus {
 
 enum DeploymentPos
 {
-    DEPLOYMENT_CDSV = 4, // CHECKDATASIG
+    DEPLOYMENT_CDSV = 0, // CHECKDATASIG
     DEPLOYMENT_TESTDUMMY = 28,
     MAX_VERSION_BITS_DEPLOYMENTS = 29
 };

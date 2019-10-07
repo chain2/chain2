@@ -113,7 +113,7 @@ class CheckDataSigActivationTest(ComparisonTestFramework):
         tx0_hex = ToHex(tx0)
         assert_raises_rpc_error(-26, RPC_BAD_OPCODE_ERROR,
                                 node.sendrawtransaction, tx0_hex)
-        assert_equal(get_bip135_status(node, 'bip135test4')['status'], 'defined')
+        assert_equal(get_bip135_status(node, 'bip135test0')['status'], 'defined')
 
         # CDSV regtest start happens after height 299, activation should be at height 399
         self.log.info("Advance to height 398, just before activation, and check again")
@@ -138,7 +138,7 @@ class CheckDataSigActivationTest(ComparisonTestFramework):
             # create the block
             coinbase = create_coinbase(absoluteHeight=height+1)
             coinbase.rehash()
-            version = 0x20000010 # Signal for CDSV on bit 4
+            version = 0x20000001 # Signal for CDSV on bit 0
             block = create_block(int(node.getbestblockhash(), 16), coinbase,
                                  int(blockchaininfo['mediantime']) + 1, nVersion=version)
 
@@ -158,14 +158,14 @@ class CheckDataSigActivationTest(ComparisonTestFramework):
         add_tx(b, tx0)
         yield rejected(b, RejectResult(16, b'blk-bad-inputs')) #1
 
-        assert_equal(get_bip135_status(node, 'bip135test4')['status'], 'locked_in')
+        assert_equal(get_bip135_status(node, 'bip135test0')['status'], 'locked_in')
 
 
         self.log.info("Activates checkdatasig")
         fork_block = next_block()
         yield accepted(fork_block) #2
 
-        assert_equal(get_bip135_status(node, 'bip135test4')['status'], 'active')
+        assert_equal(get_bip135_status(node, 'bip135test0')['status'], 'active')
 
         tx0id = node.sendrawtransaction(tx0_hex)
         assert(tx0id in set(node.getrawmempool()))
