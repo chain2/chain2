@@ -20,7 +20,8 @@ public:
     int64_t CheckpointDays();
     uint64_t MaxBlockSizeVote();
     int64_t RespendRelayLimit() const;
-	bool UseCashAddr() const;
+    bool UseCashAddr() const;
+    bool ReplaceBySS() const;
 
     // Thin block options
     bool UsingThinBlocks();
