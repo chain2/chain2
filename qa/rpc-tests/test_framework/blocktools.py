@@ -5,7 +5,7 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 from .mininode import *
-from .script import CScript, OP_TRUE, OP_CHECKSIG
+from .script import CScript, CScriptNum, OP_TRUE, OP_CHECKSIG
 
 # Create a block (with regtest difficulty)
 def create_block(hashprev, coinbase, nTime=None, nVersion=None):
@@ -15,7 +15,9 @@ def create_block(hashprev, coinbase, nTime=None, nVersion=None):
         block.nTime = int(time.time()+600)
     else:
         block.nTime = nTime
-    if nVersion is not None:
+    if nVersion is None:
+        block.nVersion = 0x20000000
+    else:
         block.nVersion = nVersion
     block.hashPrevBlock = hashprev
     block.nBits = 0x207fffff # Will break after a difficulty adjustment...
@@ -48,7 +50,7 @@ def create_coinbase(heightAdjust = 0, absoluteHeight = None, pubkey = None):
     height = absoluteHeight if absoluteHeight is not None else counter+heightAdjust
     coinbase = CTransaction()
     coinbase.vin.append(CTxIn(COutPoint(0, 0xffffffff),
-                ser_string(serialize_script_num(height)), 0xffffffff))
+                CScript([height]), 0xffffffff))
     counter += 1
     coinbaseoutput = CTxOut()
     coinbaseoutput.nValue = 50 * COIN

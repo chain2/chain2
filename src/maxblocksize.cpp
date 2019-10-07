@@ -17,19 +17,8 @@
 
 uint64_t GetNextMaxBlockSize(const CBlockIndex* pindexLast, const Consensus::Params& params)
 {
-    // BIP100 not active, return legacy max size
-    if (pindexLast == NULL ||
-        ((Opt().UAHFTime() != 0) && (pindexLast->GetMedianTimePast() < Opt().UAHFTime())) ||
-        ((Opt().UAHFTime() == 0) && (pindexLast->nHeight < params.bip100ActivationHeight)))
+    if (pindexLast == NULL)
         return MAX_BLOCK_SIZE;
-
-    // Bump to 8MB at UAHF fork
-    if (IsUAHFActivatingBlock(pindexLast->GetMedianTimePast(), pindexLast->pprev))
-        return UAHF_INITIAL_MAX_BLOCK_SIZE;
-
-    // Bump to 32MB at third BCH fork
-    if (IsThirdHFActivatingBlock(pindexLast->GetMedianTimePast(), pindexLast->pprev))
-        return THIRD_HF_INITIAL_MAX_BLOCK_SIZE;
 
     uint64_t nMaxBlockSize = pindexLast->nMaxBlockSize;
 
@@ -157,12 +146,5 @@ uint64_t NextBlockRaiseCap(uint64_t maxCurrBlock) {
         throw std::invalid_argument("Current block max can't be less than MAX_BLOCK_SIZE");
 
     // BIP100 allows block size limit to be increased 5%.
-    uint64_t bip100bump = maxCurrBlock * 105 / 100;
-
-    // We're on the BTC chain.
-    if (!Opt().UAHFTime())
-        return bip100bump;
-
-    return std::max(bip100bump,
-                    static_cast<uint64_t>(THIRD_HF_INITIAL_MAX_BLOCK_SIZE));
+    return maxCurrBlock * 105 / 100;
 }

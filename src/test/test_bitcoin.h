@@ -66,4 +66,16 @@ struct TestMemPoolEntryHelper
 
 CBlock getBlock13b8a();
 
+//
+// Testing fixture that pre-creates a
+// 110-block REGTEST-mode block chain
+//
+struct TestChain110Setup : public TestingSetup {
+    TestChain110Setup();
+
+    ~TestChain110Setup();
+
+    std::vector<CTransaction> coinbaseTxns; // For convenience, coinbase transactions
+};
+
 #endif

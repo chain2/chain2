@@ -69,36 +69,12 @@ uint64_t Opt::MaxBlockSizeVote() {
     return Args->GetArg("-maxblocksizevote", 0);
 }
 
-int64_t Opt::UAHFTime() const {
-    int64_t defaultUAHFTime = Params().NetworkIDString() == CBaseChainParams::REGTEST ?
-                              Params().GenesisBlock().nTime :
-                              UAHF_DEFAULT_ACTIVATION_TIME;
-
-    return Args->GetArg("-uahftime", defaultUAHFTime);
-}
-
-int Opt::UAHFProtectSunset() {
-    return Args->GetArg("-uahfprotectsunset", UAHF_DEFAULT_PROTECT_THIS_SUNSET);
-}
-
-// Activation time of the third BCH hard fork
-int64_t Opt::ThirdHFTime() const {
-
-    // Never activate if we're on the BTC chain
-    if (!bool(UAHFTime()))
-        return 0;
-
-    // Default to Tuesday, May 15, 2018 4:00:00 PM
-    const int64_t MTP_ACTIVATION = 1526400000;
-    return Args->GetArg("-thirdhftime", MTP_ACTIVATION);
-}
-
 int64_t Opt::RespendRelayLimit() const {
     return Args->GetArg("-limitrespendrelay", 100);
 }
 
 bool Opt::UseCashAddr() const {
-    return Args->GetBool("-usecashaddr", bool(UAHFTime()));
+    return Args->GetBool("-usecashaddr", false);
 }
 
 bool Opt::UsingThinBlocks() {

@@ -16,9 +16,6 @@ from test_framework.util import *
 import time
 import os
 
-# far into the future
-MONOLITH_START_TIME = 2000000000
-
 def calc_usage(blockdir):
     return sum(os.path.getsize(blockdir+f) for f in os.listdir(blockdir) if os.path.isfile(blockdir+f)) / (1024. * 1024.)
 
@@ -39,13 +36,12 @@ class PruneTest(BitcoinTestFramework):
 
         # Create nodes 0 and 1 to mine
         self.nodes.append(start_node(0, self.options.tmpdir, ["-debug","-maxreceivebuffer=20000","-blockmaxsize=999000",
-                                                              "-checkblocks=5", "-thirdhftime=%d" % MONOLITH_START_TIME], timewait=900))
+                                                              "-checkblocks=5"], timewait=900))
         self.nodes.append(start_node(1, self.options.tmpdir, ["-debug","-maxreceivebuffer=20000","-blockmaxsize=999000",
-                                                              "-checkblocks=5", "-thirdhftime=%d" % MONOLITH_START_TIME], timewait=900))
+                                                              "-checkblocks=5"], timewait=900))
 
         # Create node 2 to test pruning
-        self.nodes.append(start_node(2, self.options.tmpdir, ["-debug","-maxreceivebuffer=20000","-prune=550",
-                                                              "-thirdhftime=%d" % MONOLITH_START_TIME], timewait=900))
+        self.nodes.append(start_node(2, self.options.tmpdir, ["-debug","-maxreceivebuffer=20000","-prune=550"], timewait=900))
         self.prunedir = self.options.tmpdir+"/node2/regtest/blocks/"
 
         connect_nodes(self.nodes[0], 1)
@@ -58,7 +54,7 @@ class PruneTest(BitcoinTestFramework):
         self.nodes[1].generate(200)
         sync_blocks(self.nodes[0:2])
         self.nodes[0].generate(150)
-        # Then mine enough full blocks to create more than 550MiB of data
+        # Then mine enough 1MB blocks to create more than 550MiB of data
         for i in range(645):
             mine_large_block(self.nodes[0], self.utxo_cache_0)
 
@@ -70,7 +66,7 @@ class PruneTest(BitcoinTestFramework):
         print("Success")
         print("Though we're already using more than 550MiB, current usage:", calc_usage(self.prunedir))
         print("Mining 25 more blocks should cause the first block file to be pruned")
-        # Pruning doesn't run until we're allocating another chunk, 20 full blocks past the height cutoff will ensure this
+        # Pruning doesn't run until we're allocating another chunk, 20 1MB blocks past the height cutoff will ensure this
         for i in range(25):
             mine_large_block(self.nodes[0], self.utxo_cache_0)
 
@@ -96,7 +92,7 @@ class PruneTest(BitcoinTestFramework):
             # Stopping node 0 also clears its mempool, so it doesn't have node1's transactions to accidentally mine
             stop_node(self.nodes[0],0)
             self.nodes[0]=start_node(0, self.options.tmpdir, ["-debug","-maxreceivebuffer=20000","-blockmaxsize=999000",
-                                                              "-checkblocks=5", "-thirdhftime=%d" % MONOLITH_START_TIME], timewait=900)
+                                                              "-checkblocks=5"], timewait=900)
             # Mine 24 blocks in node 1
             for i in range(24):
                 if j == 0:
@@ -122,7 +118,7 @@ class PruneTest(BitcoinTestFramework):
         # Lower the block max size so we don't keep mining all our big mempool transactions (from disconnected blocks)
         stop_node(self.nodes[1],1)
         self.nodes[1]=start_node(1, self.options.tmpdir, ["-debug","-maxreceivebuffer=20000","-blockmaxsize=5000",
-                                                          "-checkblocks=5", "-disablesafemode", "-thirdhftime=%d" % MONOLITH_START_TIME], timewait=900)
+                                                          "-checkblocks=5", "-disablesafemode"], timewait=900)
 
         height = self.nodes[1].getblockcount()
         print("Current block height:", height)
@@ -146,7 +142,7 @@ class PruneTest(BitcoinTestFramework):
         # Reboot node1 to clear those giant tx's from mempool
         stop_node(self.nodes[1],1)
         self.nodes[1]=start_node(1, self.options.tmpdir, ["-debug","-maxreceivebuffer=20000","-blockmaxsize=5000",
-                                                          "-checkblocks=5", "-disablesafemode", "-thirdhftime=%d" % MONOLITH_START_TIME], timewait=900)
+                                                          "-checkblocks=5", "-disablesafemode"], timewait=900)
 
         print("Generating new longer chain of 300 more blocks")
         self.nodes[1].generate(300)

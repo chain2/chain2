@@ -37,10 +37,10 @@ class BigBlockTest(BitcoinTestFramework):
             # Node 3 creates empty blocks that vote for 9MB
             self.nodes = []
             # Use node0 to mine blocks for input splitting
-            self.nodes.append(start_node(0, CACHE_DIR, ["-blockmaxsize=10000000", "-maxblocksizevote=10", "-limitancestorsize=2000", "-limitdescendantsize=2000"], timewait=300))
-            self.nodes.append(start_node(1, CACHE_DIR, ["-blockmaxsize=1000", "-maxblocksizevote=10", "-limitancestorsize=2000", "-limitdescendantsize=2000"], timewait=300))
-            self.nodes.append(start_node(2, CACHE_DIR, ["-blockmaxsize=1000", "-maxblocksizevote=8", "-limitancestorsize=2000", "-limitdescendantsize=2000"], timewait=300))
-            self.nodes.append(start_node(3, CACHE_DIR, ["-blockmaxsize=99999", "-maxblocksizevote=9", "-limitancestorsize=2000", "-limitdescendantsize=2000"], timewait=300))
+            self.nodes.append(start_node(0, CACHE_DIR, ["-blockmaxsize=35000000", "-maxblocksizevote=35", "-limitancestorsize=2000", "-limitdescendantsize=2000"], timewait=300))
+            self.nodes.append(start_node(1, CACHE_DIR, ["-blockmaxsize=1000", "-maxblocksizevote=35", "-limitancestorsize=2000", "-limitdescendantsize=2000"], timewait=300))
+            self.nodes.append(start_node(2, CACHE_DIR, ["-blockmaxsize=1000", "-maxblocksizevote=32", "-limitancestorsize=2000", "-limitdescendantsize=2000"], timewait=300))
+            self.nodes.append(start_node(3, CACHE_DIR, ["-blockmaxsize=99999", "-maxblocksizevote=34", "-limitancestorsize=2000", "-limitdescendantsize=2000"], timewait=300))
 
             connect_nodes_bi(self.nodes, 0, 1)
             connect_nodes_bi(self.nodes, 0, 2)
@@ -51,7 +51,7 @@ class BigBlockTest(BitcoinTestFramework):
 
             self.is_network_split = False
 
-            # Create a 2012-block chain in a 75% ratio for increase (genesis block votes for 1MB)
+            # Create a 2012-block chain in a 75% ratio for increase (genesis block votes for 32MB)
             # Make sure they are not already sorted correctly
             self.nodes[1].generate(503)
             assert(sync_blocks(self.nodes[1:3], timeout=120))
@@ -59,10 +59,10 @@ class BigBlockTest(BitcoinTestFramework):
             assert(sync_blocks(self.nodes[2:4], timeout=120))
 
             relayfee = self.nodes[3].getnetworkinfo()['relayfee']
-            utxos = create_confirmed_utxos(relayfee, self.nodes[3], 128)
+            utxos = create_confirmed_utxos(relayfee, self.nodes[3], 512)
 
-            # 166 node 3 blocks were already mined to create utxos
-            self.nodes[3].generate(503 - 166)
+            # 358 node 3 blocks were already mined to create utxos
+            self.nodes[3].generate(503 - 358)
             assert(sync_blocks(self.nodes[1:4], timeout=120))
             self.nodes[1].generate(503)
             assert(sync_blocks(self.nodes, timeout=120))
@@ -70,7 +70,7 @@ class BigBlockTest(BitcoinTestFramework):
             print("Creating transaction data")
             txouts = gen_return_txouts()
             tx_file = open(os.path.join(CACHE_DIR, "txdata"), "w")
-            create_lots_of_big_transactions(self.nodes[3], txouts, utxos, 128, relayfee * 1000, tx_file)
+            create_lots_of_big_transactions(self.nodes[3], txouts, utxos, 512, relayfee * 1000, tx_file)
             tx_file.close()
 
             stop_nodes(self.nodes)
@@ -89,9 +89,9 @@ class BigBlockTest(BitcoinTestFramework):
     def setup_network(self):
         self.nodes = []
 
-        self.nodes.append(start_node(0, self.options.tmpdir, ["-blockmaxsize=10000000", "-maxblocksizevote=10", "-limitancestorsize=2000", "-limitdescendantsize=2000"], timewait=60))
-        self.nodes.append(start_node(1, self.options.tmpdir, ["-blockmaxsize=1000", "-maxblocksizevote=10", "-limitancestorsize=2000", "-limitdescendantsize=2000"], timewait=60))
-        self.nodes.append(start_node(2, self.options.tmpdir, ["-blockmaxsize=1000", "-maxblocksizevote=8", "-limitancestorsize=2000", "-limitdescendantsize=2000"], timewait=60))
+        self.nodes.append(start_node(0, self.options.tmpdir, ["-blockmaxsize=35000000", "-maxblocksizevote=35", "-limitancestorsize=2000", "-limitdescendantsize=2000"], timewait=60))
+        self.nodes.append(start_node(1, self.options.tmpdir, ["-blockmaxsize=1000", "-maxblocksizevote=35", "-limitancestorsize=2000", "-limitdescendantsize=2000"], timewait=60))
+        self.nodes.append(start_node(2, self.options.tmpdir, ["-blockmaxsize=1000", "-maxblocksizevote=32", "-limitancestorsize=2000", "-limitdescendantsize=2000"], timewait=60))
         # (We don't restart the node with the huge wallet
         connect_nodes_bi(self.nodes, 0, 1)
         connect_nodes_bi(self.nodes, 1, 2)
@@ -140,7 +140,7 @@ class BigBlockTest(BitcoinTestFramework):
         assert_equal(self.nodes[0].getblocktemplate(gbtRequest)["sizelimit"], MAX_BLOCK_SIZE)
         self.TestMineBig(False)
 
-        # Create a situation where the 1512th-highest vote is for 9MB
+        # Create a situation where the 1512th-highest vote is for 34MB
         self.nodes[2].generate(1)
         assert(sync_blocks(self.nodes[1:3]))
         ahash = self.nodes[1].generate(3)[2]
@@ -150,7 +150,7 @@ class BigBlockTest(BitcoinTestFramework):
 
         # Shutdown then restart node[0], it should produce a big block.
         stop_node(self.nodes[0], 0)
-        self.nodes[0] = start_node(0, self.options.tmpdir, ["-blockmaxsize=10000000", "-maxblocksizevote=10", "-limitancestorsize=2000", "-limitdescendantsize=2000"], timewait=60)
+        self.nodes[0] = start_node(0, self.options.tmpdir, ["-blockmaxsize=35000000", "-maxblocksizevote=35", "-limitancestorsize=2000", "-limitdescendantsize=2000"], timewait=60)
         self.load_mempool(self.nodes[0])
         connect_nodes_bi(self.nodes, 0, 1)
         connect_nodes_bi(self.nodes, 0, 2)
@@ -167,7 +167,7 @@ class BigBlockTest(BitcoinTestFramework):
 
         # Restart node0, it should re-org onto longer chain,
         # and refuse to mine a big block:
-        self.nodes[0] = start_node(0, self.options.tmpdir, ["-blockmaxsize=10000000", "-maxblocksizevote=10", "-limitancestorsize=2000", "-limitdescendantsize=2000"], timewait=60)
+        self.nodes[0] = start_node(0, self.options.tmpdir, ["-blockmaxsize=35000000", "-maxblocksizevote=35", "-limitancestorsize=2000", "-limitdescendantsize=2000"], timewait=60)
         self.load_mempool(self.nodes[0])
         connect_nodes_bi(self.nodes, 0, 1)
         connect_nodes_bi(self.nodes, 0, 2)
@@ -175,7 +175,7 @@ class BigBlockTest(BitcoinTestFramework):
         assert_equal(self.nodes[0].getblocktemplate(gbtRequest)["sizelimit"], MAX_BLOCK_SIZE)
         self.TestMineBig(False)
 
-        # Mine 4 blocks voting for 10MB. Bigger block NOT ok, we are in the next voting period
+        # Mine 4 blocks voting for 35MB. Bigger block NOT ok, we are in the next voting period
         self.nodes[1].generate(4)
         assert_equal(self.nodes[1].getblocktemplate(gbtRequest)["sizelimit"], MAX_BLOCK_SIZE)
         assert(sync_blocks(self.nodes[0:3]))

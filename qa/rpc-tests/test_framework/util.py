@@ -668,7 +668,7 @@ def create_lots_of_big_transactions(node, txouts, utxos, num, fee, tx_file=None)
 
 def mine_large_block(node, utxos=None):
     # generate a 66k transaction,
-    # and 14 of them is close to the 1MB block limit
+    # and 14 of them is close to 1MB
     num = 14
     txouts = gen_return_txouts()
     utxos = utxos if utxos is not None else []

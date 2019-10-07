@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(TransactionsRequestSerializationTest) {
 BOOST_AUTO_TEST_CASE(validate_compact_block) {
     CBlock block = TestBlock1(); // valid block
     CompactBlock a(block, CoinbaseOnlyPrefiller{});
-    const uint64_t currMaxBlockSize = UAHF_INITIAL_MAX_BLOCK_SIZE;
+    const uint64_t currMaxBlockSize = MAX_BLOCK_SIZE;
     const uint64_t nextMaxBlockSize = NextBlockRaiseCap(currMaxBlockSize);
     BOOST_CHECK_NO_THROW(validateCompactBlock(a, currMaxBlockSize));
 

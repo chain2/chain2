@@ -461,8 +461,6 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-maxblocksizevote=<n>", _("Set vote for maximum block size in megabytes (default: network sizelimit)"));
     if (showDebug)
         strUsage += HelpMessageOpt("-blockversion=<n>", "Override block version to test forking scenarios");
-    strUsage += HelpMessageOpt("-uahftime=<n>", strprintf(_("Set user-activated hard fork activation time (default: %d) (0=disable)"), UAHF_DEFAULT_ACTIVATION_TIME));
-    strUsage += HelpMessageOpt("-uahfprotectsunset=<n>", strprintf(_("Set user-activated hard fork protect-this-chain-from-replay sunset height (default: %d)"), UAHF_DEFAULT_PROTECT_THIS_SUNSET));
 
     strUsage += HelpMessageGroup(_("RPC server options:"));
     strUsage += HelpMessageOpt("-server", _("Accept command line and JSON-RPC commands"));
@@ -913,10 +911,6 @@ bool AppInit2()
     }
     fCheckBlockIndex = GetBoolArg("-checkblockindex", chainparams.DefaultConsistencyChecks());
     fCheckpointsEnabled = GetBoolArg("-checkpoints", true);
-    if (fCheckpointsEnabled && !Opt().UAHFTime()) {
-        InitWarning(_("Warning: checkpoints are not supported on the BTC chain."));
-        fCheckpointsEnabled = false;
-    }
 
     // mempool limits
     int64_t nMempoolSizeMax = GetArg("-maxmempool", DEFAULT_MAX_MEMPOOL_SIZE) * 1000000;
@@ -1026,9 +1020,6 @@ bool AppInit2()
     SetMockTime(GetArg("-mocktime", 0)); // SetMockTime(0) is a no-op
 
     uint64_t nLocalServices = NODE_NETWORK | NODE_GETUTXO | NODE_BLOOM | NODE_THIN;
-
-    if (Opt().UAHFTime())
-        nLocalServices |= NODE_BITCOIN_CASH;
 
     // ********************************************************* Step 4: application initialization: dir lock, daemonize, pidfile, debug log
 

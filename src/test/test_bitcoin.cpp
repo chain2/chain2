@@ -6,11 +6,15 @@
 
 #include "test_bitcoin.h"
 
-
+#include "chainparams.h"
+#include "consensus/consensus.h"
 #include "consensus/validation.h"
 #include "key.h"
 #include "main.h"
 #include "options.h"
+#include "miner.h"
+#include "miner/serializableblockbuilder.h"
+#include "pubkey.h"
 #include "random.h"
 #include "rpc/register.h"
 #include "rpc/server.h"
@@ -19,6 +23,7 @@
 #include "txmempool.h"
 #include "ui_interface.h"
 #include "streams.h"
+#include "maxblocksize.h"
 
 #include <boost/filesystem.hpp>
 #include <boost/test/unit_test.hpp>
@@ -39,7 +44,9 @@ BasicTestingSetup::BasicTestingSetup(const std::string& chainName)
         fPrintToDebugLog = false; // don't want to write to debug.log file
         fCheckBlockIndex = true;
         SelectParams(chainName);
+        noui_connect();
 }
+
 BasicTestingSetup::~BasicTestingSetup()
 {
         ECC_Stop();
@@ -94,6 +101,35 @@ CTxMemPoolEntry TestMemPoolEntryHelper::FromTx(CTransaction &txn, CTxMemPool *po
 
     return CTxMemPoolEntry(txn, nFee, nTime, nHeight,
                            hasNoDependencies, spendsCoinbase, lp, sigOpCount);
+}
+
+TestChain110Setup::TestChain110Setup() : TestingSetup(CBaseChainParams::REGTEST)
+{
+    // Generate a 110-block chain
+    for (int i = 0; i < COINBASE_MATURITY + 10; i++)
+    {
+        CBlock block;
+        {
+            miner::SerializableBlockBuilder builder;
+            CreateNewBlock(builder, CScript());
+            block = builder.Release();
+        }
+
+        unsigned int extraNonce = 0;
+        uint64_t hardLimit = GetNextMaxBlockSize(chainActive.Tip(), Params().GetConsensus());
+        IncrementExtraNonce(&block, chainActive.Tip(), extraNonce, hardLimit);
+        while (!CheckProofOfWork(block.GetHash(), block.nBits, Params().GetConsensus()))
+            ++block.nNonce;
+
+        CValidationState state;
+        ProcessNewBlock(state, BlockSource{}, &block, true, NULL, connman);
+
+        coinbaseTxns.push_back(block.vtx[0]);
+    }
+}
+
+TestChain110Setup::~TestChain110Setup()
+{
 }
 
 void Shutdown(void* parg)

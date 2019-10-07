@@ -16,20 +16,17 @@ public:
     bool HidePlatform();
     std::vector<std::string> UAComment(bool validate = false) const;
 
-        int ScriptCheckThreads();
-        int64_t CheckpointDays();
-        uint64_t MaxBlockSizeVote();
-        int64_t UAHFTime() const;
-        int UAHFProtectSunset();
-        int64_t RespendRelayLimit() const;
+    int ScriptCheckThreads();
+    int64_t CheckpointDays();
+    uint64_t MaxBlockSizeVote();
+    int64_t RespendRelayLimit() const;
 	bool UseCashAddr() const;
-	int64_t ThirdHFTime() const;
 
-        // Thin block options
-        bool UsingThinBlocks();
-        bool AvoidFullBlocks();
-        int ThinBlocksMaxParallel();
-        bool PreferXThinBlocks() const;
+    // Thin block options
+    bool UsingThinBlocks();
+    bool AvoidFullBlocks();
+    int ThinBlocksMaxParallel();
+    bool PreferXThinBlocks() const;
 
     // Policy
     bool AllowFreeTx() const;
@@ -44,10 +41,6 @@ static const int MAX_SCRIPTCHECK_THREADS = 16;
 static const int DEFAULT_SCRIPTCHECK_THREADS = 0;
 // Blocks newer than n days will have their script validated during sync.
 static const int DEFAULT_CHECKPOINT_DAYS = 30;
-/** User-activated hard fork default activation time */
-static const int64_t UAHF_DEFAULT_ACTIVATION_TIME = 1501590000; // Tue 1 Aug 2017 12:20:00 UTC
-/** User-activated hard fork protect-this-chain-from-replay sunset height */
-static const int UAHF_DEFAULT_PROTECT_THIS_SUNSET = 530000;
 
 //
 // For unit testing

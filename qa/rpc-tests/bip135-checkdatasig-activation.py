@@ -136,7 +136,7 @@ class CheckDataSigActivationTest(ComparisonTestFramework):
             height = int(blockchaininfo['blocks'])
 
             # create the block
-            coinbase = create_coinbase(height)
+            coinbase = create_coinbase(absoluteHeight=height+1)
             coinbase.rehash()
             version = 0x20000010 # Signal for CDSV on bit 4
             block = create_block(int(node.getbestblockhash(), 16), coinbase,
@@ -156,14 +156,14 @@ class CheckDataSigActivationTest(ComparisonTestFramework):
 
         b = next_block()
         add_tx(b, tx0)
-        yield rejected(b, RejectResult(16, b'blk-bad-inputs'))
+        yield rejected(b, RejectResult(16, b'blk-bad-inputs')) #1
 
         assert_equal(get_bip135_status(node, 'bip135test4')['status'], 'locked_in')
 
 
         self.log.info("Activates checkdatasig")
         fork_block = next_block()
-        yield accepted(fork_block)
+        yield accepted(fork_block) #2
 
         assert_equal(get_bip135_status(node, 'bip135test4')['status'], 'active')
 
@@ -173,7 +173,7 @@ class CheckDataSigActivationTest(ComparisonTestFramework):
         # Transactions can also be included in blocks.
         nextblock = next_block()
         add_tx(nextblock, tx0)
-        yield accepted(nextblock)
+        yield accepted(nextblock) #3
 
         self.log.info("Cause a reorg that deactivate the checkdatasig opcodes")
 

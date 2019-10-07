@@ -7,6 +7,7 @@
 # Test BIP68 implementation (mempool only)
 #
 
+import time
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import *
 from test_framework.script import *
@@ -47,9 +48,8 @@ class BIP68Test(BitcoinTestFramework):
         self.log.print("Running test sequence-lock-unconfirmed-inputs")
         self.test_sequence_lock_unconfirmed_inputs()
 
-        # This test needs to change when BIP68 becomes consensus
-        self.log.print("Running test BIP68 not consensus")
-        self.test_bip68_not_consensus()
+        self.log.print("Running test BIP68 consensus")
+        self.test_bip68_consensus()
 
         self.log.print("Passed\n")
 
@@ -311,6 +311,7 @@ class BIP68Test(BitcoinTestFramework):
         # If we invalidate the tip, tx3 should get added to the mempool, causing
         # tx4 to be removed (fails sequence-lock).
         self.nodes[0].invalidateblock(self.nodes[0].getbestblockhash())
+        time.sleep(1)
         assert(tx4.hash not in self.nodes[0].getrawmempool())
         assert(tx3.hash in self.nodes[0].getrawmempool())
 
@@ -322,7 +323,6 @@ class BIP68Test(BitcoinTestFramework):
         height = self.nodes[0].getblockcount()
         for i in range(2):
             block = create_block(tip, create_coinbase(absoluteHeight=height), cur_time)
-            block.nVersion = 4
             block.rehash()
             block.solve()
             tip = block.sha256
@@ -339,8 +339,8 @@ class BIP68Test(BitcoinTestFramework):
         self.nodes[0].invalidateblock(self.nodes[0].getblockhash(cur_height+1))
         self.nodes[0].generate(10)
 
-    # Make sure that BIP68 isn't being used to validate blocks.
-    def test_bip68_not_consensus(self):
+    # Make sure that BIP68 is being used to validate blocks.
+    def test_bip68_consensus(self):
         txid = self.nodes[0].sendtoaddress(self.nodes[0].getnewaddress(), 2)
 
         tx1 = FromHex(CTransaction(), self.nodes[0].getrawtransaction(txid))
@@ -375,17 +375,17 @@ class BIP68Test(BitcoinTestFramework):
         else:
             assert(False)
 
-        # make a block that violates bip68; ensure that the tip updates
+        # make a block that violates bip68; ensure that the tip does not update
         tip = int(self.nodes[0].getbestblockhash(), 16)
-        block = create_block(tip, create_coinbase(absoluteHeight=self.nodes[0].getblockcount()+1))
-        block.nVersion = 4
+        oldTipHeight = self.nodes[0].getblockcount()
+        block = create_block(tip, create_coinbase(absoluteHeight=oldTipHeight+1))
         block.vtx.extend([tx1, tx2, tx3])
         block.hashMerkleRoot = block.calc_merkle_root()
         block.rehash()
         block.solve()
 
         self.nodes[0].submitblock(ToHex(block))
-        assert_equal(self.nodes[0].getbestblockhash(), block.hash)
+        assert_equal(self.nodes[0].getblockcount(), oldTipHeight)
 
 
 if __name__ == '__main__':

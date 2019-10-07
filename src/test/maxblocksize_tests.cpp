@@ -26,7 +26,7 @@ void fillBlockIndex(
 
         index.nMaxBlockSizeVote = std::max(index.nHeight * 1000000, 1000000);
     };
-    BuildDummyBlockIndex(blockIndexes, customizeFunc, Opt().UAHFTime());
+    BuildDummyBlockIndex(blockIndexes, customizeFunc);
 };
 
 BOOST_AUTO_TEST_CASE(get_next_max_blocksize) {
@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(get_next_max_blocksize) {
     // Not at a difficulty adjustment interval,
     // should not change max block size.
     {
-        uint64_t currMax = UAHF_INITIAL_MAX_BLOCK_SIZE;
+        uint64_t currMax = MAX_BLOCK_SIZE;
         std::vector<CBlockIndex> blockInterval(interval);
         fillBlockIndex(params, blockInterval, true, currMax);
         CBlockIndex index;
@@ -200,52 +200,9 @@ BOOST_AUTO_TEST_CASE(get_max_blocksize_vote_no_vote) {
     BOOST_CHECK_EQUAL(0u, GetMaxBlockSizeVote(coinbase, 47));
 }
 
-BOOST_AUTO_TEST_CASE(next_block_raise_cap_bch) {
-
-    const uint64_t newmax = THIRD_HF_INITIAL_MAX_BLOCK_SIZE;
-
-    BOOST_CHECK_EQUAL(newmax, NextBlockRaiseCap(MAX_BLOCK_SIZE));
-    BOOST_CHECK_EQUAL(newmax, NextBlockRaiseCap(UAHF_INITIAL_MAX_BLOCK_SIZE));
-    BOOST_CHECK_EQUAL(newmax * 105 / 100, NextBlockRaiseCap(newmax));
-    BOOST_CHECK_EQUAL(newmax *  10 * 105 / 100, NextBlockRaiseCap(newmax * 10));
-
-    BOOST_CHECK_THROW(NextBlockRaiseCap(MAX_BLOCK_SIZE - 1),
-                      std::invalid_argument);
-}
-
-BOOST_AUTO_TEST_CASE(next_block_raise_cap_btc) {
-    auto arg = new DummyArgGetter;
-    auto argraii = SetDummyArgGetter(std::unique_ptr<ArgGetter>(arg));
-
-    arg->Set("-uahftime", 0);
-
+BOOST_AUTO_TEST_CASE(next_block_raise_cap) {
     BOOST_CHECK_EQUAL(MAX_BLOCK_SIZE * 105 / 100, NextBlockRaiseCap(MAX_BLOCK_SIZE));
     BOOST_CHECK_THROW(NextBlockRaiseCap(MAX_BLOCK_SIZE - 1), std::invalid_argument);
-}
-
-BOOST_AUTO_TEST_CASE(third_hf_bump) {
-
-    auto params = Params(CBaseChainParams::MAIN).GetConsensus();
-
-    uint64_t currMax = UAHF_INITIAL_MAX_BLOCK_SIZE;
-
-    std::vector<CBlockIndex> blocks(5);
-    fillBlockIndex(params, blocks, false, currMax);
-    blocks[2].nTime = Opt().ThirdHFTime();
-    blocks[3].nTime = blocks[2].nTime + 1;
-    blocks[4].nTime = blocks[3].nTime + 1;
-
-    for (size_t i = 1; i < blocks.size(); ++i) {
-        blocks[i].nMaxBlockSize = GetNextMaxBlockSize(&blocks[i - 1], params);
-    }
-
-    BOOST_CHECK_EQUAL(currMax, GetNextMaxBlockSize(&blocks[0], params));
-    BOOST_CHECK_EQUAL(currMax, GetNextMaxBlockSize(&blocks[1], params));
-    // block is at HF time, but MTP isn't.
-    BOOST_CHECK_EQUAL(currMax, GetNextMaxBlockSize(&blocks[2], params));
-    // MTP passes fork point
-    BOOST_CHECK_EQUAL(THIRD_HF_INITIAL_MAX_BLOCK_SIZE, GetNextMaxBlockSize(&blocks[3], params));
-    BOOST_CHECK_EQUAL(THIRD_HF_INITIAL_MAX_BLOCK_SIZE, GetNextMaxBlockSize(&blocks[4], params));
 }
 
 BOOST_AUTO_TEST_SUITE_END();

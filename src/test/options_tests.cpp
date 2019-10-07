@@ -47,16 +47,4 @@ BOOST_AUTO_TEST_CASE(checkpointdays) {
     BOOST_CHECK_EQUAL(1, Opt().CheckpointDays());
 }
 
-BOOST_AUTO_TEST_CASE(thirdhftime_ignored_for_btc) {
-    auto arg = new DummyArgGetter;
-    auto argraii = SetDummyArgGetter(std::unique_ptr<ArgGetter>(arg));
-
-    // Enabled by default
-    BOOST_CHECK_EQUAL(1526400000, Opt().ThirdHFTime());
-
-    // Disabled if we're not on Bitcoin Cash chain
-    arg->Set("-uahftime", 0);
-    BOOST_CHECK_EQUAL(0, Opt().ThirdHFTime());
-}
-
 BOOST_AUTO_TEST_SUITE_END()

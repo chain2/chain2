@@ -16,8 +16,6 @@ from test_framework.key import CECKey
 from test_framework.script import *
 import struct
 
-XT_TWEAK = True
-
 # Split UTXO into n coins
 def split_utxo(n, txin):
     funding_tx = CTransaction()
@@ -26,29 +24,30 @@ def split_utxo(n, txin):
         funding_tx.vout.append(CTxOut(0,CScript([OP_TRUE])))
     return funding_tx
 
-# Creates 8 near-1MB transactions for filling block
+# Creates <megabytes> near-1MB transactions for filling block
 def create_big_txs(funding_tx, curr_block_size):
-    assert MAX_BLOCK_SIZE == 8000000
-    assert len(funding_tx.vout) == 8
+    assert MAX_BLOCK_SIZE == 32000000
+    megabytes = MAX_BLOCK_SIZE//1000000
+    assert len(funding_tx.vout) == megabytes
 
     bigtxes = []
 
-    for i in range(8):
+    for i in range(megabytes):
         tx = CTransaction()
         tx.vin.append(CTxIn(COutPoint(funding_tx.sha256, i)))
 
-        # 999940 is approximately the size that one of the big transactions
-        # needs to be, for the 8 to fill up the space in the block.
+        # 999980 is approximately the size that one of the big transactions
+        # needs to be, for 32 to fill up the space in the block.
         # 69 is the overhead bytes in the transaction that will be there
         # regardless of script length.
-        if (i < 7):
-            script_length = 999940 - 69
+        if (i < megabytes - 1):
+            script_length = 999980 - 69
         else:
             # The last transaction calculates all the remaining space in
             # the block, which can be different on different runs because
             # of unpredictable size of the signed transactions at the
             # beginning of the block used for splitting coins
-            script_length = MAX_BLOCK_SIZE - curr_block_size - 7*999940 - 69
+            script_length = MAX_BLOCK_SIZE - curr_block_size - (megabytes-1)*999980 - 69
 
         script_output = CScript([b'\x00' * script_length])
         tx.vout.append(CTxOut(0, script_output))
@@ -403,9 +402,10 @@ class FullBlockTest(ComparisonTestFramework):
         #                      \-> b3 (1) -> b4 (2)
         tip(15)
         b23 = block(23, spend=out[6])
-        funding_tx = split_utxo(8, CTxIn(COutPoint(b23.vtx[1].sha256, 0)))
+        megabytes = MAX_BLOCK_SIZE//1000000
+        funding_tx = split_utxo(megabytes, CTxIn(COutPoint(b23.vtx[1].sha256, 0)))
         b23 = update_block(23, [funding_tx])
-        # Add 8 near-1MB transactions
+        # Add 32 near-1MB transactions
         bigtxes = create_big_txs(funding_tx, len(b23.serialize()))
         b23 = update_block(23, bigtxes)
         # Make sure the math above worked out to produce a max-sized block
@@ -417,9 +417,9 @@ class FullBlockTest(ComparisonTestFramework):
         tip(15)
         b24 = block(24, spend=out[6])
         b24 = update_block(24, [funding_tx])
-        script_length = MAX_BLOCK_SIZE - len(b24.serialize()) - 7*999940 - 69 + 1
+        script_length = MAX_BLOCK_SIZE - len(b24.serialize()) - (megabytes-1)*999980 - 69 + 1
         script_output = CScript([b'\x00' * (script_length)])
-        bigtxes[7].vout = [CTxOut(0, script_output)]
+        bigtxes[31].vout = [CTxOut(0, script_output)]
         b24 = update_block(24, bigtxes)
         assert_equal(len(b24.serialize()), MAX_BLOCK_SIZE+1)
         yield rejected() # Network sanity check will cause disconnect
@@ -449,14 +449,12 @@ class FullBlockTest(ComparisonTestFramework):
         # update_block causes the merkle root to get updated, even with no new
         # transactions, and updates the required state.
         b26 = update_block(26, [])
-        yield rejected(RejectResult(16, b'bad-cb-length'))
+        # Single-byte coinbase is valid, but not at this height
+        yield rejected(RejectResult(16, b'bad-cb-height'))
 
-        # Extend the b26 chain to make sure bitcoind isn't accepting b26
-        b27 = block(27, spend=out[7])
-        if not XT_TWEAK:
-            # We never proccess blocks where previous is missing.
-            # Instead we re-request previous.
-            yield rejected(RejectResult(16, b'bad-prevblk'))
+        # Don't extend the b26 chain to make sure bitcoind isn't accepting b26
+        # We never proccess blocks where previous is missing.
+        # Instead we re-request previous.
 
         # Now try a too-large-coinbase script
         tip(15)
@@ -466,17 +464,14 @@ class FullBlockTest(ComparisonTestFramework):
         b28 = update_block(28, [])
         yield rejected(RejectResult(16, b'bad-cb-length'))
 
-        # Extend the b28 chain to make sure bitcoind isn't accepting b28
-        b29 = block(29, spend=out[7])
-        if not XT_TWEAK:
-            # We never proccess blocks where previous is missing.
-            # Instead we re-request previous.
-            yield rejected(RejectResult(16, b'bad-prevblk'))
+        # Don't extend the b28 chain to make sure bitcoind isn't accepting b28
+        # We never proccess blocks where previous is missing.
+        # Instead we re-request previous.
 
         # b30 has a max-sized coinbase scriptSig.
         tip(23)
         b30 = block(30)
-        b30.vtx[0].vin[0].scriptSig = b'\x00' * 100
+        b30.vtx[0].vin[0].scriptSig = CScript([self.block_heights[b30.sha256], b'\x00' * 96]) 
         b30.vtx[0].rehash()
         b30 = update_block(30, [])
         yield accepted()
@@ -679,6 +674,7 @@ class FullBlockTest(ComparisonTestFramework):
         height = self.block_heights[self.tip.sha256] + 1
         coinbase = create_coinbase(absoluteHeight = height, pubkey = self.coinbase_pubkey)
         b44 = CBlock()
+        b44.nVersion = 0x20000000
         b44.nTime = self.tip.nTime + 1
         b44.hashPrevBlock = self.tip.sha256
         b44.nBits = 0x207fffff
@@ -693,6 +689,7 @@ class FullBlockTest(ComparisonTestFramework):
         # A block with a non-coinbase as the first tx
         non_coinbase = create_tx(out[15].tx, out[15].n, 1)
         b45 = CBlock()
+        b45.nVersion = 0x20000000
         b45.nTime = self.tip.nTime + 1
         b45.hashPrevBlock = self.tip.sha256
         b45.nBits = 0x207fffff
@@ -708,6 +705,7 @@ class FullBlockTest(ComparisonTestFramework):
         # A block with no txns
         tip(44)
         b46 = CBlock()
+        b46.nVersion = 0x20000000
         b46.nTime = b44.nTime+1
         b46.hashPrevBlock = b44.sha256
         b46.nBits = 0x207fffff
@@ -904,7 +902,7 @@ class FullBlockTest(ComparisonTestFramework):
         b61.vtx[0].rehash()
         b61 = update_block(61, [])
         assert_equal(b60.vtx[0].serialize(), b61.vtx[0].serialize())
-        yield rejected(RejectResult(16, b'bad-txns-BIP30'))
+        yield rejected(RejectResult(16, b'bad-cb-height'))
 
 
         # Test tx.isFinal is properly rejected (not an exhaustive tx.isFinal test, that should be in data-driven transaction tests)
@@ -961,9 +959,9 @@ class FullBlockTest(ComparisonTestFramework):
         b64a.initialize(regular_block)
         self.blocks["64a"] = b64a
         self.tip = b64a
-        funding_tx = split_utxo(8, CTxIn(COutPoint(b64a.vtx[1].sha256, 0)))
+        funding_tx = split_utxo(megabytes, CTxIn(COutPoint(b64a.vtx[1].sha256, 0)))
         b64a = update_block("64a", [funding_tx])
-        # Add 8 near-1MB transactions
+        # Add <megabytes> near-1MB transactions
         # use canonical serialization to calculate size
         bigtxes = create_big_txs(funding_tx, len(b64a.normal_serialize()))
         b64a = update_block("64a", bigtxes)

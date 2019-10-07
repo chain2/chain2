@@ -55,7 +55,6 @@ BITCOIN_TESTS =\
   test/chain_tests.cpp \
   test/chainparams_tests.cpp \
   test/checkblock_tests.cpp \
-  test/Checkpoints_tests.cpp \
   test/clientversion_tests.cpp \
   test/cashaddr_tests.cpp \
   test/cashaddrenc_tests.cpp \
@@ -95,14 +94,13 @@ BITCOIN_TESTS =\
   test/p2p_protocol_tests.cpp \
   test/pmt_tests.cpp \
   test/policyestimator_tests.cpp \
-  test/pow_tests.cpp \
   test/processmessage_tests.cpp \
   test/raii_event_tests.cpp \
   test/ReceiveMsgBytes_tests.cpp \
   test/rpc_tests.cpp \
   test/sanity_tests.cpp \
   test/scheduler_tests.cpp \
-  test/script_antireplay_tests.cpp \
+  test/script_commitment_tests.cpp \
   test/script_P2SH_tests.cpp \
   test/script_tests.cpp \
   test/scriptnum_tests.cpp \
