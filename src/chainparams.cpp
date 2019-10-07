@@ -40,15 +40,8 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
 }
 
 /**
- * Build the genesis block. Note that the output of its generation
- * transaction cannot be spent since it did not originally exist in the
- * database.
- *
- * CBlock(hash=000000000019d6, ver=1, hashPrevBlock=00000000000000, hashMerkleRoot=4a5e1e, nTime=1231006505, nBits=1d00ffff, nNonce=2083236893, vtx=1)
- *   CTransaction(hash=4a5e1e, ver=1, vin.size=1, vout.size=1, nLockTime=0)
- *     CTxIn(COutPoint(000000, -1), coinbase 04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73)
- *     CTxOut(nValue=50.00000000, scriptPubKey=0x5F1DF16B2B704C8A578D0B)
- *   vMerkleTree: 4a5e1e
+ * Build the genesis block. Per tradition, the output of its generation
+ * transaction cannot be spent.
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
@@ -134,18 +127,13 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("0x03c4359f68957fd2f688146b6e2beda38c937fb1bb12927f4a53792186e79a05"));
         assert(genesis.hashMerkleRoot == uint256S("0x213c74a7538c34d1d482f43690f03c85cb0cb73e5dab3a64075ab07682b0ef65"));
 
-        vSeeds.push_back(CDNSSeedData("bitcoinabc.org", "seed.bitcoinabc.org"));
-        vSeeds.push_back(CDNSSeedData("criptolayer.net", "seeder.criptolayer.net")); // criptolayer.net
-        vSeeds.push_back(CDNSSeedData("bitcoinforks.org", "seed-abc.bitcoinforks.org")); // bitcoinforks seeders
-        vSeeds.push_back(CDNSSeedData("bitcoinunlimited.info", "btccash-seeder.bitcoinunlimited.info")); // BU backed seeder
-        vSeeds.push_back(CDNSSeedData("bitprim.org", "seed.bitprim.org")); // Bitprim
-        vSeeds.push_back(CDNSSeedData("deadalnix.me", "seed.deadalnix.me")); // Amaury SÉCHET
-
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,0);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
+
+        vSeeds.push_back(CDNSSeedData("chain2.org", "seeds.chain2.org"));
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
         cashaddrPrefix = "ctwo";
@@ -162,7 +150,7 @@ public:
 static CMainParams mainParams;
 
 /**
- * Testnet (v3)
+ * Testnet
  */
 class CTestNetParams : public CChainParams {
 public:
@@ -206,19 +194,13 @@ public:
         nPruneAfterHeight = 1000;
         nMinBlockfileBlocks = 64;
 
-        genesis = CreateGenesisBlock(1296688602, 414098458, 0x1d00ffff, 1, 50 * COIN);
+        // Commit to the hash of block #595306 on the most-work bitcoin chain, 2019-09-17
+        const char* pszTimestamp = "0000000000000000000914a6728b2ff963775b8358b7cf87a46911b9f6c80b98";
+        const CScript genesisOutputScript = CScript() << OP_FALSE;
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1568735995, 3853159094, 0x1d00ffff, VERSIONBITS_TOP_BITS, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        //assert(consensus.hashGenesisBlock == uint256S("0x000000000933ea01ad0ee984209779baaec3ced90fa3f408719526f8d77f4943"));
-        //assert(genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
-
-        vFixedSeeds.clear();
-        vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("bitcoinabc.org", "testnet-seed.bitcoinabc.org")); // Bitcoin ABC seeder
-        vSeeds.push_back(CDNSSeedData("criptolayer.net","testnet-seeder.criptolayer.net")); // criptolayer.net
-        vSeeds.push_back(CDNSSeedData("bitcoinforks.org", "testnet-seed-abc.bitcoinforks.org")); // bitcoinforks seeders
-        vSeeds.push_back(CDNSSeedData("bitcoinunlimited.info", "testnet-seed.bitcoinunlimited.info")); // BU seeder
-        vSeeds.push_back(CDNSSeedData("bitprim.org", "testnet-seed.bitprim.org")); //Bitprim
-        vSeeds.push_back(CDNSSeedData("deadalnix.me", "testnet-seed.deadalnix.me")); //Amaury SÉCHET
+        assert(consensus.hashGenesisBlock == uint256S("00000000a268e384a952a6eb4b472b37906ee58b602bdbdc0497d8a4c17c0d4f"));
+        assert(genesis.hashMerkleRoot == uint256S("7d35a43cb4e5e62ccc2d32990185194c866a8f6599a5066aec017a63b9ca8857"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
@@ -226,7 +208,12 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x35)(0x87)(0xCF).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x35)(0x83)(0x94).convert_to_container<std::vector<unsigned char> >();
 
+        vSeeds.clear();
+        vSeeds.push_back(CDNSSeedData("chain2.org", "seeds-test.chain2.org"));
+
+        vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
+
         cashaddrPrefix = "ctwotest";
 
         fMiningRequiresPeers = true;
@@ -241,18 +228,22 @@ public:
 static CTestNetParams testNetParams;
 
 /**
- * Testnet for BIP100
+ * Testnet2
  */
-class CBIP100NetParams : public CTestNetParams {
+class CTestNet2Params : public CTestNetParams {
 public:
-    CBIP100NetParams() {
-        strNetworkID = "bip100";
+    CTestNet2Params() {
+        strNetworkID = "test2";
         nDefaultPort = 29393;
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        genesis = CreateGenesisBlock(1489351422, 3, 0x207fffff, 1, 50 * COIN);
+
+        // Commit to the hash of block #595306 on the most-work bitcoin chain, 2019-09-17
+        const char* pszTimestamp = "0000000000000000000914a6728b2ff963775b8358b7cf87a46911b9f6c80b98";
+        const CScript genesisOutputScript = CScript() << OP_FALSE;
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1568746371, 4294967294, 0x207fffff, VERSIONBITS_TOP_BITS, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        //assert(consensus.hashGenesisBlock == uint256S("6818cb3e2d0bd3e8f287093bcf0276b083084756d6c6284f39ab72cf9417c8ec"));
-        //assert(genesis.hashMerkleRoot == uint256S("4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
+        assert(consensus.hashGenesisBlock == uint256S("55b0df65cb3c7cb0c81ad8800980b0901d9bf8c3aa906326e37c4b65e3cd424e"));
+        assert(genesis.hashMerkleRoot == uint256S("7d35a43cb4e5e62ccc2d32990185194c866a8f6599a5066aec017a63b9ca8857"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -260,7 +251,7 @@ public:
         checkpointData = CCheckpointData();
     }
 };
-static CBIP100NetParams bip100NetParams;
+static CTestNet2Params testNet2Params;
 
 /**
  * Regression test
@@ -549,7 +540,9 @@ public:
         nPruneAfterHeight = 1000;
         nMinBlockfileBlocks = 4;
 
-        genesis = CreateGenesisBlock(1296688602, 4294967293, 0x207fffff, VERSIONBITS_TOP_BITS, 50 * COIN);
+        const char* pszTimestamp = "This space for rent";
+        const CScript genesisOutputScript = CScript() << OP_FALSE;
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1296688602, 4294967293, 0x207fffff, VERSIONBITS_TOP_BITS, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x03c4359f68957fd2f688146b6e2beda38c937fb1bb12927f4a53792186e79a05"));
         assert(genesis.hashMerkleRoot == uint256S("0x213c74a7538c34d1d482f43690f03c85cb0cb73e5dab3a64075ab07682b0ef65"));
@@ -590,8 +583,8 @@ CChainParams& Params(const std::string& chain)
         return testNetParams;
     else if (chain == CBaseChainParams::REGTEST)
         return regTestParams;
-    else if (chain == CBaseChainParams::BIP100NET) {
-        return bip100NetParams;
+    else if (chain == CBaseChainParams::TESTNET2) {
+        return testNet2Params;
     }
     else
         throw std::runtime_error(strprintf("%s: Unknown chain %s.", __func__, chain));
