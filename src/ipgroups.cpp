@@ -174,7 +174,7 @@ static CIPGroup *LoadTorIPsFromWeb() {
             }
         }
     }
-    string url = strprintf("https://check.torproject.org/torbulkexitlist?ip=%s&port=8333", ourip);
+    string url = strprintf("https://check.torproject.org/torbulkexitlist?ip=%s&port=9393", ourip);
     return LoadIPDataFromWeb(url, "tor", OPEN_PROXY_PRIORITY);
 }
 
@@ -309,7 +309,7 @@ void InitIPGroups(CScheduler *scheduler) {
 
     // Future ideas:
     // - Load IP ranges from URLs to let node admin deprioritise ranges that seem to be jamming.
-    // - Dialback on connect to see if an IP is listening/responding to port 8333: if so, more likely
+    // - Dialback on connect to see if an IP is listening/responding to port 9393: if so, more likely
     //   to be a valuable peer than an attacker, so bump priority.
     // - Raise priority of a connection as it does valuable things like relaying data to us.
     // - Design a protocol to let user wallets gain priority by proving ownership of coin age, as they tend to have

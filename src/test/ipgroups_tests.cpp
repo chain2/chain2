@@ -28,7 +28,7 @@ BOOST_AUTO_TEST_CASE(ipgroup)
 BOOST_AUTO_TEST_CASE(parse_ip_data_ok)
 {
     std::string data =
-            "# You can update this list by visiting https://check.torproject.org/cgi-bin/TorBulkExitList.py?ip=185.25.95.132&port=8333 #\n"
+            "# You can update this list by visiting https://check.torproject.org/cgi-bin/TorBulkExitList.py?ip=185.25.95.132&port=9393 #\n"
             "# This file was generated on Thu Aug 27 14:04:18 UTC 2015 #\n"
             "1.160.81.87\n"
             "1.160.87.94\n"
