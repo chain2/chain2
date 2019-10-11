@@ -49,27 +49,22 @@ using namespace std;
 uint64_t nLastBlockTx = 0;
 uint64_t nLastBlockSize = 0;
 
-void UpdateTime(CBlockHeader* pblock, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev)
+bool UpdateTime(CBlockHeader* pblock, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev)
 {
-    pblock->nTime = std::max(pindexPrev->GetMedianTimePast()+1, GetAdjustedTime());
+    int64_t defaultSpacing = 1;
 
-    // Updating time can change work required on testnet:
-    if (consensusParams.fPowAllowMinDifficultyBlocks) {
-        pblock->nBits = GetNextWorkRequired(pindexPrev, pblock->GetBlockTime(), consensusParams);
-    }
-}
+    // regtest
+    if (consensusParams.fPowNoRetargeting)
+        defaultSpacing = consensusParams.nPowTargetSpacing;
 
-void UpdateTime(miner::BlockBuilder& block,
-                const Consensus::Params& consensusParams,
-                const CBlockIndex* pindexPrev)
-{
-    CBlockHeader dummy;
-    dummy.nBits = 0;
-    UpdateTime(&dummy, consensusParams, pindexPrev);
-    block.SetTime(dummy.GetBlockTime());
-    if (dummy.nBits != 0) {
-        block.SetBits(dummy.nBits);
-    }
+    uint32_t newTime = std::max(pindexPrev->GetBlockTime() + defaultSpacing, GetAdjustedTime());
+    if (newTime == pblock->nTime)
+        return false;
+
+    pblock->nTime = newTime;
+    // Updating time changes next work required
+    pblock->nBits = GetNextWorkRequired(pindexPrev, pblock->GetBlockTime(), consensusParams);
+    return true;
 }
 
 // BIP100 string:
@@ -230,11 +225,10 @@ void CreateNewBlock(miner::BlockBuilder& block, const CScript& scriptPubKeyIn, b
 
         // Fill in header
         block.SetHashPrevBlock(pindexPrev->GetBlockHash());
-        UpdateTime(block, Params().GetConsensus(), pindexPrev);
-        block.SetBits(GetNextWorkRequired(pindexPrev, block.GetTime(), Params().GetConsensus()));
+        block.UpdateTime(Params().GetConsensus(), pindexPrev);
 
         if (block.NeedsGBTMetadata()) {
-            block.SetBlockMinTime(nMedianTimePast + 1);
+            block.SetBlockMinTime(pindexPrev->GetBlockTime() + 1);
             block.SetBlockHeight(nHeight);
             block.SetBlockSizeLimit(hardLimit);
             block.SetBlockSigopLimit(MaxBlockSigops(nBlockSize));
@@ -365,18 +359,23 @@ void static BitcoinMiner(const CChainParams& chainparams, CConnman* connman)
                 // Busy-wait for the network to come online so we don't waste time mining
                 // on an obsolete chain. In regtest mode we expect to fly solo.
                 do {
-                    bool fvNodesEmpty = bool(connman->GetNodeCount(CConnman::CONNECTIONS_ALL));
-                    if (!fvNodesEmpty && !IsInitialBlockDownload())
+                    bool fvNodes = bool(connman->GetNodeCount(CConnman::CONNECTIONS_ALL));
+                    if (fvNodes && !IsInitialBlockDownload())
                         break;
                     MilliSleep(1000);
                 } while (true);
             }
 
+            CBlockIndex* pindexPrev = chainActive.Tip();
+
+            // Wait until tip is 1 second in the past.
+            while (GetTime() - pindexPrev->GetBlockTime() < 1)
+                MilliSleep(50);
+
             //
             // Create new block
             //
             unsigned int nTransactionsUpdatedLast = mempool.GetTransactionsUpdated();
-            CBlockIndex* pindexPrev = chainActive.Tip();
 
             CBlock block;
             {
@@ -394,14 +393,16 @@ void static BitcoinMiner(const CChainParams& chainparams, CConnman* connman)
             // Search
             //
             int64_t nStart = GetTime();
-            arith_uint256 hashTarget = arith_uint256().SetCompact(block.nBits);
+            arith_uint256 prevTarget = arith_uint256().SetCompact(pindexPrev->nBits);
+            uint32_t blocksecond = nStart - pindexPrev->GetBlockTime();
+            arith_uint256 subTarget = GetSubTarget(prevTarget, blocksecond);
             uint256 hash;
             uint32_t nNonce = 0;
             while (true) {
                 // Check if something found
                 if (ScanHash(&block, nNonce, &hash))
                 {
-                    if (UintToArith256(hash) <= hashTarget)
+                    if (UintToArith256(hash) <= subTarget)
                     {
                         // Found a solution
                         block.nNonce = nNonce;
@@ -409,7 +410,8 @@ void static BitcoinMiner(const CChainParams& chainparams, CConnman* connman)
 
                         SetThreadPriority(THREAD_PRIORITY_NORMAL);
                         LogPrintf("BitcoinMiner:\n");
-                        LogPrintf("proof-of-work found  \n  hash: %s  \ntarget: %s\n", hash.GetHex(), hashTarget.GetHex());
+                        LogPrintf("proof-of-work found  \n       hash: %s  \n     subtarget: %s\nblocksecond: %u\n",
+                                hash.GetHex(), subTarget.GetHex(), blocksecond);
                         ProcessBlockFound(&block, chainparams, connman);
                         SetThreadPriority(THREAD_PRIORITY_LOWEST);
                         coinbaseScript->KeepScript();
@@ -435,11 +437,9 @@ void static BitcoinMiner(const CChainParams& chainparams, CConnman* connman)
                 if (pindexPrev != chainActive.Tip())
                     break;
 
-                UpdateTime(&block, chainparams.GetConsensus(), pindexPrev);
-                if (chainparams.GetConsensus().fPowAllowMinDifficultyBlocks)
-                {
-                    // Changing pblock->nTime can change work required on testnet:
-                    hashTarget.SetCompact(block.nBits);
+                if (UpdateTime(&block, chainparams.GetConsensus(), pindexPrev)) {
+                    blocksecond = block.GetBlockTime() - pindexPrev->GetBlockTime();
+                    subTarget = GetSubTarget(prevTarget, blocksecond);
                 }
             }
         }

@@ -50,19 +50,19 @@ struct Params {
     int nSubsidyHalvingInterval;
     /** Defined BIP135 deployments. */
     std::map<DeploymentPos, ForkDeployment> vDeployments;
+
     /**
      * BIP100: One-based position from beginning (end) of the ascending sorted list of max block size
      * votes in a 2016-block interval, at which the possible new lower (higher) max block size is read.
      * 1512 = 75th percentile of 2016
      */
     uint32_t nMaxBlockSizeChangePosition;
+    uint32_t nMaxBlockSizeAdjustmentInterval;
+
     /** Proof of work parameters */
     uint256 powLimit;
-    bool fPowAllowMinDifficultyBlocks;
     bool fPowNoRetargeting;
     int64_t nPowTargetSpacing;
-    int64_t nPowTargetTimespan;
-    int64_t DifficultyAdjustmentInterval() const { return nPowTargetTimespan / nPowTargetSpacing; }
 };
 } // namespace Consensus
 

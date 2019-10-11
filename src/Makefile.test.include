@@ -94,6 +94,7 @@ BITCOIN_TESTS =\
   test/p2p_protocol_tests.cpp \
   test/pmt_tests.cpp \
   test/policyestimator_tests.cpp \
+  test/pow_tests.cpp \
   test/processmessage_tests.cpp \
   test/raii_event_tests.cpp \
   test/ReceiveMsgBytes_tests.cpp \

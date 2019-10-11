@@ -11,6 +11,7 @@ class SerializableBlockBuilder : public BlockBuilder {
 public:
     SerializableBlockBuilder();
 
+    bool UpdateTime(const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev) override;
     void SetTime(uint32_t t) override;
     uint32_t GetTime() const override;
     void SetVersion(uint32_t v) override;

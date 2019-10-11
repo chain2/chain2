@@ -32,6 +32,6 @@ void GenerateBitcoins(bool fGenerate, int nThreads, const CChainParams& chainpar
 void CreateNewBlock(miner::BlockBuilder& block, const CScript& scriptPubKeyIn, bool checkValidity = true);
 /** Modify the extranonce in a block */
 void IncrementExtraNonce(CBlock* pblock, CBlockIndex* pindexPrev, unsigned int& nExtraNonce, uint64_t nMaxBlockSize);
-void UpdateTime(CBlockHeader* pblock, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev);
+bool UpdateTime(CBlockHeader* pblock, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev);
 std::vector<unsigned char> BIP100Str(uint64_t hardlimit);
 #endif // BITCOIN_MINER_H

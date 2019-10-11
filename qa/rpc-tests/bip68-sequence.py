@@ -25,7 +25,7 @@ NOT_FINAL_ERROR = "64: non-BIP68-final"
 class BIP68Test(BitcoinTestFramework):
     def __init__(self):
         super().__init__()
-        self.num_nodes = 2
+        self.num_nodes = 1
         self.setup_clean_chain = False
 
     def setup_network(self):
@@ -254,11 +254,8 @@ class BIP68Test(BitcoinTestFramework):
         # Use prioritisetransaction to lower the effective feerate to negative fee
         # in combination with -bip68hack.
         self.nodes[0].prioritisetransaction(tx2.hash, -50000)
-        cur_time = int(time.time())
         for i in range(10):
-            self.nodes[0].setmocktime(cur_time + 600)
             self.nodes[0].generate(1)
-            cur_time += 600
 
         assert(tx2.hash in self.nodes[0].getrawmempool())
 
@@ -269,7 +266,6 @@ class BIP68Test(BitcoinTestFramework):
         self.nodes[0].prioritisetransaction(tx2.hash, 60000)
 
         # Advance the time on the node so that we can test timelocks
-        self.nodes[0].setmocktime(cur_time+600)
         self.nodes[0].generate(1)
         assert(tx2.hash not in self.nodes[0].getrawmempool())
 
@@ -319,7 +315,10 @@ class BIP68Test(BitcoinTestFramework):
         # diagram above).
         # This would cause tx2 to be added back to the mempool, which in turn causes
         # tx3 to be removed.
-        tip = int(self.nodes[0].getblockhash(self.nodes[0].getblockcount()-1), 16)
+        tiphash = self.nodes[0].getblockhash(self.nodes[0].getblockcount()-1)
+        tip = int(tiphash, 16)
+        tipheader = self.nodes[0].getblockheader(tiphash)
+        cur_time = tipheader['time'] + 600
         height = self.nodes[0].getblockcount()
         for i in range(2):
             block = create_block(tip, create_coinbase(absoluteHeight=height), cur_time)
@@ -327,15 +326,14 @@ class BIP68Test(BitcoinTestFramework):
             block.solve()
             tip = block.sha256
             height += 1
+            cur_time += 600
             self.nodes[0].submitblock(ToHex(block))
-            cur_time += 1
 
         mempool = self.nodes[0].getrawmempool()
-        assert(tx3.hash not in mempool)
         assert(tx2.hash in mempool)
+        assert(tx3.hash not in mempool)
 
-        # Reset the chain and get rid of the mocktimed-blocks
-        self.nodes[0].setmocktime(0)
+        # Reset the chain
         self.nodes[0].invalidateblock(self.nodes[0].getblockhash(cur_height+1))
         self.nodes[0].generate(10)
 

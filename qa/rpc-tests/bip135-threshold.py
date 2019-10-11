@@ -54,7 +54,7 @@ class BIP135ForksTest(ComparisonTestFramework):
         for i in range(number):
             old_tip = self.tip
             self.height += 1
-            self.last_block_time += 1
+            self.last_block_time += 600
             block = create_block(self.tip, create_coinbase(absoluteHeight=self.height), self.last_block_time)
             block.nVersion = version
             block.rehash()
@@ -96,8 +96,8 @@ class BIP135ForksTest(ComparisonTestFramework):
         # check initial DEFINED state
         # check initial forks status and getblocktemplate
         logging.info("begin test 2")
+        tip_mediantime = int(node.getblockchaininfo()['mediantime'])
         tmpl = node.getblocktemplate({})
-        tip_mediantime = int(tmpl['mintime']) - 1
         assert_equal(tmpl['vbrequired'], 0)
         assert_equal(tmpl['version'], VERSIONBITS_TOP_BITS)
         logging.info("initial getblocktemplate:\n%s" % tmpl)
@@ -112,8 +112,8 @@ class BIP135ForksTest(ComparisonTestFramework):
                 assert(f not in tmpl['vbavailable'])
             test_blocks = self.generate_blocks(1, 0x20000001)
             yield TestInstance(test_blocks, sync_every_block=False)
+            tip_mediantime = int(node.getblockchaininfo()['mediantime'])
             tmpl = node.getblocktemplate({})
-            tip_mediantime = int(tmpl['mintime']) - 1
 
         # Test 3
         # Advance from DEFINED to STARTED

@@ -86,7 +86,7 @@ class VersionBitsWarningTest(BitcoinTestFramework):
     def send_blocks_with_version(self, peer, numblocks, nVersionToUse):
         tip = self.nodes[0].getbestblockhash()
         height = self.nodes[0].getblockcount()
-        block_time = self.nodes[0].getblockheader(tip)["time"]+1
+        block_time = self.nodes[0].getblockheader(tip)["time"]+600
         tip = int(tip, 16)
 
         for i in range(numblocks):
@@ -94,7 +94,7 @@ class VersionBitsWarningTest(BitcoinTestFramework):
             block.nVersion = nVersionToUse
             block.solve()
             peer.send_message(msg_block(block))
-            block_time += 1
+            block_time += 600
             height += 1
             tip = block.sha256
         peer.sync_with_ping()

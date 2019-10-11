@@ -80,10 +80,8 @@ public:
     CMainParams() {
         strNetworkID = "main";
         consensus.nSubsidyHalvingInterval = 210000;
-        consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
+        consensus.powLimit = uint256S("00000000ffff0000000000000000000000000000000000000000000000000000");
         consensus.nPowTargetSpacing = 10 * 60;
-        consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
 
         // CHECKDATASIGVERIFY
@@ -108,6 +106,7 @@ public:
 
         // BIP100 max block size change critical vote position
         consensus.nMaxBlockSizeChangePosition = 1512;
+        consensus.nMaxBlockSizeAdjustmentInterval = 2016;
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -122,10 +121,10 @@ public:
         nPruneAfterHeight = 100000;
         nMinBlockfileBlocks = 64;
 
-        genesis = CreateGenesisBlock(1296688602, 4294967293, 0x207fffff, VERSIONBITS_TOP_BITS, 50 * COIN);
+        genesis = CreateGenesisBlock(1565844650, 2467406596, 0x1d00ffff, VERSIONBITS_TOP_BITS, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x03c4359f68957fd2f688146b6e2beda38c937fb1bb12927f4a53792186e79a05"));
-        assert(genesis.hashMerkleRoot == uint256S("0x213c74a7538c34d1d482f43690f03c85cb0cb73e5dab3a64075ab07682b0ef65"));
+        assert(consensus.hashGenesisBlock == uint256S("000000003b3657b42e5800c3a48510aaa8f5e886d4b2aea04bb9c15b98f8482d"));
+        assert(genesis.hashMerkleRoot == uint256S("213c74a7538c34d1d482f43690f03c85cb0cb73e5dab3a64075ab07682b0ef65"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,0);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
@@ -157,10 +156,8 @@ public:
     CTestNetParams() {
         strNetworkID = "test";
         consensus.nSubsidyHalvingInterval = 210000;
-        consensus.powLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
+        consensus.powLimit = uint256S("00000000ffff0000000000000000000000000000000000000000000000000000");
         consensus.nPowTargetSpacing = 10 * 60;
-        consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
 
         // CHECKDATASIGVERIFY
@@ -185,6 +182,7 @@ public:
 
         // BIP100 max block size change critical vote position
         consensus.nMaxBlockSizeChangePosition = 1512;
+        consensus.nMaxBlockSizeAdjustmentInterval = 2016;
 
         pchMessageStart[0] = 0xad;
         pchMessageStart[1] = 0xac;
@@ -235,7 +233,7 @@ public:
     CTestNet2Params() {
         strNetworkID = "test2";
         nDefaultPort = 29393;
-        consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        consensus.powLimit = uint256S("7fffff0000000000000000000000000000000000000000000000000000000000");
 
         // Commit to the hash of block #595306 on the most-work bitcoin chain, 2019-09-17
         const char* pszTimestamp = "0000000000000000000914a6728b2ff963775b8358b7cf87a46911b9f6c80b98";
@@ -261,13 +259,12 @@ public:
     CRegTestParams() {
         strNetworkID = "regtest";
         consensus.nSubsidyHalvingInterval = 150;
-        consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        consensus.powLimit = uint256S("7fffff0000000000000000000000000000000000000000000000000000000000");
         consensus.fPowNoRetargeting = true;
-        consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
         consensus.nPowTargetSpacing = 10 * 60;
-        consensus.fPowAllowMinDifficultyBlocks = true;
 
         consensus.nMaxBlockSizeChangePosition = 1512;
+        consensus.nMaxBlockSizeAdjustmentInterval = 2016;
 
         // BIP135 functional tests rely on deterministic block times
         int64_t MOCKTIME = 1388534400 + (201 * 10 * 60); // Jan 1, 2014
@@ -410,7 +407,7 @@ public:
         consensus.vDeployments[bip135test13].windowsize = 10;
         consensus.vDeployments[bip135test13].threshold = 9;
         consensus.vDeployments[bip135test13].minlockedblocks = 0;
-        consensus.vDeployments[bip135test13].minlockedtime = 5;
+        consensus.vDeployments[bip135test13].minlockedtime = 5 * consensus.nPowTargetSpacing;
 
         Consensus::DeploymentPos bip135test14 = static_cast<Consensus::DeploymentPos>(14);
         consensus.vDeployments[bip135test14].name = "bip135test14";
@@ -420,7 +417,7 @@ public:
         consensus.vDeployments[bip135test14].windowsize = 10;
         consensus.vDeployments[bip135test14].threshold = 9;
         consensus.vDeployments[bip135test14].minlockedblocks = 0;
-        consensus.vDeployments[bip135test14].minlockedtime = 9;
+        consensus.vDeployments[bip135test14].minlockedtime = 9 * consensus.nPowTargetSpacing;
 
         Consensus::DeploymentPos bip135test15 = static_cast<Consensus::DeploymentPos>(15);
         consensus.vDeployments[bip135test15].name = "bip135test15";
@@ -430,7 +427,7 @@ public:
         consensus.vDeployments[bip135test15].windowsize = 10;
         consensus.vDeployments[bip135test15].threshold = 9;
         consensus.vDeployments[bip135test15].minlockedblocks = 0;
-        consensus.vDeployments[bip135test15].minlockedtime = 10;
+        consensus.vDeployments[bip135test15].minlockedtime = 10 * consensus.nPowTargetSpacing;
 
         Consensus::DeploymentPos bip135test16 = static_cast<Consensus::DeploymentPos>(16);
         consensus.vDeployments[bip135test16].name = "bip135test16";
@@ -440,7 +437,7 @@ public:
         consensus.vDeployments[bip135test16].windowsize = 10;
         consensus.vDeployments[bip135test16].threshold = 9;
         consensus.vDeployments[bip135test16].minlockedblocks = 0;
-        consensus.vDeployments[bip135test16].minlockedtime = 11;
+        consensus.vDeployments[bip135test16].minlockedtime = 11 * consensus.nPowTargetSpacing;
 
         Consensus::DeploymentPos bip135test17 = static_cast<Consensus::DeploymentPos>(17);
         consensus.vDeployments[bip135test17].name = "bip135test17";
@@ -450,7 +447,7 @@ public:
         consensus.vDeployments[bip135test17].windowsize = 10;
         consensus.vDeployments[bip135test17].threshold = 9;
         consensus.vDeployments[bip135test17].minlockedblocks = 0;
-        consensus.vDeployments[bip135test17].minlockedtime = 15;
+        consensus.vDeployments[bip135test17].minlockedtime = 15 * consensus.nPowTargetSpacing;
 
         Consensus::DeploymentPos bip135test18 = static_cast<Consensus::DeploymentPos>(18);
         consensus.vDeployments[bip135test18].name = "bip135test18";
@@ -460,7 +457,7 @@ public:
         consensus.vDeployments[bip135test18].windowsize = 10;
         consensus.vDeployments[bip135test18].threshold = 9;
         consensus.vDeployments[bip135test18].minlockedblocks = 10;
-        consensus.vDeployments[bip135test18].minlockedtime = 10;
+        consensus.vDeployments[bip135test18].minlockedtime = 10 * consensus.nPowTargetSpacing;
 
         Consensus::DeploymentPos bip135test19 = static_cast<Consensus::DeploymentPos>(19);
         consensus.vDeployments[bip135test19].name = "bip135test19";
@@ -470,7 +467,7 @@ public:
         consensus.vDeployments[bip135test19].windowsize = 10;
         consensus.vDeployments[bip135test19].threshold = 9;
         consensus.vDeployments[bip135test19].minlockedblocks = 10;
-        consensus.vDeployments[bip135test19].minlockedtime = 19;
+        consensus.vDeployments[bip135test19].minlockedtime = 19 * consensus.nPowTargetSpacing;
 
         Consensus::DeploymentPos bip135test20 = static_cast<Consensus::DeploymentPos>(20);
         consensus.vDeployments[bip135test20].name = "bip135test20";
@@ -480,7 +477,7 @@ public:
         consensus.vDeployments[bip135test20].windowsize = 10;
         consensus.vDeployments[bip135test20].threshold = 9;
         consensus.vDeployments[bip135test20].minlockedblocks = 10;
-        consensus.vDeployments[bip135test20].minlockedtime = 20;
+        consensus.vDeployments[bip135test20].minlockedtime = 20 * consensus.nPowTargetSpacing;
 
         Consensus::DeploymentPos bip135test21 = static_cast<Consensus::DeploymentPos>(21);
         consensus.vDeployments[bip135test21].name = "bip135test21";
@@ -490,7 +487,7 @@ public:
         consensus.vDeployments[bip135test21].windowsize = 10;
         consensus.vDeployments[bip135test21].threshold = 9;
         consensus.vDeployments[bip135test21].minlockedblocks = 20;
-        consensus.vDeployments[bip135test21].minlockedtime = 21;
+        consensus.vDeployments[bip135test21].minlockedtime = 21 * consensus.nPowTargetSpacing;
 
         Consensus::DeploymentPos bip135test22 = static_cast<Consensus::DeploymentPos>(22);
         consensus.vDeployments[bip135test22].name = "bip135test22";
@@ -500,13 +497,13 @@ public:
         consensus.vDeployments[bip135test22].windowsize = 10;
         consensus.vDeployments[bip135test22].threshold = 9;
         consensus.vDeployments[bip135test22].minlockedblocks = 21;
-        consensus.vDeployments[bip135test22].minlockedtime = 20;
+        consensus.vDeployments[bip135test22].minlockedtime = 20 * consensus.nPowTargetSpacing;
 
         Consensus::DeploymentPos bip135test23 = static_cast<Consensus::DeploymentPos>(23);
         consensus.vDeployments[bip135test23].name = "bip135test23";
         consensus.vDeployments[bip135test23].gbt_force = true;
         consensus.vDeployments[bip135test23].nStartTime = MOCKTIME + 30;
-        consensus.vDeployments[bip135test23].nTimeout = MOCKTIME + 30 + 50;
+        consensus.vDeployments[bip135test23].nTimeout = MOCKTIME + 30 + 50 * consensus.nPowTargetSpacing;
         consensus.vDeployments[bip135test23].windowsize = 10;
         consensus.vDeployments[bip135test23].threshold = 9;
         consensus.vDeployments[bip135test23].minlockedblocks = 5;
@@ -516,7 +513,7 @@ public:
         consensus.vDeployments[bip135test24].name = "bip135test24";
         consensus.vDeployments[bip135test24].gbt_force = true;
         consensus.vDeployments[bip135test24].nStartTime = MOCKTIME + 30;
-        consensus.vDeployments[bip135test24].nTimeout = MOCKTIME + 30 + 50;
+        consensus.vDeployments[bip135test24].nTimeout = MOCKTIME + 30 + 50 * consensus.nPowTargetSpacing;
         consensus.vDeployments[bip135test24].windowsize = 10;
         consensus.vDeployments[bip135test24].threshold = 8;
         consensus.vDeployments[bip135test24].minlockedblocks = 5;

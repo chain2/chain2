@@ -103,12 +103,13 @@ class MonolithActivationTest(ComparisonTestFramework):
             # get block height
             blockchaininfo = node.getblockchaininfo()
             height = int(blockchaininfo['blocks']) + 1
+            prevtime = node.getblockheader(blockchaininfo['bestblockhash'])['time']
 
             # create the block
             coinbase = create_coinbase(absoluteHeight = height)
             coinbase.rehash()
             block = create_block(
-                int(node.getbestblockhash(), 16), coinbase)
+                int(node.getbestblockhash(), 16), coinbase, prevtime + 600)
 
             # Do PoW, which is cheap on regnet
             block.solve()

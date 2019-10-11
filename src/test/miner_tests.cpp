@@ -244,7 +244,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     }
 
     // non-final txs in mempool
-    SetMockTime(chainActive.Tip()->GetMedianTimePast()+1);
+    SetMockTime(chainActive.Tip()->GetBlockTime()+600);
     // height map
     std::vector<int> prevheights;
 
@@ -332,7 +332,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     for (int i = 0; i < CBlockIndex::nMedianTimeSpan; i++)
         chainActive.Tip()->GetAncestor(chainActive.Tip()->nHeight - i)->nTime += 512; //Trick the MedianTimePast
     chainActive.Tip()->nHeight++;
-    SetMockTime(chainActive.Tip()->GetMedianTimePast() + 1);
+    chainActive.Tip()->BuildSkip();
 
     {
         SerializableBlockBuilder builder;
@@ -342,6 +342,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     BOOST_CHECK_EQUAL(block.vtx.size(), size_t(5));
 
     chainActive.Tip()->nHeight--;
+    chainActive.Tip()->BuildSkip();
     SetMockTime(0);
     mempool.clear();
 

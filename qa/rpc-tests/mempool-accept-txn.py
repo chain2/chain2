@@ -100,7 +100,7 @@ class FullBlockTest(ComparisonTestFramework):
             block_time = int(time.time()) + 1
         else:
             base_block_hash = self.tip.sha256
-            block_time = self.tip.nTime + 1
+            block_time = self.tip.nTime + 600
         # First create the coinbase
         height = self.block_heights[base_block_hash] + 1
         coinbase = create_coinbase(absoluteHeight = height, pubkey = self.coinbase_pubkey)

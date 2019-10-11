@@ -123,9 +123,16 @@ namespace {
     struct CBlockIndexWorkComparator
     {
         bool operator()(const CBlockIndex *pa, const CBlockIndex *pb) const {
+
+            auto nParentChainWork = [](const CBlockIndex *i) {
+                if (i == nullptr || i->pprev == nullptr)
+                    return arith_uint256(0);
+                return i->pprev->nChainWork;
+            };
+
             // First sort by most total work, ...
-            if (pa->nChainWork > pb->nChainWork) return false;
-            if (pa->nChainWork < pb->nChainWork) return true;
+            if (nParentChainWork(pa) > nParentChainWork(pb)) return false;
+            if (nParentChainWork(pa) < nParentChainWork(pb)) return true;
 
             // ... then by earliest time received, ...
             if (pa->nSequenceId < pb->nSequenceId) return false;
@@ -1126,10 +1133,6 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus:
         return error("%s: Deserialize or I/O error - %s at %s", __func__, e.what(), pos.ToString());
     }
 
-    // Check the header
-    if (!CheckProofOfWork(block.GetHash(), block.nBits, consensusParams))
-        return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
-
     return true;
 }
 
@@ -1137,9 +1140,18 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex, const Consensus
 {
     if (!ReadBlockFromDisk(block, pindex->GetBlockPos(), consensusParams))
         return false;
+
     if (block.GetHash() != pindex->GetBlockHash())
         return error("ReadBlockFromDisk(CBlock&, CBlockIndex*): GetHash() doesn't match index for %s at %s",
                 pindex->ToString(), pindex->GetBlockPos().ToString());
+
+    if (pindex->pprev == nullptr)
+        return true;
+
+    uint32_t blocksecond = block.GetBlockTime() - pindex->pprev->GetBlockTime();
+    if (!CheckProofOfWork(block.GetHash(), pindex->pprev->nBits, blocksecond, consensusParams))
+        return error("ReadBlockFromDisk: Invalid proof of work at %s", pindex->GetBlockPos().ToString());
+
     return true;
 }
 
@@ -1771,7 +1783,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     const CChainParams& chainparams = Params();
     AssertLockHeld(cs_main);
     // Check it again in case a previous version let a bad block in
-    if (!CheckBlock(block, state, !fJustCheck, !fJustCheck))
+    if (!CheckBlock(block, state, !fJustCheck))
         return false;
 
     // verify that the view's current state corresponds to the previous block
@@ -2683,28 +2695,30 @@ bool FindUndoPos(CValidationState &state, int nFile, CDiskBlockPos &pos, unsigne
     return true;
 }
 
-bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool fCheckPOW)
+bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state)
 {
-    // Check proof of work matches claimed amount
-    if (fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits, Params().GetConsensus()))
-        return state.DoS(50, error("CheckBlockHeader(): proof of work failed"),
-                         REJECT_INVALID, "high-hash");
-
     // Check timestamp
-    if (block.GetBlockTime() > GetAdjustedTime() + 2 * 60 * 60)
-        return state.Invalid(error("CheckBlockHeader(): block timestamp too far in the future"),
+    int64_t consensusFutureOffsetLimit = 0;
+    int64_t futureOffset = block.GetBlockTime() - GetAdjustedTime();
+
+    // regtest
+    if (Params().MineBlocksOnDemand())
+        consensusFutureOffsetLimit = 100000 * Params().GetConsensus().nPowTargetSpacing;
+
+    if (futureOffset > consensusFutureOffsetLimit)
+        return state.Invalid(error("CheckBlockHeader(): future block timestamp"),
                              REJECT_INVALID, "time-too-new");
 
     return true;
 }
 
-bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bool fCheckMerkleRoot)
+bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckMerkleRoot)
 {
     // These are checks that are independent of context.
 
-    // Check that the header is valid (particularly PoW).  This is mostly
+    // Check that the header is valid.  This may be
     // redundant with the call in AcceptBlockHeader.
-    if (!CheckBlockHeader(block, state, fCheckPOW))
+    if (!CheckBlockHeader(block, state))
         return false;
 
     // Check the merkle root.
@@ -2756,7 +2770,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
     return true;
 }
 
-bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& state, CBlockIndex * const pindexPrev)
+bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& state, CBlockIndex * const pindexPrev, bool fCheckPOW)
 {
     const CChainParams& chainParams = Params();
     const Consensus::Params& consensusParams = chainParams.GetConsensus();
@@ -2768,15 +2782,22 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
 
     int nHeight = pindexPrev->nHeight+1;
 
+    // Check timestamp against prev
+    if (block.GetBlockTime() <= pindexPrev->GetBlockTime())
+        return state.Invalid(error("%s: block's timestamp is too early", __func__),
+                             REJECT_INVALID, "time-too-old");
+
+    uint32_t blocksecond = block.GetBlockTime() - pindexPrev->GetBlockTime();
+
+    // Check proof of work matches claimed amount
+    if (fCheckPOW && !CheckProofOfWork(hash, pindexPrev->nBits, blocksecond, consensusParams))
+        return state.DoS(50, error("ContextualCheckBlockHeader(): proof of work failed"),
+                         REJECT_INVALID, "high-hash");
+
     // Check proof of work
     if (block.nBits != GetNextWorkRequired(pindexPrev, block.GetBlockTime(), consensusParams))
         return state.DoS(100, error("%s: incorrect proof of work", __func__),
                          REJECT_INVALID, "bad-diffbits");
-
-    // Check timestamp against prev
-    if (block.GetBlockTime() <= pindexPrev->GetMedianTimePast())
-        return state.Invalid(error("%s: block's timestamp is too early", __func__),
-                             REJECT_INVALID, "time-too-old");
 
     if(fCheckpointsEnabled)
     {
@@ -3003,9 +3024,9 @@ bool TestBlockValidity(CValidationState &state, const CBlock& block, CBlockIndex
     indexDummy.nMaxBlockSize = GetNextMaxBlockSize(pindexPrev, Params().GetConsensus());
 
     // NOTE: CheckBlockHeader is called by CheckBlock
-    if (!ContextualCheckBlockHeader(block, state, pindexPrev))
+    if (!ContextualCheckBlockHeader(block, state, pindexPrev, fCheckPOW))
         return false;
-    if (!CheckBlock(block, state, fCheckPOW, fCheckMerkleRoot))
+    if (!CheckBlock(block, state, fCheckMerkleRoot))
         return false;
     if (!ContextualCheckBlock(block, state, pindexPrev))
         return false;

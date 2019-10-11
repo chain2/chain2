@@ -140,13 +140,13 @@ class FullBlockTest(ComparisonTestFramework):
         tx.rehash()
         return tx
 
-    def next_block(self, number, spend=None, additional_coinbase_value=0, script=CScript([OP_TRUE]), solve=True):
+    def next_block(self, number, spend=None, additional_coinbase_value=0, script=CScript([OP_TRUE]), solve=True, blocksecond=600):
         if self.tip == None:
             base_block_hash = self.genesis_hash
             block_time = int(time.time())+1
         else:
             base_block_hash = self.tip.sha256
-            block_time = self.tip.nTime + 1
+            block_time = self.tip.nTime + blocksecond
         # First create the coinbase
         height = self.block_heights[base_block_hash] + 1
         coinbase = create_coinbase(absoluteHeight = height, pubkey = self.coinbase_pubkey)
@@ -258,8 +258,9 @@ class FullBlockTest(ComparisonTestFramework):
         #                      \-> b3 (1)
         #
         # Nothing should happen at this point. We saw b2 first so it takes priority.
+        # Lower blocksecond should not matter
         tip(1)
-        b3 = block(3, spend=out[1])
+        b3 = block(3, spend=out[1], blocksecond=407)
         txout_b3 = PreviousSpendableOutput(b3.vtx[1], 0)
         yield rejected()
 
@@ -675,7 +676,7 @@ class FullBlockTest(ComparisonTestFramework):
         coinbase = create_coinbase(absoluteHeight = height, pubkey = self.coinbase_pubkey)
         b44 = CBlock()
         b44.nVersion = 0x20000000
-        b44.nTime = self.tip.nTime + 1
+        b44.nTime = self.tip.nTime + 600
         b44.hashPrevBlock = self.tip.sha256
         b44.nBits = 0x207fffff
         b44.vtx.append(coinbase)
@@ -690,7 +691,7 @@ class FullBlockTest(ComparisonTestFramework):
         non_coinbase = create_tx(out[15].tx, out[15].n, 1)
         b45 = CBlock()
         b45.nVersion = 0x20000000
-        b45.nTime = self.tip.nTime + 1
+        b45.nTime = self.tip.nTime + 600
         b45.hashPrevBlock = self.tip.sha256
         b45.nBits = 0x207fffff
         b45.vtx.append(non_coinbase)
@@ -706,7 +707,7 @@ class FullBlockTest(ComparisonTestFramework):
         tip(44)
         b46 = CBlock()
         b46.nVersion = 0x20000000
-        b46.nTime = b44.nTime+1
+        b46.nTime = b44.nTime+600
         b46.hashPrevBlock = b44.sha256
         b46.nBits = 0x207fffff
         b46.vtx = []
@@ -721,17 +722,20 @@ class FullBlockTest(ComparisonTestFramework):
 
         # A block with invalid work
         tip(44)
-        b47 = block(47, solve=False)
+        # block.solve doesn't implement RTT. blocksecond=407 requires slightly
+        # less work than the classic algo requires, so an an invalid block here
+        # will be invalid to the node
+        b47 = block(47, solve=False, blocksecond=407)
         target = uint256_from_compact(b47.nBits)
-        while b47.sha256 < target: #changed > to <
+        while b47.sha256 < target:
             b47.nNonce += 1
             b47.rehash()
         yield rejected(RejectResult(16, b'high-hash'))
 
-        # A block with timestamp > 2 hrs in the future
+        # A block with timestamp too far in the future
         tip(44)
         b48 = block(48, solve=False)
-        b48.nTime = int(time.time()) + 60 * 60 * 3
+        b48.nTime = int(time.time()) + 60000123
         b48.solve()
         yield rejected(RejectResult(16, b'time-too-new'))
 
@@ -769,20 +773,20 @@ class FullBlockTest(ComparisonTestFramework):
         #                                                                                   \-> b54 (15)
         #
         tip(43)
-        block(53, spend=out[14])
+        b53 = block(53, spend=out[14])
         yield rejected() # rejected since b44 is at same height
         save_spendable_output()
 
-        # invalid timestamp (b35 is 5 blocks back, so its time is MedianTimePast)
+        # invalid timestamp (not greater than previous block's time)
         b54 = block(54, spend=out[15])
-        b54.nTime = b35.nTime - 1
+        b54.nTime = b53.nTime
         b54.solve()
         yield rejected(RejectResult(16, b'time-too-old'))
 
         # valid timestamp
         tip(53)
         b55 = block(55, spend=out[15])
-        b55.nTime = b35.nTime
+        b55.nTime = b53.nTime + 600
         update_block(55, [])
         yield accepted()
         save_spendable_output()

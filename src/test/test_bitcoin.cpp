@@ -105,6 +105,9 @@ CTxMemPoolEntry TestMemPoolEntryHelper::FromTx(CTransaction &txn, CTxMemPool *po
 
 TestChain110Setup::TestChain110Setup() : TestingSetup(CBaseChainParams::REGTEST)
 {
+    int64_t targetSpacing = Params().GetConsensus().nPowTargetSpacing;
+    SetMockTime(GetTime() - targetSpacing * (COINBASE_MATURITY + 10));
+
     // Generate a 110-block chain
     for (int i = 0; i < COINBASE_MATURITY + 10; i++)
     {
@@ -116,15 +119,20 @@ TestChain110Setup::TestChain110Setup() : TestingSetup(CBaseChainParams::REGTEST)
         }
 
         unsigned int extraNonce = 0;
-        uint64_t hardLimit = GetNextMaxBlockSize(chainActive.Tip(), Params().GetConsensus());
-        IncrementExtraNonce(&block, chainActive.Tip(), extraNonce, hardLimit);
-        while (!CheckProofOfWork(block.GetHash(), block.nBits, Params().GetConsensus()))
+        CBlockIndex *tip = chainActive.Tip();
+        uint64_t hardLimit = GetNextMaxBlockSize(tip, Params().GetConsensus());
+        IncrementExtraNonce(&block, tip, extraNonce, hardLimit);
+        uint32_t blocksecond = block.GetBlockTime() - tip->GetBlockTime();
+
+        while (!CheckProofOfWork(block.GetHash(), block.nBits, blocksecond, Params().GetConsensus()))
             ++block.nNonce;
 
         CValidationState state;
         ProcessNewBlock(state, BlockSource{}, &block, true, NULL, connman);
 
         coinbaseTxns.push_back(block.vtx[0]);
+
+        SetMockTime(GetTime() + targetSpacing);
     }
 }
 

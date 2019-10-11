@@ -113,11 +113,11 @@ class CheckDataSigActivationTest(ComparisonTestFramework):
         tx0_hex = ToHex(tx0)
         assert_raises_rpc_error(-26, RPC_BAD_OPCODE_ERROR,
                                 node.sendrawtransaction, tx0_hex)
-        assert_equal(get_bip135_status(node, 'bip135test0')['status'], 'defined')
+        assert_equal(get_bip135_status(node, 'bip135test0')['status'], 'started')
 
-        # CDSV regtest start happens after height 299, activation should be at height 399
-        self.log.info("Advance to height 398, just before activation, and check again")
-        node.generate(272)
+        # CDSV regtest start happened at height 99, activation should be at height 299
+        self.log.info("Advance to height 298, just before activation, and check again")
+        node.generate(172)
 
         # returns a test case that asserts that the current tip was accepted
         def accepted(tip):
@@ -132,15 +132,16 @@ class CheckDataSigActivationTest(ComparisonTestFramework):
 
         def next_block():
             # get block height
-            blockchaininfo = node.getblockchaininfo()
-            height = int(blockchaininfo['blocks'])
+            tiphash = node.getbestblockhash()
+            tipheader = node.getblockheader(tiphash)
+            height = int(tipheader['height'])
 
             # create the block
             coinbase = create_coinbase(absoluteHeight=height+1)
             coinbase.rehash()
             version = 0x20000001 # Signal for CDSV on bit 0
-            block = create_block(int(node.getbestblockhash(), 16), coinbase,
-                                 int(blockchaininfo['mediantime']) + 1, nVersion=version)
+            block = create_block(int(tiphash, 16), coinbase,
+                                 int(tipheader['time']) + 600, nVersion=version)
 
             # Do PoW, which is cheap on regnet
             block.solve()

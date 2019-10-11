@@ -33,8 +33,7 @@
 using namespace std;
 
 /**
- * Return average network hashes per second based on the last 'lookup' blocks,
- * or from the last difficulty change if 'lookup' is nonpositive.
+ * Return average network hashes per second based on the last 'lookup' blocks.
  * If 'height' is nonnegative, compute the estimate at the time when a given block was found.
  */
 UniValue GetNetworkHashPS(int lookup, int height) {
@@ -46,9 +45,9 @@ UniValue GetNetworkHashPS(int lookup, int height) {
     if (pb == NULL || !pb->nHeight)
         return 0;
 
-    // If lookup is -1, then use blocks since last difficulty change.
+    // If lookup is non-positive then use 1
     if (lookup <= 0)
-        lookup = pb->nHeight % Params().GetConsensus().DifficultyAdjustmentInterval() + 1;
+        lookup = 1;
 
     // If lookup is larger than chain, then set it to chain length.
     if (lookup > pb->nHeight)
@@ -133,6 +132,8 @@ UniValue generateBlocks(boost::shared_ptr<CReserveScript> coinbaseScript, int nG
     while (nHeight < nHeightEnd)
     {
         CBlock block;
+        uint32_t nBits;
+        uint32_t blocksecond;
         {
             miner::SerializableBlockBuilder builder;
             CreateNewBlock(builder, coinbaseScript->reserveScript);
@@ -140,10 +141,14 @@ UniValue generateBlocks(boost::shared_ptr<CReserveScript> coinbaseScript, int nG
         }
         {
             LOCK(cs_main);
-            uint64_t nMaxBlockSize = GetNextMaxBlockSize(chainActive.Tip(), Params().GetConsensus());
-            IncrementExtraNonce(&block, chainActive.Tip(), nExtraNonce, nMaxBlockSize);
+            CBlockIndex *tip = chainActive.Tip();
+            uint64_t nMaxBlockSize = GetNextMaxBlockSize(tip, Params().GetConsensus());
+            IncrementExtraNonce(&block, tip, nExtraNonce, nMaxBlockSize);
+            nBits = tip->nBits;
+            blocksecond = block.GetBlockTime() - tip->GetBlockTime();
         }
-        while (nMaxTries > 0 && block.nNonce < nInnerLoopCount && !CheckProofOfWork(block.GetHash(), block.nBits, Params().GetConsensus())) {
+
+        while (nMaxTries > 0 && block.nNonce < nInnerLoopCount && !CheckProofOfWork(block.GetHash(), nBits, blocksecond, Params().GetConsensus())) {
             ++block.nNonce;
             --nMaxTries;
         }

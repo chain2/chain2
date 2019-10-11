@@ -3,6 +3,7 @@
 
 #include "consensus/tx_verify.h"
 #include "versionbits.h" // ThresholdState
+#include "miner.h" // UpdateTime
 
 namespace miner {
 
@@ -57,6 +58,8 @@ inline bool EntryHashCmp(const BuilderEntry& a, const BuilderEntry& b) {
 
 class BlockBuilder {
 public:
+    virtual bool UpdateTime(const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev) = 0;
+
     virtual void SetTime(uint32_t t) = 0;
     virtual uint32_t GetTime() const = 0;
 
