@@ -48,12 +48,9 @@ BOOST_AUTO_TEST_CASE(xtsubversion_uacomment)
 {
     bool hideplatform = true;
 
-    // only EB comment
-    BOOST_CHECK(XTSubVersion(0, "", {}, hideplatform).find("(EB0)") != std::string::npos);
-
-    // uacomments + EB
+    // uacomments
     std::vector<std::string> uacomments{"hello", "world"};
-    BOOST_CHECK(XTSubVersion(0, "", uacomments, hideplatform).find("(hello; world; EB0)") != std::string::npos);
+    BOOST_CHECK(XTSubVersion(0, "", uacomments, hideplatform).find("(hello; world;") != std::string::npos);
 
 #if BOOST_VERSION >= 105500
     // combines with platform
@@ -66,14 +63,6 @@ BOOST_AUTO_TEST_CASE(xtsubversion_uacomment)
     // not supported with custom user agent
     auto customUserAgent = "/test:1.0/";
     BOOST_CHECK(XTSubVersion(0, customUserAgent, uacomments, hideplatform).find("(hello; world") == std::string::npos);
-}
-
-BOOST_AUTO_TEST_CASE(xtsubversion_eb)
-{
-    // 1MB blocks
-    BOOST_CHECK(XTSubVersion(1000000, "", {}, false).find("EB1)") != std::string::npos);
-    // 1GB blocks
-    BOOST_CHECK(XTSubVersion(1000 * 1000000, "", {}, false).find("EB1000)") != std::string::npos);
 }
 
 BOOST_AUTO_TEST_CASE(xtsubversion_customagent) {
