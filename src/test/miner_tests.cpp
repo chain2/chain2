@@ -361,9 +361,9 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_bip100str)
 {
     LOCK(cs_main);
 
-    // No vote defined. Should only contain EB.
+    // No vote defined.
     std::string c = DefaultCoinbaseStr();
-    BOOST_CHECK(c.find("/BIP100/EB32/") != std::string::npos);
+    BOOST_CHECK(c.find("/BIP100/") != std::string::npos);
     BOOST_CHECK(c.find("/B32/") == std::string::npos);
 
     auto arg = new DummyArgGetter;
@@ -371,7 +371,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_bip100str)
     arg->Set("-maxblocksizevote", 16);
 
     c = DefaultCoinbaseStr();
-    BOOST_CHECK(c.find("/BIP100/B16/EB32/") != std::string::npos);
+    BOOST_CHECK(c.find("/BIP100/B16/") != std::string::npos);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

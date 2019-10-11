@@ -75,7 +75,6 @@ std::vector<unsigned char> BIP100Str(uint64_t hardLimit) {
     ss << "/BIP100/";
     if (blockVote)
         ss << "B" << blockVote << "/";
-    double dMaxBlockSize = double(hardLimit)/1000000;
 
     const std::string s = ss.str();
     return std::vector<unsigned char>(begin(s), end(s));
