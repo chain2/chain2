@@ -31,7 +31,6 @@
 #include <boost/tuple/tuple.hpp>
 #include <stack>
 #include <iomanip>
-#include <cmath>
 
 using namespace std;
 
@@ -69,7 +68,6 @@ bool UpdateTime(CBlockHeader* pblock, const Consensus::Params& consensusParams, 
 
 // BIP100 string:
 // - Adds our block size vote (B) if configured.
-// - Adds Excessive Block (EB) string. This announces how big blocks we currently accept.
 std::vector<unsigned char> BIP100Str(uint64_t hardLimit) {
     uint64_t blockVote = Opt().MaxBlockSizeVote();
 
@@ -78,7 +76,6 @@ std::vector<unsigned char> BIP100Str(uint64_t hardLimit) {
     if (blockVote)
         ss << "B" << blockVote << "/";
     double dMaxBlockSize = double(hardLimit)/1000000;
-    ss << "EB" << std::setprecision(int(log10(dMaxBlockSize))+7) << dMaxBlockSize << "/";
 
     const std::string s = ss.str();
     return std::vector<unsigned char>(begin(s), end(s));

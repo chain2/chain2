@@ -9,7 +9,6 @@
 #include <string>
 #include <boost/version.hpp>
 #include <iomanip>
-#include <cmath>
 
 #if BOOST_VERSION >= 105500 // Boost 1.55 or newer
 #include <boost/predef.h>
@@ -164,11 +163,9 @@ std::string XTSubVersion(uint64_t nMaxBlockSize,
         uacomments.insert(uacomments.end(), p.begin(), p.end());
     }
 
-    // Announce our excessive block acceptence.
-    std::stringstream ss;
-    double dMaxBlockSize = double(nMaxBlockSize)/1000000;
-    ss << "EB" << std::setprecision(int(log10(dMaxBlockSize))+7) << dMaxBlockSize;
-    uacomments.insert(end(uacomments), ss.str());
+#ifdef BUILD_SUFFIX
+    uacomments.push_back(STRINGIZE(BUILD_SUFFIX));
+#endif
 
     return FormatSubVersion(CLIENT_NAME, CLIENT_VERSION, uacomments, CLIENT_VERSION_XT_SUBVER);
 }

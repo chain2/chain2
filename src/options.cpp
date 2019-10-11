@@ -36,7 +36,7 @@ std::string Opt::UserAgent() const {
 }
 
 bool Opt::HidePlatform() {
-    return Args->GetBool("-hide-platform", false);
+    return Args->GetBool("-hide-platform", true);
 }
 
 std::vector<std::string> Opt::UAComment(bool validate) const {
