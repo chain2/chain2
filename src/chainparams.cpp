@@ -45,7 +45,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "This space for rent";
+    const char* pszTimestamp = "0000000000000000000f978e55f9716d0be8eca66c63a9515b01bf265b624817";
     const CScript genesisOutputScript = CScript() << OP_FALSE;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -121,10 +121,10 @@ public:
         nPruneAfterHeight = 100000;
         nMinBlockfileBlocks = 64;
 
-        genesis = CreateGenesisBlock(1565844650, 2467406596, 0x1d00ffff, VERSIONBITS_TOP_BITS, 50 * COIN);
+        genesis = CreateGenesisBlock(1570992534, 4232613203, 0x1d00ffff, VERSIONBITS_TOP_BITS, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("000000003b3657b42e5800c3a48510aaa8f5e886d4b2aea04bb9c15b98f8482d"));
-        assert(genesis.hashMerkleRoot == uint256S("213c74a7538c34d1d482f43690f03c85cb0cb73e5dab3a64075ab07682b0ef65"));
+        assert(consensus.hashGenesisBlock == uint256S("000000002b9cd0a34fc068eeba6fbce5ce3313b2f691756cff431f103067ce21"));
+        assert(genesis.hashMerkleRoot == uint256S("6c0441e368d12f1fcadb6fbc0de69221c06b9d00038dc533eaed107779da51fd"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,0);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
