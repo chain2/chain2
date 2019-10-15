@@ -1,5 +1,5 @@
 ---
-name: "bitcoin-osx-0.11"
+name: "chain2-osx-0.11"
 enable_cache: true
 suites:
 - "trusty"
@@ -25,7 +25,7 @@ packages:
 - "fonts-tuffy"
 remotes:
 - "url": "https://github.com/chain2/chain2.git"
-  "dir": "bitcoin"
+  "dir": "chain2"
 files:
 - "MacOSX10.11.sdk.tar.gz"
 script: |
@@ -79,7 +79,7 @@ script: |
   create_per-host_faketime_wrappers "2000-01-01 12:00:00"
   export PATH=${WRAP_DIR}:${PATH}
 
-  cd bitcoin
+  cd chain2
   BASEPREFIX=`pwd`/depends
 
   mkdir -p ${BASEPREFIX}/SDKs
@@ -100,14 +100,14 @@ script: |
   ./autogen.sh
   ./configure --prefix=${BASEPREFIX}/`echo "${HOSTS}" | awk '{print $1;}'`
   make dist
-  SOURCEDIST=`echo bitcoin-*.tar.gz`
+  SOURCEDIST=`echo chain2-*.tar.gz`
   DISTNAME=`echo ${SOURCEDIST} | sed 's/.tar.*//'`
 
   # Correct tar file order
   mkdir -p temp
   pushd temp
   tar xf ../$SOURCEDIST
-  find bitcoin-* | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ../$SOURCEDIST
+  find chain2-* | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ../$SOURCEDIST
   popd
 
   ORIGPATH="$PATH"

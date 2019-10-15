@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE(xtsubversion_uacomment)
 
     // uacomments
     std::vector<std::string> uacomments{"hello", "world"};
-    BOOST_CHECK(XTSubVersion(0, "", uacomments, hideplatform).find("(hello; world;") != std::string::npos);
+    BOOST_CHECK(XTSubVersion(0, "", uacomments, hideplatform).find("(hello; world") != std::string::npos);
 
 #if BOOST_VERSION >= 105500
     // combines with platform
