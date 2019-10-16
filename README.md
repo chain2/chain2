@@ -3,10 +3,8 @@ chain2
 
 chain2 is an experimental SHA256 altcoin designed to explore the performance of the Real-Time Targeting (RTT) difficulty adjustment algorithm ([research](/specifications/rtt.pdf), [implementation](https://github.com/chain2/chain2/pull/6)).
 
-Building
+[Download](https://github.com/chain2/chain2/releases)
 ---------------------
-- [Unix Build Notes](/doc/build-unix.md)
-- [OSX Build Notes](/doc/build-osx.md)
 
 Mining
 ---------------------
@@ -36,3 +34,8 @@ Other Notable Features
 Notably NOT Supported
 ---------------------
 Running a wallet on a pruned node, HD wallets, obfuscated chainstate, ZMQ, Schnorr
+
+Building
+---------------------
+- [Unix Build Notes](/doc/build-unix.md)
+- [OSX Build Notes](/doc/build-osx.md)
