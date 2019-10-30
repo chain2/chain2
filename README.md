@@ -10,8 +10,10 @@ Mining
 ---------------------
 With [slight modifications to ckpool](https://bitbucket.org/dgenr8/ckpool/commits/05f073b5d8ad336b00c25fab5246c796749666ce), it can allow mining chain2 in a reasonable way with no stratum client modifications needed.  But RTT will benefit most from a bit more specialized software that knows how to evolve the target without needing a new template each second.
 
-- Pool https://gnark-mining.com<br>
--a sha256 -o stratum+tcp://gnark-mining.com:3338 -u -p c=CTWO
+- Pool https://miningcoins.ca<br>
+  -a sha256 -o stratum+tcp://miningcoins.ca:3338 -u wallet -p c=CTWO
+- Pool https://pool.gpuhot.com<br>
+  -a sha256 -o stratum+tcp://pool.gpuhot.com:5250 -u wallet -p c=CTWO
 
 Resources
 ---------------------
