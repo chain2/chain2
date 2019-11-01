@@ -148,7 +148,8 @@ UniValue generateBlocks(boost::shared_ptr<CReserveScript> coinbaseScript, int nG
             blocksecond = block.GetBlockTime() - tip->GetBlockTime();
         }
 
-        while (nMaxTries > 0 && block.nNonce < nInnerLoopCount && !CheckProofOfWork(block.GetHash(), nBits, blocksecond, Params().GetConsensus())) {
+        while (nMaxTries > 0 && block.nNonce < nInnerLoopCount &&
+               !CheckProofOfWork(block.GetHash(), nBits, blocksecond, Params().GetConsensus(), false)) {
             ++block.nNonce;
             --nMaxTries;
         }

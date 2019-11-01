@@ -406,7 +406,10 @@ void static BitcoinMiner(const CChainParams& chainparams, CConnman* connman)
 
                         SetThreadPriority(THREAD_PRIORITY_NORMAL);
                         LogPrintf("BitcoinMiner:\n");
-                        LogPrintf("proof-of-work found  \n       hash: %s  \n     subtarget: %s\nblocksecond: %u\n",
+                        LogPrintf("proof-of-work found\n"
+                                  "       hash: %s\n"
+                                  "  subtarget: %s\n"
+                                  "blocksecond: %u\n",
                                 hash.GetHex(), subTarget.GetHex(), blocksecond);
                         ProcessBlockFound(&block, chainparams, connman);
                         SetThreadPriority(THREAD_PRIORITY_LOWEST);

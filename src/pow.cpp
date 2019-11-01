@@ -74,7 +74,8 @@ arith_uint256 GetSubTarget(const arith_uint256 &bnTarget, uint32_t blocksecond, 
     return bnSubTarget;
 }
 
-bool CheckProofOfWork(uint256 hash, unsigned int nBits, uint32_t blocksecond, const Consensus::Params& params)
+bool CheckProofOfWork(uint256 hash, unsigned int nBits, uint32_t blocksecond,
+                      const Consensus::Params& params, bool fLogHighHash)
 {
     if (blocksecond == 0)
         return error("CheckProofOfWork(): RTT blocksecond = 0");
@@ -93,9 +94,15 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits, uint32_t blocksecond, co
 
     // Check proof of work matches claimed amount
     if (UintToArith256(hash) > bnSubTarget) {
-        LogPrint(Log::BLOCK, "hash: %s  \n     subtarget: %s\nblocksecond: %u\n",
-                hash.GetHex(), bnSubTarget.GetHex(), blocksecond);
-        return error("CheckProofOfWork(): hash doesn't match subtarget");
+        if (fLogHighHash) {
+            LogPrint(Log::BLOCK,                     "       hash: %s\n"
+                                 "                      subtarget: %s\n"
+                                 "                    blocksecond: %u\n",
+                    hash.GetHex(), bnSubTarget.GetHex(), blocksecond);
+            return error("CheckProofOfWork(): hash doesn't match subtarget");
+        } else {
+            return false;
+        }
     }
 
     return true;
