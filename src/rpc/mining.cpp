@@ -135,13 +135,19 @@ UniValue generateBlocks(boost::shared_ptr<CReserveScript> coinbaseScript, int nG
         uint32_t nBits;
         uint32_t blocksecond;
         {
+            LOCK(cs_main);
+            CBlockIndex *tip = chainActive.Tip();
+
+            // Not regtest: Wait until tip is 1 second in the past.
+            if (!Params().GetConsensus().fPowNoRetargeting) {
+                while (GetTime() - tip->GetBlockTime() < 1)
+                    MilliSleep(50);
+            }
+
             miner::SerializableBlockBuilder builder;
             CreateNewBlock(builder, coinbaseScript->reserveScript);
             block = builder.Release();
-        }
-        {
-            LOCK(cs_main);
-            CBlockIndex *tip = chainActive.Tip();
+
             uint64_t nMaxBlockSize = GetNextMaxBlockSize(tip, Params().GetConsensus());
             IncrementExtraNonce(&block, tip, nExtraNonce, nMaxBlockSize);
             nBits = tip->nBits;
