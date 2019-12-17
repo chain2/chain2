@@ -24,6 +24,7 @@
 #include "validationinterface.h"
 
 #include <stdint.h>
+#include <vector>
 
 #include <boost/assign/list_of.hpp>
 #include <boost/shared_ptr.hpp>
@@ -53,24 +54,17 @@ UniValue GetNetworkHashPS(int lookup, int height) {
     if (lookup > pb->nHeight)
         lookup = pb->nHeight;
 
-    CBlockIndex *pb0 = pb;
-    int64_t minTime = pb0->GetBlockTime();
-    int64_t maxTime = minTime;
+    vector<double> hashrates;
+    hashrates.reserve(lookup);
+    static const double diff1 = pow(2,32);
+    static const double GAMMA_7_6 = 0.927719333;
     for (int i = 0; i < lookup; i++) {
-        pb0 = pb0->pprev;
-        int64_t time = pb0->GetBlockTime();
-        minTime = std::min(time, minTime);
-        maxTime = std::max(time, maxTime);
+        double hashrate = GetDifficulty(pb) * diff1 * GAMMA_7_6 / 531;
+        hashrates.push_back(hashrate);
+        pb = pb->pprev;
     }
-
-    // In case there's a situation where minTime == maxTime, we don't want a divide by zero exception.
-    if (minTime == maxTime)
-        return 0;
-
-    arith_uint256 workDiff = pb->nChainWork - pb0->nChainWork;
-    int64_t timeDiff = maxTime - minTime;
-
-    return workDiff.getdouble() / timeDiff;
+    sort(hashrates.begin(), hashrates.end());
+    return hashrates[lookup/2];
 }
 
 UniValue getnetworkhashps(const JSONRPCRequest& request)
@@ -79,11 +73,11 @@ UniValue getnetworkhashps(const JSONRPCRequest& request)
         throw runtime_error(
             "getnetworkhashps ( nblocks height )\n"
             "\nReturns the estimated network hashes per second based on the last n blocks.\n"
-            "Pass in [blocks] to override # of blocks, -1 specifies since last difficulty change.\n"
-            "Pass in [height] to estimate the network speed at the time when a certain block was found.\n"
+            "Pass in [blocks] to override # of blocks.\n"
+            "Pass in [height] to estimate the network speed as of a certain past height.\n"
             "\nArguments:\n"
-            "1. nblocks     (numeric, optional, default=120) The number of blocks, or -1 for blocks since last difficulty change.\n"
-            "2. height      (numeric, optional, default=-1) To estimate at the time of the given height.\n"
+            "1. nblocks     (numeric, optional, default=36) The number of blocks.\n"
+            "2. height      (numeric, optional, default=-1) Estimate as of the given height. -1 for current tip.\n"
             "\nResult:\n"
             "x             (numeric) Hashes per second estimated\n"
             "\nExamples:\n"
@@ -92,7 +86,7 @@ UniValue getnetworkhashps(const JSONRPCRequest& request)
        );
 
     LOCK(cs_main);
-    return GetNetworkHashPS(request.params.size() > 0 ? request.params[0].get_int() : 120, request.params.size() > 1 ? request.params[1].get_int() : -1);
+    return GetNetworkHashPS(request.params.size() > 0 ? request.params[0].get_int() : 36, request.params.size() > 1 ? request.params[1].get_int() : -1);
 }
 
 UniValue getgenerate(const JSONRPCRequest& request)
