@@ -11,6 +11,7 @@
 #include "options.h"
 #include "uint256.h"
 #include "util.h"
+#include "chainparams.h"
 
 /**
  * Compute nBits. It will be hashed into the CURRENT block and used as the
@@ -108,12 +109,12 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits, uint32_t blocksecond,
     return true;
 }
 
-arith_uint256 GetBlockProof(const CBlockIndex& block)
+arith_uint256 BitsToWork(unsigned int nBits)
 {
     arith_uint256 bnTarget;
     bool fNegative;
     bool fOverflow;
-    bnTarget.SetCompact(block.nBits, &fNegative, &fOverflow);
+    bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
     if (fNegative || fOverflow || bnTarget == 0)
         return 0;
     // We need to compute 2**256 / (bnTarget+1), but we can't represent 2**256
@@ -121,6 +122,27 @@ arith_uint256 GetBlockProof(const CBlockIndex& block)
     // as bnTarget+1, it is equal to ((2**256 - bnTarget - 1) / (bnTarget+1)) + 1,
     // or ~bnTarget / (nTarget+1) + 1.
     return (~bnTarget / (bnTarget + 1)) + 1;
+}
+
+arith_uint256 GetBlockProof(const CBlockIndex& block)
+{
+    return BitsToWork(block.nBits);
+}
+
+arith_uint256 GetPenalizedWork(const CBlockIndex& block, int64_t activeForkStartTime)
+{
+    if (activeForkStartTime == 0)
+        return GetBlockProof(block);
+
+    const Consensus::Params chainParams = Params().GetConsensus();
+    int64_t lateness = std::max(int64_t(0), block.nTimeDataReceived - activeForkStartTime);
+    int penalty = std::min(int((lateness + chainParams.nPowTargetSpacing) / chainParams.nPowTargetSpacing / 2), 256);
+    arith_uint256 penalizedWork = GetBlockProof(block) >> penalty;
+
+    LogPrint(Log::BLOCK, "%s: Fork block at height %i, lateness= %i, penalizedWork=%s\n",
+                         __func__, block.nHeight, lateness, penalizedWork.ToString());
+
+    return penalizedWork;
 }
 
 int64_t GetBlockProofEquivalentTime(const CBlockIndex& to, const CBlockIndex& from, const CBlockIndex& tip, const Consensus::Params& params)

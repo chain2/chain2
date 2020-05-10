@@ -117,51 +117,49 @@ const string strMessageMagic = "Bitcoin Signed Message:\n";
 
 static const uint64_t RANDOMIZER_ID_ADDRESS_RELAY = 0x3cac0035b5866b90ULL; // SHA256("main address relay")[0:8]
 
+bool CBlockIndexWorkComparator::operator()(const CBlockIndex *pa, const CBlockIndex *pb) const {
+
+    auto nParentChainWork = [](const CBlockIndex *i) {
+        if (i == nullptr || i->pprev == nullptr)
+            return arith_uint256(0);
+        return i->pprev->nChainWork;
+    };
+
+    // First sort by most total work, ...
+    if (nParentChainWork(pa) > nParentChainWork(pb)) return false;
+    if (nParentChainWork(pa) < nParentChainWork(pb)) return true;
+
+    // ... then by earliest time received, ...
+    if (pa->nSequenceId < pb->nSequenceId) return false;
+    if (pa->nSequenceId > pb->nSequenceId) return true;
+
+    // Use pointer address as tie breaker (should only happen with blocks
+    // loaded from disk, as those all have id 0).
+    if (pa < pb) return false;
+    if (pa > pb) return true;
+
+    // Identical blocks.
+    return false;
+}
+
+/**
+ * The set of all CBlockIndex entries with BLOCK_VALID_TRANSACTIONS (for itself and all ancestors) and
+ * as good as our current tip or better. Entries may be failed, though, and pruning nodes may be
+ * missing the data for the block.
+ */
+set<CBlockIndex*, CBlockIndexWorkComparator> setBlockIndexCandidates;
+
+/** All pairs A->B, where A (or one if its ancestors) misses transactions, but B has transactions.
+  * Pruned nodes may have entries where B is missing data.
+  */
+multimap<CBlockIndex*, CBlockIndex*> mapBlocksUnlinked;
+
 // Internal stuff
 namespace {
 
-    struct CBlockIndexWorkComparator
-    {
-        bool operator()(const CBlockIndex *pa, const CBlockIndex *pb) const {
-
-            auto nParentChainWork = [](const CBlockIndex *i) {
-                if (i == nullptr || i->pprev == nullptr)
-                    return arith_uint256(0);
-                return i->pprev->nChainWork;
-            };
-
-            // First sort by most total work, ...
-            if (nParentChainWork(pa) > nParentChainWork(pb)) return false;
-            if (nParentChainWork(pa) < nParentChainWork(pb)) return true;
-
-            // ... then by earliest time received, ...
-            if (pa->nSequenceId < pb->nSequenceId) return false;
-            if (pa->nSequenceId > pb->nSequenceId) return true;
-
-            // Use pointer address as tie breaker (should only happen with blocks
-            // loaded from disk, as those all have id 0).
-            if (pa < pb) return false;
-            if (pa > pb) return true;
-
-            // Identical blocks.
-            return false;
-        }
-    };
-
     CBlockIndex *pindexBestInvalid;
-
-    /**
-     * The set of all CBlockIndex entries with BLOCK_VALID_TRANSACTIONS (for itself and all ancestors) and
-     * as good as our current tip or better. Entries may be failed, though, and pruning nodes may be
-     * missing the data for the block.
-     */
-    set<CBlockIndex*, CBlockIndexWorkComparator> setBlockIndexCandidates;
     /** Number of nodes with fSyncStarted. */
     int nSyncStarted = 0;
-    /** All pairs A->B, where A (or one if its ancestors) misses transactions, but B has transactions.
-      * Pruned nodes may have entries where B is missing data.
-      */
-    multimap<CBlockIndex*, CBlockIndex*> mapBlocksUnlinked;
 
     CCriticalSection cs_LastBlockFile;
     std::vector<CBlockFileInfo> vinfoBlockFile;
@@ -1183,8 +1181,7 @@ bool IsInitialBlockDownload()
     static bool lockIBDState = false;
     if (lockIBDState)
         return false;
-    bool state = (chainActive.Height() < pindexBestHeader->nHeight - 24 * 6 ||
-            std::max(chainActive.Tip()->GetBlockTime(), pindexBestHeader->GetBlockTime()) < GetTime() - 24 * 60 * 60);
+    bool state = chainActive.Tip()->GetBlockTime() < GetTime() - 24 * 60 * 60;
     if (!state) {
         lockIBDState = true;
         LogPrintf("No longer initial block download\n");
@@ -2228,7 +2225,8 @@ bool static ConnectTip(CValidationState &state, CBlockIndex *pindexNew,
  * Return the tip of the chain with the most work in it, that isn't
  * known to be invalid (it's however far from certain to be valid).
  */
-static CBlockIndex* FindMostWorkChain() {
+CBlockIndex* FindMostWorkChain() {
+    AssertLockHeld(cs_main);
     do {
         CBlockIndex *pindexNew = NULL;
 
@@ -2240,10 +2238,22 @@ static CBlockIndex* FindMostWorkChain() {
             pindexNew = *it;
         }
 
-        // Check whether all blocks on the path between the currently active chain and the candidate are valid.
-        // Just going until the active chain is an optimization, as we know all blocks in it are valid already.
+        // If not building on the tip, prepare to penalize late blocks
+        arith_uint256 penalizedParentChainWork = 0;
+        const CBlockIndex *tip = chainActive.Tip();
+        const CBlockIndex *pindexFork = chainActive.FindFork(pindexNew);
+        unsigned int activeForkStartTime = 0;
+        if (pindexFork && tip && pindexFork != tip) {
+            activeForkStartTime = chainActive.Next(pindexFork)->nTime;
+            LogPrint(Log::BLOCK, "%s: Considering fork tip %s, fork height %i, activeForkStartTime=%u\n",
+                                 __func__, pindexNew->GetBlockHash().ToString(), pindexFork->nHeight, activeForkStartTime);
+        }
+
         CBlockIndex *pindexTest = pindexNew;
         bool fInvalidAncestor = false;
+
+        // Check whether all blocks on the path between the currently active chain and the candidate are valid.
+        // Just going until the active chain is an optimization, as we know all blocks in it are valid already.
         while (pindexTest && !chainActive.Contains(pindexTest)) {
             assert(pindexTest->nChainTx || pindexTest->nHeight == 0);
 
@@ -2275,10 +2285,26 @@ static CBlockIndex* FindMostWorkChain() {
                 fInvalidAncestor = true;
                 break;
             }
+            if (pindexTest != pindexNew)
+                penalizedParentChainWork += GetPenalizedWork(*pindexTest, activeForkStartTime);
             pindexTest = pindexTest->pprev;
         }
-        if (!fInvalidAncestor)
-            return pindexNew;
+        if (!fInvalidAncestor) {
+            if (!tip || pindexNew == tip)
+                return pindexNew;
+            if (!pindexNew->pprev)
+                return NULL;
+            if (pindexTest)
+                penalizedParentChainWork += pindexTest->nChainWork;
+            CBlockIndex penalizedParent = *pindexNew->pprev;
+            penalizedParent.nChainWork = penalizedParentChainWork;
+            CBlockIndex penalizedNew = *pindexNew;
+            penalizedNew.pprev = &penalizedParent;
+            if (setBlockIndexCandidates.value_comp()(tip, &penalizedNew))
+                return pindexNew;
+            else
+                setBlockIndexCandidates.erase(pindexNew);
+        }
     } while(true);
 }
 
@@ -3557,7 +3583,7 @@ bool InitBlockIndex() {
     recentRejects.reset(new CRollingBloomFilter(120000, 0.000001));
 
     // Check whether we're already initialized
-    if (chainActive.Genesis() != NULL)
+    if (mapBlockIndex.count(chainparams.GenesisBlock().GetHash()))
         return true;
 
     // Use the provided setting for -txindex in the new database
@@ -3780,20 +3806,12 @@ void static CheckBlockIndex()
             // Checks for not-invalid blocks.
             assert((pindex->nStatus & BLOCK_FAILED_MASK) == 0); // The failed mask cannot be set for blocks without invalid parents.
         }
-        if (!CBlockIndexWorkComparator()(pindex, chainActive.Tip()) && pindexFirstNeverProcessed == NULL) {
-            if (pindexFirstInvalid == NULL) {
-                // If this block sorts at least as good as the current tip and
-                // is valid and we have all data for its parents, it must be in
-                // setBlockIndexCandidates.  chainActive.Tip() must also be there
-                // even if some data has been pruned.
-                if (pindexFirstMissing == NULL || pindex == chainActive.Tip()) {
-                    assert(setBlockIndexCandidates.count(pindex));
-                }
-                // If some parent is missing, then it could be that this block was in
-                // setBlockIndexCandidates but had to be removed because of the missing data.
-                // In this case it must be in mapBlocksUnlinked -- see test below.
-            }
-        } else { // If this block sorts worse than the current tip or some ancestor's block has never been seen, it cannot be in setBlockIndexCandidates.
+        // chainActive.Tip() must be in setBlockIndexCandidates, even if some data has been pruned.
+        if (pindex == chainActive.Tip()) {
+            assert(setBlockIndexCandidates.count(pindex));
+        }
+        if (CBlockIndexWorkComparator()(pindex, chainActive.Tip()) || pindexFirstNeverProcessed != NULL) {
+            // If this block sorts worse than the current tip or some ancestor's block has never been seen, it cannot be in setBlockIndexCandidates.
             assert(setBlockIndexCandidates.count(pindex) == 0);
         }
         // Check whether this block is in mapBlocksUnlinked.

@@ -129,6 +129,7 @@ UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool tx
     result.push_back(Pair("chainwork", blockindex->nChainWork.GetHex()));
     result.push_back(Pair("sizelimit", blockindex->nMaxBlockSize));
     result.push_back(Pair("sizelimitvote", blockindex->nMaxBlockSizeVote));
+    result.push_back(Pair("timedatareceived", (int64_t)blockindex->nTimeDataReceived));
 
     if (blockindex->pprev)
         result.push_back(Pair("previousblockhash", blockindex->pprev->GetBlockHash().GetHex()));
@@ -399,6 +400,7 @@ UniValue getblock(const JSONRPCRequest& request)
             "  \"sizelimitvote\" : n,   (numeric) This block's sizelimit vote\n"
             "  \"previousblockhash\" : \"hash\",  (string) The hash of the previous block\n"
             "  \"nextblockhash\" : \"hash\"       (string) The hash of the next block\n"
+            "  \"timedatareceived\" : ttt (numeric) The time complete transaction data was received\n"
             "}\n"
             "\nResult (for verbose=false):\n"
             "\"data\"             (string) A string that is serialized, hex-encoded data for block 'hash'.\n"

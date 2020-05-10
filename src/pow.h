@@ -26,7 +26,9 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, uint32_t blockti
 /** Check whether a block hash satisfies the proof-of-work requirement specified by nBits */
 arith_uint256 GetSubTarget(const arith_uint256 &bnTarget, uint32_t blocksecond, bool checkOverflow = true);
 bool CheckProofOfWork(uint256 hash, unsigned int nBits, uint32_t blocktime, const Consensus::Params&, bool fLogHighHash = true);
+arith_uint256 BitsToWork(unsigned int nBits);
 arith_uint256 GetBlockProof(const CBlockIndex& block);
+arith_uint256 GetPenalizedWork(const CBlockIndex& block, int64_t activeForkStartTime);
 
 /** Return the time it would take to redo the work difference between from and to, assuming the current hashrate corresponds to the difficulty at tip, in seconds. */
 int64_t GetBlockProofEquivalentTime(const CBlockIndex& to, const CBlockIndex& from, const CBlockIndex& tip, const Consensus::Params&);

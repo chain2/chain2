@@ -128,6 +128,7 @@ testScripts = [
     'bip64.py',
     'p2p-leaktests.py',
     'bip135-checkdatasig-activation.py',
+    'reorgresist.py',
 ]
 
 testScriptsExt = [
