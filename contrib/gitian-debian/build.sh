@@ -7,8 +7,8 @@
 #  - Wrap in a script that sends crash reports/core dumps to some issue tracker.
 #  - etc ...
 
-ver=0.11.0-M
-realver=0.11M
+ver=0.11.0-N
+realver=0.11N
 
 set +e
 
