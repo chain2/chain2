@@ -85,7 +85,6 @@ protected:
 
     Consensus::Params consensus;
     CMessageHeader::MessageStartChars pchMessageStart;
-    CMessageHeader::MessageStartChars pchCashMessageStart;
     int nDefaultPort;
     uint64_t nPruneAfterHeight;
     uint64_t nMinBlockfileBlocks;
