@@ -2597,6 +2597,7 @@ bool ReceivedBlockTransactions(const CBlock &block, CValidationState& state, CBl
     pindexNew->nDataPos = pos.nPos;
     pindexNew->nUndoPos = 0;
     pindexNew->nMaxBlockSizeVote = GetMaxBlockSizeVote(block.vtx[0].vin[0].scriptSig, pindexNew->nHeight);
+    pindexNew->nTimeDataReceived = block.metadata.nTimeDataReceived;
     pindexNew->nStatus |= BLOCK_HAVE_DATA;
     pindexNew->RaiseValidity(BLOCK_VALID_TRANSACTIONS);
     setDirtyBlockIndex.insert(pindexNew);
@@ -2614,7 +2615,8 @@ bool ReceivedBlockTransactions(const CBlock &block, CValidationState& state, CBl
             {
                 LOCK(cs_nBlockSequenceId);
                 pindex->nSequenceId = nBlockSequenceId++;
-                pindex->nTimeDataReceived = GetTime();
+                if (!fReindex)
+                    pindex->nTimeDataReceived = GetTime();
             }
             pindex->nMaxBlockSize = GetNextMaxBlockSize(pindex->pprev, Params().GetConsensus());
             if (chainActive.Tip() == NULL || !setBlockIndexCandidates.value_comp()(pindex, chainActive.Tip())) {
@@ -2995,6 +2997,8 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
             blockPos = *dbp;
         if (!FindBlockPos(state, blockPos, nBlockSize+8, nHeight, block.GetBlockTime(), dbp != NULL))
             return error("AcceptBlock(): FindBlockPos failed");
+        if (!block.metadata.nTimeDataReceived && !fReindex)
+            block.metadata.nTimeDataReceived = GetTime();
         if (dbp == NULL)
             if (!WriteBlockToDisk(block, blockPos, chainparams.DBMagic()))
                 AbortNode(state, "Failed to write block");
@@ -3657,7 +3661,6 @@ bool LoadExternalBlockFile(FILE* fileIn, CDiskBlockPos *dbp)
                 if (dbp)
                     dbp->nPos = nBlockPos;
                 blkdat.SetLimit(nBlockPos + nSize);
-                blkdat.SetPos(nBlockPos);
                 CBlock block;
                 blkdat >> block;
                 nRewind = blkdat.GetPos();

@@ -17,7 +17,8 @@
 #include <atomic>
 
 static const int BIP100_DBI_VERSION = 0x08000000;
-static const int DISK_BLOCK_INDEX_VERSION = BIP100_DBI_VERSION;
+static const int RR_DBI_VERSION = 0x09000000;
+static const int DISK_BLOCK_INDEX_VERSION = RR_DBI_VERSION;
 
 class CBlockFileInfo
 {
@@ -204,7 +205,8 @@ public:
 
     //! (memory only) Sequential id assigned to distinguish order in which blocks are received.
     uint32_t nSequenceId;
-    //! (memory only) Time complete data received, assigned with nSequenceId
+
+    //! Time complete data received, assigned with nSequenceId
     int64_t nTimeDataReceived;
 
     //! Index entry serial format version
@@ -402,6 +404,10 @@ public:
         if (nSerialVersion >= BIP100_DBI_VERSION) {
             READWRITE(VARINT(nMaxBlockSize));
             READWRITE(VARINT(nMaxBlockSizeVote));
+        }
+
+        if (nSerialVersion >= RR_DBI_VERSION && (nStatus & BLOCK_HAVE_DATA)) {
+            READWRITE(nTimeDataReceived);
         }
     }
 

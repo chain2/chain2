@@ -288,6 +288,7 @@ bool CBlockTreeDB::LoadBlockIndexGuts(boost::function<CBlockIndex*(const uint256
                 pindexNew->nSerialVersion = diskindex.nSerialVersion;
                 pindexNew->nMaxBlockSize  = diskindex.nMaxBlockSize;
                 pindexNew->nMaxBlockSizeVote = diskindex.nMaxBlockSizeVote;
+                pindexNew->nTimeDataReceived = diskindex.nTimeDataReceived;
 
                 pcursor->Next();
             } else {
