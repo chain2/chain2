@@ -326,7 +326,7 @@ static bool ProcessBlockFound(CBlock* pblock, const CChainParams& chainparams, C
 
     // Process this block the same as if we had received it from another node
     CValidationState state;
-    if (!ProcessNewBlock(state, BlockSource{}, pblock, true, nullptr, connman))
+    if (!ProcessNewBlock(state, pblock, true, nullptr, connman))
         return error("BitcoinMiner: ProcessNewBlock, block not accepted");
 
     return true;

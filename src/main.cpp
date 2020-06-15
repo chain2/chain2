@@ -480,7 +480,7 @@ void OnBlockFinished::operator()(const CBlock& block, const std::vector<NodeId>&
 
     CBlock copy(block);
     // TODO: Have g_connman passed to the constructor of OnBlockFinished
-    if (!ProcessNewBlock(state, source, &copy, forceProcessing, nullptr, g_connman.get())) {
+    if (!ProcessNewBlock(state, &copy, forceProcessing, nullptr, g_connman.get(), source)) {
         LogPrintf("ProcessNewBlock failed in %s\n", __func__);
     }
     rejectAndPunish(state, block.GetHash(), ids);
@@ -3014,8 +3014,8 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
     return true;
 }
 
-bool ProcessNewBlock(CValidationState &state, const BlockSource& from,
-                     CBlock* pblock, bool fForceProcessing, const CDiskBlockPos *dbp, CConnman* connman)
+bool ProcessNewBlock(CValidationState &state, CBlock* pblock, bool fForceProcessing,
+                     const CDiskBlockPos *dbp, CConnman* connman, const BlockSource& from)
 {
     // Preliminary checks
     bool checked = CheckBlock(*pblock, state);
@@ -3677,9 +3677,8 @@ bool LoadExternalBlockFile(FILE* fileIn, CDiskBlockPos *dbp)
 
                 // process in case the block isn't known yet
                 if (mapBlockIndex.count(hash) == 0 || (mapBlockIndex[hash]->nStatus & BLOCK_HAVE_DATA) == 0) {
-                    LOCK(cs_main);
                     CValidationState state;
-                    if (AcceptBlock(block, state, NULL, true, dbp))
+                    if (ProcessNewBlock(state, &block, true, dbp))
                         nLoaded++;
                     if (state.IsError())
                         break;
@@ -3700,9 +3699,8 @@ bool LoadExternalBlockFile(FILE* fileIn, CDiskBlockPos *dbp)
                         {
                             LogPrint(Log::REINDEX, "%s: Processing out of order child %s of %s\n", __func__, block.GetHash().ToString(),
                                     head.ToString());
-                            LOCK(cs_main);
                             CValidationState dummy;
-                            if (AcceptBlock(block, dummy, NULL, true, &it->second))
+                            if (ProcessNewBlock(dummy, &block, true, &it->second))
                             {
                                 nLoaded++;
                                 queue.push_back(block.GetHash());

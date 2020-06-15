@@ -128,7 +128,7 @@ TestChain110Setup::TestChain110Setup() : TestingSetup(CBaseChainParams::REGTEST)
             ++block.nNonce;
 
         CValidationState state;
-        ProcessNewBlock(state, BlockSource{}, &block, true, NULL, connman);
+        ProcessNewBlock(state, &block, true, NULL, connman);
 
         coinbaseTxns.push_back(block.vtx[0]);
 
