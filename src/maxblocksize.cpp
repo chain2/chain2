@@ -142,9 +142,6 @@ uint64_t GetMaxBlockSizeVote(const CScript &coinbase, int32_t nHeight)
 }
 
 uint64_t NextBlockRaiseCap(uint64_t maxCurrBlock) {
-    if (maxCurrBlock < MAX_BLOCK_SIZE)
-        throw std::invalid_argument("Current block max can't be less than MAX_BLOCK_SIZE");
-
     // BIP100 allows block size limit to be increased 5%.
     return maxCurrBlock * 105 / 100;
 }

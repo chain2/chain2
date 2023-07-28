@@ -202,7 +202,6 @@ BOOST_AUTO_TEST_CASE(get_max_blocksize_vote_no_vote) {
 
 BOOST_AUTO_TEST_CASE(next_block_raise_cap) {
     BOOST_CHECK_EQUAL(MAX_BLOCK_SIZE * 105 / 100, NextBlockRaiseCap(MAX_BLOCK_SIZE));
-    BOOST_CHECK_THROW(NextBlockRaiseCap(MAX_BLOCK_SIZE - 1), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_SUITE_END();
