@@ -3047,7 +3047,11 @@ bool TestBlockValidity(CValidationState &state, const CBlock& block, CBlockIndex
     AssertLockHeld(cs_main);
     assert(pindexPrev == chainActive.Tip());
 
-    CCoinsViewCache viewNew(pcoinsTip);
+    CCoinsView dummy;
+    CCoinsViewCache viewNew(&dummy);
+    CCoinsViewMemPool viewMemPool(pcoinsTip, mempool);
+    viewNew.SetBackend(viewMemPool);
+
     CBlockIndex indexDummy(block);
     indexDummy.pprev = pindexPrev;
     indexDummy.nHeight = pindexPrev->nHeight + 1;
