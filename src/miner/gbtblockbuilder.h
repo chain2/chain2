@@ -53,7 +53,6 @@ private:
     BuilderEntry coinbase;
     std::vector<BuilderEntry> txs;
     std::map<Consensus::DeploymentPos, ThresholdState> bip135state;
-    bool useLTOR;
     std::set<std::string> clientRules;
     int64_t nMaxVersionPreVB;
     CScript coinbaseaux;

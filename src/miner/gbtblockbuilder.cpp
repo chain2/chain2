@@ -28,7 +28,7 @@ static const std::string gbt_vb_name(const Consensus::ForkDeployment& fork) {
 namespace miner {
 
 GBTBlockBuilder::GBTBlockBuilder() : block(UniValue::VOBJ), coinbase(nullptr, 0, 0),
-                                     useLTOR(true), nMaxVersionPreVB(-1), blockHeight(-1),
+                                     nMaxVersionPreVB(-1), blockHeight(-1),
                                      blockMinTime(-1), blockMaxSize(0), blockMaxSigops(0)
 {
 }
@@ -98,10 +98,6 @@ void GBTBlockBuilder::Finalize(const Consensus::Params& consensusParams) {
     THROW_UNLESS(blockMaxSize != 0);
     THROW_UNLESS(blockMaxSigops != 0);
     THROW_UNLESS(!longpollid.empty());
-
-    if (useLTOR) {
-        std::sort(std::begin(txs), std::end(txs), EntryHashCmp);
-    }
 
     UniValue aCaps(UniValue::VARR);
     aCaps.push_back("proposal");
