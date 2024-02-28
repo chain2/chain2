@@ -4,7 +4,7 @@
 
   ```
   cd chain2/contrib/gitian-debian
-  wget https://github.com/chain2/chain2/releases/download/v0.11Q/chain2-0.11.0-Q-linux64.tar.gz
+  wget https://github.com/chain2/chain2/releases/download/v0.11R/chain2-0.11.0-R-linux64.tar.gz
   ```
 
 2. Execute debian installer build script:
@@ -17,7 +17,7 @@
 1. Install newly created debian package on test debian system:
 
   ```
-  sudo gdebi chain2-0.11Q.deb
+  sudo gdebi chain2-0.11R.deb
   ```
 
 2. Verify chain2 daemon installed and started:
